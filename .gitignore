@@ -1,0 +1,26 @@
+# Database Configuration Files
+config/db.php
+db.php
+
+# Environment and Secret Files
+.env
+
+# User Uploads (Ignore uploaded images/files but keep the folder structure via .gitkeep)
+uploads/places/*
+!uploads/places/.gitkeep
+uploads/posts/*
+!uploads/posts/.gitkeep
+
+# Operating System Junk Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE and Text Editor Files (VS Code, PhpStorm, Sublime Text)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log Files
+*.log
