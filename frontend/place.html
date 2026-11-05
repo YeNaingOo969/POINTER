@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Place — POINTER</title>
+    <meta name="description" content="Opening hours, entry fee, crowd level, reviews and directions for a place in Yangon." />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
+    />
+  </head>
+  <body class="page-place">
+    <header class="place-top">
+      <a class="brand place-top__brand" href="/" aria-label="POINTER home">
+        <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
+        <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
+      </a>
+      <a class="place-top__back" href="/explore.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+        <span data-i18n="place.backToMap">Map</span>
+      </a>
+      <button class="place-top__lang" type="button" data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+    </header>
+
+    <section class="place-hero">
+      <div id="place-map" class="place-hero__map" aria-hidden="true"></div>
+      <div class="place-hero__shade"></div>
+      <div class="place-hero__text">
+        <p class="place-hero__eyebrow"></p>
+        <h1 class="place-hero__title"></h1>
+        <p class="place-hero__alt"></p>
+        <div class="place-chips place-hero__chips"></div>
+      </div>
+    </section>
+
+    <main class="place-main" hidden>
+      <div class="place-main__content">
+        <section class="place-section" aria-labelledby="about-title">
+          <h2 id="about-title" data-i18n="place.about">About</h2>
+          <p class="place-about"></p>
+          <p class="place-muted" data-i18n="place.photosSoon">Real photos of this place are coming soon.</p>
+        </section>
+
+        <section class="place-section" aria-labelledby="hours-title">
+          <h2 id="hours-title" data-i18n="place.hours">Opening hours</h2>
+          <table class="place-hours">
+            <tbody></tbody>
+          </table>
+          <p class="place-muted place-hours__unknown" data-i18n="place.hoursUnknown" hidden>Opening hours are not listed yet.</p>
+        </section>
+
+        <section class="place-section place-reviews" aria-labelledby="reviews-title">
+          <div class="place-reviews__head">
+            <h2 id="reviews-title" data-i18n="place.reviews">Reviews</h2>
+            <button class="place-button place-reviews__write" type="button" data-i18n="place.writeReview">Write a review</button>
+          </div>
+          <div class="place-reviews__summary">
+            <span class="place-reviews__average"></span>
+            <span class="place-reviews__stars" aria-hidden="true"></span>
+            <span class="place-reviews__count"></span>
+          </div>
+
+          <form class="review-form" hidden>
+            <fieldset class="review-form__rating">
+              <legend data-i18n="place.yourRating">Your rating</legend>
+              <div class="review-form__stars"></div>
+            </fieldset>
+            <label class="review-form__label">
+              <span data-i18n="place.yourReview">Your review</span>
+              <textarea name="text" rows="4" maxlength="600" required></textarea>
+            </label>
+            <div class="review-form__actions">
+              <button class="place-button place-button--gold" type="submit" data-i18n="place.postReview">Post review</button>
+              <button class="place-button" type="button" data-action="cancel" data-i18n="place.cancel">Cancel</button>
+            </div>
+          </form>
+
+          <ol class="review-list"></ol>
+          <p class="place-muted review-list__empty" data-i18n="place.noReviews" hidden>No reviews yet — be the first.</p>
+        </section>
+      </div>
+
+      <aside class="place-main__side">
+        <div class="place-panel place-actions">
+          <a class="place-button place-button--gold place-actions__directions" target="_blank" rel="noopener" data-i18n="card.directions">Directions in Google Maps</a>
+          <a class="place-button place-actions__map" data-i18n="place.viewOnMap">View on the map</a>
+          <div class="place-actions__row">
+            <button class="place-button place-actions__save" type="button" aria-pressed="false"></button>
+            <button class="place-button place-actions__checkin" type="button"></button>
+          </div>
+        </div>
+
+        <div class="place-panel">
+          <dl class="place-facts"></dl>
+        </div>
+
+        <div class="place-panel place-crowd">
+          <h2 id="crowd-title" class="place-panel__title" data-i18n="place.crowdNow">How busy is it now?</h2>
+          <p class="place-crowd__current"></p>
+          <div class="place-crowd__buttons" role="group" aria-labelledby="crowd-title">
+            <button class="place-button" type="button" data-level="low" data-i18n="crowd.low">Quiet now</button>
+            <button class="place-button" type="button" data-level="medium" data-i18n="crowd.medium">Busy</button>
+            <button class="place-button" type="button" data-level="high" data-i18n="crowd.high">Very busy</button>
+          </div>
+        </div>
+
+        <p class="place-muted place-demo" data-i18n="place.demo">Ratings, reviews and crowd levels are demo data. What you post is kept in this browser only.</p>
+      </aside>
+    </main>
+
+    <section class="place-missing" hidden>
+      <h1 data-i18n="place.notFound">We couldn't find this place.</h1>
+      <a class="place-button place-button--gold" href="/explore.html" data-i18n="place.backToMap">Map</a>
+    </section>
+
+    <p class="place-toast" role="status" aria-live="polite" hidden></p>
+
+    <script type="module" src="/src/pages/place.js"></script>
+  </body>
+</html>

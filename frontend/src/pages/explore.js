@@ -1,0 +1,94 @@
+// Entry script for explore.html: the pastel 3D map with place bubbles, search and place card.
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/components/brand.css';
+import '../styles/components/map-ui.css';
+import '../styles/components/place-search.css';
+import '../styles/components/place-card.css';
+import '../styles/pages/explore.css';
+import { initI18n, getLang, setLang, t } from '../i18n/i18n.js';
+import { getPlaces } from '../api/api.js';
+import { createMap, moveCamera } from '../map/map.js';
+import { addPlaceMarkers } from '../map/place-markers.js';
+import { addCityLayer } from '../map/city-3d.js';
+import { createPlaceSearch } from '../components/place-search.js';
+import { createPlaceCard } from '../components/place-card.js';
+import { createRoutePanel } from '../components/route-panel.js';
+import { addRouteLayer } from '../map/route-layer.js';
+import { addBusStops, clickedBusStop } from '../map/bus-stops.js';
+
+initI18n();
+
+const container = document.getElementById('map');
+const status = document.querySelector('.explore-status');
+const phone = window.matchMedia('(max-width: 640px)');
+
+function showStatus(message) {
+  status.textContent = message;
+  status.hidden = !message;
+}
+
+container.addEventListener('map:contextlost', () => showStatus(t('explore.contextLost')));
+container.addEventListener('map:contextrestored', () => showStatus(''));
+
+document.querySelector('.explore-lang').addEventListener('click', () => setLang(getLang() === 'my' ? 'en' : 'my'));
+
+/** Keep the picked place clear of the card: beside it on desktop, above it on phones. */
+const cardPadding = () => (phone.matches
+  ? { top: 80, bottom: Math.round(window.innerHeight * 0.62) + 24, left: 24, right: 24 }
+  : { top: 80, bottom: 40, left: 380, right: 80 });
+
+async function start() {
+  try {
+    const [map, places] = await Promise.all([createMap(container), getPlaces()]);
+    if (import.meta.env.DEV) window.__map = map; // for debugging in the browser console
+
+    let search;
+    const NO_PADDING = { top: 0, bottom: 0, left: 0, right: 0 };
+    function closePlace() {
+      markers.select(null);
+      routeLayer.clear();
+      card.hide();
+      search.setValue(null);
+      map.easeTo({ padding: NO_PADDING, duration: 300 });
+    }
+    const card = createPlaceCard(document.querySelector('.place-card'), { onClose: closePlace });
+
+    function openPlace(place) {
+      markers.select(place.slug);
+      routeLayer.clear();
+      routePanel.setDestination(place);
+      card.show(place);
+      search.setValue(place);
+      moveCamera(map, {
+        center: [place.location.lng, place.location.lat],
+        zoom: Math.max(map.getZoom(), 15.5),
+        padding: cardPadding(),
+      });
+    }
+
+    const markers = addPlaceMarkers(map, places, { onSelect: openPlace });
+    search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
+    addCityLayer(map, {
+      clearings: places.map((p) => ({ ...p.location, radius: p.isFeatured ? 45 : 28 })),
+      onLandmarks: (spots) => markers.liftAbove(spots),
+    });
+    addBusStops(map); // after the 3D city, so the stops stay visible
+    const routeLayer = addRouteLayer(map); // after the 3D city, so the line draws on top
+    const routePanel = createRoutePanel(document.querySelector('.route-panel'), places, {
+      onRoute: (route) => routeLayer.show(route, cardPadding()),
+      onClear: () => routeLayer.clear(),
+    });
+    map.on('click', (e) => { if (card.place && !clickedBusStop(map, e.point)) closePlace(); });
+
+    // explore.html?place=<slug> (from the detail page's "View on the map") opens that place.
+    const linked = places.find((p) => p.slug === new URLSearchParams(location.search).get('place'));
+    if (linked) openPlace(linked);
+    document.addEventListener('langchange', () => { if (card.place) search.setValue(card.place); });
+  } catch (error) {
+    console.error(error);
+    showStatus(t('explore.loadFailed'));
+  }
+}
+
+start();

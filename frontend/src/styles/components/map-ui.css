@@ -1,0 +1,193 @@
+/* Map UI shared by every page with a map: place bubbles (ref 001: white speech bubble + glow
+   ring) and MapLibre controls in our style. */
+
+/* ---- Place bubbles (reference ref 001: white speech bubble + glow ring) ---- */
+
+.place-pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.place-pin__bubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 220px;
+  padding: 6px 12px 6px 8px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.place-pin__bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  border: 6px solid transparent;
+  border-top-color: var(--surface);
+  border-bottom: 0;
+  transform: translateX(-50%);
+}
+
+.place-pin__dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.place-pin__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.place-pin__name {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.place-pin__meta {
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+  line-height: 1.3;
+}
+
+.place-pin__meta:empty {
+  display: none;
+}
+
+/* Crowd level tints the dot and the ring, always paired with the text label. */
+.place-pin[data-crowd='low'] { --pin-tone: var(--crowd-low); }
+.place-pin[data-crowd='medium'] { --pin-tone: var(--crowd-medium); }
+.place-pin[data-crowd='high'] { --pin-tone: var(--crowd-high); }
+
+.place-pin__dot {
+  background: var(--pin-tone, var(--gold));
+}
+
+.place-pin__ring {
+  width: 22px;
+  height: 9px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--pin-tone, var(--gold)), transparent);
+  opacity: 0.55;
+}
+
+.place-pin:hover .place-pin__bubble,
+.place-pin:focus-visible .place-pin__bubble,
+.place-pin.is-selected .place-pin__bubble {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: var(--shadow-float);
+}
+
+/* Hovered / selected bubbles sit above their neighbours (markers otherwise stack in DOM order). */
+.place-pin:hover,
+.place-pin:focus-visible {
+  z-index: 2;
+}
+
+.place-pin.is-selected {
+  z-index: 3;
+}
+
+.place-pin.is-selected .place-pin__ring {
+  animation: pin-pulse 1.6s var(--ease-out) infinite;
+}
+
+@keyframes pin-pulse {
+  50% {
+    transform: scale(1.5);
+    opacity: 0.25;
+  }
+}
+
+/* Zoomed out: names only for featured and selected places. */
+.is-zoomed-out .place-pin:not(.is-featured):not(.is-selected) .place-pin__text {
+  display: none;
+}
+
+.is-zoomed-out .place-pin:not(.is-featured):not(.is-selected) .place-pin__bubble {
+  padding: 7px;
+}
+
+/* Small screens: names only on the selected pin, so the map isn't buried in bubbles. */
+@media (max-width: 640px) {
+  .place-pin:not(.is-selected) .place-pin__text {
+    display: none;
+  }
+
+  .place-pin:not(.is-selected) .place-pin__bubble {
+    padding: 8px;
+  }
+}
+
+/* ---- MapLibre controls in our style ---- */
+
+.maplibregl-ctrl-group {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.maplibregl-ctrl-attrib {
+  font-size: 10px;
+}
+
+/* ---- YBS bus stop popup ---- */
+
+.bus-popup .maplibregl-popup-content {
+  padding: var(--space-3) var(--space-8) var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-ui);
+}
+
+.bus-popup .maplibregl-popup-close-button {
+  top: 4px;
+  right: 6px;
+  font-size: 18px;
+}
+
+.bus-popup__kind {
+  margin: 0;
+  color: #2f6fb7;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bus-popup__name {
+  margin: var(--space-1) 0 0;
+  color: var(--ink);
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+.bus-popup__alt {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.bus-popup__alt:empty {
+  display: none;
+}

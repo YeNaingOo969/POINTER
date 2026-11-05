@@ -1,0 +1,114 @@
+/* Explore (map) page. */
+
+.page-explore {
+  overflow: hidden;
+  background: var(--land);
+}
+
+/* Two classes so this beats MapLibre's own `.maplibregl-map { position: relative }`. */
+.page-explore .explore-map {
+  position: fixed;
+  inset: 0;
+}
+
+/* ---- Top bar ---- */
+
+.explore-top {
+  position: fixed;
+  top: max(var(--space-3), env(safe-area-inset-top));
+  left: var(--space-3);
+  right: var(--space-3);
+  z-index: var(--z-nav);
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  pointer-events: none; /* the empty part of the bar lets map drags through */
+}
+
+.explore-top > * {
+  pointer-events: auto;
+}
+
+.explore-lang {
+  flex: none;
+  height: 48px;
+  min-width: 48px;
+  margin-left: auto;
+  padding: 0 var(--space-4);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  color: var(--cream);
+  font: inherit;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+}
+
+.explore-lang:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Phone: logo mark only, so the search box gets the room. */
+@media (max-width: 640px) {
+  .explore-top__brand {
+    padding: var(--space-1);
+  }
+
+  .explore-top__brand .brand__word {
+    display: none;
+  }
+}
+
+.explore-top__brand {
+  padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  color: var(--cream);
+  font-size: var(--text-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+}
+
+.explore-top__brand .brand__mark {
+  height: 2.2em;
+}
+
+/* ---- Notes ---- */
+
+.explore-note {
+  position: fixed;
+  left: var(--space-3);
+  bottom: max(var(--space-3), env(safe-area-inset-bottom));
+  z-index: var(--z-map-ui);
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.85);
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+}
+
+.explore-status {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: var(--z-toast);
+  margin: 0;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--glass-solid);
+  color: var(--cream);
+  transform: translate(-50%, -50%);
+}
+
+/* Expanded credits wrap instead of running under the "Demo data" note on the left. */
+.page-explore .maplibregl-ctrl-attrib.maplibregl-compact-show {
+  box-sizing: border-box;
+  max-width: calc(100vw - 130px);
+}
+

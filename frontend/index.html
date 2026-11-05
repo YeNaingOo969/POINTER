@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>POINTER — Explore · Discover · Enjoy</title>
+    <meta name="description" content="A cinematic map guide to the places people love in Yangon: live crowds, opening hours, routes and YBS stops." />
+    <meta name="theme-color" content="#1a1410" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
+    />
+    <link
+      rel="preload" as="image" href="/images/landing/hero-river-1920.webp"
+      imagesrcset="/images/landing/hero-river-1280.webp 1280w, /images/landing/hero-river-1920.webp 1920w, /images/landing/hero-river-3840.webp 3840w"
+      imagesizes="100vw"
+    />
+  </head>
+  <body class="page-landing">
+    <!-- Intro: the team logo builds itself, then opens onto the hero (once per session). -->
+    <div class="intro" aria-hidden="true">
+      <div class="intro__logo"></div>
+      <button class="intro__skip" type="button" data-i18n="landing.skip">Skip</button>
+    </div>
+
+    <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+    <header class="nav">
+      <a class="brand nav__brand" href="/" aria-label="POINTER home">
+        <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
+        <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
+      </a>
+      <nav class="nav__actions" aria-label="Main">
+        <button class="nav__lang" type="button" data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label">မြန်မာ</button>
+        <a class="nav__map magnetic" href="/explore.html" data-i18n="landing.openMap">Open the map</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__media">
+          <div class="hero__parallax">
+            <img
+              class="hero__art art"
+              src="/images/landing/hero-river-1920.webp"
+              srcset="/images/landing/hero-river-1280.webp 1280w, /images/landing/hero-river-1920.webp 1920w, /images/landing/hero-river-3840.webp 3840w"
+              sizes="100vw" width="3840" height="2160" fetchpriority="high" alt=""
+            />
+          </div>
+          <canvas class="hero__embers" aria-hidden="true"></canvas>
+          <div class="hero__shade"></div>
+          <span class="hero__sun" aria-hidden="true"></span>
+        </div>
+        <div class="hero__content">
+          <p class="eyebrow hero__kicker" data-i18n="landing.kicker">A cinematic guide to Yangon</p>
+          <h1 class="hero__title" id="hero-title">
+            <span class="hero__line"><span data-i18n="landing.line1">Explore.</span></span>
+            <span class="hero__line hero__line--gold"><span data-i18n="landing.line2">Discover.</span></span>
+            <span class="hero__line"><span data-i18n="landing.line3">Enjoy.</span></span>
+          </h1>
+          <p class="hero__lede" data-i18n="landing.lede">Real places, live crowds and routes across Yangon.</p>
+          <a class="button button--gold magnetic hero__cta" href="/explore.html">
+            <span data-i18n="landing.cta">Explore the map</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+        <div class="hero__meta" aria-hidden="true">
+          <span><span data-i18n="landing.clock">Yangon</span> <time class="hero__clock">--:--</time></span>
+          <span>16.78° N · 96.16° E</span>
+        </div>
+        <div class="hero__scroll" aria-hidden="true"><span data-i18n="landing.scroll">Scroll</span><i></i></div>
+      </section>
+
+      <!-- 01 Explore: a small frame that opens to full screen -->
+      <section class="chapter chapter--explore" aria-labelledby="ch1-title">
+        <div class="explore__stage">
+          <div class="explore__frame">
+            <img
+              class="explore__art art"
+              src="/images/landing/downtown-1920.webp"
+              srcset="/images/landing/downtown-1280.webp 1280w, /images/landing/downtown-1920.webp 1920w, /images/landing/downtown-3840.webp 3840w"
+              sizes="100vw" width="3840" height="2160" loading="lazy" decoding="async"
+              alt="Animated view of downtown Yangon: Sule Pagoda, the Independence Monument and City Hall at golden hour"
+            />
+            <div class="explore__shade"></div>
+          </div>
+          <div class="explore__text">
+            <p class="eyebrow"><span class="chapter__num">01</span> <span data-i18n="landing.ch1Label">Explore</span></p>
+            <h2 class="chapter__title" id="ch1-title" data-i18n="landing.ch1Title">Find the places Yangon loves.</h2>
+            <p class="chapter__text" data-i18n="landing.ch1Text">Search pagodas, markets, tea shops and parks.</p>
+            <dl class="stats">
+              <div><dt class="stats__n" data-count="21">21</dt><dd data-i18n="landing.stat1">places to start</dd></div>
+              <div><dt class="stats__n" data-count="20">20</dt><dd data-i18n="landing.stat2">3D landmarks</dd></div>
+              <div><dt class="stats__n" data-count="2">2</dt><dd data-i18n="landing.stat3">languages</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Discover: horizontal panels -->
+      <section class="chapter chapter--discover" aria-labelledby="ch2-title">
+        <div class="discover__head">
+          <p class="eyebrow"><span class="chapter__num">02</span> <span data-i18n="landing.ch2Label">Discover</span></p>
+          <h2 class="chapter__title" id="ch2-title" data-i18n="landing.ch2Title">Get there, step by step.</h2>
+        </div>
+        <div class="discover__track">
+          <article class="panel">
+            <div class="panel__media">
+              <img
+                class="art"
+                src="/images/landing/route-bridge-1600.webp"
+                srcset="/images/landing/route-bridge-800.webp 800w, /images/landing/route-bridge-1600.webp 1600w, /images/landing/route-bridge-3240.webp 3240w"
+                sizes="(min-width: 900px) 46vw, 92vw" width="3240" height="2160" loading="lazy" decoding="async"
+                alt="Animated scene of cars crossing a Yangon bridge at sunset"
+              />
+            </div>
+            <h3 class="panel__title"><span class="panel__index">i</span> <span data-i18n="landing.p1Title">Routes that draw themselves</span></h3>
+            <p class="panel__text" data-i18n="landing.p1Text">Walk or take a taxi.</p>
+          </article>
+          <!-- Panel ii (Junction City / Times City art) is added when that art is generated. -->
+          <article class="panel">
+            <div class="panel__media">
+              <img
+                class="art"
+                src="/images/landing/shwedagon-dusk-1600.webp"
+                srcset="/images/landing/shwedagon-dusk-800.webp 800w, /images/landing/shwedagon-dusk-1600.webp 1600w, /images/landing/shwedagon-dusk-3240.webp 3240w"
+                sizes="(min-width: 900px) 46vw, 92vw" width="3240" height="2160" loading="lazy" decoding="async"
+                alt="Animated scene of the golden Shwedagon Pagoda at dusk"
+              />
+            </div>
+            <h3 class="panel__title"><span class="panel__index">ii</span> <span data-i18n="landing.p3Title">One tap to Google Maps</span></h3>
+            <p class="panel__text" data-i18n="landing.p3Text">Hand the route over to Google Maps.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 03 Enjoy: stamps fly in over the river -->
+      <section class="chapter chapter--enjoy" aria-labelledby="ch3-title">
+        <div class="enjoy__media">
+          <img
+            class="enjoy__art art"
+            src="/images/landing/teashop-1920.webp"
+            srcset="/images/landing/teashop-1280.webp 1280w, /images/landing/teashop-1920.webp 1920w, /images/landing/teashop-3840.webp 3840w"
+            sizes="100vw" width="3840" height="2160" loading="lazy" decoding="async"
+            alt="Animated scene of friends laughing at a Yangon tea shop in the evening"
+          />
+          <div class="enjoy__shade"></div>
+        </div>
+        <div class="enjoy__content">
+          <p class="eyebrow"><span class="chapter__num">03</span> <span data-i18n="landing.ch3Label">Enjoy</span></p>
+          <h2 class="chapter__title" id="ch3-title" data-i18n="landing.ch3Title">Save it. Check in. Share it.</h2>
+          <p class="chapter__text" data-i18n="landing.ch3Text">Keep your favourite places.</p>
+          <ul class="stamps" aria-label="What you can do">
+            <li class="stamp stamp--save">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg>
+              <span data-i18n="landing.stampSave">Saved</span>
+            </li>
+            <li class="stamp stamp--check">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.3-6-10.5a6 6 0 0 1 12 0C18 15.7 12 21 12 21z" /><path d="M9.5 10.5l1.8 1.8 3.4-3.6" /></svg>
+              <span data-i18n="landing.stampCheckIn">Checked in</span>
+            </li>
+            <li class="stamp stamp--review">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" /></svg>
+              <span data-i18n="landing.stampReview">Reviewed</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Finale: drone frames scrub with scroll, diving into the city -->
+      <section class="finale" aria-labelledby="finale-title">
+        <div class="finale__stage">
+          <img
+            class="finale__art"
+            src="/images/landing/aerial-city-1920.webp"
+            srcset="/images/landing/aerial-city-1280.webp 1280w, /images/landing/aerial-city-1920.webp 1920w, /images/landing/aerial-city-3840.webp 3840w"
+            sizes="100vw" width="3840" height="2160" loading="lazy" decoding="async" alt=""
+          />
+          <div class="finale__shade"></div>
+          <div class="finale__content">
+            <p class="eyebrow" data-i18n="landing.finaleKicker">Ready?</p>
+            <h2 class="finale__title" id="finale-title" data-i18n="landing.finaleTitle">Land in Yangon.</h2>
+            <a class="button button--gold magnetic" href="/explore.html">
+              <span data-i18n="landing.openMap">Open the map</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <img class="footer__logo" src="/images/brand/pointer-logo.svg" width="356" height="308" alt="POINTER — Explore · Discover · Enjoy" loading="lazy" />
+      <p class="footer__note" data-i18n="landing.footerNote">School project by Group 1 · demo data.</p>    </footer>
+
+    <script type="module" src="/src/pages/landing.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1600" height="1000" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="75" y="70" font-size="34" font-weight="700" fill="#222">YangonGo — Sitemap</text>
+  <text x="75" y="104" font-size="18" fill="#666">Planning sketch: the pages of the website and what each page contains</text>
+
+  <!-- Connectors -->
+  <g stroke="#555" stroke-width="2" fill="none">
+    <path d="M800 245 L800 285"/>
+    <path d="M210 285 L1390 285"/>
+    <path d="M210 285 L210 320"/>
+    <path d="M505 285 L505 320"/>
+    <path d="M800 285 L800 320"/>
+    <path d="M1095 285 L1095 320"/>
+    <path d="M1390 285 L1390 320"/>
+    <path d="M210 600 L210 650"/>
+  </g>
+
+  <!-- Home -->
+  <g>
+    <rect x="600" y="135" width="400" height="110" rx="12" fill="#f2f2f2" stroke="#333" stroke-width="2.5"/>
+    <text x="800" y="172" font-size="24" font-weight="700" fill="#222" text-anchor="middle">Home</text>
+    <text x="800" y="200" font-size="15" fill="#444" text-anchor="middle">Logo intro animation · cinematic hero</text>
+    <text x="800" y="224" font-size="15" fill="#444" text-anchor="middle">"Explore the map" button</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g font-size="15" fill="#333">
+    <!-- Explore Map -->
+    <rect x="75" y="320" width="270" height="280" rx="12" fill="#ffffff" stroke="#333" stroke-width="2"/>
+    <text x="210" y="356" font-size="22" font-weight="700" fill="#222" text-anchor="middle">Explore Map</text>
+    <text x="210" y="380" font-size="14" fill="#777" text-anchor="middle">Everyone</text>
+    <line x1="95" y1="394" x2="325" y2="394" stroke="#ddd"/>
+    <text x="97" y="420">• Map of Yangon (3D)</text>
+    <text x="97" y="446">• Search places</text>
+    <text x="97" y="472">• Place bubbles + crowd</text>
+    <text x="97" y="498">• Place card</text>
+    <text x="97" y="524">• Route planner (A → B)</text>
+    <text x="97" y="550">• Bus stops</text>
+    <text x="97" y="576">• Category filters</text>
+
+    <!-- Login / Register -->
+    <rect x="370" y="320" width="270" height="280" rx="12" fill="#ffffff" stroke="#333" stroke-width="2"/>
+    <text x="505" y="356" font-size="22" font-weight="700" fill="#222" text-anchor="middle">Login / Register</text>
+    <text x="505" y="380" font-size="14" fill="#777" text-anchor="middle">Visitors</text>
+    <line x1="390" y1="394" x2="620" y2="394" stroke="#ddd"/>
+    <text x="392" y="420">• Log in form</text>
+    <text x="392" y="446">• Register form</text>
+    <text x="392" y="472">• Forgot password</text>
+
+    <!-- My Passport -->
+    <rect x="665" y="320" width="270" height="280" rx="12" fill="#ffffff" stroke="#333" stroke-width="2"/>
+    <text x="800" y="356" font-size="22" font-weight="700" fill="#222" text-anchor="middle">My Passport</text>
+    <text x="800" y="380" font-size="14" fill="#777" text-anchor="middle">Users</text>
+    <line x1="685" y1="394" x2="915" y2="394" stroke="#ddd"/>
+    <text x="687" y="420">• My profile</text>
+    <text x="687" y="446">• Saved places</text>
+    <text x="687" y="472">• Food Passport</text>
+    <text x="701" y="496">(check-in stamps)</text>
+    <text x="687" y="522">• My reviews</text>
+
+    <!-- My Business -->
+    <rect x="960" y="320" width="270" height="280" rx="12" fill="#ffffff" stroke="#333" stroke-width="2"/>
+    <text x="1095" y="356" font-size="22" font-weight="700" fill="#222" text-anchor="middle">My Business</text>
+    <text x="1095" y="380" font-size="14" fill="#777" text-anchor="middle">Users who own a shop</text>
+    <line x1="980" y1="394" x2="1210" y2="394" stroke="#ddd"/>
+    <text x="982" y="420">• Add your business</text>
+    <text x="982" y="446">• Business profile</text>
+    <text x="982" y="472">• Promotion posts</text>
+    <text x="982" y="498">• Reviews of my place</text>
+
+    <!-- Admin -->
+    <rect x="1255" y="320" width="270" height="280" rx="12" fill="#ffffff" stroke="#333" stroke-width="2"/>
+    <text x="1390" y="356" font-size="22" font-weight="700" fill="#222" text-anchor="middle">Admin Dashboard</text>
+    <text x="1390" y="380" font-size="14" fill="#777" text-anchor="middle">Admin only</text>
+    <line x1="1275" y1="394" x2="1505" y2="394" stroke="#ddd"/>
+    <text x="1277" y="420">• Reported posts</text>
+    <text x="1277" y="446">• Remove posts / reviews</text>
+    <text x="1277" y="472">• Manage users</text>
+    <text x="1277" y="498">• Manage places</text>
+  </g>
+
+  <!-- Place Detail (under Explore Map) -->
+  <g font-size="15" fill="#333">
+    <rect x="75" y="650" width="270" height="290" rx="12" fill="#ffffff" stroke="#333" stroke-width="2"/>
+    <text x="210" y="686" font-size="22" font-weight="700" fill="#222" text-anchor="middle">Place Detail</text>
+    <text x="210" y="710" font-size="14" fill="#777" text-anchor="middle">Everyone (actions: users)</text>
+    <line x1="95" y1="724" x2="325" y2="724" stroke="#ddd"/>
+    <text x="97" y="750">• Photos and about</text>
+    <text x="97" y="776">• Opening hours, entry fee</text>
+    <text x="97" y="802">• Directions</text>
+    <text x="97" y="828">• Reviews and rating</text>
+    <text x="97" y="854">• Save / Check in</text>
+    <text x="97" y="880">• Report crowd level</text>
+    <text x="97" y="906">• Promotions (if a shop)</text>
+  </g>
+
+  <!-- Every page -->
+  <g font-size="15" fill="#333">
+    <rect x="400" y="650" width="560" height="170" rx="12" fill="#fafafa" stroke="#888" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <text x="425" y="684" font-size="18" font-weight="700" fill="#222">On every page</text>
+    <text x="425" y="716">• Top bar: logo, back to map, English / Burmese switch</text>
+    <text x="425" y="742">• Log in button (visitors) or account menu (users)</text>
+    <text x="425" y="768">• "Log in to continue" when a visitor tries a user action</text>
+    <text x="425" y="794">• Works on phone and computer</text>
+  </g>
+
+  <!-- Roles -->
+  <g font-size="15" fill="#333">
+    <rect x="1000" y="650" width="525" height="170" rx="12" fill="#fafafa" stroke="#888" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <text x="1025" y="684" font-size="18" font-weight="700" fill="#222">Who can do what</text>
+    <text x="1025" y="716">• Visitor: look at everything, no posting</text>
+    <text x="1025" y="742">• User: review, save, check in, report crowd,</text>
+    <text x="1039" y="766">add a business and post promotions</text>
+    <text x="1025" y="792">• Admin: everything + the admin dashboard</text>
+  </g>
+</svg>

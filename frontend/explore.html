@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Explore — POINTER</title>
+    <meta name="description" content="Find places in Yangon by category or mood, with live crowd reports and routes." />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
+    />
+  </head>
+  <body class="page-explore">
+    <main id="map" class="explore-map" aria-label="Map of Yangon"></main>
+
+    <header class="explore-top">
+      <a class="brand explore-top__brand" href="/" aria-label="POINTER home">
+        <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
+        <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
+      </a>
+
+      <form class="place-search" role="search">
+        <svg class="place-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          class="place-search__input"
+          type="search"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          aria-controls="place-search-results"
+          autocomplete="off"
+          enterkeyhint="search"
+          placeholder="Search places…"
+          aria-label="Search places"
+          data-i18n-attr="placeholder:search.placeholder,aria-label:search.label"
+        />
+        <ul id="place-search-results" class="place-search__results" role="listbox" hidden></ul>
+      </form>
+
+      <button class="explore-lang" type="button" data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+    </header>
+
+    <section class="place-card" aria-labelledby="place-card-title" hidden>
+      <button class="place-card__close" type="button" aria-label="Close" data-i18n-attr="aria-label:card.close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+      <p class="place-card__eyebrow"></p>
+      <h2 id="place-card-title" class="place-card__title"></h2>
+      <p class="place-card__alt"></p>
+      <div class="place-card__chips"></div>
+      <p class="place-card__desc"></p>
+      <dl class="place-card__facts"></dl>
+      <div class="route-panel">
+        <h3 class="route-panel__title" data-i18n="route.title">Route here</h3>
+        <label class="route-panel__field">
+          <span data-i18n="route.from">From</span>
+          <select class="route-panel__from"></select>
+        </label>
+        <div class="route-panel__modes" role="group" aria-label="Travel mode" data-i18n-attr="aria-label:route.modeLabel">
+          <button type="button" class="route-panel__mode" data-mode="walk" aria-pressed="true" data-i18n="route.walk">Walk</button>
+          <button type="button" class="route-panel__mode" data-mode="car" aria-pressed="false" data-i18n="route.car">Car / taxi</button>
+        </div>
+        <p class="route-panel__summary" aria-live="polite"></p>
+        <p class="route-panel__note" hidden></p>
+        <ol class="route-panel__steps"></ol>
+        <button type="button" class="route-panel__clear" data-i18n="route.clear">Clear route</button>
+      </div>
+      <div class="place-card__actions">
+        <a class="place-card__details" data-i18n="card.details">More details</a>
+        <a class="place-card__directions" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 20l8-4 8 4z" /></svg>
+          <span data-i18n="card.directions">Directions in Google Maps</span>
+        </a>
+      </div>
+      <p class="place-card__demo" data-i18n="card.demo">Ratings and crowd levels are demo data.</p>
+    </section>
+
+    <p class="explore-note" data-i18n="explore.demoData">Demo data</p>
+    <p class="explore-status" role="status" aria-live="polite" hidden></p>
+
+    <script type="module" src="/src/pages/explore.js"></script>
+  </body>
+</html>

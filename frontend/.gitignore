@@ -1,0 +1,36 @@
+node_modules/
+
+# secrets — commit .env.example only
+.env
+.env.*
+!.env.example
+
+assets/generated/
+
+# intermediate files from Blender scripts
+assets/work/
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+*.log
+npm-debug.log*
+
+
+# Vite build output
+dist/
+
+# Full third-party downloads (re-downloadable); the models we use are copied to assets/raw/models/kit
+assets/raw/models/kenney/
+
+
+# Big landmark downloads (>100 MB, too large for GitHub); source links are in docs/credits.md.
+# Re-download into assets/raw/models/<id>/ before running npm run build:landmarks.
+assets/raw/models/shwedagon/
+__pycache__/
+
+# Landing footage originals (Pexels, large) - optimised copies live in public/
+assets/raw/video/landing/
+assets/raw/images/landing/
