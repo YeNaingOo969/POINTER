@@ -1,0 +1,312 @@
+// POINTER database — revised to match the frontend (frontend/HANDOFF.md, frontend/src/data/).
+// Paste into https://dbdiagram.io to see the diagram; export SQL as MySQL.
+// Target: MariaDB 10.1 (XAMPP), InnoDB, utf8mb4.
+//  - Columns with a UNIQUE index are VARCHAR(191) at most: utf8mb4 × 255 goes over
+//    MariaDB 10.1's 767-byte index limit.
+//  - No JSON column type in 10.1: lists (tags, moods, ybs_lines, facilities) are TEXT,
+//    comma-separated, e.g. "photo-spot,family".
+//  - Bilingual text an admin types (place name, address…) is two columns: *_en and *_my.
+//    Text users type (reviews, posts) is one column, any language.
+//  - Times are stored in Yangon time (+06:30); the API returns ISO 8601 with the offset.
+
+Project POINTER {
+  database_type: 'MySQL'
+  Note: 'Yangon city guide. Roles: visitor (not stored), user, admin. A business owner is a normal user who owns a place.'
+}
+
+// ---------- Enums ----------
+
+Enum user_role {
+  user
+  admin
+}
+
+Enum user_status {
+  active
+  suspended [note: 'set by an admin; a suspended user cannot log in or post']
+}
+
+Enum membership_type {
+  standard
+  premium [note: 'business premium: more posts, gold map bubble, listed first (team to confirm)']
+}
+
+Enum place_status {
+  pending [note: 'added by a business owner, waiting for an admin']
+  active
+  hidden [note: 'taken off the map by an admin']
+}
+
+Enum weekday {
+  mon
+  tue
+  wed
+  thu
+  fri
+  sat
+  sun
+}
+
+Enum crowd_level {
+  low
+  medium
+  high
+}
+
+Enum content_status {
+  visible
+  removed [note: 'removed by an admin after a report; kept for the audit log']
+}
+
+Enum promotion_status {
+  active
+  ended
+  removed
+}
+
+Enum report_target {
+  review
+  post
+  promotion
+}
+
+Enum report_status {
+  open
+  kept [note: 'admin looked and kept the content']
+  removed [note: 'admin removed the content']
+}
+
+// ---------- People ----------
+
+Table users {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  email varchar(191) [not null, unique]
+  password_hash varchar(255) [not null, note: 'password_hash() / password_verify()']
+  role user_role [not null, default: 'user']
+  status user_status [not null, default: 'active']
+  membership_type membership_type [not null, default: 'standard']
+  membership_expires_at datetime [null]
+  avatar_url varchar(255) [null]
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [null]
+  Note: 'Explorer level (Newbie → Local Guide…) is not stored: it is counted from check_ins.'
+}
+
+// ---------- Places ----------
+
+Table categories {
+  id int [pk, increment]
+  slug varchar(64) [not null, unique, note: 'e.g. pagoda, market, tea-shop — the frontend uses the slug']
+  name_en varchar(100) [not null]
+  name_my varchar(100) [not null]
+  icon varchar(64) [null, note: 'icon name used by the frontend']
+  color char(7) [null, note: '#RRGGBB']
+  sort_order int [not null, default: 0]
+}
+
+Table places {
+  id int [pk, increment]
+  slug varchar(191) [not null, unique, note: 'URL id: place.html?id=<slug>']
+  owner_id int [null, ref: > users.id, note: 'business owner; NULL for public places like pagodas']
+  category_id int [not null, ref: > categories.id]
+  custom_category varchar(100) [null, note: 'free text when no category fits']
+  name_en varchar(191) [not null]
+  name_my varchar(191) [not null]
+  township_en varchar(100) [not null]
+  township_my varchar(100) [not null]
+  address_en text [not null]
+  address_my text [not null]
+  description_en text [null]
+  description_my text [null]
+  latitude decimal(9,6) [not null]
+  longitude decimal(9,6) [not null]
+  entry_fee_local int [null, note: '0 = free, NULL = no fee info (row hidden)']
+  entry_fee_foreigner int [null]
+  currency char(3) [not null, default: 'MMK']
+  price_level tinyint [null, note: '1–4 (budget → luxury)']
+  phone varchar(30) [null]
+  website varchar(255) [null]
+  facebook varchar(255) [null]
+  tags text [null, note: 'comma-separated, searched too']
+  moods text [null, note: 'comma-separated; mood list still to be agreed']
+  ybs_lines text [null, note: 'comma-separated bus line numbers near the place']
+  facilities text [null, note: 'comma-separated, e.g. parking,wifi,wheelchair']
+  is_featured boolean [not null, default: false, note: 'name stays visible when the map is zoomed out']
+  status place_status [not null, default: 'active']
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [null]
+
+  indexes {
+    category_id
+    owner_id
+    status
+  }
+  Note: 'rating { average, count } is calculated from reviews; crowd { level, reportedAt, reports } from crowd_reports.'
+}
+
+Table place_images {
+  id int [pk, increment]
+  place_id int [not null, ref: > places.id]
+  image_url varchar(255) [not null]
+  credit varchar(191) [null, note: 'photographer / owner — real photos only']
+  source_url varchar(255) [null, note: 'where the photo comes from (licence)']
+  sort_order int [not null, default: 0]
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table operating_hours {
+  id int [pk, increment]
+  place_id int [not null, ref: > places.id]
+  day_of_week weekday [not null]
+  open_time time [not null]
+  close_time time [not null, note: 'earlier than open_time = closes after midnight; 24:00:00 allowed']
+
+  indexes {
+    (place_id, day_of_week)
+  }
+  Note: 'No rows for a place = hours unknown. Open all day = 00:00:00 to 24:00:00. A day with no row = closed. The API groups same-hour days back into { days: "mon-sun", open, close }.'
+}
+
+// ---------- What users do ----------
+
+Table reviews {
+  id int [pk, increment]
+  user_id int [not null, ref: > users.id]
+  place_id int [not null, ref: > places.id]
+  rating tinyint [not null, note: '1–5']
+  comment varchar(600) [not null, note: 'the frontend calls this "text"; escape it when output as HTML']
+  status content_status [not null, default: 'visible']
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [null]
+
+  indexes {
+    (user_id, place_id) [unique, note: 'one review per user per place (editable)']
+    (place_id, created_at)
+  }
+}
+
+Table favourites {
+  id int [pk, increment]
+  user_id int [not null, ref: > users.id]
+  place_id int [not null, ref: > places.id]
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (user_id, place_id) [unique]
+  }
+  Note: 'Saved places (the Save button; My Passport).'
+}
+
+Table check_ins {
+  id int [pk, increment]
+  user_id int [not null, ref: > users.id]
+  place_id int [not null, ref: > places.id]
+  checked_in_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (user_id, place_id) [unique, note: 'one stamp per place for now (Food Passport rules still open)']
+  }
+  Note: 'Was "history". Food Passport stamps.'
+}
+
+Table crowd_reports {
+  id int [pk, increment]
+  place_id int [not null, ref: > places.id]
+  user_id int [not null, ref: > users.id]
+  level crowd_level [not null]
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (place_id, created_at)
+  }
+  Note: 'The place shows the latest level and how many reports were made today.'
+}
+
+// ---------- Business owners ----------
+
+Table place_posts {
+  id int [pk, increment]
+  place_id int [not null, ref: > places.id]
+  user_id int [not null, ref: > users.id, note: 'the owner who posted']
+  content text [not null]
+  image_url varchar(255) [null]
+  status content_status [not null, default: 'visible']
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+  Note: 'News from a business. Goes live without approval; can be reported.'
+}
+
+Table promotions {
+  id int [pk, increment]
+  place_id int [not null, ref: > places.id]
+  title varchar(150) [not null]
+  description text [null]
+  promo_code varchar(32) [null]
+  start_date datetime [not null]
+  end_date datetime [not null]
+  status promotion_status [not null, default: 'active']
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+  Note: 'A deal from a business. Goes live without approval; can be reported.'
+}
+
+// ---------- Admin ----------
+
+Table reports {
+  id int [pk, increment]
+  reporter_id int [not null, ref: > users.id]
+  target_type report_target [not null]
+  target_id int [not null, note: 'id in reviews / place_posts / promotions']
+  reason varchar(255) [not null]
+  status report_status [not null, default: 'open']
+  handled_by int [null, ref: > users.id, note: 'the admin']
+  handled_at datetime [null]
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (status, created_at)
+    (target_type, target_id)
+  }
+  Note: 'Admin queue: keep or remove reported content.'
+}
+
+Table audit_logs {
+  id int [pk, increment]
+  user_id int [null, ref: > users.id]
+  action varchar(64) [not null, note: 'e.g. remove_review, suspend_user']
+  target_table varchar(64) [null]
+  target_id int [null]
+  details text [null]
+  ip_address varchar(45) [null, note: 'fits IPv6']
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+// ---------- Optional: not in the sitemap yet, team to confirm ----------
+
+Table messages {
+  id int [pk, increment]
+  sender_id int [not null, ref: > users.id]
+  receiver_id int [not null, ref: > users.id]
+  message_text text [not null]
+  is_read boolean [not null, default: false]
+  created_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+  Note: 'Optional: who talks to whom (user ↔ business?) is not decided.'
+}
+
+Table user_redeems {
+  id int [pk, increment]
+  user_id int [not null, ref: > users.id]
+  promotion_id int [not null, ref: > promotions.id]
+  redeemed_at datetime [not null, default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (user_id, promotion_id) [unique]
+  }
+  Note: 'Optional: promo-code redemption is a new feature, not in the frontend yet.'
+}
+
+TableGroup people { users }
+TableGroup places_info { categories places place_images operating_hours }
+TableGroup user_actions { reviews favourites check_ins crowd_reports }
+TableGroup business { place_posts promotions }
+TableGroup admin { reports audit_logs }
+TableGroup optional { messages user_redeems }

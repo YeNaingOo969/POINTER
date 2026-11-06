@@ -15,6 +15,12 @@ M3 place detail done; M4 landing done; renamed POINTER. Next: M5 login / passpor
 - Dates are ISO 8601 strings with the Yangon offset, e.g. `2026-11-10T17:20:00+06:30`.
 - Errors: return a non-2xx status with `{ "error": "message" }`.
 
+## Database
+
+Proposed schema that matches this frontend: [docs/database/pointer.dbml](docs/database/pointer.dbml)
+(open in dbdiagram.io); what changed from the team's first diagram and why:
+[docs/database/CHANGES.md](docs/database/CHANGES.md).
+
 ## Data shapes
 
 Each file in `src/data/` is one entity and shows the exact JSON shape the frontend expects.
