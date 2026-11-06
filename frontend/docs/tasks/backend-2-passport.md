@@ -1,7 +1,7 @@
 # Backend task 2 — My Passport, saves, check-ins and reviews
 
 **Owner:** backend developer 2 · **Frontend pages:** `passport.html`, `place.html`
-**Database:** `docs/database/pointer.dbml` (tables `favourites`, `check_ins`, `reviews`, plus
+**Database:** `frontend/docs/database/pointer.dbml` (tables `favourites`, `check_ins`, `reviews`, plus
 `users` and `places` from task 1)
 
 Everything here needs a logged-in user. The login comes from **task 1**; until it is merged,

@@ -1,7 +1,7 @@
 # Backend task 1 — Accounts (log in / register) and places
 
 **Owner:** backend developer 1 · **Frontend pages:** `login.html`, `explore.html`, `place.html`
-**Database:** `docs/database/pointer.dbml` (tables `users`, `places`, `categories`,
+**Database:** `frontend/docs/database/pointer.dbml` (tables `users`, `places`, `categories`,
 `operating_hours`, `place_images`, `reviews`, `crowd_reports`)
 
 Task 2 (My Passport) needs the login session from this task, so please finish the
