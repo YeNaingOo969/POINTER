@@ -8,8 +8,11 @@ import '../styles/pages/auth.css';
 import { initI18n, getLang, setLang, t } from '../i18n/i18n.js';
 import { getSession, login, logout, register } from '../api/api.js';
 import { USE_MOCK } from '../api/config.js';
+import { embers } from '../landing/embers.js';
 
 initI18n();
+const stopEmbers = embers(document.querySelector('.auth-bg__embers'));
+addEventListener('pagehide', stopEmbers);
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -27,6 +30,24 @@ $('.auth__continue').href = next;
 // ---- Tabs ----
 
 const tabs = [...document.querySelectorAll('.auth__tab')];
+const intro = $('.auth__intro');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+/** The big greeting follows the tab ("Welcome back." / "Join POINTER."), with a short cross-fade. */
+function setGreeting(kind) {
+  const apply = () => {
+    for (const [sel, key] of [['.auth__title', `auth.title${kind}`], ['.auth__lede', `auth.lede${kind}`]]) {
+      const node = $(sel);
+      node.dataset.i18n = key;
+      node.textContent = t(key);
+    }
+    intro.classList.remove('is-switching');
+  };
+  if (reduceMotion.matches || $('.auth__title').dataset.i18n === `auth.title${kind}`) return apply();
+  intro.classList.add('is-switching');
+  setTimeout(apply, 220);
+}
+
 function showTab(id) {
   for (const tab of tabs) {
     const active = tab.id === id;
@@ -34,6 +55,9 @@ function showTab(id) {
     tab.tabIndex = active ? 0 : -1;
     document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
   }
+  const register = id === 'tab-register';
+  $('.auth__tabs').dataset.active = register ? 'register' : 'login';
+  setGreeting(register ? 'Register' : 'Login');
 }
 tabs.forEach((tab, i) => {
   tab.addEventListener('click', () => showTab(tab.id));
@@ -50,7 +74,7 @@ if (location.hash === '#register') showTab('tab-register');
 
 for (const button of document.querySelectorAll('.field__toggle')) {
   button.addEventListener('click', () => {
-    const input = button.previousElementSibling;
+    const input = button.parentElement.querySelector('input');
     const showing = input.type === 'text';
     input.type = showing ? 'password' : 'text';
     button.dataset.i18n = showing ? 'auth.show' : 'auth.hide';
@@ -134,7 +158,10 @@ async function renderSession() {
   const { user } = await getSession();
   $('.auth__signed').hidden = !user;
   $('.auth__forms').hidden = Boolean(user);
-  if (user) $('.auth__signed-name').textContent = user.name;
+  if (user) {
+    $('.auth__signed-name').textContent = user.name;
+    setGreeting('Login');
+  }
 }
 
 $('.auth__logout').addEventListener('click', async () => {

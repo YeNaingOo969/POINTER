@@ -191,7 +191,11 @@
     "passport": "ကျွန်ုပ်၏ Passport",
     "logout": "Logout ထွက်မယ်",
     "demoHint": "စမ်းသုံးရန် account: demo@pointer.test / pointer-demo (account တွေကို ဒီ browser ထဲမှာပဲ မှတ်ထားပါတယ်)",
-    "back": "မြေပုံသို့ ပြန်မယ်"
+    "back": "မြေပုံသို့ ပြန်မယ်",
+    "titleLogin": "ပြန်လာတာ ကြိုဆိုပါတယ်။",
+    "titleRegister": "POINTER နဲ့ အတူ စလိုက်ပါ။",
+    "ledeLogin": "သိမ်းထားတဲ့ နေရာတွေ၊ check-in တံဆိပ်တွေနဲ့ သင့်သုံးသပ်ချက်တွေ စောင့်နေပါတယ်။",
+    "ledeRegister": "ကြိုက်တဲ့ နေရာတွေကို သိမ်းပါ၊ ရောက်တဲ့နေရာတိုင်းမှာ တံဆိပ်စုပါ၊ ဘယ်လိုလဲ ဆိုတာ ရန်ကုန်ကို ပြောပြပါ။"
   },
   "passport": {
     "title": "ကျွန်ုပ်၏ Passport",

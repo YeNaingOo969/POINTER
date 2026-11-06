@@ -191,7 +191,11 @@
     "passport": "My Passport",
     "logout": "Log out",
     "demoHint": "Demo account: demo@pointer.test / pointer-demo (accounts are kept in this browser only)",
-    "back": "Back to the map"
+    "back": "Back to the map",
+    "titleLogin": "Welcome back.",
+    "titleRegister": "Join POINTER.",
+    "ledeLogin": "Your saved places, check-in stamps and reviews are waiting.",
+    "ledeRegister": "Save the places you love, collect a stamp at every one you visit, and tell Yangon how it was."
   },
   "passport": {
     "title": "My Passport",
