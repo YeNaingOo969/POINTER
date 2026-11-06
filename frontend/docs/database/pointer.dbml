@@ -304,9 +304,35 @@ Table user_redeems {
   Note: 'Optional: promo-code redemption is a new feature, not in the frontend yet.'
 }
 
-TableGroup people { users }
-TableGroup places_info { categories places place_images operating_hours }
-TableGroup user_actions { reviews favourites check_ins crowd_reports }
-TableGroup business { place_posts promotions }
-TableGroup admin { reports audit_logs }
-TableGroup optional { messages user_redeems }
+TableGroup people {
+  users
+}
+
+TableGroup places_info {
+  categories
+  places
+  place_images
+  operating_hours
+}
+
+TableGroup user_actions {
+  reviews
+  favourites
+  check_ins
+  crowd_reports
+}
+
+TableGroup business {
+  place_posts
+  promotions
+}
+
+TableGroup admin {
+  reports
+  audit_logs
+}
+
+TableGroup optional {
+  messages
+  user_redeems
+}
