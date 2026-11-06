@@ -2,7 +2,7 @@
 
 For the two backend developers. This file says what the frontend expects from the PHP backend.
 It is updated after every frontend milestone. **Status: M1 map (search, place card, routes, YBS stops) done; M2 3D city and 20 landmarks done;
-M3 place detail done; M4 landing done; renamed POINTER. Next: M5 login / passport / business / admin.**
+M3 place detail done; M4 landing done; M5 login and passport pages done. Next: business page, admin dashboard.**
 
 ## How the frontend talks to the backend
 
@@ -14,6 +14,20 @@ M3 place detail done; M4 landing done; renamed POINTER. Next: M5 login / passpor
   (MariaDB: `utf8mb4` tables and connection).
 - Dates are ISO 8601 strings with the Yangon offset, e.g. `2026-11-10T17:20:00+06:30`.
 - Errors: return a non-2xx status with `{ "error": "message" }`.
+
+## Backend tasks
+
+Two self-contained tasks, one per backend developer, with every endpoint, validation rule and a
+"done when" checklist:
+
+- [docs/tasks/backend-1-auth-places.md](docs/tasks/backend-1-auth-places.md) — session, register,
+  login, logout, places list and place detail.
+- [docs/tasks/backend-2-passport.md](docs/tasks/backend-2-passport.md) — saves, check-ins, reviews
+  and My Passport.
+
+Local setup: run PHP from the repo root with `php -S localhost:8000`; `npm run dev` forwards every
+`/api/...` request to it (see `vite.config.js`), so page and API share one origin and the session
+cookie works. Every POST / DELETE sends the CSRF token from `session.php` in an `X-CSRF-Token` header.
 
 ## Database
 
@@ -46,8 +60,8 @@ Promotion posts go live without approval; reported posts appear in the admin que
 | Landing | `index.html` | done (M4): logo intro, cinematic scroll story with illustrated Yangon scenes — static, no backend data |
 | Explore map | `explore.html` | map, place bubbles, 3D city, search, place card and routes working; filters still to come |
 | Place detail | `place.html?id=<slug>` | 3D map hero, hours, facts, reviews (read + write), save, check-in, crowd report — actions simulated with a demo login |
-| Login / register | `login.html` | not started (M5) |
-| My passport | `passport.html` | not started (M5) |
+| Login / register | `login.html` | done: log in, create account, validation, `?next=` return — simulated until the API exists |
+| My passport | `passport.html` | done: saved places, check-in stamps, my reviews (unsave / delete) — simulated until the API exists |
 | Business page | `business.html` | not started (M5) |
 | Admin dashboard | `admin.html` | not started (M5) |
 
@@ -107,8 +121,14 @@ the page then shows its "Log in to continue" dialog.
 
 | Function | Endpoint | Request → response |
 |---|---|---|
-| `getSession()` | `GET /api/session.php` | → `{ user: { id, name, role: 'user' \| 'admin' } }` or `{ user: null }` |
-| `logout()` | `POST /api/logout.php` | → `{ user: null }` (login itself comes with `login.html`, M5) |
+| `getSession()` | `GET /api/session.php` | → `{ user: { id, name, role: 'user' \| 'admin' } \| null, csrfToken }` |
+| `register(…)` | `POST /api/register.php` `{ name, email, password }` | → `201 { user }` · 409 email taken · 422 invalid |
+| `login(…)` | `POST /api/login.php` `{ email, password }` | → `{ user }` · 401 wrong email or password · 403 suspended |
+| `logout()` | `POST /api/logout.php` | → `{ user: null }` |
+| `getMySaves()` | `GET /api/my-saves.php` | → `[{ place: PlaceSummary, savedAt }]` |
+| `getMyCheckIns()` | `GET /api/my-checkins.php` | → `[{ place: PlaceSummary, checkedInAt }]` |
+| `getMyReviews()` | `GET /api/my-reviews.php` | → `[Review & { place: PlaceSummary }]` |
+| `deleteReview(id)` | `DELETE /api/reviews.php?id=12` | → `{ deleted: true }` · 403 not your review |
 | `getReviews(placeId)` | `GET /api/reviews.php?place_id=1` | → `Review[]`, newest first |
 | `addReview(placeId, { rating, text })` | `POST /api/reviews.php` `{ placeId, rating, text }` | → the new `Review` |
 | `getMyPlace(placeId)` | `GET /api/my-place.php?place_id=1` | → `{ saved: bool, checkedInAt: ISO \| null }` (visitor: `false`, `null`) |
@@ -123,7 +143,7 @@ words (plain string, any language, max 600 chars; escape it when you output HTML
 recalculated from reviews. Check-in rules for the Food Passport (how a visit is verified) are
 still open — for now one check-in per user per place.
 
-_Still to come (after the team agrees categories and moods): categories, moods, auth pages._
+_Still to come: categories and moods (after the team agrees them), business page, admin dashboard._
 
 ## Map (frontend only — no backend work)
 

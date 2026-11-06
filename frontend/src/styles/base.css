@@ -30,6 +30,11 @@ body {
   line-height: 1.4;
 }
 
+/* `hidden` always wins, even over components that set their own display (grid, flex). */
+[hidden] {
+  display: none !important;
+}
+
 img,
 svg,
 video,

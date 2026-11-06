@@ -135,7 +135,8 @@
     "crowdThanks": "Thanks! Your crowd report is shown.",
     "reviewThanks": "Thanks! Your review is posted.",
     "demo": "Ratings, reviews and crowd levels are demo data. What you post is kept in this browser only.",
-    "notFound": "We couldn't find this place."
+    "notFound": "We couldn't find this place.",
+    "alreadyReviewed": "You already reviewed this place."
   },
   "days": {
     "mon": "Monday",
@@ -148,12 +149,71 @@
   },
   "login": {
     "title": "Log in to continue",
-    "text": "Saving places, check-ins, reviews and crowd reports need an account. The real login page comes later — for now you can try it as a demo user.",
+    "text": "Saving places, check-ins, reviews and crowd reports need an account.",
     "demo": "Continue as demo user",
     "cancel": "Not now",
-    "note": "Demo only: nothing is sent to a server."
+    "note": "Demo only: nothing is sent to a server.",
+    "go": "Log in or create an account"
   },
   "bus": {
     "stop": "YBS bus stop"
+  },
+  "nav": {
+    "passport": "My Passport",
+    "login": "Log in"
+  },
+  "auth": {
+    "title": "Welcome to POINTER",
+    "lede": "Log in to save places, collect check-in stamps and write reviews.",
+    "tabLogin": "Log in",
+    "tabRegister": "Create account",
+    "name": "Your name",
+    "email": "Email",
+    "password": "Password",
+    "confirm": "Confirm password",
+    "passwordHint": "At least 8 characters",
+    "show": "Show",
+    "hide": "Hide",
+    "submitLogin": "Log in",
+    "submitRegister": "Create account",
+    "working": "Please wait…",
+    "errRequired": "Please fill this in.",
+    "errEmail": "Enter a valid email address.",
+    "errName": "Your name needs 2 to 100 characters.",
+    "errPassword": "The password needs at least 8 characters.",
+    "errMatch": "The passwords don't match.",
+    "errWrong": "Wrong email or password.",
+    "errTaken": "This email is already registered. Try logging in.",
+    "errSuspended": "This account is suspended.",
+    "errGeneric": "Something went wrong. Please try again.",
+    "loggedInAs": "You're logged in as",
+    "continue": "Continue",
+    "passport": "My Passport",
+    "logout": "Log out",
+    "demoHint": "Demo account: demo@pointer.test / pointer-demo (accounts are kept in this browser only)",
+    "back": "Back to the map"
+  },
+  "passport": {
+    "title": "My Passport",
+    "hello": "Hello,",
+    "saved": "Saved places",
+    "stamps": "Check-in stamps",
+    "reviews": "My reviews",
+    "statSaved": "saved",
+    "statStamps": "stamps",
+    "statReviews": "reviews",
+    "emptySaved": "No saved places yet. Tap Save on a place you like.",
+    "emptyStamps": "No stamps yet. Check in when you visit a place.",
+    "emptyReviews": "You haven't written a review yet.",
+    "unsave": "Unsave",
+    "delete": "Delete",
+    "confirmDelete": "Delete this review?",
+    "deleted": "Review deleted.",
+    "visitorTitle": "Your passport is waiting",
+    "visitorText": "Log in to see the places you saved, your check-in stamps and your reviews.",
+    "login": "Log in",
+    "explore": "Explore the map",
+    "error": "Couldn't load your passport. Please try again.",
+    "demo": "Demo data: what you do is kept in this browser only."
   }
 }

@@ -40,20 +40,26 @@
   margin-top: var(--space-2);
 }
 
-.login-dialog__actions button {
+.login-dialog__actions button,
+.login-dialog__login {
+  display: grid;
+  place-items: center;
   min-height: 44px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   background: var(--surface);
+  color: var(--ink);
   font-weight: 700;
+  text-decoration: none;
 }
 
-.login-dialog__actions .login-dialog__demo {
+.login-dialog__actions .login-dialog__login {
   border-color: var(--gold);
   background: var(--gold);
 }
 
-.login-dialog__actions button:focus-visible {
+.login-dialog__actions button:focus-visible,
+.login-dialog__login:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 2px;
 }

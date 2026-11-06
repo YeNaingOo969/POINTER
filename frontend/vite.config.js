@@ -6,12 +6,17 @@ const pages = {
   main: 'index.html',
   explore: 'explore.html',
   place: 'place.html',
+  login: 'login.html',
+  passport: 'passport.html',
 };
 
 export default defineConfig({
   server: {
     // assets/ is source material only; keep Vite from watching large raw files.
     watch: { ignored: ['**/assets/**'] },
+    // With USE_MOCK = false, /api/*.php goes to the PHP dev server (php -S localhost:8000 from the
+    // repo root), so the page and the API share one origin and the login session cookie works.
+    proxy: { '/api': 'http://localhost:8000' },
   },
   optimizeDeps: {
     // MapLibre 6 loads its tile worker as a separate file; serving the library unbundled keeps

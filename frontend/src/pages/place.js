@@ -232,7 +232,13 @@ function wireActions() {
     e.preventDefault();
     const text = form.elements.text.value.trim();
     if (!rating || !text) return;
-    const review = await addReview(place.id, { rating, text });
+    let review;
+    try {
+      review = await addReview(place.id, { rating, text });
+    } catch (error) {
+      toast(t(error.status === 409 ? 'place.alreadyReviewed' : 'auth.errGeneric'));
+      return;
+    }
     reviews = [review, ...reviews];
     form.reset();
     rating = 0;
