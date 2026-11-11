@@ -6,7 +6,8 @@ import '../styles/components/map-ui.css';
 import '../styles/components/place-search.css';
 import '../styles/components/place-card.css';
 import '../styles/pages/explore.css';
-import { initI18n, getLang, setLang, t } from '../i18n/i18n.js';
+import { initI18n, t } from '../i18n/i18n.js';
+import { isFeatured } from '../lib/featured.js';
 import { getPlaces } from '../api/api.js';
 import { createMap, moveCamera } from '../map/map.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
@@ -31,8 +32,6 @@ function showStatus(message) {
 container.addEventListener('map:contextlost', () => showStatus(t('explore.contextLost')));
 container.addEventListener('map:contextrestored', () => showStatus(''));
 
-document.querySelector('.explore-lang').addEventListener('click', () => setLang(getLang() === 'my' ? 'en' : 'my'));
-
 /** Keep the picked place clear of the card: beside it on desktop, above it on phones. */
 const cardPadding = () => (phone.matches
   ? { top: 80, bottom: Math.round(window.innerHeight * 0.62) + 24, left: 24, right: 24 }
@@ -55,7 +54,7 @@ async function start() {
     const card = createPlaceCard(document.querySelector('.place-card'), { onClose: closePlace });
 
     function openPlace(place) {
-      markers.select(place.slug);
+      markers.select(place.id);
       routeLayer.clear();
       routePanel.setDestination(place);
       card.show(place);
@@ -70,7 +69,7 @@ async function start() {
     const markers = addPlaceMarkers(map, places, { onSelect: openPlace });
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
     addCityLayer(map, {
-      clearings: places.map((p) => ({ ...p.location, radius: p.isFeatured ? 45 : 28 })),
+      clearings: places.map((p) => ({ ...p.location, radius: isFeatured(p) ? 45 : 28 })),
       onLandmarks: (spots) => markers.liftAbove(spots),
     });
     addBusStops(map); // after the 3D city, so the stops stay visible
@@ -81,10 +80,9 @@ async function start() {
     });
     map.on('click', (e) => { if (card.place && !clickedBusStop(map, e.point)) closePlace(); });
 
-    // explore.html?place=<slug> (from the detail page's "View on the map") opens that place.
-    const linked = places.find((p) => p.slug === new URLSearchParams(location.search).get('place'));
+    // explore.html?place=<id> (from the detail page's "View on the map") opens that place.
+    const linked = places.find((p) => String(p.id) === new URLSearchParams(location.search).get('place'));
     if (linked) openPlace(linked);
-    document.addEventListener('langchange', () => { if (card.place) search.setValue(card.place); });
   } catch (error) {
     console.error(error);
     showStatus(t('explore.loadFailed'));

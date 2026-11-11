@@ -57,6 +57,7 @@
 .explore-account {
   display: grid;
   flex: none;
+  margin-left: auto;
   place-items: center;
   width: 48px;
   height: 48px;

@@ -3,7 +3,7 @@
 // popup with both names on click. Added at runtime after the 3D city so the dots stay on top.
 // Bus routes per stop are not in the tiles; they would need YBS route data later.
 import { maplibregl } from './map.js';
-import { getLang, t } from '../i18n/i18n.js';
+import { t } from '../i18n/i18n.js';
 
 const MIN_ZOOM = 15;
 const BUS_BLUE = '#2f6fb7';
@@ -45,7 +45,8 @@ export function addBusStops(map) {
     const f = e.features[0];
     const my = f.properties.name || '';
     const en = f.properties['name:en'] || f.properties.name_en || '';
-    const [first, second] = getLang() === 'my' ? [my || en, en] : [en || my, my];
+    // Map data: the stop's English name, with its local (Burmese) name under it, as on Google Maps.
+    const [first, second] = [en || my, my];
     const el = document.createElement('div');
     el.innerHTML = '<p class="bus-popup__kind"></p><p class="bus-popup__name"></p><p class="bus-popup__alt"></p>';
     el.querySelector('.bus-popup__kind').textContent = t('bus.stop');

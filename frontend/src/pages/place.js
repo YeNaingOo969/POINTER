@@ -1,34 +1,31 @@
-// Entry script for place.html?id=<slug>: one place in full — a slowly turning 3D map of the spot
-// as the hero (real photos only, none yet), hours, facts, crowd, reviews, save and check-in.
-// User actions ask visitors to log in first (simulated until login.html, M5).
+// Entry script for place.html?id=<id>: one place in full — a slowly turning 3D map of the spot
+// as the hero (real photos only, none yet), hours, facts, reviews, save and check-in.
+// User actions ask visitors to log in first.
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/components/map-ui.css';
 import '../styles/components/login-dialog.css';
 import '../styles/pages/place.css';
-import { initI18n, getLang, setLang, localize, t } from '../i18n/i18n.js';
-import {
-  getPlace, getReviews, addReview, getSession, getMyPlace, setSaved, checkIn, reportCrowd,
-} from '../api/api.js';
+import { initI18n, t } from '../i18n/i18n.js';
+import { getPlace, getReviews, addReview, getSession, getMyPlace, setSaved, checkIn } from '../api/api.js';
 import { createMap, prefersReducedMotion } from '../map/map.js';
 import { addCityLayer } from '../map/city-3d.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
 import { weekHours } from '../lib/opening-hours.js';
-import { dateInYangon, fee, googleMapsUrl, number, stars } from '../lib/format.js';
+import { dateInYangon, googleMapsUrl, number, stars } from '../lib/format.js';
+import { isFeatured } from '../lib/featured.js';
 import { renderChips } from '../components/place-chips.js';
 import { askToLogin } from '../components/login-dialog.js';
 
 initI18n();
 
 const $ = (sel) => document.querySelector(sel);
-const slug = new URLSearchParams(location.search).get('id');
+const placeId = new URLSearchParams(location.search).get('id');
 let place = null;
 let reviews = [];
 let mine = { saved: false, checkedInAt: null };
 let rating = 0; // chosen in the review form
-
-$('.place-top__lang').addEventListener('click', () => setLang(getLang() === 'my' ? 'en' : 'my'));
 
 // ---- Small helpers ----
 
@@ -53,12 +50,10 @@ async function currentUser() {
 // ---- Rendering ----
 
 function renderHeader() {
-  document.title = `${localize(place.name)} — POINTER`;
-  $('.place-hero__eyebrow').textContent = localize(place.township);
-  $('.place-hero__title').textContent = localize(place.name);
-  $('.place-hero__alt').textContent = getLang() === 'my' ? place.name.en : place.name.my;
+  document.title = `${place.name} — POINTER`;
+  $('.place-hero__eyebrow').textContent = place.category?.name ?? '';
+  $('.place-hero__title').textContent = place.name;
   renderChips($('.place-hero__chips'), place, 'place-chip');
-  $('.place-about').textContent = localize(place.description);
 }
 
 function renderHours() {
@@ -83,34 +78,22 @@ function renderHours() {
 function renderFacts() {
   const dl = $('.place-facts');
   dl.replaceChildren();
-  const fact = (label, value, href) => {
+  const fact = (label, value) => {
     if (!value) return;
     const dt = document.createElement('dt');
     const dd = document.createElement('dd');
     dt.textContent = label;
-    if (href) {
-      const a = document.createElement('a');
-      a.href = href;
-      a.textContent = value;
-      if (!href.startsWith('tel:')) Object.assign(a, { target: '_blank', rel: 'noopener' });
-      dd.append(a);
-    } else {
-      dd.textContent = value;
-    }
+    dd.textContent = value;
     dl.append(dt, dd);
   };
-  const { contact = {} } = place;
-  fact(t('card.entry'), fee(place.entryFee));
-  fact(t('place.price'), place.priceLevel ? t(`place.price${place.priceLevel}`) : null);
-  fact(t('card.address'), localize(place.address));
-  fact(t('place.phone'), contact.phone, contact.phone && `tel:${contact.phone.replace(/\s+/g, '')}`);
-  fact(t('place.website'), contact.website && new URL(contact.website).hostname, contact.website);
-  fact(t('place.facebook'), contact.facebook && 'Facebook', contact.facebook);
+  fact(t('card.address'), place.address);
+  fact(t('card.ybsLines'), place.ybsLines?.join(', '));
+  fact(t('card.facilities'), place.facilities?.join(' · '));
 }
 
 function renderActions() {
   $('.place-actions__directions').href = googleMapsUrl(place.location);
-  $('.place-actions__map').href = `/explore.html?place=${encodeURIComponent(place.slug)}`;
+  $('.place-actions__map').href = `/explore.html?place=${place.id}`;
   const save = $('.place-actions__save');
   save.textContent = mine.saved ? `♥ ${t('place.saved')}` : `♡ ${t('place.save')}`;
   save.setAttribute('aria-pressed', String(mine.saved));
@@ -118,16 +101,6 @@ function renderActions() {
   check.textContent = mine.checkedInAt ? `✓ ${t('place.checkedIn')}` : t('place.checkIn');
   check.title = mine.checkedInAt ? dateInYangon(mine.checkedInAt) : '';
   check.disabled = Boolean(mine.checkedInAt);
-}
-
-function renderCrowd() {
-  const crowd = place.crowd;
-  $('.place-crowd__current').textContent = crowd
-    ? `${t(`crowd.${crowd.level}`)} · ${number(crowd.reports)} ${t('place.reports')}`
-    : t('place.noCrowd');
-  document.querySelectorAll('.place-crowd__buttons [data-level]').forEach((b) => {
-    b.setAttribute('aria-pressed', String(crowd?.level === b.dataset.level));
-  });
 }
 
 function renderReviews() {
@@ -188,7 +161,6 @@ function renderAll() {
   renderHours();
   renderFacts();
   renderActions();
-  renderCrowd();
   renderReviews();
   renderStarPicker();
 }
@@ -208,16 +180,6 @@ function wireActions() {
     mine.checkedInAt = (await checkIn(place.id)).checkedInAt;
     renderActions();
     toast(t('place.checkInToast'));
-  });
-
-  document.querySelectorAll('.place-crowd__buttons [data-level]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      if (!(await currentUser())) return;
-      place.crowd = await reportCrowd(place.id, button.dataset.level);
-      renderCrowd();
-      renderChips($('.place-hero__chips'), place, 'place-chip');
-      toast(t('place.crowdThanks'));
-    });
   });
 
   const form = $('.review-form');
@@ -261,9 +223,9 @@ async function startHeroMap() {
     map[handler].disable();
   }
   const markers = addPlaceMarkers(map, [place], { onSelect() {} });
-  markers.select(place.slug);
+  markers.select(place.id);
   addCityLayer(map, {
-    clearings: [{ ...place.location, radius: place.isFeatured ? 45 : 28 }],
+    clearings: [{ ...place.location, radius: isFeatured(place) ? 45 : 28 }],
     onLandmarks: (spots) => markers.liftAbove(spots),
   });
 
@@ -286,8 +248,8 @@ async function startHeroMap() {
 
 async function start() {
   try {
-    if (!slug) throw new Error('No place id');
-    place = await getPlace(slug);
+    if (!placeId) throw new Error('No place id');
+    place = await getPlace(placeId);
   } catch {
     $('.place-hero').hidden = true;
     $('.place-missing').hidden = false;
@@ -297,7 +259,6 @@ async function start() {
   $('.place-main').hidden = false;
   renderAll();
   wireActions();
-  document.addEventListener('langchange', renderAll);
   startHeroMap().catch((error) => console.error('Hero map failed', error));
 }
 

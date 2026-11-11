@@ -3,7 +3,7 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/pages/landing.css';
-import { initI18n, getLang, setLang } from '../i18n/i18n.js';
+import { initI18n } from '../i18n/i18n.js';
 import { timeInYangon } from '../lib/format.js';
 import { playIntro } from '../landing/intro.js';
 import { heroEntrance, heroParallax, scrollScenes, refreshScenes } from '../landing/scenes.js';
@@ -17,11 +17,6 @@ const clock = document.querySelector('.hero__clock');
 const tick = () => { clock.textContent = timeInYangon(Date.now()); };
 tick();
 setInterval(tick, 20_000);
-
-document.querySelector('.nav__lang').addEventListener('click', () => {
-  setLang(getLang() === 'my' ? 'en' : 'my');
-  requestAnimationFrame(refreshScenes);
-});
 
 scrollScenes();
 heroParallax();

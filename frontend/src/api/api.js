@@ -5,11 +5,9 @@ import { USE_MOCK, ORS_API_KEY } from './config.js';
 import { mockResponse, mockError, request, setCsrfToken } from './client.js';
 import { orsRoute, previewRoute } from './routing.js';
 import { readDemo, writeDemo } from './demo-store.js';
-import { places } from '../data/places.js';
+import { places as placeRows } from '../data/places.js';
+import { categories } from '../data/categories.js';
 import { reviews } from '../data/reviews.js';
-
-/** Mock only: crowd reports made in this browser replace the demo value. */
-const withLocalCrowd = (place) => ({ ...place, crowd: readDemo('crowd', {})[place.id] ?? place.crowd });
 
 function requireDemoUser() {
   const session = readDemo('session', null);
@@ -17,29 +15,33 @@ function requireDemoUser() {
   return session.user;
 }
 
+/** Mock only: join a place row with its category, the way places.php does it. */
+const withCategory = ({ categoryId, ...p }) => ({ ...p, category: categories.find((c) => c.id === categoryId) ?? null });
+const places = placeRows.map(withCategory);
+
 /**
  * All places shown on the Explore map.
- * GET /api/places.php → Place[]  (shape: src/data/places.js)
+ * GET /api/places.php → Place[]  (shape: src/data/places.js, with `category` joined in)
  */
 export function getPlaces() {
-  return USE_MOCK ? mockResponse(places.map(withLocalCrowd)) : request('places.php');
+  return USE_MOCK ? mockResponse(places) : request('places.php');
 }
 
 /**
- * One place by its slug.
- * GET /api/places.php?slug=shwedagon-pagoda → Place, or 404 { "error": "..." }
+ * One place by its id.
+ * GET /api/places.php?id=1 → Place, or 404 { "error": "Place not found" }
  */
-export async function getPlace(slug) {
-  if (!USE_MOCK) return request('places.php', { query: { slug } });
-  const place = places.find((p) => p.slug === slug);
-  if (!place) throw new Error(`Place not found: ${slug}`);
-  return mockResponse(withLocalCrowd(place));
+export async function getPlace(id) {
+  if (!USE_MOCK) return request('places.php', { query: { id } });
+  const place = places.find((p) => p.id === Number(id));
+  if (!place) return mockError('Place not found', 404);
+  return mockResponse(place);
 }
 
 // ---- Session, register, log in (login.html) ----
 
 /** A place as other lists show it: just enough for a card and a link. */
-const placeSummary = (p) => ({ id: p.id, slug: p.slug, name: p.name, township: p.township, categoryId: p.categoryId });
+const placeSummary = (p) => ({ id: p.id, name: p.name, address: p.address, category: p.category });
 
 /** Mock only: SHA-256 hex of a password, so the demo store never holds the plain text. The real
  *  backend uses PHP password_hash() / password_verify() instead. */
@@ -54,7 +56,7 @@ const DEMO_PASSWORD = 'pointer-demo';
 async function mockUsers() {
   const users = readDemo('users', []);
   if (users.some((u) => u.email === DEMO_EMAIL)) return users;
-  return [...users, { id: 999, name: 'Demo user', email: DEMO_EMAIL, passwordHash: await mockHash(DEMO_PASSWORD), role: 'user', status: 'active' }];
+  return [...users, { id: 999, name: 'Demo user', email: DEMO_EMAIL, passwordHash: await mockHash(DEMO_PASSWORD), role: 'user' }];
 }
 const publicUser = ({ id, name, role }) => ({ id, name, role });
 
@@ -78,7 +80,7 @@ export async function register({ name, email, password }) {
   if (!USE_MOCK) return request('register.php', { method: 'POST', body: { name, email, password } });
   const users = await mockUsers();
   if (users.some((u) => u.email === email.toLowerCase())) return mockError('Email already registered', 409);
-  const user = { id: Date.now(), name, email: email.toLowerCase(), passwordHash: await mockHash(password), role: 'user', status: 'active' };
+  const user = { id: Date.now(), name, email: email.toLowerCase(), passwordHash: await mockHash(password), role: 'user' };
   writeDemo('users', [...users, user]);
   return mockResponse(writeDemo('session', { user: publicUser(user) }));
 }
@@ -86,13 +88,12 @@ export async function register({ name, email, password }) {
 /**
  * Log in.
  * POST /api/login.php { email, password } → { user }
- * 401 { error: 'Wrong email or password' } · 403 { error: 'This account is suspended' }
+ * 401 { error: 'Wrong email or password' }
  */
 export async function login({ email, password }) {
   if (!USE_MOCK) return request('login.php', { method: 'POST', body: { email, password } });
   const user = (await mockUsers()).find((u) => u.email === email.toLowerCase());
   if (!user || user.passwordHash !== await mockHash(password)) return mockError('Wrong email or password', 401);
-  if (user.status === 'suspended') return mockError('This account is suspended', 403);
   return mockResponse(writeDemo('session', { user: publicUser(user) }));
 }
 
@@ -109,20 +110,19 @@ export function logout() {
 // ---- My Passport (passport.html) ----
 
 /**
- * The logged-in user's saved places, newest first. 401 when not logged in.
- * GET /api/my-saves.php → [{ place: { id, slug, name, township, categoryId }, savedAt }]
+ * The logged-in user's saved places (favourites), newest first. 401 when not logged in.
+ * GET /api/my-saves.php → [{ place: PlaceSummary }]   PlaceSummary = { id, name, address, category }
  */
 export async function getMySaves() {
   if (!USE_MOCK) return request('my-saves.php');
   requireDemoUser();
-  const times = readDemo('savedAt', {});
-  const list = readDemo('saved', []).map((id) => ({ place: placeSummary(places.find((p) => p.id === id)), savedAt: times[id] ?? null }));
+  const list = readDemo('saved', []).map((id) => ({ place: placeSummary(places.find((p) => p.id === id)) }));
   return mockResponse(list.reverse());
 }
 
 /**
- * The logged-in user's check-in stamps, newest first. 401 when not logged in.
- * GET /api/my-checkins.php → [{ place: { id, slug, name, township, categoryId }, checkedInAt }]
+ * The logged-in user's check-in stamps (history), newest first. 401 when not logged in.
+ * GET /api/my-checkins.php → [{ place: PlaceSummary, checkedInAt }]   (checkedInAt = history.visited_at)
  */
 export async function getMyCheckIns() {
   if (!USE_MOCK) return request('my-checkins.php');
@@ -135,7 +135,7 @@ export async function getMyCheckIns() {
 
 /**
  * The logged-in user's reviews, newest first. 401 when not logged in.
- * GET /api/my-reviews.php → [Review & { place: { id, slug, name } }]
+ * GET /api/my-reviews.php → [Review & { place: PlaceSummary }]
  */
 export async function getMyReviews() {
   if (!USE_MOCK) return request('my-reviews.php');
@@ -188,7 +188,7 @@ export async function addReview(placeId, { rating, text }) {
   return mockResponse(review);
 }
 
-// ---- Saves, check-ins, crowd reports ----
+// ---- Saves and check-ins ----
 
 /**
  * The logged-in user's status for one place.
@@ -216,14 +216,11 @@ export async function setSaved(placeId, saved) {
   requireDemoUser();
   const list = readDemo('saved', []).filter((id) => id !== placeId);
   writeDemo('saved', saved ? [...list, placeId] : list);
-  const times = { ...readDemo('savedAt', {}) };
-  if (saved) times[placeId] = new Date().toISOString(); else delete times[placeId];
-  writeDemo('savedAt', times);
   return mockResponse({ saved });
 }
 
 /**
- * Check in at a place (logged-in users; Food Passport rules still to be agreed).
+ * Check in at a place (logged-in users): one stamp per place, stored in `history`.
  * POST /api/checkins.php { placeId } → { checkedInAt }
  */
 export async function checkIn(placeId) {
@@ -233,19 +230,6 @@ export async function checkIn(placeId) {
   const checkedInAt = existing[placeId] ?? new Date().toISOString(); // one stamp per place
   writeDemo('checkins', { ...existing, [placeId]: checkedInAt });
   return mockResponse({ checkedInAt });
-}
-
-/**
- * Report how busy a place is right now (logged-in users).
- * POST /api/crowd-reports.php { placeId, level: 'low' | 'medium' | 'high' } → Place.crowd
- */
-export async function reportCrowd(placeId, level) {
-  if (!USE_MOCK) return request('crowd-reports.php', { method: 'POST', body: { placeId, level } });
-  requireDemoUser();
-  const current = withLocalCrowd(places.find((p) => p.id === placeId)).crowd;
-  const crowd = { level, reportedAt: new Date().toISOString(), reports: (current?.reports ?? 0) + 1 };
-  writeDemo('crowd', { ...readDemo('crowd', {}), [placeId]: crowd });
-  return mockResponse(crowd);
 }
 
 /**

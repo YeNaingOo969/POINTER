@@ -1,17 +1,15 @@
 // Place search: an accessible combobox over the places already loaded for the map.
-// Matches English and Burmese names, township and address. The list is small, so it filters in
-// the browser; a PHP `places.php?q=` endpoint can replace this later without changing the UI.
-import { localize, t } from '../i18n/i18n.js';
+// Matches the name, address and category. The list is small, so it filters in the browser;
+// a PHP `places.php?q=` endpoint can replace this later without changing the UI.
+import { t } from '../i18n/i18n.js';
+import { openStatus } from '../lib/opening-hours.js';
 
 const MAX_RESULTS = 8;
 
-/** Lower-case, accent-free text for matching ("Shwedagon" ~ "shwedagon"). */
+/** Lower-case, accent-free text for matching ("Café" ~ "cafe"). */
 const normal = (s) => (s ?? '').toString().normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-function haystack(place) {
-  return normal([place.name.en, place.name.my, place.township?.en, place.township?.my,
-    place.address?.en, place.address?.my, ...(place.tags ?? [])].join(' '));
-}
+const haystack = (place) => normal([place.name, place.address, place.category?.name].join(' '));
 
 /** Best matches first: name starts with the query, then a word in it does, then anywhere. */
 export function searchPlaces(places, query) {
@@ -19,15 +17,15 @@ export function searchPlaces(places, query) {
   if (!q) return [];
   return places
     .map((place) => {
-      const names = [normal(place.name.en), normal(place.name.my)];
+      const name = normal(place.name);
       let score = -1;
-      if (names.some((n) => n.startsWith(q))) score = 3;
-      else if (names.some((n) => n.split(/\s+/).some((w) => w.startsWith(q)))) score = 2;
+      if (name.startsWith(q)) score = 3;
+      else if (name.split(/\s+/).some((w) => w.startsWith(q))) score = 2;
       else if (haystack(place).includes(q)) score = 1;
       return { place, score };
     })
     .filter((r) => r.score > 0)
-    .sort((a, b) => b.score - a.score || Number(b.place.isFeatured) - Number(a.place.isFeatured))
+    .sort((a, b) => b.score - a.score || (b.place.rating?.count ?? 0) - (a.place.rating?.count ?? 0))
     .slice(0, MAX_RESULTS)
     .map((r) => r.place);
 }
@@ -64,16 +62,15 @@ export function createPlaceSearch(form, places, { onPick }) {
       li.className = 'place-search__option';
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', String(i === active));
-      li.dataset.crowd = place.crowd?.level ?? 'unknown';
-      const other = localize(place.name) === place.name.en ? place.name.my : place.name.en;
+      li.dataset.open = openStatus(place.openingHours).state;
       li.innerHTML = `
         <span class="place-search__dot" aria-hidden="true"></span>
         <span class="place-search__text">
           <span class="place-search__name"></span>
           <span class="place-search__meta"></span>
         </span>`;
-      li.querySelector('.place-search__name').textContent = localize(place.name);
-      li.querySelector('.place-search__meta').textContent = [other, localize(place.township)].filter(Boolean).join(' · ');
+      li.querySelector('.place-search__name').textContent = place.name;
+      li.querySelector('.place-search__meta').textContent = [place.category?.name, place.address].filter(Boolean).join(' · ');
       li.addEventListener('mousedown', (e) => e.preventDefault()); // keep focus in the input
       li.addEventListener('click', () => pick(place));
       list.append(li);
@@ -85,7 +82,7 @@ export function createPlaceSearch(form, places, { onPick }) {
   }
 
   function pick(place) {
-    input.value = localize(place.name);
+    input.value = place.name;
     close();
     input.blur();
     onPick(place);
@@ -113,12 +110,11 @@ export function createPlaceSearch(form, places, { onPick }) {
   input.addEventListener('focus', () => { if (input.value.trim()) render(); });
   input.addEventListener('blur', close);
   form.addEventListener('submit', (e) => e.preventDefault());
-  document.addEventListener('langchange', () => { if (!list.hidden) render(); });
 
   return {
     /** Show a place's name in the box (e.g. after picking a pin on the map). */
     setValue(place) {
-      input.value = place ? localize(place.name) : '';
+      input.value = place ? place.name : '';
     },
   };
 }

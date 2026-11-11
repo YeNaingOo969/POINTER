@@ -5,7 +5,7 @@ import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/components/app-top.css';
 import '../styles/pages/auth.css';
-import { initI18n, getLang, setLang, t } from '../i18n/i18n.js';
+import { initI18n, t } from '../i18n/i18n.js';
 import { getSession, login, logout, register } from '../api/api.js';
 import { USE_MOCK } from '../api/config.js';
 import { embers } from '../landing/embers.js';
@@ -23,7 +23,6 @@ const next = (() => {
   return value && value.startsWith('/') && !value.startsWith('//') ? value : '/explore.html';
 })();
 
-$('.app-top__lang').addEventListener('click', () => setLang(getLang() === 'my' ? 'en' : 'my'));
 $('.auth__demo').hidden = !USE_MOCK;
 $('.auth__continue').href = next;
 

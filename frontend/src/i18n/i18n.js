@@ -1,41 +1,13 @@
-// English / Burmese UI strings.
+// UI strings (English). Every visible string lives in en.json so wording is changed in one place.
 // Mark elements with data-i18n="key" (text) or data-i18n-attr="placeholder:key" (attributes).
 import en from './en.json';
-import my from './my.json';
 
-const DICTIONARIES = { en, my };
-const STORAGE_KEY = 'yg.lang';
-const DEFAULT_LANG = 'en';
-
-let currentLang = DEFAULT_LANG;
-
-/** Read the saved language; storage can be unavailable in private mode. */
-function loadLang() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved in DICTIONARIES ? saved : DEFAULT_LANG;
-  } catch {
-    return DEFAULT_LANG;
-  }
-}
-
-/** Look up a dotted key ("landing.title") in the current language, falling back to English. */
+/** Look up a dotted key ("landing.title"); falls back to the key itself. */
 export function t(key) {
-  const find = (dict) => key.split('.').reduce((node, part) => node?.[part], dict);
-  return find(DICTIONARIES[currentLang]) ?? find(DICTIONARIES[DEFAULT_LANG]) ?? key;
+  return key.split('.').reduce((node, part) => node?.[part], en) ?? key;
 }
 
-/** Pick the right side of a bilingual { en, my } data field. */
-export function localize(field) {
-  if (field == null || typeof field === 'string') return field ?? '';
-  return field[currentLang] || field[DEFAULT_LANG] || '';
-}
-
-export function getLang() {
-  return currentLang;
-}
-
-/** Translate every marked element under root. */
+/** Fill every marked element under root. */
 export function applyTranslations(root = document) {
   root.querySelectorAll('[data-i18n]').forEach((el) => {
     el.textContent = t(el.dataset.i18n);
@@ -48,21 +20,7 @@ export function applyTranslations(root = document) {
   });
 }
 
-export function setLang(lang) {
-  if (!(lang in DICTIONARIES)) return;
-  currentLang = lang;
-  try {
-    localStorage.setItem(STORAGE_KEY, lang);
-  } catch {
-    /* language just won't persist */
-  }
-  document.documentElement.lang = lang;
-  applyTranslations();
-  document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
-}
-
 export function initI18n() {
-  currentLang = loadLang();
-  document.documentElement.lang = currentLang;
+  document.documentElement.lang = 'en';
   applyTranslations();
 }

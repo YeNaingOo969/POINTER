@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Explore — POINTER</title>
-    <meta name="description" content="Find places in Yangon by category or mood, with live crowd reports and routes." />
+    <meta name="description" content="Find places in Yangon by category, see what is open now and get routes." />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -44,7 +44,6 @@
         <ul id="place-search-results" class="place-search__results" role="listbox" hidden></ul>
       </form>
 
-      <button class="explore-lang" type="button" data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
       <a class="explore-account" href="/passport.html" aria-label="My Passport" data-i18n-attr="aria-label:nav.passport,title:nav.passport">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>
       </a>
@@ -56,9 +55,7 @@
       </button>
       <p class="place-card__eyebrow"></p>
       <h2 id="place-card-title" class="place-card__title"></h2>
-      <p class="place-card__alt"></p>
       <div class="place-card__chips"></div>
-      <p class="place-card__desc"></p>
       <dl class="place-card__facts"></dl>
       <div class="route-panel">
         <h3 class="route-panel__title" data-i18n="route.title">Route here</h3>
@@ -82,7 +79,7 @@
           <span data-i18n="card.directions">Directions in Google Maps</span>
         </a>
       </div>
-      <p class="place-card__demo" data-i18n="card.demo">Ratings and crowd levels are demo data.</p>
+      <p class="place-card__demo" data-i18n="card.demo">Ratings are demo data.</p>
     </section>
 
     <p class="explore-note" data-i18n="explore.demoData">Demo data</p>

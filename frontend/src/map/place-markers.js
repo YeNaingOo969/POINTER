@@ -1,7 +1,9 @@
-// Place markers: HTML speech-bubble pins (so Burmese names render correctly) on the map.
-// Category icons and colours come later, once the team agrees the category groups.
+// Place markers: HTML speech-bubble pins on the map (HTML, so any script in a name renders
+// correctly). The line under the name says whether the place is open now.
 import { maplibregl } from './map.js';
-import { localize, t } from '../i18n/i18n.js';
+import { t } from '../i18n/i18n.js';
+import { openStatus } from '../lib/opening-hours.js';
+import { isFeatured } from '../lib/featured.js';
 
 // Below this zoom, non-featured places show as dots only.
 const NAMES_ZOOM = 14.8;
@@ -11,9 +13,9 @@ const EARTH_CIRCUMFERENCE_M = 40075016.686;
 function markerElement(place) {
   const el = document.createElement('button');
   el.type = 'button';
-  el.className = place.isFeatured ? 'place-pin is-featured' : 'place-pin';
-  el.dataset.slug = place.slug;
-  el.dataset.crowd = place.crowd?.level ?? 'unknown';
+  el.className = isFeatured(place) ? 'place-pin is-featured' : 'place-pin';
+  el.dataset.id = place.id;
+  el.dataset.open = openStatus(place.openingHours).state;
   el.innerHTML = `
     <span class="place-pin__bubble">
       <span class="place-pin__dot" aria-hidden="true"></span>
@@ -26,17 +28,18 @@ function markerElement(place) {
   return el;
 }
 
-/** Fill in the texts in the current language. */
+/** Name, plus "Open now" / "Closed" (nothing when the hours are unknown). */
 function renderTexts(el, place) {
-  el.querySelector('.place-pin__name').textContent = localize(place.name);
-  const crowd = place.crowd ? t(`crowd.${place.crowd.level}`) : '';
-  el.querySelector('.place-pin__meta').textContent = crowd;
-  el.setAttribute('aria-label', `${localize(place.name)}${crowd ? ` — ${crowd}` : ''}`);
+  const { state } = openStatus(place.openingHours);
+  const status = state === 'open' ? t('card.openNow') : state === 'closed' ? t('card.closed') : '';
+  el.querySelector('.place-pin__name').textContent = place.name;
+  el.querySelector('.place-pin__meta').textContent = status;
+  el.setAttribute('aria-label', status ? `${place.name} — ${status}` : place.name);
 }
 
 /**
  * Add a marker per place. `onSelect(place)` runs when one is clicked.
- * Returns { select(slug), remove() }.
+ * Returns { select(id), liftAbove(spots), remove() }.
  */
 export function addPlaceMarkers(map, places, { onSelect } = {}) {
   const entries = places.map((place) => {
@@ -51,9 +54,6 @@ export function addPlaceMarkers(map, places, { onSelect } = {}) {
       .addTo(map);
     return { place, el, marker };
   });
-
-  const onLang = () => entries.forEach(({ el, place }) => renderTexts(el, place));
-  document.addEventListener('langchange', onLang);
 
   // Zoomed out, only featured places show their names (the rest become dots) to avoid a pile
   // of overlapping bubbles downtown.
@@ -75,8 +75,8 @@ export function addPlaceMarkers(map, places, { onSelect } = {}) {
   };
 
   return {
-    select(slug) {
-      entries.forEach(({ el, place }) => el.classList.toggle('is-selected', place.slug === slug));
+    select(id) {
+      entries.forEach(({ el, place }) => el.classList.toggle('is-selected', place.id === id));
     },
     /** `spots`: [{ lng, lat, radius (m), height (m), minZoom }] of the visible 3D landmarks. */
     liftAbove(spots) {
@@ -92,7 +92,6 @@ export function addPlaceMarkers(map, places, { onSelect } = {}) {
       onLiftView();
     },
     remove() {
-      document.removeEventListener('langchange', onLang);
       map.off('zoom', onZoom);
       map.off('zoom', onLiftView);
       map.off('pitch', onLiftView);

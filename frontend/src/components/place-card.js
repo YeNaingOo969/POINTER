@@ -1,9 +1,9 @@
 // Place card: the quick summary shown when a place is picked on the map or in search.
 // Desktop: a floating card at the bottom left. Phone: a bottom sheet (see place-card.css).
-// Only team-independent fields for now; categories and moods come once the team agrees them.
-import { getLang, localize, t } from '../i18n/i18n.js';
+// Shows only what the database stores: name, category, hours, rating, address, YBS lines, facilities.
+import { t } from '../i18n/i18n.js';
 import { todaysHours } from '../lib/opening-hours.js';
-import { fee, googleMapsUrl } from '../lib/format.js';
+import { googleMapsUrl } from '../lib/format.js';
 import { renderChips } from './place-chips.js';
 
 /**
@@ -17,15 +17,12 @@ export function createPlaceCard(root, { onClose } = {}) {
   function render() {
     const place = current;
     if (!place) return;
-    const other = getLang() === 'my' ? place.name.en : place.name.my;
-    $('.place-card__eyebrow').textContent = localize(place.township);
-    $('.place-card__title').textContent = localize(place.name);
-    $('.place-card__alt').textContent = other;
-    $('.place-card__desc').textContent = localize(place.description);
+    $('.place-card__eyebrow').textContent = place.category?.name ?? '';
+    $('.place-card__title').textContent = place.name;
 
     renderChips($('.place-card__chips'), place, 'place-card__chip');
 
-    // Facts: hours today, entry, address.
+    // Facts: hours today, address, bus lines, facilities (each only when known).
     const facts = $('.place-card__facts');
     facts.replaceChildren();
     const fact = (label, value) => {
@@ -37,25 +34,26 @@ export function createPlaceCard(root, { onClose } = {}) {
       facts.append(dt, dd);
     };
     fact(t('card.hoursToday'), todaysHours(place.openingHours) ?? (place.openingHours?.length ? t('card.closedToday') : null));
-    fact(t('card.entry'), fee(place.entryFee));
-    fact(t('card.address'), localize(place.address));
+    fact(t('card.address'), place.address);
+    fact(t('card.ybsLines'), place.ybsLines?.join(', '));
+    fact(t('card.facilities'), place.facilities?.join(' · '));
 
     $('.place-card__directions').href = googleMapsUrl(place.location);
-    $('.place-card__details').href = `/place.html?id=${encodeURIComponent(place.slug)}`;
+    $('.place-card__details').href = `/place.html?id=${place.id}`;
   }
 
   function show(place) {
     current = place;
     render();
     root.hidden = false;
-    root.dataset.slug = place.slug;
+    root.dataset.id = place.id;
   }
 
   function hide() {
     if (!current) return;
     current = null;
     root.hidden = true;
-    delete root.dataset.slug;
+    delete root.dataset.id;
   }
 
   $('.place-card__close').addEventListener('click', () => {
@@ -68,7 +66,6 @@ export function createPlaceCard(root, { onClose } = {}) {
       onClose?.();
     }
   });
-  document.addEventListener('langchange', render);
 
   return { show, hide, get place() { return current; } };
 }

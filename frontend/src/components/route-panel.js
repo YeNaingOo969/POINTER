@@ -1,6 +1,6 @@
 // Route panel inside the place card: choose a start (my location or another place) and a mode,
 // then show distance, time and turn-by-turn steps; the line itself is drawn by route-layer.js.
-import { getLang, localize, t } from '../i18n/i18n.js';
+import { t } from '../i18n/i18n.js';
 import { getRoute } from '../api/api.js';
 import { MAX_BOUNDS } from '../map/config.js';
 
@@ -58,9 +58,9 @@ export function createRoutePanel(root, places, { onRoute, onClear }) {
     option('', t('route.chooseStart'));
     option(MY_LOCATION, t('route.myLocation'));
     [...places]
-      .filter((p) => p.slug !== destination?.slug)
-      .sort((p, q) => localize(p.name).localeCompare(localize(q.name), getLang()))
-      .forEach((p) => option(p.slug, localize(p.name)));
+      .filter((p) => p.id !== destination?.id)
+      .sort((p, q) => p.name.localeCompare(q.name, 'en'))
+      .forEach((p) => option(String(p.id), p.name));
     from.value = [...from.options].some((o) => o.value === chosen) ? chosen : '';
   }
 
@@ -99,7 +99,7 @@ export function createRoutePanel(root, places, { onRoute, onClear }) {
         start = await myLocation().catch(() => { throw new Error('location'); });
         if (!insideYangon(start)) throw new Error('outside');
       } else {
-        const p = places.find((x) => x.slug === from.value);
+        const p = places.find((x) => String(x.id) === from.value);
         start = [p.location.lng, p.location.lat];
       }
       const end = [destination.location.lng, destination.location.lat];
@@ -125,10 +125,6 @@ export function createRoutePanel(root, places, { onRoute, onClear }) {
   root.querySelector('.route-panel__clear').addEventListener('click', () => {
     from.value = '';
     update();
-  });
-  document.addEventListener('langchange', () => {
-    fillStarts();
-    renderRoute();
   });
 
   return {

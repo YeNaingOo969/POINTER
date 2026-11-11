@@ -171,8 +171,8 @@
 }
 
 .passport-chip-button:hover {
-  border-color: var(--crowd-high);
-  color: var(--crowd-high);
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
 /* Stamps: inked circles, each at its own small angle */
@@ -326,7 +326,7 @@
 }
 
 .passport-error {
-  color: var(--crowd-high);
+  color: var(--danger);
 }
 
 .passport-toast {

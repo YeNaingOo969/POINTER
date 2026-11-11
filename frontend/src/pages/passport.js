@@ -5,7 +5,7 @@ import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/components/app-top.css';
 import '../styles/pages/passport.css';
-import { initI18n, getLang, setLang, localize, t } from '../i18n/i18n.js';
+import { initI18n, t } from '../i18n/i18n.js';
 import { getSession, getMySaves, getMyCheckIns, getMyReviews, setSaved, deleteReview, logout } from '../api/api.js';
 import { USE_MOCK } from '../api/config.js';
 import { dateInYangon, number, stars } from '../lib/format.js';
@@ -14,8 +14,6 @@ initI18n();
 
 const $ = (sel) => document.querySelector(sel);
 const data = { saves: [], checkIns: [], reviews: [] };
-
-$('.app-top__lang').addEventListener('click', () => setLang(getLang() === 'my' ? 'en' : 'my'));
 
 let toastTimer = 0;
 function toast(message) {
@@ -26,7 +24,7 @@ function toast(message) {
   toastTimer = setTimeout(() => { el.hidden = true; }, 3500);
 }
 
-const placeLink = (place) => `/place.html?id=${encodeURIComponent(place.slug)}`;
+const placeLink = (place) => `/place.html?id=${place.id}`;
 
 /** Build an element from a tag, class and children (text is always set as text, never HTML). */
 function el(tag, className, ...children) {
@@ -56,7 +54,7 @@ function renderSaves() {
       renderStats();
       toast(t('place.unsavedToast'));
     });
-    const link = el('a', 'passport-place__link', el('span', 'passport-place__name', localize(place.name)), el('span', 'passport-place__town', localize(place.township)));
+    const link = el('a', 'passport-place__link', el('span', 'passport-place__name', place.name), el('span', 'passport-place__town', place.category?.name ?? place.address));
     link.href = placeLink(place);
     return el('li', 'passport-place', link, unsave);
   }));
@@ -66,7 +64,7 @@ function renderStamps() {
   $('.passport-stamps').replaceChildren(...data.checkIns.map(({ place, checkedInAt }, i) => {
     const stamp = el('a', 'stamp',
       el('span', 'stamp__mark', 'POINTER'),
-      el('span', 'stamp__name', localize(place.name)),
+      el('span', 'stamp__name', place.name),
       el('span', 'stamp__date', dateInYangon(checkedInAt)));
     stamp.href = placeLink(place);
     stamp.style.setProperty('--tilt', `${[-4, 3, -2, 5, -5, 2][i % 6]}deg`);
@@ -87,7 +85,7 @@ function renderReviews() {
       renderStats();
       toast(t('passport.deleted'));
     });
-    const place = el('a', 'passport-review__place', localize(review.place.name));
+    const place = el('a', 'passport-review__place', review.place.name);
     place.href = placeLink(review.place);
     const rating = el('span', 'passport-review__stars', stars(review.rating));
     rating.setAttribute('aria-label', `${review.rating} ${t('place.outOf5')}`);
@@ -132,8 +130,5 @@ $('.passport-hero__logout').addEventListener('click', async () => {
   await logout();
   location.assign('/login.html?next=%2Fpassport.html');
 });
-
-// Dates, digits and place names follow the language.
-document.addEventListener('langchange', () => { if (!$('.passport-main').hidden) renderAll(); });
 
 start();

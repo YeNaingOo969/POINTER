@@ -12,15 +12,15 @@
     "line1": "Explore.",
     "line2": "Discover.",
     "line3": "Enjoy.",
-    "lede": "Real places, live crowds and routes across Yangon — from the river at sunset to the Shwedagon at dusk.",
+    "lede": "Real places, reviews and routes across Yangon — from the river at sunset to the Shwedagon at dusk.",
     "scroll": "Scroll",
     "clock": "Yangon",
     "ch1Label": "Explore",
     "ch1Title": "Find the places Yangon loves.",
-    "ch1Text": "Search pagodas, markets, tea shops and parks. See what is open right now in Yangon time — and how busy it is — before you go.",
+    "ch1Text": "Search pagodas, markets, tea shops and parks. See what is open right now in Yangon time, and what other people say about it, before you go.",
     "stat1": "places to start",
     "stat2": "3D landmarks",
-    "stat3": "languages",
+    "stat3": "categories",
     "ch2Label": "Discover",
     "ch2Title": "Get there, step by step.",
     "p1Title": "Routes that draw themselves",
@@ -37,11 +37,7 @@
     "stampReview": "Reviewed",
     "finaleKicker": "Ready?",
     "finaleTitle": "Land in Yangon.",
-    "footerNote": "School project by Group 1 · ratings and crowds are demo data."
-  },
-  "lang": {
-    "switch": "မြန်မာ",
-    "label": "Switch to Burmese"
+    "footerNote": "School project by Group 1 · ratings and reviews are demo data."
   },
   "explore": {
     "demoData": "Demo data",
@@ -55,22 +51,19 @@
   },
   "card": {
     "close": "Close",
-    "reported": "reported",
     "openNow": "Open now",
     "until": "until",
     "closed": "Closed",
     "opensAt": "opens",
     "closedToday": "Closed today",
     "hoursToday": "Today",
-    "entry": "Entry",
-    "free": "Free",
-    "local": "Locals",
-    "foreigner": "Visitors",
     "address": "Address",
     "directions": "Directions in Google Maps",
-    "demo": "Ratings and crowd levels are demo data.",
+    "demo": "Ratings are demo data.",
     "details": "More details",
-    "closedNow": "Closed now"
+    "closedNow": "Closed now",
+    "ybsLines": "YBS lines",
+    "facilities": "Facilities"
   },
   "route": {
     "title": "Route here",
@@ -91,14 +84,8 @@
     "min": "min",
     "h": "h"
   },
-  "crowd": {
-    "low": "Quiet now",
-    "medium": "Busy",
-    "high": "Very busy"
-  },
   "place": {
     "backToMap": "Map",
-    "about": "About",
     "photosSoon": "Real photos of this place are coming soon.",
     "hours": "Opening hours",
     "hoursUnknown": "Opening hours are not listed yet.",
@@ -118,25 +105,14 @@
     "saved": "Saved",
     "checkIn": "Check in",
     "checkedIn": "Checked in",
-    "crowdNow": "How busy is it now?",
-    "reports": "reports today",
-    "noCrowd": "No reports yet today.",
-    "price": "Price",
-    "price1": "Budget",
-    "price2": "Moderate",
-    "price3": "Pricey",
-    "price4": "Luxury",
-    "phone": "Phone",
-    "website": "Website",
-    "facebook": "Facebook",
     "savedToast": "Saved to your places.",
     "unsavedToast": "Removed from your places.",
     "checkInToast": "Checked in — nice!",
-    "crowdThanks": "Thanks! Your crowd report is shown.",
     "reviewThanks": "Thanks! Your review is posted.",
-    "demo": "Ratings, reviews and crowd levels are demo data. What you post is kept in this browser only.",
+    "demo": "Ratings and reviews are demo data. What you post is kept in this browser only.",
     "notFound": "We couldn't find this place.",
-    "alreadyReviewed": "You already reviewed this place."
+    "alreadyReviewed": "You already reviewed this place.",
+    "photos": "Photos"
   },
   "days": {
     "mon": "Monday",
@@ -149,7 +125,7 @@
   },
   "login": {
     "title": "Log in to continue",
-    "text": "Saving places, check-ins, reviews and crowd reports need an account.",
+    "text": "Saving places, check-ins and reviews need an account.",
     "demo": "Continue as demo user",
     "cancel": "Not now",
     "note": "Demo only: nothing is sent to a server.",
@@ -184,7 +160,6 @@
     "errMatch": "The passwords don't match.",
     "errWrong": "Wrong email or password.",
     "errTaken": "This email is already registered. Try logging in.",
-    "errSuspended": "This account is suspended.",
     "errGeneric": "Something went wrong. Please try again.",
     "loggedInAs": "You're logged in as",
     "continue": "Continue",

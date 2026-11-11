@@ -1,5 +1,5 @@
 // Shared formatting for place data (place card, detail page). Times are shown in Yangon time.
-import { getLang, t } from '../i18n/i18n.js';
+import { t } from '../i18n/i18n.js';
 
 /** Google Maps directions to a place (approved "Open in Google Maps" deep link). */
 export const googleMapsUrl = ({ lat, lng }) =>
@@ -11,12 +11,12 @@ export const timeInYangon = (iso) => new Intl.DateTimeFormat('en-GB', {
 }).format(new Date(iso));
 
 /** "28 Oct 2026" in the UI language, Yangon date. */
-export const dateInYangon = (iso) => new Intl.DateTimeFormat(getLang() === 'my' ? 'my-MM' : 'en-GB', {
+export const dateInYangon = (iso) => new Intl.DateTimeFormat('en-GB', {
   timeZone: 'Asia/Yangon', day: 'numeric', month: 'short', year: 'numeric',
 }).format(new Date(iso));
 
 /** Numbers in the UI language (Burmese digits in Burmese). */
-export const number = (n) => new Intl.NumberFormat(getLang() === 'my' ? 'my-MM' : 'en-US').format(n);
+export const number = (n) => new Intl.NumberFormat('en-US').format(n);
 
 /** "Locals Free · Visitors 10,000 MMK", or null when there is no fee info. */
 export function fee(entryFee) {

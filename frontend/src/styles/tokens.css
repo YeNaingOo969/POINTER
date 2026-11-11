@@ -23,9 +23,9 @@
   --line: rgb(43 38 32 / 0.12);
 
   /* Status */
-  --crowd-low: #3b8f5a;
-  --crowd-medium: #b07a10;
-  --crowd-high: #b7472f;
+  --status-open: #3b8f5a;
+  --status-closed: #9a8f84;
+  --danger: #b7472f;
 
   /* Type */
   --font-display: 'Fraunces', 'Noto Sans Myanmar', Georgia, serif;

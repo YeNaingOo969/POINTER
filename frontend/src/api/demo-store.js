@@ -1,4 +1,4 @@
-// Demo-only storage for simulated actions (login, reviews, saves, check-ins, crowd reports)
+// Demo-only storage for simulated actions (login, reviews, saves, check-ins)
 // while USE_MOCK is true. Lives in this browser's localStorage, never on a server; the real
 // backend replaces every use of this file. Storage can be unavailable (private mode), so all
 // access is guarded and the app keeps working, just without remembering.

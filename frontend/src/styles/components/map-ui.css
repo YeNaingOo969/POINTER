@@ -73,10 +73,9 @@
   display: none;
 }
 
-/* Crowd level tints the dot and the ring, always paired with the text label. */
-.place-pin[data-crowd='low'] { --pin-tone: var(--crowd-low); }
-.place-pin[data-crowd='medium'] { --pin-tone: var(--crowd-medium); }
-.place-pin[data-crowd='high'] { --pin-tone: var(--crowd-high); }
+/* Open / closed tints the dot and the ring, always paired with the text label. */
+.place-pin[data-open='open'] { --pin-tone: var(--status-open); }
+.place-pin[data-open='closed'] { --pin-tone: var(--status-closed); }
 
 .place-pin__dot {
   background: var(--pin-tone, var(--gold));

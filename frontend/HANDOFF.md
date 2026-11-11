@@ -1,19 +1,20 @@
-# POINTER (formerly YangonGo) — backend handoff
+# POINTER — backend handoff
 
 For the two backend developers. This file says what the frontend expects from the PHP backend.
-It is updated after every frontend milestone. **Status: M1 map (search, place card, routes, YBS stops) done; M2 3D city and 20 landmarks done;
-M3 place detail done; M4 landing done; M5 login and passport pages done. Next: business page, admin dashboard.**
+It is updated after every frontend milestone. **Status: landing, explore map (search, place card,
+routes, YBS stops, 3D city), place detail, login and My Passport are done and run on mock data.
+Next: business page, admin dashboard.**
 
 ## How the frontend talks to the backend
 
 - Every request goes through [src/api/api.js](src/api/api.js). Nothing else in the frontend fetches data.
 - While `USE_MOCK = true` in [src/api/config.js](src/api/config.js), functions return mock data from
-  [src/data/](src/data/). When your endpoints are ready, set `USE_MOCK = false` and `API_BASE` to your
-  PHP folder (default `/api`).
-- Requests and responses are **JSON**, UTF-8. Burmese text must be stored and returned as UTF-8
-  (MariaDB: `utf8mb4` tables and connection).
+  [src/data/](src/data/). When your endpoints are ready, set `USE_MOCK = false` (on your own machine
+  to test) and keep `API_BASE` as `/api`.
+- Requests and responses are **JSON**, UTF-8 (MariaDB: `utf8mb4` tables and connection).
 - Dates are ISO 8601 strings with the Yangon offset, e.g. `2026-11-10T17:20:00+06:30`.
 - Errors: return a non-2xx status with `{ "error": "message" }`.
+- The site is in English. Place names and addresses are shown exactly as stored in the database.
 
 ## Backend tasks
 
@@ -31,130 +32,110 @@ cookie works. Every POST / DELETE sends the CSRF token from `session.php` in an 
 
 ## Database
 
-Proposed schema that matches this frontend: [docs/database/pointer.dbml](docs/database/pointer.dbml)
-(open in dbdiagram.io); what changed from the team's first diagram and why:
-[docs/database/CHANGES.md](docs/database/CHANGES.md).
+The team's own schema (dbdiagram, 13 tables): `users`, `categories`, `places`, `place_images`,
+`operating_hours`, `reviews`, `favourites`, `history`, `promotions`, `user_redeems`, `place_posts`,
+`messages`, `audit_logs`. The frontend uses them like this:
 
-## Data shapes
-
-Each file in `src/data/` is one entity and shows the exact JSON shape the frontend expects.
-Bilingual text that admins enter (place name, address, description…) is an object `{ "en": "...", "my": "..." }`.
-MariaDB 10.1 has no JSON column type, so store these as two columns (`name_en`, `name_my`) and build the
-object when you return it. Text users write (reviews, promotion posts) is a plain string.
+| Frontend | Table |
+|---|---|
+| Places, the map, search, place card / page | `places` + `categories` + `operating_hours` + `place_images`; rating from `reviews` |
+| Log in / register / session | `users` (`password_hash`, `role` = `user` or `admin`) |
+| Reviews | `reviews` (`comment` is the review text) |
+| Save button, saved places | `favourites` |
+| Check in, Food Passport stamps | `history` (`visited_at` is the check-in time) |
+| Business page, admin (later) | `place_posts`, `promotions`, `audit_logs` |
+| Not used by the frontend yet | `messages`, `user_redeems` |
 
 ## Roles
 
 | Role | Can |
 |---|---|
-| Visitor (not logged in) | View pages only. Clicking a user action opens the login modal. |
-| User | Everything a visitor can, plus review, rate, check in, report crowd level, save places, report posts, create a business page and post promotions for it. |
-| Admin | Everything a user can, plus the admin dashboard: see reports, remove posts and reviews. |
+| Visitor (not logged in) | View pages only. Clicking a user action opens the "Log in to continue" dialog. |
+| User | Everything a visitor can, plus review, rate, check in, save places, create a business page and post for it. |
+| Admin | Everything a user can, plus the admin dashboard: remove posts and reviews. |
 
-A business owner is a normal user who created a business page — not a separate role.
-Promotion posts go live without approval; reported posts appear in the admin queue.
+A business owner is a normal user who owns a place (`places.owner_id`) — not a separate role.
 
 ## Pages
 
 | Page | File | Status |
 |---|---|---|
-| Landing | `index.html` | done (M4): logo intro, cinematic scroll story with illustrated Yangon scenes — static, no backend data |
-| Explore map | `explore.html` | map, place bubbles, 3D city, search, place card and routes working; filters still to come |
-| Place detail | `place.html?id=<slug>` | 3D map hero, hours, facts, reviews (read + write), save, check-in, crowd report — actions simulated with a demo login |
-| Login / register | `login.html` | done: log in, create account, validation, `?next=` return — simulated until the API exists |
-| My passport | `passport.html` | done: saved places, check-in stamps, my reviews (unsave / delete) — simulated until the API exists |
-| Business page | `business.html` | not started (M5) |
-| Admin dashboard | `admin.html` | not started (M5) |
+| Landing | `index.html` | done: logo intro, cinematic scroll story — static, no backend data |
+| Explore map | `explore.html` | done: map, place bubbles (open / closed now), 3D city, search, place card, routes, YBS stops |
+| Place detail | `place.html?id=<id>` | done: 3D map hero, opening hours, address, YBS lines, facilities, reviews (read + write), save, check-in |
+| Login / register | `login.html` | done: log in, create account, validation, `?next=` return |
+| My passport | `passport.html` | done: saved places, check-in stamps, my reviews (unsave / delete) |
+| Business page | `business.html` | not started |
+| Admin dashboard | `admin.html` | not started |
 
 ## Endpoints
 
-### `GET /api/places.php` → `Place[]`
+### `GET /api/places.php` → `Place[]` · `GET /api/places.php?id=1` → `Place`
 
-Used by: Explore map (`explore.html`): one bubble per place, the search box and the place card.
-Shape: see [src/data/places.js](src/data/places.js). Fields the frontend uses right now:
+Used by the explore map (bubbles, search, card) and the place page. Only `status = 'active'`
+places. A missing id returns `404 { "error": "Place not found" }`. Mock data:
+[src/data/places.js](src/data/places.js) + [src/data/categories.js](src/data/categories.js).
 
-| Field | Type | Notes |
+| Field | Type | From |
 |---|---|---|
-| `id` | int | primary key |
-| `slug` | string | unique, URL-safe (`place.html?id=<slug>` later) |
-| `name` | `{ en, my }` | bubble, search and card (both languages are searched and shown) |
-| `location` | `{ lat, lng }` | decimal degrees (WGS84); also the Google Maps directions link |
-| `township` | `{ en, my }` | card header, search |
-| `address` | `{ en, my }` | card, search |
-| `description` | `{ en, my }` | card, one or two sentences |
-| `openingHours` | `[{ days, open, close }]` | `days` = `mon-sun`, `mon-sat`, `tue-sun`… or one day (`mon`); times `HH:MM` in Yangon time; a `close` before `open` runs past midnight. **Empty list = hours unknown** (card hides them); use `mon-sun 00:00–24:00` for always open |
-| `entryFee` | `{ local, foreigner, currency }` or `null` | `0` = free; `null` hides the row |
-| `rating` | `{ average, count }` | card chip |
-| `crowd` | `{ level, reportedAt, reports }` or `null` | `level` is `low` / `medium` / `high`; latest crowd report |
-| `tags` | string[] | searched too |
-| `isFeatured` | bool | featured places keep their name visible when the map is zoomed out |
+| `id` | int | `places.id` (also the URL: `place.html?id=1`) |
+| `name` | string | `places.name` |
+| `category` | `{ id, name, icon }` or `null` | join `categories` on `places.category_id` |
+| `ownerId` | int or `null` | `places.owner_id` |
+| `address` | string | `places.address` |
+| `location` | `{ lat, lng }` (numbers) | `places.latitude`, `places.longitude` |
+| `ybsLines` | string[] | `places.ybs_lines`, comma-separated text → array (`[]` when empty) |
+| `facilities` | string[] | `places.facilities`, comma-separated text → array |
+| `openingHours` | `[{ days, open, close }]` | `operating_hours` rows grouped: days with the same times become a range (`mon-fri`), a single day stays `mon`; times `HH:MM`; a `close` before `open` runs past midnight. **No rows → `[]`** (hours unknown) |
+| `photos` | `[{ url }]` | `place_images.image_url` (real photos only) |
+| `rating` | `{ average, count }` | `AVG(rating)` rounded to 1 decimal and `COUNT(*)` from `reviews` |
 
-Search runs in the browser over this list (it is small). If the list grows into the hundreds,
-add `GET /api/places.php?q=<text>` returning the same shape, best matches first (name starts with
-the text, then a word in the name, then township/address/tags), at most 8; the UI won't change.
-Other mock fields (`photos`, `priceLevel`, `contact`, …) are for the detail page.
+Search runs in the browser over this list (name, address, category). The places with the most
+reviews keep their name visible when the map is zoomed out — the frontend decides that.
 
-### `GET /api/places.php?slug=<slug>` → `Place`
+### Accounts, reviews, saves, check-ins, My Passport
 
-One place, same shape. Return `404` with `{ "error": "Place not found" }` if the slug doesn't exist.
-
-### Routes (frontend now; optional PHP proxy later)
-
-The place card has "Route here": pick a start (my location or another place) and Walk / Car,
-and the map draws the line with distance, time and steps. `getRoute(from, to, mode)` in
-[src/api/api.js](src/api/api.js) returns `{ mode, source, distance (m), duration (s),
-coordinates: [[lng, lat]…], steps: [{ instruction, distance, duration }] }`.
-
-- With `VITE_ORS_API_KEY` in `.env` (free key from https://account.heigit.org → Tokens) it calls OpenRouteService
-  directly from the browser at `https://api.heigit.org/openrouteservice/v2/directions` (`foot-walking`,
-  `driving-car`); the old `api.openrouteservice.org` host is being shut down.
-- Without a key it returns a straight-line preview (dashed line, labelled as an estimate).
-- Optional for the backend: `GET /api/route.php?from=lng,lat&to=lng,lat&mode=walk|car` that
-  forwards to OpenRouteService with the key kept on the server and returns the same shape. Then
-  switch `getRoute` to `request('route.php', …)`. Nothing is saved; no database table needed.
-
-### Place detail page: session, reviews, saves, check-ins, crowd reports
-
-Used by `place.html?id=<slug>`. All functions are in [src/api/api.js](src/api/api.js); while
-`USE_MOCK` is true they are simulated in the browser (localStorage key `yg.demo`, never sent
-anywhere). Writes need a logged-in user: return `401 { "error": "Login required" }` otherwise —
-the page then shows its "Log in to continue" dialog.
+All functions are in [src/api/api.js](src/api/api.js); while `USE_MOCK` is true they are
+simulated in the browser (localStorage key `yg.demo`). Writes and the `my-*` endpoints need a
+logged-in user: return `401 { "error": "Login required" }` otherwise — the page then shows its
+"Log in to continue" dialog. `PlaceSummary` = `{ id, name, address, category }`.
 
 | Function | Endpoint | Request → response |
 |---|---|---|
 | `getSession()` | `GET /api/session.php` | → `{ user: { id, name, role: 'user' \| 'admin' } \| null, csrfToken }` |
 | `register(…)` | `POST /api/register.php` `{ name, email, password }` | → `201 { user }` · 409 email taken · 422 invalid |
-| `login(…)` | `POST /api/login.php` `{ email, password }` | → `{ user }` · 401 wrong email or password · 403 suspended |
+| `login(…)` | `POST /api/login.php` `{ email, password }` | → `{ user }` · 401 wrong email or password |
 | `logout()` | `POST /api/logout.php` | → `{ user: null }` |
-| `getMySaves()` | `GET /api/my-saves.php` | → `[{ place: PlaceSummary, savedAt }]` |
-| `getMyCheckIns()` | `GET /api/my-checkins.php` | → `[{ place: PlaceSummary, checkedInAt }]` |
-| `getMyReviews()` | `GET /api/my-reviews.php` | → `[Review & { place: PlaceSummary }]` |
-| `deleteReview(id)` | `DELETE /api/reviews.php?id=12` | → `{ deleted: true }` · 403 not your review |
 | `getReviews(placeId)` | `GET /api/reviews.php?place_id=1` | → `Review[]`, newest first |
-| `addReview(placeId, { rating, text })` | `POST /api/reviews.php` `{ placeId, rating, text }` | → the new `Review` |
+| `addReview(placeId, { rating, text })` | `POST /api/reviews.php` `{ placeId, rating, text }` | → `201 Review` · 409 already reviewed |
+| `deleteReview(id)` | `DELETE /api/reviews.php?id=12` | → `{ deleted: true }` · 403 not your review |
 | `getMyPlace(placeId)` | `GET /api/my-place.php?place_id=1` | → `{ saved: bool, checkedInAt: ISO \| null }` (visitor: `false`, `null`) |
 | `setSaved(placeId, saved)` | `POST /api/saves.php` `{ placeId }` / `DELETE /api/saves.php?place_id=1` | → `{ saved }` |
 | `checkIn(placeId)` | `POST /api/checkins.php` `{ placeId }` | → `{ checkedInAt }` |
-| `reportCrowd(placeId, level)` | `POST /api/crowd-reports.php` `{ placeId, level: 'low' \| 'medium' \| 'high' }` | → the place's new `crowd` `{ level, reportedAt, reports }` |
+| `getMySaves()` | `GET /api/my-saves.php` | → `[{ place: PlaceSummary }]`, newest first |
+| `getMyCheckIns()` | `GET /api/my-checkins.php` | → `[{ place: PlaceSummary, checkedInAt }]`, newest first |
+| `getMyReviews()` | `GET /api/my-reviews.php` | → `[Review & { place: PlaceSummary }]`, newest first |
 
-**Review shape (proposed — please confirm with the frontend before building the table):**
-`{ id, placeId, user: { id, name }, rating: 1–5, text, createdAt }`; `text` is the user's own
-words (plain string, any language, max 600 chars; escape it when you output HTML). Mock data:
-[src/data/reviews.js](src/data/reviews.js). `place.rating` (`{ average, count }`) should be
-recalculated from reviews. Check-in rules for the Food Passport (how a visit is verified) are
-still open — for now one check-in per user per place.
+**Review shape:** `{ id, placeId, user: { id, name }, rating: 1–5, text, createdAt }` — `text` is
+`reviews.comment`, the user's own words (max 600 chars; escape it when you output HTML). Mock data:
+[src/data/reviews.js](src/data/reviews.js). One review, one save and one check-in per user per place.
 
-_Still to come: categories and moods (after the team agrees them), business page, admin dashboard._
+### Routes (frontend only; optional PHP proxy later)
+
+The place card has "Route here": pick a start (my location or another place) and Walk / Car,
+and the map draws the line with distance, time and steps. `getRoute(from, to, mode)` returns
+`{ mode, source, distance (m), duration (s), coordinates: [[lng, lat]…], steps: [{ instruction, distance, duration }] }`.
+
+- With `VITE_ORS_API_KEY` in `.env` (free key from https://account.heigit.org → Tokens) it calls
+  OpenRouteService at `https://api.heigit.org/openrouteservice/v2/directions` from the browser.
+- Without a key it returns a straight-line preview (dashed line, labelled as an estimate).
+- Optional: `GET /api/route.php?from=lng,lat&to=lng,lat&mode=walk|car` forwarding to
+  OpenRouteService with the key kept on the server, same response shape. No table needed.
 
 ## Map (frontend only — no backend work)
 
 The map style is ours ([src/map/style.js](src/map/style.js)) on OpenStreetMap vector tiles from
-OpenFreeMap (free, no key). Nothing to build on the backend for the map itself; only the place data
-above. Coordinates for new places can be checked on https://www.openstreetmap.org.
-
-The cute 3D city ([src/map/city-3d.js](src/map/city-3d.js), models in `public/models/kit/`) is also
-frontend-only. It keeps a small circle around every place's `location` free of buildings (wider for
-`isFeatured` places), so correct coordinates matter. 3D landmarks (Shwedagon, Sule, City Hall,
-Karaweik, Dala Bridge, Bogyoke Market, Strand Hotel, Secretariat, towers, malls, hotels, airport) are listed in `src/map/config.js`
-(`LANDMARKS`); a place within a landmark's grounds gets its bubble lifted above the model.
-YBS bus stops come straight from the OpenStreetMap tiles ([src/map/bus-stops.js](src/map/bus-stops.js)),
-so no bus-stop table is needed unless the team wants YBS line numbers per stop later.
+OpenFreeMap (free, no key). Street and bus-stop names come from OpenStreetMap, like on Google Maps.
+The 3D city ([src/map/city-3d.js](src/map/city-3d.js)) keeps a small circle around every place's
+location free of buildings, so correct coordinates matter (check them on https://www.openstreetmap.org).
+YBS bus stops come straight from the map tiles ([src/map/bus-stops.js](src/map/bus-stops.js)).

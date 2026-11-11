@@ -1,7 +1,7 @@
 # POINTER (formerly YangonGo)
 
-A cinematic, map-based city guide to Yangon — find real places to visit, by category or by mood,
-collect Food Passport stamps and see live crowd reports.
+A cinematic, map-based city guide to Yangon — find real places to visit by category,
+get routes, save places, collect Food Passport stamps and read reviews.
 
 School group project (Group 1). This repository is the **frontend**: static UI with mock data.
 The PHP backend is built separately; see [HANDOFF.md](HANDOFF.md) for what it needs to provide.

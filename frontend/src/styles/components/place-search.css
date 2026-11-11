@@ -91,9 +91,8 @@
   background: var(--gold);
 }
 
-.place-search__option[data-crowd='low'] .place-search__dot { background: var(--crowd-low); }
-.place-search__option[data-crowd='medium'] .place-search__dot { background: var(--crowd-medium); }
-.place-search__option[data-crowd='high'] .place-search__dot { background: var(--crowd-high); }
+.place-search__option[data-open='open'] .place-search__dot { background: var(--status-open); }
+.place-search__option[data-open='closed'] .place-search__dot { background: var(--status-closed); }
 
 .place-search__text {
   display: flex;

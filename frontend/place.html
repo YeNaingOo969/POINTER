@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Place — POINTER</title>
-    <meta name="description" content="Opening hours, entry fee, crowd level, reviews and directions for a place in Yangon." />
+    <meta name="description" content="Opening hours, address, YBS lines, reviews and directions for a place in Yangon." />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -25,7 +25,6 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
         <span data-i18n="place.backToMap">Map</span>
       </a>
-      <button class="place-top__lang" type="button" data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
     </header>
 
     <section class="place-hero">
@@ -34,16 +33,14 @@
       <div class="place-hero__text">
         <p class="place-hero__eyebrow"></p>
         <h1 class="place-hero__title"></h1>
-        <p class="place-hero__alt"></p>
         <div class="place-chips place-hero__chips"></div>
       </div>
     </section>
 
     <main class="place-main" hidden>
       <div class="place-main__content">
-        <section class="place-section" aria-labelledby="about-title">
-          <h2 id="about-title" data-i18n="place.about">About</h2>
-          <p class="place-about"></p>
+        <section class="place-section" aria-labelledby="photos-title">
+          <h2 id="photos-title" data-i18n="place.photos">Photos</h2>
           <p class="place-muted" data-i18n="place.photosSoon">Real photos of this place are coming soon.</p>
         </section>
 
@@ -100,17 +97,7 @@
           <dl class="place-facts"></dl>
         </div>
 
-        <div class="place-panel place-crowd">
-          <h2 id="crowd-title" class="place-panel__title" data-i18n="place.crowdNow">How busy is it now?</h2>
-          <p class="place-crowd__current"></p>
-          <div class="place-crowd__buttons" role="group" aria-labelledby="crowd-title">
-            <button class="place-button" type="button" data-level="low" data-i18n="crowd.low">Quiet now</button>
-            <button class="place-button" type="button" data-level="medium" data-i18n="crowd.medium">Busy</button>
-            <button class="place-button" type="button" data-level="high" data-i18n="crowd.high">Very busy</button>
-          </div>
-        </div>
-
-        <p class="place-muted place-demo" data-i18n="place.demo">Ratings, reviews and crowd levels are demo data. What you post is kept in this browser only.</p>
+        <p class="place-muted place-demo" data-i18n="place.demo">Ratings and reviews are demo data. What you post is kept in this browser only.</p>
       </aside>
     </main>
 
