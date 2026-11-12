@@ -18,4 +18,5 @@ Every third-party asset used in YangonGo is listed here. Add a row when an asset
 
 | Asset | Made with | Notes |
 |---|---|---|
+| Landing v2 map image | Our own explore map (MapLibre, pastel style) on OpenFreeMap / OpenStreetMap tiles, screenshot | `assets/raw/images/landing-v2/map-downtown.png`; attribution shown under the map on the page |
 | Low-poly landmarks (Sule, City Hall, Karaweik, Dala Bridge, Bogyoke Market, Strand Hotel, Secretariat, towers, malls, hotels, airport) | Blender scripts in `scripts/blender/landmarks/` | Modelled from public facts (Wikipedia/Skyscraper Center heights, OSM footprints, Wikimedia Commons photos viewed for reference only); no third-party model or image is shipped |

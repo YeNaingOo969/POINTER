@@ -60,7 +60,7 @@ A business owner is a normal user who owns a place (`places.owner_id`) — not a
 
 | Page | File | Status |
 |---|---|---|
-| Landing | `index.html` | done: logo intro, cinematic scroll story — static, no backend data |
+| Landing | `index.html` | done (v2, 2026-11-12): 10-section scroll story — what POINTER is, map, 7 categories, reviews, deals + tickets, for shop owners, Free vs Premium, why free. Static, no backend data |
 | Explore map | `explore.html` | done: map, place bubbles (open / closed now), 3D city, search, place card, routes, YBS stops |
 | Place detail | `place.html?id=<id>` | done: 3D map hero, opening hours, address, YBS lines, facilities, reviews (read + write), save, check-in |
 | Login / register | `login.html` | done: log in, create account, validation, `?next=` return |

@@ -34,3 +34,4 @@ __pycache__/
 # Landing footage originals (Pexels, large) - optimised copies live in public/
 assets/raw/video/landing/
 assets/raw/images/landing/
+docs/previews/

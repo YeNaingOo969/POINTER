@@ -12,7 +12,8 @@
     "build:logo": "node scripts/build-logo.mjs",
     "build:models": "node scripts/build-models.mjs",
     "build:landmarks": "node scripts/build-landmarks.mjs",
-    "build:landing-art": "node scripts/build-landing-art.mjs"
+    "build:landing-art": "node scripts/build-landing-art.mjs",
+    "key:green": "node scripts/key-green.mjs"
   },
   "devDependencies": {
     "@gltf-transform/cli": "^4.5.1",

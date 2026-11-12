@@ -1,31 +1,33 @@
-// Entry script for index.html: the cinematic POINTER landing (M4).
+// Entry script for index.html: the POINTER landing (quality bar v2, 2026-11-12). Ten sections, each
+// in its own module under src/landing/. Motion only runs without prefers-reduced-motion; the CSS
+// lays everything out statically otherwise.
 import '../styles/tokens.css';
 import '../styles/base.css';
-import '../styles/components/brand.css';
 import '../styles/pages/landing.css';
-import { initI18n } from '../i18n/i18n.js';
-import { timeInYangon } from '../lib/format.js';
-import { playIntro } from '../landing/intro.js';
-import { heroEntrance, heroParallax, scrollScenes, refreshScenes } from '../landing/scenes.js';
-import { embers } from '../landing/embers.js';
-import { magnetic } from '../landing/magnetic.js';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { heroDive } from '../landing/hero.js';
+import { aboutReveal } from '../landing/about.js';
+import { mapStory } from '../landing/mapstory.js';
+import { categories } from '../landing/categories.js';
+import { reviewStory } from '../landing/reviews.js';
+import { dealStory } from '../landing/deals.js';
+import { ownersStatic, ownersAndEnding } from '../landing/owners.js';
 
-initI18n();
+gsap.registerPlugin(ScrollTrigger);
 
-// Live Yangon clock in the hero corner.
-const clock = document.querySelector('.hero__clock');
-const tick = () => { clock.textContent = timeInYangon(Date.now()); };
-tick();
-setInterval(tick, 20_000);
+// The top bar turns light over light sections (marked data-nav="light").
+document.querySelectorAll('[data-nav="light"]').forEach((section) => {
+  ScrollTrigger.create({ trigger: section, start: 'top 60px', end: 'bottom 60px', toggleClass: { targets: '.site-nav', className: 'is-light' } });
+});
 
-scrollScenes();
-heroParallax();
-magnetic();
-const stopEmbers = embers(document.querySelector('.hero__embers'));
+ownersStatic();
 
-playIntro(document.querySelector('.intro')).then(heroEntrance);
-
-// Pinned sections measure the page; measure again once fonts and images have settled.
-document.fonts?.ready.then(refreshScenes);
-addEventListener('load', refreshScenes, { once: true });
-addEventListener('pagehide', stopEmbers);
+const mm = gsap.matchMedia();
+document.fonts.ready.then(() => {
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    const cleanups = [heroDive(), aboutReveal(), mapStory(), categories(), reviewStory(), dealStory(), ownersAndEnding()];
+    return () => cleanups.forEach((fn) => fn());
+  });
+  ScrollTrigger.refresh();
+});
