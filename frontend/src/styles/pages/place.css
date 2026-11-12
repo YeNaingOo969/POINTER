@@ -278,8 +278,37 @@
 
 .place-actions__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--space-2);
+}
+
+.place-actions__call {
+  border-color: var(--glass-solid);
+  background: var(--glass-solid);
+  color: var(--cream);
+}
+
+.place-actions__call:hover {
+  background: #2c3240;
+}
+
+.place-button--danger {
+  border-color: transparent;
+  background: none;
+  color: var(--danger);
+}
+
+.place-button--danger:hover {
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+
+/* ---- About ---- */
+
+.place-about__text {
+  margin: 0;
+  max-width: 60ch;
+  font-size: var(--text-lg, 1.15rem);
+  line-height: 1.6;
 }
 
 /* ---- Facts ---- */
@@ -515,6 +544,27 @@
 
 .review__text {
   margin: var(--space-2) 0 0;
+}
+
+.review--mine {
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.review__edit {
+  padding: 0.2em 0.7em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--gold-deep);
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-form__title {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
 }
 
 .place-demo {

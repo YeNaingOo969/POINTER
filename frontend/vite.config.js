@@ -7,7 +7,8 @@ const pages = {
   explore: 'explore.html',
   place: 'place.html',
   login: 'login.html',
-  passport: 'passport.html',
+  account: 'account.html',
+  business: 'business.html',
 };
 
 export default defineConfig({

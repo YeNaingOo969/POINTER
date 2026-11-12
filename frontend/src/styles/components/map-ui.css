@@ -77,8 +77,17 @@
 .place-pin[data-open='open'] { --pin-tone: var(--status-open); }
 .place-pin[data-open='closed'] { --pin-tone: var(--status-closed); }
 
+/* The dot shows the category group; the ring under the pin shows open / closed. */
+.place-pin[data-cat='food'] { --cat-tone: var(--cat-food); }
+.place-pin[data-cat='stay'] { --cat-tone: var(--cat-stay); }
+.place-pin[data-cat='visit'] { --cat-tone: var(--cat-visit); }
+.place-pin[data-cat='shop'] { --cat-tone: var(--cat-shop); }
+.place-pin[data-cat='health'] { --cat-tone: var(--cat-health); }
+.place-pin[data-cat='beauty'] { --cat-tone: var(--cat-beauty); }
+.place-pin[data-cat='other'] { --cat-tone: var(--cat-other); }
+
 .place-pin__dot {
-  background: var(--pin-tone, var(--gold));
+  background: var(--cat-tone, var(--gold));
 }
 
 .place-pin__ring {

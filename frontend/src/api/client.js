@@ -28,8 +28,12 @@ export function mockError(message, status) {
 let csrfToken = null;
 export const setCsrfToken = (token) => { csrfToken = token ?? null; };
 
-/** Call a PHP JSON endpoint, e.g. request('places.php', { query: { category: 'cafe' } }). */
-export async function request(path, { method = 'GET', query, body } = {}) {
+/**
+ * Call a PHP JSON endpoint, e.g. request('places.php', { query: { id: 1 } }).
+ * `body` is sent as JSON; `form` (an object, may hold File values) as multipart/form-data for
+ * uploads — objects and arrays inside it are sent as JSON text.
+ */
+export async function request(path, { method = 'GET', query, body, form } = {}) {
   const url = new URL(`${API_BASE}/${path}`, window.location.origin);
   if (query) {
     for (const [key, value] of Object.entries(query)) {
@@ -39,12 +43,20 @@ export async function request(path, { method = 'GET', query, body } = {}) {
 
   const headers = {};
   if (body) headers['Content-Type'] = 'application/json';
+  let payload = body ? JSON.stringify(body) : undefined;
+  if (form) {
+    payload = new FormData();
+    for (const [key, value] of Object.entries(form)) {
+      if (value == null) continue;
+      payload.append(key, value instanceof Blob || typeof value !== 'object' ? value : JSON.stringify(value));
+    }
+  }
   if (method !== 'GET' && csrfToken) headers['X-CSRF-Token'] = csrfToken;
 
   const res = await fetch(url, {
     method,
     headers,
-    body: body ? JSON.stringify(body) : undefined,
+    body: payload,
     credentials: 'same-origin',
   });
 

@@ -25,6 +25,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
         <span data-i18n="place.backToMap">Map</span>
       </a>
+      <button class="lang-toggle place-top__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
     </header>
 
     <section class="place-hero">
@@ -39,6 +40,11 @@
 
     <main class="place-main" hidden>
       <div class="place-main__content">
+        <section class="place-section place-about" aria-labelledby="about-title">
+          <h2 id="about-title" data-i18n="place.about">About</h2>
+          <p class="place-about__text"></p>
+        </section>
+
         <section class="place-section" aria-labelledby="photos-title">
           <h2 id="photos-title" data-i18n="place.photos">Photos</h2>
           <p class="place-muted" data-i18n="place.photosSoon">Real photos of this place are coming soon.</p>
@@ -63,7 +69,10 @@
             <span class="place-reviews__count"></span>
           </div>
 
+          <p class="place-muted place-reviews__own" data-i18n="place.ownShop" hidden>This is your shop, so you can't review it — but you can reply to reviews.</p>
+
           <form class="review-form" hidden>
+            <p class="review-form__title" data-i18n="place.writeReview">Write a review</p>
             <fieldset class="review-form__rating">
               <legend data-i18n="place.yourRating">Your rating</legend>
               <div class="review-form__stars"></div>
@@ -75,6 +84,7 @@
             <div class="review-form__actions">
               <button class="place-button place-button--gold" type="submit" data-i18n="place.postReview">Post review</button>
               <button class="place-button" type="button" data-action="cancel" data-i18n="place.cancel">Cancel</button>
+              <button class="place-button place-button--danger" type="button" data-action="delete" data-i18n="place.deleteReview" hidden>Delete review</button>
             </div>
           </form>
 
@@ -85,11 +95,11 @@
 
       <aside class="place-main__side">
         <div class="place-panel place-actions">
+          <a class="place-button place-actions__call" hidden><span aria-hidden="true">☎</span> <span data-i18n="place.call">Call</span></a>
           <a class="place-button place-button--gold place-actions__directions" target="_blank" rel="noopener" data-i18n="card.directions">Directions in Google Maps</a>
           <a class="place-button place-actions__map" data-i18n="place.viewOnMap">View on the map</a>
           <div class="place-actions__row">
             <button class="place-button place-actions__save" type="button" aria-pressed="false"></button>
-            <button class="place-button place-actions__checkin" type="button"></button>
           </div>
         </div>
 

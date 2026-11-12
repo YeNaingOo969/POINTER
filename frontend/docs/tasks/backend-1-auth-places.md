@@ -1,18 +1,21 @@
 # Backend task 1 — Accounts (log in / register) and places
 
 **Owner:** backend developer 1 · **Frontend pages:** `login.html`, `explore.html`, `place.html`
+
+> Changed on 2026-11-12 (new scope document): 7 category groups (seed them from HANDOFF.md),
+> `description` and `phone` on places, and a `categories.php` endpoint.
+
 **Database:** the team's dbdiagram schema — tables `users`, `places`, `categories`,
 `operating_hours`, `place_images`, `reviews`
 
-Task 2 (My Passport) needs the login session from this task, so please finish the
+Task 2 (My account) needs the login session from this task, so please finish the
 **Accounts** part first.
 
 ## 1. Run the frontend
 
 ```bash
 cd frontend
-npm install
-npm run dev
+npm start
 ```
 
 Open http://localhost:5173/login.html. It works now with fake data kept in the browser
@@ -74,7 +77,8 @@ find out which emails are registered.
 
 | Function in `api.js` | Endpoint | Success | Errors |
 |---|---|---|---|
-| `getPlaces()` | `GET /api/places.php` | `200 Place[]` | — |
+| `getCategories()` | `GET /api/categories.php` | `200 [{ "id", "name", "icon" }]` — the 7 groups in HANDOFF.md | — |
+| `getPlaces()` | `GET /api/places.php` | `200 Place[]` (approved places only, not pending requests) | — |
 | `getPlace(id)` | `GET /api/places.php?id=1` | `200 Place` | `404 { "error": "Place not found" }` |
 
 The exact `Place` shape is in `frontend/src/data/places.js` (21 examples you can also use as
@@ -85,6 +89,7 @@ seed data, with the categories in `frontend/src/data/categories.js`) and the fie
 |---|---|
 | `id`, `name`, `address`, `ownerId` | `places.id`, `places.name`, `places.address`, `places.owner_id` |
 | `category` | `{ "id", "name", "icon" }` joined from `categories` on `places.category_id`, or `null` |
+| `description`, `phone` | `places.description`, `places.phone` (string or `null`; the page shows a Call button when `phone` is set) |
 | `location` | `{ "lat": latitude, "lng": longitude }` (numbers, not strings) |
 | `ybsLines`, `facilities` | comma-separated text → JSON array (`[]` when empty) |
 | `openingHours` | `operating_hours` rows grouped back into `[{ "days": "mon-sun", "open": "04:00", "close": "22:00" }]`; days in a row with the same times become a range (`mon-fri`), a single day stays `mon`; times `HH:MM`; no rows → `[]` |
@@ -102,6 +107,6 @@ as strings.
 - [ ] Log out works; POST without the right `X-CSRF-Token` gets 403.
 - [ ] Passwords in the database are `password_hash` strings, never plain text.
 - [ ] With `USE_MOCK = false` the Explore map shows all places from MariaDB, and
-      `place.html?id=1` shows category, hours, address, YBS lines, facilities and rating;
+      `place.html?id=1` shows category, about, hours, address, YBS lines, facilities and rating, and `place.html?id=20` a Call button;
       `place.html?id=999` shows "We couldn't find this place."
 - [ ] Every query uses prepared statements.

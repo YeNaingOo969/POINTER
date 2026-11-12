@@ -1,7 +1,7 @@
 // POINTER pastel map style, built for the OpenMapTiles schema served by OpenFreeMap.
 // Written from scratch (not a recoloured third-party style) so every layer is ours and the
 // layer count stays small for the 610M GPU. Colours follow the approved palette.
-import { TILE_SOURCE_URL, GLYPHS_URL, BUILDINGS_3D_MIN_ZOOM, LANDMARKS } from './config.js';
+import { TILE_SOURCE_URL, GLYPHS_URL } from './config.js';
 
 // Colourful pastel (2026-11-04, for a livelier map): greener parks, brighter
 // water, tinted land use, gold main roads, coral motorways, buildings in a mix of pastels.
@@ -43,24 +43,6 @@ const buildingTint = ['match',
   ...BUILDING_TINTS.slice(0, -1).flatMap((c, i) => [i, c]),
   BUILDING_TINTS.at(-1)];
 
-/** The `clear` circles of the hero landmarks as a GeoJSON MultiPolygon (16-sided). */
-function landmarkAreas() {
-  const metresPerDegLat = 111320;
-  return {
-    type: 'MultiPolygon',
-    coordinates: LANDMARKS.map(({ lng, lat, clear }) => {
-      const ring = [];
-      for (let i = 0; i <= 16; i++) {
-        const a = (i / 16) * Math.PI * 2;
-        ring.push([
-          lng + (Math.cos(a) * clear) / (metresPerDegLat * Math.cos((lat * Math.PI) / 180)),
-          lat + (Math.sin(a) * clear) / metresPerDegLat,
-        ]);
-      }
-      return [ring];
-    }),
-  };
-}
 
 // Line width that grows with zoom (exponential, like real road widths on screen).
 const width = (pairs) => ['interpolate', ['exponential', 1.6], ['zoom'], ...pairs.flat()];
@@ -195,27 +177,10 @@ export function buildMapStyle() {
         paint: { 'line-color': C.rail, 'line-width': width([[12, 0.8], [16, 2.5]]), 'line-dasharray': [3, 2] },
       },
 
-      // ---- Buildings: flat when zoomed out, soft pastel 3D blocks when close ----
+      // ---- Buildings: flat pastel blocks (no 3D since 2026-11-12; landmarks are illustrated markers) ----
       {
         id: 'building-flat', type: 'fill', source: SOURCE, 'source-layer': 'building',
-        maxzoom: BUILDINGS_3D_MIN_ZOOM,
         paint: { 'fill-color': buildingTint, 'fill-opacity': 0.85 },
-      },
-      {
-        id: 'building-3d', type: 'fill-extrusion', source: SOURCE, 'source-layer': 'building',
-        minzoom: BUILDINGS_3D_MIN_ZOOM,
-        // Hero landmark models replace the OSM blocks at their spot.
-        filter: ['all', ['!', ['has', 'hide_3d']], ['!', ['within', landmarkAreas()]]],
-        paint: {
-          'fill-extrusion-color': buildingTint,
-          'fill-extrusion-height': [
-            'interpolate', ['linear'], ['zoom'],
-            BUILDINGS_3D_MIN_ZOOM, 0, BUILDINGS_3D_MIN_ZOOM + 0.6, ['coalesce', ['get', 'render_height'], 6],
-          ],
-          'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
-          'fill-extrusion-opacity': 0.94,
-          'fill-extrusion-vertical-gradient': true,
-        },
       },
 
       // ---- Labels (English; quiet, so our place bubbles stay the stars) ----

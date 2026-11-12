@@ -139,3 +139,52 @@
   max-width: calc(100vw - 130px);
 }
 
+
+/* ---- Category filter: a row of glass chips under the top bar ---- */
+.cat-filter {
+  position: absolute;
+  top: calc(var(--space-4) + 64px);
+  left: var(--space-4);
+  right: var(--space-4);
+  z-index: 5;
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+  scrollbar-width: none;
+}
+.cat-filter::-webkit-scrollbar { display: none; }
+.cat-filter__chip {
+  --c: var(--cat-other);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 36px;
+  padding: 0.4em 0.9em;
+  border: 1px solid rgb(255 255 255 / 0.6);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.82);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgb(40 30 20 / 0.12);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.cat-filter__chip:not([data-cat=''])::before { content: ''; width: 0.6em; height: 0.6em; border-radius: 50%; background: var(--c); }
+.cat-filter__chip:hover { transform: translateY(-1px); }
+.cat-filter__chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.cat-filter__chip[aria-pressed='true'] { background: var(--c); border-color: var(--c); color: #fff; }
+.cat-filter__chip[aria-pressed='true']::before { background: #fff; }
+.cat-filter__chip[data-cat=''] { --c: var(--glass-solid); }
+.cat-filter__chip[data-cat='food'] { --c: var(--cat-food); }
+.cat-filter__chip[data-cat='stay'] { --c: var(--cat-stay); }
+.cat-filter__chip[data-cat='visit'] { --c: var(--cat-visit); }
+.cat-filter__chip[data-cat='shop'] { --c: var(--cat-shop); }
+.cat-filter__chip[data-cat='health'] { --c: var(--cat-health); }
+.cat-filter__chip[data-cat='beauty'] { --c: var(--cat-beauty); }
+.cat-filter__chip[data-cat='other'] { --c: var(--cat-other); }
+@media (prefers-reduced-motion: reduce) { .cat-filter__chip { transition: none; } }

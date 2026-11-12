@@ -1,4 +1,5 @@
-// Entry script for explore.html: the pastel 3D map with place bubbles, search and place card.
+// Entry script for explore.html: the pastel map with place bubbles, a category filter, search,
+// place card and routes. Landmarks are illustrated markers (no 3D city since 2026-11-12).
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components/brand.css';
@@ -6,12 +7,10 @@ import '../styles/components/map-ui.css';
 import '../styles/components/place-search.css';
 import '../styles/components/place-card.css';
 import '../styles/pages/explore.css';
-import { initI18n, t } from '../i18n/i18n.js';
-import { isFeatured } from '../lib/featured.js';
-import { getPlaces } from '../api/api.js';
+import { initI18n, t, categoryName } from '../i18n/i18n.js';
+import { getPlaces, getCategories } from '../api/api.js';
 import { createMap, moveCamera } from '../map/map.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
-import { addCityLayer } from '../map/city-3d.js';
 import { createPlaceSearch } from '../components/place-search.js';
 import { createPlaceCard } from '../components/place-card.js';
 import { createRoutePanel } from '../components/route-panel.js';
@@ -39,7 +38,7 @@ const cardPadding = () => (phone.matches
 
 async function start() {
   try {
-    const [map, places] = await Promise.all([createMap(container), getPlaces()]);
+    const [map, places, categories] = await Promise.all([createMap(container), getPlaces(), getCategories()]);
     if (import.meta.env.DEV) window.__map = map; // for debugging in the browser console
 
     let search;
@@ -68,12 +67,12 @@ async function start() {
 
     const markers = addPlaceMarkers(map, places, { onSelect: openPlace });
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
-    addCityLayer(map, {
-      clearings: places.map((p) => ({ ...p.location, radius: isFeatured(p) ? 45 : 28 })),
-      onLandmarks: (spots) => markers.liftAbove(spots),
+    addBusStops(map);
+    const routeLayer = addRouteLayer(map);
+    createCategoryFilter(document.querySelector('.cat-filter'), categories, (icon) => {
+      markers.filter(icon);
+      if (card.place && icon && card.place.category?.icon !== icon) closePlace();
     });
-    addBusStops(map); // after the 3D city, so the stops stay visible
-    const routeLayer = addRouteLayer(map); // after the 3D city, so the line draws on top
     const routePanel = createRoutePanel(document.querySelector('.route-panel'), places, {
       onRoute: (route) => routeLayer.show(route, cardPadding()),
       onClear: () => routeLayer.clear(),
@@ -87,6 +86,26 @@ async function start() {
     console.error(error);
     showStatus(t('explore.loadFailed'));
   }
+}
+
+/** "All" + one chip per category group; `onChange(icon | null)`. */
+function createCategoryFilter(nav, categories, onChange) {
+  for (const c of categories) {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'cat-filter__chip';
+    chip.dataset.cat = c.icon;
+    chip.setAttribute('aria-pressed', 'false');
+    chip.textContent = categoryName(c);
+    nav.append(chip);
+  }
+  nav.addEventListener('click', (e) => {
+    const chip = e.target.closest('.cat-filter__chip');
+    if (!chip) return;
+    const icon = chip.getAttribute('aria-pressed') === 'true' && chip.dataset.cat ? '' : chip.dataset.cat;
+    nav.querySelectorAll('.cat-filter__chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.cat === icon)));
+    onChange(icon || null);
+  });
 }
 
 start();

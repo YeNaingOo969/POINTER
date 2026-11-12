@@ -38,6 +38,14 @@ export async function getPlace(id) {
   return mockResponse(place);
 }
 
+/**
+ * The seven category groups, for filters and the business form.
+ * GET /api/categories.php → [{ id, name, icon }]   (icon: food | stay | visit | shop | health | beauty | other)
+ */
+export function getCategories() {
+  return USE_MOCK ? mockResponse(categories) : request('categories.php');
+}
+
 // ---- Session, register, log in (login.html) ----
 
 /** A place as other lists show it: just enough for a card and a link. */
@@ -107,7 +115,7 @@ export function logout() {
   return USE_MOCK ? mockResponse(writeDemo('session', null) ?? { user: null }) : request('logout.php', { method: 'POST' });
 }
 
-// ---- My Passport (passport.html) ----
+// ---- My account (account.html) ----
 
 /**
  * The logged-in user's saved places (favourites), newest first. 401 when not logged in.
@@ -118,19 +126,6 @@ export async function getMySaves() {
   requireDemoUser();
   const list = readDemo('saved', []).map((id) => ({ place: placeSummary(places.find((p) => p.id === id)) }));
   return mockResponse(list.reverse());
-}
-
-/**
- * The logged-in user's check-in stamps (history), newest first. 401 when not logged in.
- * GET /api/my-checkins.php → [{ place: PlaceSummary, checkedInAt }]   (checkedInAt = history.visited_at)
- */
-export async function getMyCheckIns() {
-  if (!USE_MOCK) return request('my-checkins.php');
-  requireDemoUser();
-  const list = Object.entries(readDemo('checkins', {}))
-    .map(([id, checkedInAt]) => ({ place: placeSummary(places.find((p) => p.id === Number(id))), checkedInAt }))
-    .sort((a, b) => b.checkedInAt.localeCompare(a.checkedInAt));
-  return mockResponse(list);
 }
 
 /**
@@ -174,12 +169,14 @@ export function getReviews(placeId) {
 }
 
 /**
- * Add a review (logged-in users). 401 when not logged in, 409 for a second review of a place.
+ * Add a review (logged-in users). 401 when not logged in, 409 for a second review of a place,
+ * 403 when the user owns the place (owners can't review their own shop).
  * POST /api/reviews.php { placeId, rating: 1–5, text } → 201 Review
  */
 export async function addReview(placeId, { rating, text }) {
   if (!USE_MOCK) return request('reviews.php', { method: 'POST', body: { placeId, rating, text } });
   const user = requireDemoUser();
+  if (places.find((p) => p.id === placeId)?.ownerId === user.id) return mockError("You can't review your own shop", 403);
   if (readDemo('reviews', []).some((r) => r.placeId === placeId && r.user.id === user.id)) {
     return mockError('You already reviewed this place', 409);
   }
@@ -188,19 +185,67 @@ export async function addReview(placeId, { rating, text }) {
   return mockResponse(review);
 }
 
-// ---- Saves and check-ins ----
+/**
+ * Edit your own review (rating and text). 403 for someone else's review.
+ * PUT /api/reviews.php?id=12 { rating: 1–5, text } → Review (with updatedAt)
+ */
+export async function updateReview(id, { rating, text }) {
+  if (!USE_MOCK) return request('reviews.php', { method: 'PUT', query: { id }, body: { rating, text } });
+  const user = requireDemoUser();
+  const all = readDemo('reviews', []);
+  const review = all.find((r) => r.id === id);
+  if (!review || review.user.id !== user.id) return mockError('Not your review', 403);
+  const updated = { ...review, rating, text, updatedAt: new Date().toISOString() };
+  writeDemo('reviews', all.map((r) => (r.id === id ? updated : r)));
+  return mockResponse(updated);
+}
+
+// ---- Business requests ("Add your business", business.html) ----
+
+/**
+ * Send an "Add your business" request (logged-in users, one business per user).
+ * POST /api/business-requests.php  multipart/form-data:
+ *   name, categoryId, description, phone, openingHours (JSON text), lat, lng, photo (shop front, image)
+ * → 201 { id, status: 'pending', ...fields, photoUrl, createdAt }
+ * 409 when the user already has a business or a pending request · 422 invalid input
+ */
+export async function submitBusinessRequest(fields) {
+  if (!USE_MOCK) return request('business-requests.php', { method: 'POST', form: fields });
+  const user = requireDemoUser();
+  const existing = readDemo('businessRequest', null);
+  if (existing && existing.userId === user.id && existing.status !== 'rejected') {
+    return mockError('You already have a business request', 409);
+  }
+  const { photo, ...rest } = fields;
+  const saved = { id: Date.now(), userId: user.id, status: 'pending', ...rest, photoName: photo?.name ?? null, createdAt: new Date().toISOString() };
+  writeDemo('businessRequest', saved);
+  return mockResponse(saved);
+}
+
+/**
+ * The logged-in user's business request, or null.
+ * GET /api/my-business-request.php → { id, status: 'pending' | 'approved' | 'rejected', name, …, reason? } | null
+ */
+export async function getMyBusinessRequest() {
+  if (!USE_MOCK) return request('my-business-request.php');
+  const user = requireDemoUser();
+  const r = readDemo('businessRequest', null);
+  return mockResponse(r && r.userId === user.id ? r : null);
+}
+
+// ---- Saves ----
 
 /**
  * The logged-in user's status for one place.
- * GET /api/my-place.php?place_id=1 → { saved: bool, checkedInAt: ISO string | null }
+ * GET /api/my-place.php?place_id=1 → { saved: bool, reviewId: number | null }
+ * reviewId = the user's own review of this place (so the page can offer "Edit your review").
  */
 export async function getMyPlace(placeId) {
   if (!USE_MOCK) return request('my-place.php', { query: { place_id: placeId } });
-  if (!readDemo('session', null)) return mockResponse({ saved: false, checkedInAt: null });
-  return mockResponse({
-    saved: readDemo('saved', []).includes(placeId),
-    checkedInAt: readDemo('checkins', {})[placeId] ?? null,
-  });
+  const session = readDemo('session', null);
+  if (!session) return mockResponse({ saved: false, reviewId: null });
+  const own = readDemo('reviews', []).find((r) => r.placeId === placeId && r.user.id === session.user.id);
+  return mockResponse({ saved: readDemo('saved', []).includes(placeId), reviewId: own?.id ?? null });
 }
 
 /**
@@ -217,19 +262,6 @@ export async function setSaved(placeId, saved) {
   const list = readDemo('saved', []).filter((id) => id !== placeId);
   writeDemo('saved', saved ? [...list, placeId] : list);
   return mockResponse({ saved });
-}
-
-/**
- * Check in at a place (logged-in users): one stamp per place, stored in `history`.
- * POST /api/checkins.php { placeId } → { checkedInAt }
- */
-export async function checkIn(placeId) {
-  if (!USE_MOCK) return request('checkins.php', { method: 'POST', body: { placeId } });
-  requireDemoUser();
-  const existing = readDemo('checkins', {});
-  const checkedInAt = existing[placeId] ?? new Date().toISOString(); // one stamp per place
-  writeDemo('checkins', { ...existing, [placeId]: checkedInAt });
-  return mockResponse({ checkedInAt });
 }
 
 /**

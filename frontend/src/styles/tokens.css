@@ -24,6 +24,14 @@
 
   /* Status */
   --status-open: #3b8f5a;
+  /* The seven category groups (src/data/categories.js icon keys) */
+  --cat-food: #e8875a;
+  --cat-stay: #6c8ebf;
+  --cat-visit: #e8b04a;
+  --cat-shop: #d96c9a;
+  --cat-health: #4fa38a;
+  --cat-beauty: #b58bd6;
+  --cat-other: #9a8f84;
   --status-closed: #9a8f84;
   --danger: #b7472f;
 

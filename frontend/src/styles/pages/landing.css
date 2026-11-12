@@ -189,13 +189,6 @@
 :root {
   --plum: #2a1d2e;
   --plum-2: #36263b;
-  --cat-food: #e8875a;
-  --cat-stay: #6c8ebf;
-  --cat-visit: #e8b04a;
-  --cat-shop: #d96c9a;
-  --cat-health: #4fa38a;
-  --cat-beauty: #b58bd6;
-  --cat-other: #9a8f84;
   --ease-out: cubic-bezier(.16, 1, .3, 1);
 }
 .eyebrow {

@@ -83,3 +83,29 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* English / Burmese switch, used in every app header (src/i18n/i18n.js wires [data-lang-toggle]). */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 0.95rem;
+  border: 1px solid rgb(255 255 255 / 0.55);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.82);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font: inherit;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgb(40 30 20 / 0.12);
+}
+.lang-toggle:hover { background: #fff; }
+.lang-toggle:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.explore-lang { margin-left: auto; flex: none; }
+.explore-lang + .explore-account { margin-left: var(--space-2); }
+.place-top__lang { margin-left: auto; }
+.app-top .lang-toggle { margin-left: auto; }

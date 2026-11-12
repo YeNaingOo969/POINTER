@@ -1,7 +1,7 @@
 // Place card: the quick summary shown when a place is picked on the map or in search.
 // Desktop: a floating card at the bottom left. Phone: a bottom sheet (see place-card.css).
 // Shows only what the database stores: name, category, hours, rating, address, YBS lines, facilities.
-import { t } from '../i18n/i18n.js';
+import { t, categoryName } from '../i18n/i18n.js';
 import { todaysHours } from '../lib/opening-hours.js';
 import { googleMapsUrl } from '../lib/format.js';
 import { renderChips } from './place-chips.js';
@@ -17,7 +17,7 @@ export function createPlaceCard(root, { onClose } = {}) {
   function render() {
     const place = current;
     if (!place) return;
-    $('.place-card__eyebrow').textContent = place.category?.name ?? '';
+    $('.place-card__eyebrow').textContent = categoryName(place.category);
     $('.place-card__title').textContent = place.name;
 
     renderChips($('.place-card__chips'), place, 'place-card__chip');

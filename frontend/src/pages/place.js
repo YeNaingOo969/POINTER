@@ -1,5 +1,6 @@
-// Entry script for place.html?id=<id>: one place in full — a slowly turning 3D map of the spot
-// as the hero (real photos only, none yet), hours, facts, reviews, save and check-in.
+// Entry script for place.html?id=<id>: one place in full — a slowly turning map of the spot as
+// the hero (real photos only, none yet), about, hours, facts, call / directions, save, and reviews
+// (write one, edit or delete your own; owners can't review their own shop).
 // User actions ask visitors to log in first.
 import '../styles/tokens.css';
 import '../styles/base.css';
@@ -7,14 +8,12 @@ import '../styles/components/brand.css';
 import '../styles/components/map-ui.css';
 import '../styles/components/login-dialog.css';
 import '../styles/pages/place.css';
-import { initI18n, t } from '../i18n/i18n.js';
-import { getPlace, getReviews, addReview, getSession, getMyPlace, setSaved, checkIn } from '../api/api.js';
+import { initI18n, t, categoryName } from '../i18n/i18n.js';
+import { getPlace, getReviews, addReview, updateReview, deleteReview, getSession, getMyPlace, setSaved } from '../api/api.js';
 import { createMap, prefersReducedMotion } from '../map/map.js';
-import { addCityLayer } from '../map/city-3d.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
 import { weekHours } from '../lib/opening-hours.js';
 import { dateInYangon, googleMapsUrl, number, stars } from '../lib/format.js';
-import { isFeatured } from '../lib/featured.js';
 import { renderChips } from '../components/place-chips.js';
 import { askToLogin } from '../components/login-dialog.js';
 
@@ -24,8 +23,10 @@ const $ = (sel) => document.querySelector(sel);
 const placeId = new URLSearchParams(location.search).get('id');
 let place = null;
 let reviews = [];
-let mine = { saved: false, checkedInAt: null };
+let mine = { saved: false, reviewId: null };
+let user = null; // logged-in user, or null for a visitor
 let rating = 0; // chosen in the review form
+let editingId = null; // id of the user's own review while the form edits it
 
 // ---- Small helpers ----
 
@@ -40,20 +41,26 @@ function toast(message) {
 
 /** The logged-in user, asking a visitor to log in first; null if they decline. */
 async function currentUser() {
-  const { user } = await getSession();
   if (user) return user;
   const session = await askToLogin();
-  if (session?.user) mine = await getMyPlace(place.id); // their saved / checked-in state
-  return session?.user ?? null;
+  if (session?.user) {
+    user = session.user;
+    mine = await getMyPlace(place.id); // their saved state and own review
+    renderActions();
+    renderReviews();
+  }
+  return user;
 }
 
 // ---- Rendering ----
 
 function renderHeader() {
   document.title = `${place.name} — POINTER`;
-  $('.place-hero__eyebrow').textContent = place.category?.name ?? '';
+  $('.place-hero__eyebrow').textContent = categoryName(place.category);
   $('.place-hero__title').textContent = place.name;
   renderChips($('.place-hero__chips'), place, 'place-chip');
+  $('.place-about__text').textContent = place.description ?? '';
+  $('.place-about').hidden = !place.description;
 }
 
 function renderHours() {
@@ -97,10 +104,17 @@ function renderActions() {
   const save = $('.place-actions__save');
   save.textContent = mine.saved ? `♥ ${t('place.saved')}` : `♡ ${t('place.save')}`;
   save.setAttribute('aria-pressed', String(mine.saved));
-  const check = $('.place-actions__checkin');
-  check.textContent = mine.checkedInAt ? `✓ ${t('place.checkedIn')}` : t('place.checkIn');
-  check.title = mine.checkedInAt ? dateInYangon(mine.checkedInAt) : '';
-  check.disabled = Boolean(mine.checkedInAt);
+  const call = $('.place-actions__call');
+  call.hidden = !place.phone;
+  if (place.phone) {
+    call.href = `tel:${place.phone.replace(/\s+/g, '')}`;
+    call.title = place.phone;
+  }
+  const ownShop = Boolean(user && place.ownerId === user.id);
+  $('.place-reviews__own').hidden = !ownShop;
+  const write = $('.place-reviews__write');
+  write.hidden = ownShop;
+  write.textContent = t(mine.reviewId ? 'place.editReview' : 'place.writeReview');
 }
 
 function renderReviews() {
@@ -131,6 +145,16 @@ function renderReviews() {
     time.dateTime = r.createdAt;
     time.textContent = dateInYangon(r.createdAt);
     li.querySelector('.review__text').textContent = r.text;
+    if (r.updatedAt) time.textContent += ` · ${t('place.edited')}`;
+    if (user && r.user.id === user.id) {
+      li.classList.add('review--mine');
+      const edit = document.createElement('button');
+      edit.type = 'button';
+      edit.className = 'review__edit';
+      edit.textContent = t('place.edit');
+      edit.addEventListener('click', () => openForm(r));
+      li.querySelector('.review__head').append(edit);
+    }
     list.append(li);
   }
 }
@@ -175,43 +199,73 @@ function wireActions() {
     toast(mine.saved ? t('place.savedToast') : t('place.unsavedToast'));
   });
 
-  $('.place-actions__checkin').addEventListener('click', async () => {
-    if (!(await currentUser()) || mine.checkedInAt) return;
-    mine.checkedInAt = (await checkIn(place.id)).checkedInAt;
-    renderActions();
-    toast(t('place.checkInToast'));
-  });
-
   const form = $('.review-form');
   $('.place-reviews__write').addEventListener('click', async () => {
     if (!(await currentUser())) return;
-    form.hidden = false;
-    renderActions();
-    form.querySelector('textarea').focus();
+    if (place.ownerId === user.id) return;
+    openForm(reviews.find((r) => r.id === mine.reviewId) ?? null);
   });
-  form.querySelector('[data-action="cancel"]').addEventListener('click', () => { form.hidden = true; });
+  form.querySelector('[data-action="cancel"]').addEventListener('click', closeForm);
+  form.querySelector('[data-action="delete"]').addEventListener('click', async () => {
+    if (!editingId || !window.confirm(t('account.confirmDelete'))) return;
+    await deleteReview(editingId);
+    reviews = reviews.filter((r) => r.id !== editingId);
+    mine.reviewId = null;
+    closeForm();
+    renderActions();
+    renderReviews();
+    toast(t('account.deleted'));
+  });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const text = form.elements.text.value.trim();
     if (!rating || !text) return;
-    let review;
     try {
-      review = await addReview(place.id, { rating, text });
+      if (editingId) {
+        const updated = await updateReview(editingId, { rating, text });
+        reviews = reviews.map((r) => (r.id === editingId ? updated : r));
+        toast(t('place.reviewUpdated'));
+      } else {
+        const review = await addReview(place.id, { rating, text });
+        reviews = [review, ...reviews];
+        mine.reviewId = review.id;
+        toast(t('place.reviewThanks'));
+      }
     } catch (error) {
-      toast(t(error.status === 409 ? 'place.alreadyReviewed' : 'auth.errGeneric'));
+      const key = { 409: 'place.alreadyReviewed', 403: 'place.ownShop' }[error.status] ?? 'auth.errGeneric';
+      toast(t(key));
       return;
     }
-    reviews = [review, ...reviews];
-    form.reset();
-    rating = 0;
-    form.hidden = true;
+    closeForm();
+    renderActions();
     renderReviews();
-    renderStarPicker();
-    toast(t('place.reviewThanks'));
   });
 }
 
-// ---- Hero map: the place in 3D, turning slowly while it is on screen ----
+/** Open the review form, empty for a new review or filled in to edit your own. */
+function openForm(review) {
+  const form = $('.review-form');
+  editingId = review?.id ?? null;
+  rating = review?.rating ?? 0;
+  form.elements.text.value = review?.text ?? '';
+  form.querySelector('.review-form__title').textContent = t(review ? 'place.editReview' : 'place.writeReview');
+  form.querySelector('[type="submit"]').textContent = t(review ? 'place.saveChanges' : 'place.postReview');
+  form.querySelector('[data-action="delete"]').hidden = !review;
+  renderStarPicker();
+  form.hidden = false;
+  form.querySelector('textarea').focus();
+}
+
+function closeForm() {
+  const form = $('.review-form');
+  form.reset();
+  form.hidden = true;
+  editingId = null;
+  rating = 0;
+  renderStarPicker();
+}
+
+// ---- Hero map: the place, turning slowly while it is on screen ----
 
 async function startHeroMap() {
   const container = $('#place-map');
@@ -224,10 +278,6 @@ async function startHeroMap() {
   }
   const markers = addPlaceMarkers(map, [place], { onSelect() {} });
   markers.select(place.id);
-  addCityLayer(map, {
-    clearings: [{ ...place.location, radius: isFeatured(place) ? 45 : 28 }],
-    onLandmarks: (spots) => markers.liftAbove(spots),
-  });
 
   if (prefersReducedMotion()) return;
   let visible = true;
@@ -255,7 +305,7 @@ async function start() {
     $('.place-missing').hidden = false;
     return;
   }
-  [reviews, mine] = await Promise.all([getReviews(place.id), getMyPlace(place.id)]);
+  [reviews, mine, { user }] = await Promise.all([getReviews(place.id), getMyPlace(place.id), getSession()]);
   $('.place-main').hidden = false;
   renderAll();
   wireActions();

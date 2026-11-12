@@ -1,7 +1,7 @@
 // Place search: an accessible combobox over the places already loaded for the map.
 // Matches the name, address and category. The list is small, so it filters in the browser;
 // a PHP `places.php?q=` endpoint can replace this later without changing the UI.
-import { t } from '../i18n/i18n.js';
+import { t, categoryName } from '../i18n/i18n.js';
 import { openStatus } from '../lib/opening-hours.js';
 
 const MAX_RESULTS = 8;
@@ -9,7 +9,8 @@ const MAX_RESULTS = 8;
 /** Lower-case, accent-free text for matching ("Café" ~ "cafe"). */
 const normal = (s) => (s ?? '').toString().normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-const haystack = (place) => normal([place.name, place.address, place.category?.name].join(' '));
+// Search matches the English and the translated group name.
+const haystack = (place) => normal([place.name, place.address, place.category?.name, categoryName(place.category)].join(' '));
 
 /** Best matches first: name starts with the query, then a word in it does, then anywhere. */
 export function searchPlaces(places, query) {
@@ -70,7 +71,7 @@ export function createPlaceSearch(form, places, { onPick }) {
           <span class="place-search__meta"></span>
         </span>`;
       li.querySelector('.place-search__name').textContent = place.name;
-      li.querySelector('.place-search__meta').textContent = [place.category?.name, place.address].filter(Boolean).join(' · ');
+      li.querySelector('.place-search__meta').textContent = [categoryName(place.category), place.address].filter(Boolean).join(' · ');
       li.addEventListener('mousedown', (e) => e.preventDefault()); // keep focus in the input
       li.addEventListener('click', () => pick(place));
       list.append(li);

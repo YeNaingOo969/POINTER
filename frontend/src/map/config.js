@@ -5,7 +5,7 @@
 export const TILE_SOURCE_URL = 'https://tiles.openfreemap.org/planet';
 export const GLYPHS_URL = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
 
-// Start view: downtown Yangon between Shwedagon and Sule, tilted so 3D buildings show.
+// Start view: downtown Yangon between Shwedagon and Sule, tilted a little for depth.
 export const START_VIEW = {
   center: [96.1555, 16.7845],
   zoom: 14.2,

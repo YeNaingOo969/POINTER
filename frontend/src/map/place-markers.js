@@ -16,6 +16,7 @@ function markerElement(place) {
   el.className = isFeatured(place) ? 'place-pin is-featured' : 'place-pin';
   el.dataset.id = place.id;
   el.dataset.open = openStatus(place.openingHours).state;
+  el.dataset.cat = place.category?.icon ?? 'other';
   el.innerHTML = `
     <span class="place-pin__bubble">
       <span class="place-pin__dot" aria-hidden="true"></span>
@@ -39,7 +40,7 @@ function renderTexts(el, place) {
 
 /**
  * Add a marker per place. `onSelect(place)` runs when one is clicked.
- * Returns { select(id), liftAbove(spots), remove() }.
+ * Returns { select(id), filter(categoryIcon | null), liftAbove(spots), remove() }.
  */
 export function addPlaceMarkers(map, places, { onSelect } = {}) {
   const entries = places.map((place) => {
@@ -78,7 +79,13 @@ export function addPlaceMarkers(map, places, { onSelect } = {}) {
     select(id) {
       entries.forEach(({ el, place }) => el.classList.toggle('is-selected', place.id === id));
     },
-    /** `spots`: [{ lng, lat, radius (m), height (m), minZoom }] of the visible 3D landmarks. */
+    /** Show only one category group (its `icon` key, e.g. 'food'); null shows every place. */
+    filter(icon) {
+      entries.forEach(({ el, place }) => {
+        el.hidden = Boolean(icon) && (place.category?.icon ?? 'other') !== icon;
+      });
+    },
+    /** `spots`: [{ lng, lat, radius (m), height (m), minZoom }] of landmarks drawn on the map. */
     liftAbove(spots) {
       lifted.length = 0;
       for (const entry of entries) {

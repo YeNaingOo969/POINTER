@@ -44,10 +44,15 @@
         <ul id="place-search-results" class="place-search__results" role="listbox" hidden></ul>
       </form>
 
-      <a class="explore-account" href="/passport.html" aria-label="My Passport" data-i18n-attr="aria-label:nav.passport,title:nav.passport">
+      <button class="lang-toggle explore-lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+      <a class="explore-account" href="/account.html" aria-label="My account" data-i18n-attr="aria-label:nav.account,title:nav.account">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>
       </a>
     </header>
+
+    <nav class="cat-filter" aria-label="Filter places by group" data-i18n-attr="aria-label:filter.label">
+      <button type="button" class="cat-filter__chip" data-cat="" aria-pressed="true" data-i18n="filter.all">All</button>
+    </nav>
 
     <section class="place-card" aria-labelledby="place-card-title" hidden>
       <button class="place-card__close" type="button" aria-label="Close" data-i18n-attr="aria-label:card.close">

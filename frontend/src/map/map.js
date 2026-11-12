@@ -9,7 +9,7 @@ import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 maplibregl.setWorkerUrl(workerUrl);
 import { buildMapStyle } from './style.js';
 import {
-  START_VIEW, MAX_BOUNDS, MIN_ZOOM, MAX_ZOOM, MAX_PITCH, MAX_PIXEL_RATIO, LANDMARKS,
+  START_VIEW, MAX_BOUNDS, MIN_ZOOM, MAX_ZOOM, MAX_PITCH, MAX_PIXEL_RATIO,
 } from './config.js';
 
 export const prefersReducedMotion =() => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -21,7 +21,7 @@ export function moveCamera(map, view) {
 }
 
 /**
- * Create the pastel 3D map inside `container`.
+ * Create the pastel map inside `container`.
  * Resolves once the style has loaded, so callers can add layers and markers right away.
  */
 export function createMap(container) {
@@ -36,7 +36,7 @@ export function createMap(container) {
     pixelRatio: Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO),
     antialias: false, // MSAA is expensive on integrated GPUs; the pastel style hides jaggies
     fadeDuration: prefersReducedMotion() ? 0 : 200,
-    attributionControl: { compact: true, customAttribution: LANDMARKS.map((l) => l.credit).filter(Boolean) },
+    attributionControl: { compact: true },
     dragRotate: true,
     pitchWithRotate: true,
   });
