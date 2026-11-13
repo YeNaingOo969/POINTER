@@ -266,7 +266,9 @@
     "wheel2": "<b>2</b>Shops get more customers",
     "wheel3": "<b>3</b>Some shops go Premium and the app keeps growing",
     "finaleAdd": "Add your business",
-    "footNote": "School project by Group 1 · ratings, reviews and deals are demo data",
-    "footMap": "Map data © OpenStreetMap contributors"
+    "footNote": "Ratings, reviews and deals are demo data",
+    "footMap": "Map data © OpenStreetMap contributors",
+    "schoolBy": "A school project by Group 1",
+    "schoolPlace": "Yangon, Myanmar · 2026"
   }
 }
