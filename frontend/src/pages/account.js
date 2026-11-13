@@ -10,6 +10,7 @@ import { initI18n, t, categoryName } from '../i18n/i18n.js';
 import { getSession, getMySaves, getMyReviews, getMyBusinessRequest, setSaved, deleteReview, logout } from '../api/api.js';
 import { USE_MOCK } from '../api/config.js';
 import { dateInYangon, number, stars } from '../lib/format.js';
+import { reveal, revealList, countUp } from '../lib/reveal.js';
 
 initI18n();
 
@@ -39,7 +40,10 @@ function el(tag, className, ...children) {
 
 function renderStats() {
   const counts = { saved: data.saves.length, reviews: data.reviews.length };
-  for (const n of document.querySelectorAll('[data-stat]')) n.textContent = number(counts[n.dataset.stat]);
+  for (const n of document.querySelectorAll('[data-stat]')) {
+    if (n.dataset.counted) n.textContent = number(counts[n.dataset.stat]);
+    else { n.dataset.counted = '1'; countUp(n, counts[n.dataset.stat]); }
+  }
   for (const p of document.querySelectorAll('[data-empty]')) p.hidden = counts[p.dataset.empty] > 0;
 }
 
@@ -57,8 +61,11 @@ function renderSaves() {
     });
     const link = el('a', 'account-place__link', el('span', 'account-place__name', place.name), el('span', 'account-place__town', categoryName(place.category) || place.address));
     link.href = placeLink(place);
-    return el('li', 'account-place', link, unsave);
+    const item = el('li', 'account-place', link, unsave);
+    item.dataset.cat = place.category?.icon ?? 'other';
+    return item;
   }));
+  revealList([...$('.account-places').children]);
 }
 
 /** My business: the request's status, or an invitation to add one. */
@@ -100,6 +107,7 @@ function renderReviews() {
       el('p', 'account-review__text', review.text),
       el('div', 'account-review__foot', el('span', 'account-review__date', dateInYangon(review.createdAt)), remove));
   }));
+  revealList([...$('.account-reviews').children]);
 }
 
 function renderAll() {
@@ -107,6 +115,8 @@ function renderAll() {
   renderSaves();
   renderReviews();
   renderBusiness();
+  document.querySelectorAll('.account-section').forEach((s) => { s.dataset.reveal = ''; });
+  reveal();
 }
 
 // ---- Load ----

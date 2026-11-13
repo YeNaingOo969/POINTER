@@ -10,6 +10,7 @@ import '../styles/pages/business.css';
 import { initI18n, t, categoryName } from '../i18n/i18n.js';
 import { getSession, getCategories, getMyBusinessRequest, submitBusinessRequest } from '../api/api.js';
 import { createMap, maplibregl } from '../map/map.js';
+import { reveal } from '../lib/reveal.js';
 
 initI18n();
 
@@ -187,6 +188,8 @@ async function start() {
   wirePhoto();
   wireSubmit();
   form.hidden = false;
+  form.querySelectorAll('.biz-field').forEach((f, i) => { f.dataset.reveal = ''; f.style.setProperty('--i', String(i % 6)); });
+  reveal();
   buildMap().catch((error) => {
     console.error(error);
     showError('location', t('explore.loadFailed'));

@@ -15,6 +15,7 @@ import { addPlaceMarkers } from '../map/place-markers.js';
 import { weekHours } from '../lib/opening-hours.js';
 import { dateInYangon, googleMapsUrl, number, stars } from '../lib/format.js';
 import { renderChips } from '../components/place-chips.js';
+import { reveal, revealList } from '../lib/reveal.js';
 import { askToLogin } from '../components/login-dialog.js';
 
 initI18n();
@@ -157,6 +158,7 @@ function renderReviews() {
     }
     list.append(li);
   }
+  revealList([...list.children]);
 }
 
 function renderStarPicker() {
@@ -294,6 +296,22 @@ async function startHeroMap() {
   turn();
 }
 
+/** The hero map drifts slower than the page as you scroll (cheap: one transform per frame). */
+function heroParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const map = $('.place-hero__map');
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = Math.min(window.scrollY, window.innerHeight);
+      map.style.translate = `0 ${(y * 0.35).toFixed(1)}px`;
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
 // ---- Start ----
 
 async function start() {
@@ -308,6 +326,10 @@ async function start() {
   [reviews, mine, { user }] = await Promise.all([getReviews(place.id), getMyPlace(place.id), getSession()]);
   $('.place-main').hidden = false;
   renderAll();
+  document.body.classList.add('is-ready'); // hero text rises in (CSS)
+  document.querySelectorAll('.place-section, .place-panel').forEach((el) => { el.dataset.reveal = ''; });
+  reveal();
+  heroParallax();
   wireActions();
   startHeroMap().catch((error) => console.error('Hero map failed', error));
 }

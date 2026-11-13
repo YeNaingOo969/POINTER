@@ -43,8 +43,9 @@ function renderTexts(el, place) {
  * Returns { select(id), filter(categoryIcon | null), liftAbove(spots), remove() }.
  */
 export function addPlaceMarkers(map, places, { onSelect } = {}) {
-  const entries = places.map((place) => {
+  const entries = places.map((place, i) => {
     const el = markerElement(place);
+    el.style.setProperty('--i', String(i)); // staggers the pop-in
     renderTexts(el, place);
     el.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -81,8 +82,17 @@ export function addPlaceMarkers(map, places, { onSelect } = {}) {
     },
     /** Show only one category group (its `icon` key, e.g. 'food'); null shows every place. */
     filter(icon) {
-      entries.forEach(({ el, place }) => {
-        el.hidden = Boolean(icon) && (place.category?.icon ?? 'other') !== icon;
+      entries.forEach(({ el, place }, i) => {
+        const show = !icon || (place.category?.icon ?? 'other') === icon;
+        clearTimeout(el.hideTimer);
+        el.style.setProperty('--i', String(i % 12));
+        if (show) {
+          el.hidden = false;
+          requestAnimationFrame(() => el.classList.remove('is-out'));
+        } else {
+          el.classList.add('is-out'); // shrink first, then leave the tab order
+          el.hideTimer = setTimeout(() => { el.hidden = true; }, 260);
+        }
       });
     },
     /** `spots`: [{ lng, lat, radius (m), height (m), minZoom }] of landmarks drawn on the map. */

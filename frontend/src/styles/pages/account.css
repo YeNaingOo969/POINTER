@@ -310,3 +310,15 @@
   outline-offset: 2px;
 }
 
+
+/* ---- Saved places carry their group colour; cards lift on hover ---- */
+.account-place { --c: var(--cat-other); border-left: 4px solid var(--c); transition: translate 0.25s cubic-bezier(.16, 1, .3, 1), box-shadow 0.25s; }
+.account-place[data-cat='food'] { --c: var(--cat-food); }
+.account-place[data-cat='stay'] { --c: var(--cat-stay); }
+.account-place[data-cat='visit'] { --c: var(--cat-visit); }
+.account-place[data-cat='shop'] { --c: var(--cat-shop); }
+.account-place[data-cat='health'] { --c: var(--cat-health); }
+.account-place[data-cat='beauty'] { --c: var(--cat-beauty); }
+.account-place:hover, .account-review:hover { translate: 0 -3px; box-shadow: 0 1rem 2rem -1rem rgb(60 30 20 / 0.3); }
+.account-review { transition: translate 0.25s cubic-bezier(.16, 1, .3, 1), box-shadow 0.25s; }
+@media (prefers-reduced-motion: reduce) { .account-place:hover, .account-review:hover { translate: none; } }

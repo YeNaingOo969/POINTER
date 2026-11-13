@@ -109,3 +109,35 @@ a {
 .explore-lang + .explore-account { margin-left: var(--space-2); }
 .place-top__lang { margin-left: auto; }
 .app-top .lang-toggle { margin-left: auto; }
+
+/* ---- Motion for app pages (quality bar v2). Transforms and opacity only. ---- */
+
+/* Scroll reveal (src/lib/reveal.js adds .has-reveal only when motion is allowed). */
+.has-reveal [data-reveal]:not(.is-in) {
+  opacity: 0;
+  translate: 0 28px;
+}
+.has-reveal [data-reveal] {
+  transition:
+    opacity 0.7s var(--ease-out),
+    translate 0.9s cubic-bezier(.16, 1, .3, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+/* Buttons and chips: lift on hover, press in on click. `scale` keeps any existing transform. */
+:is(.place-button, .account-button, .account-chip-button, .biz-button, .auth-button, .lang-toggle,
+  .cat-filter__chip, .app-top__pill, .place-card__details, .place-card__directions, .explore-account) {
+  transition-property: background-color, color, border-color, box-shadow, translate, scale;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(.16, 1, .3, 1);
+}
+:is(.place-button, .account-button, .biz-button, .auth-button, .place-card__details,
+  .place-card__directions):hover { translate: 0 -2px; }
+:is(.place-button, .account-button, .account-chip-button, .biz-button, .auth-button, .lang-toggle,
+  .cat-filter__chip, .app-top__pill, .place-card__details, .place-card__directions,
+  .explore-account):active { scale: 0.96; translate: 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .has-reveal [data-reveal]:not(.is-in) { opacity: 1; translate: none; }
+  :is(.place-button, .account-button, .biz-button, .auth-button):hover { translate: none; }
+}
