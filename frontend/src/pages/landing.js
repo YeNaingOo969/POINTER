@@ -4,6 +4,7 @@
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/pages/landing.css';
+import { initI18n } from '../i18n/i18n.js';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { heroDive } from '../landing/hero.js';
@@ -15,6 +16,7 @@ import { dealStory } from '../landing/deals.js';
 import { ownersStatic, ownersAndEnding } from '../landing/owners.js';
 
 gsap.registerPlugin(ScrollTrigger);
+initI18n(); // English by default; small texts switch to Burmese (headlines stay English)
 
 // The top bar turns light over light sections (marked data-nav="light").
 document.querySelectorAll('[data-nav="light"]').forEach((section) => {

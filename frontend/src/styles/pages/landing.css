@@ -1031,3 +1031,29 @@
   .bform__stamp, .bform__photo img { opacity: 1; }
   .fair__track { animation: none; }
 }
+
+/* ---- Language toggle in the top bar ---- */
+.site-nav__lang {
+  min-height: 36px;
+  padding: 0 0.8rem;
+  border-color: rgb(255 240 220 / 0.25);
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.site-nav__lang:hover { background: rgb(255 255 255 / 0.12); }
+.site-nav.is-light .site-nav__lang { border-color: rgb(43 38 32 / 0.18); }
+
+/* ---- Burmese: same fonts for the Latin headlines, roomier lines for the translated text ---- */
+:lang(my) :is(.dive__lede, .pillar__text, .mapstory__step p, .cat__text, .rules li, .deals__step p,
+  .owners__steps li, .why__copy p, .wheel__node, .finale__foot) {
+  line-height: 1.8;
+  letter-spacing: 0;
+}
+:lang(my) .dive__lede { font-size: clamp(0.95rem, 1.3vw, 1.1rem); }
+@media (max-width: 640px) { .site-nav__lang { padding: 0 0.6rem; } }
+
+/* Keep the tilted cards and stamps of the pinned sections from widening the page (clip keeps sticky working). */
+:is(.mapstory, .reviews, .deals, .owners, .plans, .why) { overflow-x: clip; }
+@media (max-width: 640px) { .finale__title { font-size: clamp(2.6rem, 13vw, 3.4rem); } }

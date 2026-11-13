@@ -22,11 +22,13 @@ body {
 }
 
 /* Burmese needs taller lines so stacked vowels and medials don't clip. */
-:lang(my) {
+/* Burmese needs taller lines. Set on body only, so elements that choose their own line height
+   (Latin headlines, split text) keep it. */
+html:lang(my) body {
   line-height: 1.9;
 }
 
-:lang(my) :is(h1, h2, h3) {
+:where(html:lang(my)) :is(h1, h2, h3) {
   line-height: 1.4;
 }
 

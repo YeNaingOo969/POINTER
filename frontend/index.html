@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,100;1,9..144,400..700,100&family=Onest:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,100;1,9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
     />
     <link rel="preload" as="image" href="/images/landing/sky-1920.webp"
       imagesrcset="/images/landing/sky-1280.webp 1280w, /images/landing/sky-1920.webp 1920w" imagesizes="100vw" />
@@ -20,11 +20,12 @@
     <header class="site-nav">
       <a class="site-nav__brand" href="/">POINTER</a>
       <nav class="site-nav__links" aria-label="Main">
-        <a href="/explore.html">Explore</a>
-        <a href="#deals">Deals</a>
-        <a href="/account.html">My account</a>
+        <a href="/explore.html" data-i18n="landing.navExplore">Explore</a>
+        <a href="#deals" data-i18n="landing.navDeals">Deals</a>
+        <a href="/account.html" data-i18n="landing.navAccount">My account</a>
       </nav>
-      <a class="site-nav__cta" href="/explore.html">Open the map</a>
+      <button class="lang-toggle site-nav__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+      <a class="site-nav__cta" href="/explore.html" data-i18n="landing.navCta">Open the map</a>
     </header>
 
     <main>
@@ -64,8 +65,8 @@
 
           <div class="dive__landing">
             <h1 class="dive__title">Find <em>your</em> Yangon.</h1>
-            <p class="dive__lede">Places to visit, food, stays and deals — on one map, from the river to the Shwedagon.</p>
-            <a class="dive__cta" href="/explore.html">Explore the map</a>
+            <p class="dive__lede" data-i18n="landing.lede">Places to visit, food, stays and deals — on one map, from the river to the Shwedagon.</p>
+            <a class="dive__cta" href="/explore.html" data-i18n="landing.ctaExplore">Explore the map</a>
           </div>
         </div>
       </section>
@@ -87,7 +88,7 @@
                   sizes="(min-width: 900px) 30vw, 90vw" />
               </div>
               <h3 class="pillar__title"><span>01</span> Find places</h3>
-              <p class="pillar__text">Pagodas, tea shops, hotels, markets, hospitals and spas — sorted into seven simple groups.</p>
+              <p class="pillar__text" data-i18n="landing.pillar1">Pagodas, tea shops, hotels, markets, hospitals and spas — sorted into seven simple groups.</p>
             </li>
             <li class="pillar">
               <div class="pillar__media">
@@ -95,7 +96,7 @@
                   src="/images/landing/teashop-1280.webp" sizes="(min-width: 900px) 30vw, 90vw" />
               </div>
               <h3 class="pillar__title"><span>02</span> See deals</h3>
-              <p class="pillar__text">Shops post their own discounts. Tap for directions and get a ticket to show at the counter.</p>
+              <p class="pillar__text" data-i18n="landing.pillar2">Shops post their own discounts. Tap for directions and get a ticket to show at the counter.</p>
             </li>
             <li class="pillar">
               <div class="pillar__media">
@@ -103,7 +104,7 @@
                   src="/images/landing/downtown-1280.webp" sizes="(min-width: 900px) 30vw, 90vw" />
               </div>
               <h3 class="pillar__title"><span>03</span> Read reviews</h3>
-              <p class="pillar__text">One honest review per person for each place. Owners can reply, but they can never delete one.</p>
+              <p class="pillar__text" data-i18n="landing.pillar3">One honest review per person for each place. Owners can reply, but they can never delete one.</p>
             </li>
           </ul>
         </div>
@@ -117,15 +118,15 @@
             <div class="mapstory__steps">
               <div class="mapstory__step is-active" data-step="0">
                 <h2>Every place, <em>pinned.</em></h2>
-                <p>Landmarks, food, stays and shops on a map drawn just for Yangon — with what is open right now.</p>
+                <p data-i18n="landing.map1">Landmarks, food, stays and shops on a map drawn just for Yangon — with what is open right now.</p>
               </div>
               <div class="mapstory__step" data-step="1">
                 <h2>Only what you <em>need.</em></h2>
-                <p>Pick a group like Food &amp; drink and the rest step back. Search by name, street or category.</p>
+                <p data-i18n="landing.map2">Pick a group like Food &amp; drink and the rest step back. Search by name, street or category.</p>
               </div>
               <div class="mapstory__step" data-step="2">
                 <h2>Get there from <em>here.</em></h2>
-                <p>Walk or take a taxi: the route draws itself on POINTER. Prefer Google Maps? One tap.</p>
+                <p data-i18n="landing.map3">Walk or take a taxi: the route draws itself on POINTER. Prefer Google Maps? One tap.</p>
               </div>
             </div>
           </div>
@@ -188,7 +189,7 @@
             <div class="cat__copy">
               <p class="cat__num">01 <span>/ 07</span></p>
               <h3 class="cat__name">Food &amp; drink</h3>
-              <p class="cat__text">Tea shops, mohinga stalls, cafés and restaurants — with what is open right now.</p>
+              <p class="cat__text" data-i18n="landing.catFood">Tea shops, mohinga stalls, cafés and restaurants — with what is open right now.</p>
               <ul class="cat__examples"><li>Rangoon Tea House</li><li>19th Street</li><li>Feel Myanmar Food</li></ul>
             </div>
             <div class="cat__visual">
@@ -204,7 +205,7 @@
             <div class="cat__copy">
               <p class="cat__num">02 <span>/ 07</span></p>
               <h3 class="cat__name">Stay</h3>
-              <p class="cat__text">Hotels and guesthouses, from colonial classics to simple rooms near the station.</p>
+              <p class="cat__text" data-i18n="landing.catStay">Hotels and guesthouses, from colonial classics to simple rooms near the station.</p>
               <ul class="cat__examples"><li>The Strand Hotel</li><li>Sule Shangri-La</li></ul>
             </div>
             <div class="cat__visual">
@@ -219,7 +220,7 @@
             <div class="cat__copy">
               <p class="cat__num">03 <span>/ 07</span></p>
               <h3 class="cat__name">Places to visit</h3>
-              <p class="cat__text">Pagodas, parks, museums and the lakes — the Yangon everyone comes to see.</p>
+              <p class="cat__text" data-i18n="landing.catVisit">Pagodas, parks, museums and the lakes — the Yangon everyone comes to see.</p>
               <ul class="cat__examples"><li>Shwedagon Pagoda</li><li>Sule Pagoda</li><li>Kandawgyi Lake</li></ul>
             </div>
             <div class="cat__visual">
@@ -234,7 +235,7 @@
             <div class="cat__copy">
               <p class="cat__num">04 <span>/ 07</span></p>
               <h3 class="cat__name">Shopping</h3>
-              <p class="cat__text">Markets, malls and the small shops in between, from longyi to jade.</p>
+              <p class="cat__text" data-i18n="landing.catShop">Markets, malls and the small shops in between, from longyi to jade.</p>
               <ul class="cat__examples"><li>Bogyoke Aung San Market</li><li>Theingyi Zei</li></ul>
             </div>
             <div class="cat__visual">
@@ -249,7 +250,7 @@
             <div class="cat__copy">
               <p class="cat__num">05 <span>/ 07</span></p>
               <h3 class="cat__name">Health</h3>
-              <p class="cat__text">Hospitals, clinics and pharmacies, with opening hours and a call button.</p>
+              <p class="cat__text" data-i18n="landing.catHealth">Hospitals, clinics and pharmacies, with opening hours and a call button.</p>
               <ul class="cat__examples"><li>Yangon General Hospital</li></ul>
             </div>
             <div class="cat__visual">
@@ -264,7 +265,7 @@
             <div class="cat__copy">
               <p class="cat__num">06 <span>/ 07</span></p>
               <h3 class="cat__name">Beauty &amp; wellness</h3>
-              <p class="cat__text">Spas and salons for a slow afternoon — thanaka included.</p>
+              <p class="cat__text" data-i18n="landing.catBeauty">Spas and salons for a slow afternoon — thanaka included.</p>
               <ul class="cat__examples"><li>Lotus Nail Spa</li></ul>
             </div>
             <div class="cat__visual">
@@ -280,7 +281,7 @@
             <div class="cat__copy">
               <p class="cat__num">07 <span>/ 07</span></p>
               <h3 class="cat__name">Other</h3>
-              <p class="cat__text">Repairs, laundry, printing — the small services that keep the city running.</p>
+              <p class="cat__text" data-i18n="landing.catOther">Repairs, laundry, printing — the small services that keep the city running.</p>
             </div>
             <div class="cat__visual">
               <div class="cat__arch">
@@ -300,10 +301,10 @@
             <p class="eyebrow" id="reviews-title">Reviews &amp; favourites</p>
             <h2 class="section-title">Reviews you can <em>trust.</em></h2>
             <ul class="rules">
-              <li><b>One review</b> per person for each place — you can edit it later.</li>
-              <li><b>Owners can reply,</b> but they can never delete a review.</li>
-              <li><b>Owners can't review</b> their own shop.</li>
-              <li><b>Save</b> the places you love and find them again in My account.</li>
+              <li data-i18n-html="landing.rule1"><b>One review</b> per person for each place — you can edit it later.</li>
+              <li data-i18n-html="landing.rule2"><b>Owners can reply,</b> but they can never delete a review.</li>
+              <li data-i18n-html="landing.rule3"><b>Owners can't review</b> their own shop.</li>
+              <li data-i18n-html="landing.rule4"><b>Save</b> the places you love and find them again in My account.</li>
             </ul>
           </div>
           <div class="rstack" aria-hidden="true">
@@ -336,15 +337,15 @@
             <div class="deals__steps">
               <div class="deals__step is-active">
                 <h2 class="section-title">Shops post their <em>own deals.</em></h2>
-                <p>Every discount comes from the shop itself. Find them all on the Deals page — ending soon or newest first.</p>
+                <p data-i18n="landing.deal1">Every discount comes from the shop itself. Find them all on the Deals page — ending soon or newest first.</p>
               </div>
               <div class="deals__step">
                 <h2 class="section-title">Tap for directions. <em>Get a ticket.</em></h2>
-                <p>The route opens on POINTER's map, and a ticket with the shop's code lands in My tickets. Your location is only used for the route.</p>
+                <p data-i18n="landing.deal2">The route opens on POINTER's map, and a ticket with the shop's code lands in My tickets. Your location is only used for the route.</p>
               </div>
               <div class="deals__step">
                 <h2 class="section-title">Show it at the <em>counter.</em></h2>
-                <p>The owner checks that your code matches their post. The ticket works for two hours — no screenshots needed, no review asked for.</p>
+                <p data-i18n="landing.deal3">The owner checks that your code matches their post. The ticket works for two hours — no screenshots needed, no review asked for.</p>
               </div>
             </div>
           </div>
@@ -387,15 +388,15 @@
             <p class="eyebrow" id="owners-title">For shop owners</p>
             <h2 class="owners__title">Own a shop<br />in <em>Yangon?</em></h2>
             <ol class="owners__steps">
-              <li data-step="0"><b>Send a request.</b> Name, group, phone, opening hours, a pin on the map and one photo of your shop front. No licence needed.</li>
-              <li data-step="1"><b>We check it.</b> An admin compares your photo with the map pin, then approves it.</li>
-              <li data-step="2"><b>You're on the map.</b> Post news and deals, reply to reviews and keep your hours up to date.</li>
+              <li data-step="0" data-i18n-html="landing.own1"><b>Send a request.</b> Name, group, phone, opening hours, a pin on the map and one photo of your shop front. No licence needed.</li>
+              <li data-step="1" data-i18n-html="landing.own2"><b>We check it.</b> An admin compares your photo with the map pin, then approves it.</li>
+              <li data-step="2" data-i18n-html="landing.own3"><b>You're on the map.</b> Post news and deals, reply to reviews and keep your hours up to date.</li>
             </ol>
           </div>
 
           <div class="bizviz" aria-hidden="true">
             <form class="bform" onsubmit="return false">
-              <p class="bform__title">Add your business</p>
+              <p class="bform__title" data-i18n="landing.finaleAdd">Add your business</p>
               <label>Business name<span class="bform__field" data-type="Daw Mya's Mohinga"></span></label>
               <label>Group<span class="bform__field bform__select" data-type="Food &amp; drink"></span></label>
               <div class="bform__row">
@@ -472,7 +473,7 @@
           <div class="why__copy">
             <p class="eyebrow" id="why-title">Why is it free?</p>
             <h2 class="section-title">The more people use it, <em>the better it gets.</em></h2>
-            <p>POINTER is only useful when lots of people use it, and shops pay because those people are here. If users paid, fewer would come — and the app would be worth less to every shop.</p>
+            <p data-i18n="landing.whyText">POINTER is only useful when lots of people use it, and shops pay because those people are here. If users paid, fewer would come — and the app would be worth less to every shop.</p>
           </div>
           <div class="wheel" aria-hidden="true">
             <svg viewBox="0 0 400 400">
@@ -481,9 +482,9 @@
               <path class="wheel__arc" d="M329.9 275 A150 150 0 0 1 70.1 275" />
               <path class="wheel__arc" d="M70.1 275 A150 150 0 0 1 200 50" />
             </svg>
-            <p class="wheel__node" style="--x: 50; --y: 12.5"><b>1</b>More people find places on POINTER</p>
-            <p class="wheel__node" style="--x: 82.5; --y: 68.75"><b>2</b>Shops get more customers</p>
-            <p class="wheel__node" style="--x: 17.5; --y: 68.75"><b>3</b>Some shops go Premium and the app keeps growing</p>
+            <p class="wheel__node" style="--x: 50; --y: 12.5" data-i18n-html="landing.wheel1"><b>1</b>More people find places on POINTER</p>
+            <p class="wheel__node" style="--x: 82.5; --y: 68.75" data-i18n-html="landing.wheel2"><b>2</b>Shops get more customers</p>
+            <p class="wheel__node" style="--x: 17.5; --y: 68.75" data-i18n-html="landing.wheel3"><b>3</b>Some shops go Premium and the app keeps growing</p>
             <p class="wheel__center">Free for<br />everyone</p>
           </div>
         </div>
@@ -499,15 +500,15 @@
           <p class="eyebrow">Ready?</p>
           <h2 class="finale__title" id="finale-title">Land in <em>Yangon.</em></h2>
           <p class="finale__ctas">
-            <a class="dive__cta" href="/explore.html">Explore the map</a>
-            <a class="finale__ghost" href="/login.html">Add your business</a>
+            <a class="dive__cta" href="/explore.html" data-i18n="landing.ctaExplore">Explore the map</a>
+            <a class="finale__ghost" href="/login.html" data-i18n="landing.finaleAdd">Add your business</a>
           </p>
         </div>
         <p class="finale__word" aria-hidden="true">POINTER</p>
         <footer class="finale__foot">
           <span>POINTER — Explore · Discover · Enjoy</span>
-          <span>School project by Group 1 · ratings, reviews and deals are demo data</span>
-          <span>Map data © OpenStreetMap contributors</span>
+          <span data-i18n="landing.footNote">School project by Group 1 · ratings, reviews and deals are demo data</span>
+          <span data-i18n="landing.footMap">Map data © OpenStreetMap contributors</span>
         </footer>
       </section>
 

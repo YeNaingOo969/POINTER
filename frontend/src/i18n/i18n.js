@@ -1,5 +1,6 @@
 // English / Burmese UI strings (scope doc: English is the default, users can switch to Burmese).
-// Mark elements with data-i18n="key" (text) or data-i18n-attr="placeholder:key" (attributes).
+// Mark elements with data-i18n="key" (text), data-i18n-html="key" (our own strings with <b> only —
+// never user data) or data-i18n-attr="placeholder:key" (attributes).
 // Place names, addresses and what users write are shown as stored, in whatever language.
 import en from './en.json';
 import my from './my.json';
@@ -40,6 +41,9 @@ export const getLang = () => currentLang;
 export function applyTranslations(root = document) {
   root.querySelectorAll('[data-i18n]').forEach((el) => {
     el.textContent = t(el.dataset.i18n);
+  });
+  root.querySelectorAll('[data-i18n-html]').forEach((el) => {
+    el.innerHTML = t(el.dataset.i18nHtml);
   });
   root.querySelectorAll('[data-i18n-attr]').forEach((el) => {
     for (const pair of el.dataset.i18nAttr.split(',')) {
