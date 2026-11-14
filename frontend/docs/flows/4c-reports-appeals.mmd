@@ -1,0 +1,14 @@
+---
+title: "4c — Admin: reports and appeals"
+---
+flowchart TD
+  S([From 4]) --> RAQ{"reports.target_type = appeal?"}
+  RAQ -- "No (report)" --> RBQ{Rule broken?}
+  RBQ -- Yes --> RMV["Remove content and/or<br/>warn or block the user"]
+  RBQ -- No --> KP[Keep the content]
+  RAQ -- Yes --> AAQ{Appeal accepted?}
+  AAQ -- Yes --> UB[("users.status = active")]
+  AAQ -- No --> KB[Keep blocked]
+  RMV & KP & UB & KB --> CR[("reports.status = closed")]
+  CR --> N5["Notify the reporter / user"]
+  N5 --> E([Back to 4])

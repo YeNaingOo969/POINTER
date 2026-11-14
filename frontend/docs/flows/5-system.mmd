@@ -1,0 +1,15 @@
+---
+title: "Flowchart 5 — Automatic checks (POINTER, no person involved)"
+---
+flowchart TD
+  S([Every request that lists places, posts or deals]) --> VQ{"places.status = approved and<br/>(owner_id IS NULL or the owner's latest<br/>owner_upgrades.expires_at > now)<br/>and the owner is not blocked?"}
+  VQ -- Yes --> SHOW[Place, its posts and deals are shown]
+  VQ -- No --> HIDE[Hidden from map, search, Home and Deals]
+
+  S2([Once a day, or on the owner's next login]) --> RQ{"expires_at within 7 days<br/>and no reminder sent yet?"}
+  RQ -- Yes --> RN[("notifications: type = renewal_reminder,<br/>ref_id = owner_upgrades.id")]
+  RQ -- No --> X([Nothing to do])
+
+  S3([Showing or confirming a ticket]) --> TQ{"tickets.status = active and<br/>created_at + 2 h < now?"}
+  TQ -- Yes --> TX[("tickets.status = expired")]
+  TQ -- No --> OK([Ticket still valid])

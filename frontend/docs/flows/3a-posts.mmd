@@ -1,0 +1,15 @@
+---
+title: "3a — Owner: posts"
+---
+flowchart TD
+  S([From 3]) --> W{"New or manage?"}
+  W -- New --> PTQ{Post type?}
+  PTQ -- Normal --> NP[/"Text + image"/]
+  NP --> NPT[("posts: type = normal")]
+  PTQ -- Discount --> DP[/"Discount text, ticket_limit,<br/>expires_at, image"/]
+  DP --> DPT[("posts: type = discount")]
+  NPT --> SH1["On my place page and Home"]
+  DPT --> SH2["On my place page, Home and Deals"]
+  W -- Manage --> MP[/"Edit, delete, pin / unpin;<br/>tickets taken vs ticket_limit"/]
+  MP --> MPT[("posts.is_pinned")]
+  SH1 & SH2 & MPT --> E([Back to dashboard])

@@ -24,7 +24,10 @@ const places = placeRows.map(withCategory);
  * GET /api/places.php → Place[]  (shape: src/data/places.js, with `category` joined in)
  */
 export function getPlaces() {
-  return USE_MOCK ? mockResponse(places) : request('places.php');
+  if (!USE_MOCK) return request('places.php');
+  // Shops whose owner the user blocked are left out (blocks.blocked_id = places.owner_id).
+  const blocked = new Set(readDemo('blocks', []));
+  return mockResponse(places.filter((p) => !blocked.has(p.ownerId)));
 }
 
 /**
@@ -205,8 +208,11 @@ export async function updateReview(id, { rating, text }) {
 /**
  * Send an "Add your business" request (logged-in users, one business per user).
  * POST /api/business-requests.php  multipart/form-data:
- *   name, categoryId, description, phone, openingHours (JSON text), lat, lng, photo (shop front, image)
- * → 201 { id, status: 'pending', ...fields, photoUrl, createdAt }
+ *   name, categoryId, description, phone, openingHours (JSON text), lat, lng, photo (shop front, image),
+ *   months (1 | 3 | 12), amount, paymentMethod (KBZPay | Wave Pay | AYA Pay), paymentRef, proof (image)
+ * Saves a places row (status 'pending', owner_id = user, storefront_photo) and an owner_upgrades row
+ * (months, amount, payment_method, payment_ref, payment_proof, status 'pending').
+ * → 201 { id, status: 'pending', ...fields, photoUrl, payment: { months, amount, method, status }, createdAt }
  * 409 when the user already has a business or a pending request · 422 invalid input
  */
 export async function submitBusinessRequest(fields) {
@@ -216,8 +222,12 @@ export async function submitBusinessRequest(fields) {
   if (existing && existing.userId === user.id && existing.status !== 'rejected') {
     return mockError('You already have a business request', 409);
   }
-  const { photo, ...rest } = fields;
-  const saved = { id: Date.now(), userId: user.id, status: 'pending', ...rest, photoName: photo?.name ?? null, createdAt: new Date().toISOString() };
+  const { photo, proof, months, amount, paymentMethod, paymentRef, ...rest } = fields;
+  const saved = {
+    id: Date.now(), userId: user.id, status: 'pending', ...rest, photoName: photo?.name ?? null,
+    payment: { months, amount, method: paymentMethod, ref: paymentRef, proofName: proof?.name ?? null, status: 'pending' },
+    createdAt: new Date().toISOString(),
+  };
   writeDemo('businessRequest', saved);
   return mockResponse(saved);
 }
@@ -274,3 +284,6 @@ export async function setSaved(placeId, saved) {
 export function getRoute(from, to, mode) {
   return ORS_API_KEY ? orsRoute(from, to, mode) : previewRoute(from, to, mode);
 }
+
+// Phase 2 customer features: deals, tickets, messages, blocks, reports, notifications.
+export * from './community.js';

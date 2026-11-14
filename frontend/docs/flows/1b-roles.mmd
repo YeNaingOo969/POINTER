@@ -1,0 +1,19 @@
+---
+title: "1b — Account check and role routing"
+---
+flowchart TD
+  S([From 1a: logged in]) --> AA{"users.status = active?"}
+  AA -- "No (blocked)" --> BS[Blocked screen]
+  BS --> AP{Send an appeal?}
+  AP -- Yes --> AR[/"Write appeal reason"/]
+  AR --> ART[("reports: target_type = appeal,<br/>target_id = own user id")]
+  ART --> WA["Wait for admin decision<br/>(notification) → 4c"]
+  WA --> E([End])
+  AP -- No --> E
+  AA -- Yes --> RO{"users.role?"}
+  RO -- admin --> AD[["Admin → 4"]]
+  RO -- user --> OW{"Approved place and<br/>expires_at > now?"}
+  OW -- No --> CM[["Customer → 2"]]
+  OW -- Yes --> MO{Which mode?}
+  MO -- Customer --> CM
+  MO -- Owner --> OM[["Owner → 3"]]

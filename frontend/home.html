@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Home — POINTER</title>
+    <meta name="description" content="New posts and deals from shops in Yangon, and every group of places in the city." />
+    <meta name="theme-color" content="#1a1410" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
+    />
+  </head>
+  <body class="page-app page-home">
+    <header class="app-top">
+      <a class="brand app-top__pill app-top__brand" href="/" aria-label="POINTER home">
+        <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
+        <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
+      </a>
+      <button class="lang-toggle app-top__pill app-top__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+    </header>
+
+    <header class="app-hero">
+      <div class="app-hero__inner">
+        <p class="app-hero__eyebrow" data-i18n="home.eyebrow">Home</p>
+        <h1 class="app-hero__title" data-i18n="home.helloGuest">Discover Yangon</h1>
+        <p class="app-hero__lede" data-i18n="home.lede">New posts and deals from shops, and every group of places in the city.</p>
+        <p class="app-hero__eyebrow" style="margin-top: 2rem" data-i18n="home.groups">Browse by group</p>
+        <div class="app-chips home-groups"></div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="app-section" aria-labelledby="home-deals-title">
+        <div class="app-section__head">
+          <h2 id="home-deals-title" data-i18n="home.deals">Deals ending soon</h2>
+          <a class="app-link" href="/deals.html" data-i18n="home.seeAll">See all deals</a>
+        </div>
+        <ul class="deal-grid home-deals"></ul>
+      </section>
+
+      <section class="app-section" aria-labelledby="home-posts-title">
+        <div class="app-section__head">
+          <h2 id="home-posts-title" data-i18n="home.latest">Latest from shops</h2>
+          <a class="app-link" href="/explore.html" data-i18n="home.explore">Open the map</a>
+        </div>
+        <div class="deal-grid home-posts"></div>
+        <p class="home-empty app-muted" data-i18n="home.empty" hidden>No posts yet.</p>
+      </section>
+      <p class="app-demo" data-i18n="deals.demo" hidden>Demo deals from made-up shops.</p>
+    </main>
+
+    <script type="module" src="/src/pages/home.js"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+---
+title: "2b — Deals and tickets"
+---
+flowchart TD
+  S([From 2 or 2a]) --> DL["Deals: active discount posts"]
+  DL --> OP[Open a discount post]
+  OP --> HT{"Already have a ticket<br/>for this post?"}
+  HT -- Yes --> STK["My ticket: code, QR,<br/>time left of 2 hours"]
+  HT -- No --> EXQ{"posts.expires_at passed or<br/>ticket_limit reached?"}
+  EXQ -- Yes --> DE["Show: deal ended"]
+  EXQ -- No --> GT[("tickets: ticket_code,<br/>status = active")]
+  GT --> STK
+  STK --> RT["Follow the route,<br/>show the ticket at the shop → 3b"]
+  DE & RT --> E([Back to 2])

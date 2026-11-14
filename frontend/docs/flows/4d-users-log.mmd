@@ -1,0 +1,12 @@
+---
+title: "4d — Admin: users and audit log"
+---
+flowchart TD
+  S([From 4]) --> W{Which?}
+  W -- Block --> UBK[("users.status = blocked")]
+  UBK --> HSQ{Has a place?}
+  HSQ -- Yes --> HP["Place hidden, messages off"]
+  HSQ -- No --> E([Back to 4])
+  W -- Unblock --> UNB[("users.status = active")]
+  W -- Audit log --> AL["View audit_log"]
+  HP & UNB & AL --> E

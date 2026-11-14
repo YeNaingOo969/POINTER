@@ -1,0 +1,10 @@
+---
+title: "3b — Owner: confirm a ticket"
+---
+flowchart TD
+  S([From 3]) --> CT[/"Enter ticket code or scan QR"/]
+  CT --> TVQ{"For MY post, status = active,<br/>created_at + 2 h > now?"}
+  TVQ -- Yes --> TU[("tickets: status = used,<br/>used_at = now")]
+  TU --> GD[Give the discount]
+  TVQ -- No --> TE["Wrong shop, already used<br/>or expired"]
+  GD & TE --> E([Back to dashboard])

@@ -3,7 +3,8 @@
 // the PHP endpoint returns.
 // Coordinates checked against OpenStreetMap (Nominatim) on 2026-11-02.
 // Ratings and hours are DEMO values, shown with a "Demo data" note. Photos come later (real photos only).
-// #20 Golden Bean Café and #21 Lotus Nail Spa are made-up demo businesses (owned by users 1 and 2).
+// #20–#24 are made-up demo businesses (Golden Bean Café, Lotus Nail Spa, Shwe Mohinga Corner, Kandaw Lake
+// Guesthouse, Pyay Road Pharmacy), owned by demo users 1–5; they carry the demo posts and deals.
 
 export const places = [
   {
@@ -447,5 +448,71 @@ export const places = [
     coverPhoto: null,
     photos: [],
     rating: { average: 4.3, count: 22 },
+  },
+  {
+    id: 22,
+    name: 'Shwe Mohinga Corner',
+    categoryId: 1,
+    ownerId: 3,
+    address: 'Demo business — not a real shop',
+    description: 'Demo shop: morning mohinga, ohn no khao swe and tea-leaf salad.',
+    phone: '09 4250 1188',
+    location: { lat: 16.7812, lng: 96.1534 },
+    openingHours: [
+      { day: 'mon', open: '06:00', close: '14:00' },
+      { day: 'tue', open: '06:00', close: '14:00' },
+      { day: 'wed', open: '06:00', close: '14:00' },
+      { day: 'thu', open: '06:00', close: '14:00' },
+      { day: 'fri', open: '06:00', close: '14:00' },
+      { day: 'sat', open: '06:00', close: '14:00' },
+      { day: 'sun', open: '06:00', close: '14:00' },
+    ],
+    coverPhoto: null,
+    photos: [],
+    rating: { average: 4.7, count: 131 },
+  },
+  {
+    id: 23,
+    name: 'Kandaw Lake Guesthouse',
+    categoryId: 2,
+    ownerId: 4,
+    address: 'Demo business — not a real shop',
+    description: 'Demo shop: simple rooms with lake views, five minutes from Karaweik.',
+    phone: '09 9733 2201',
+    location: { lat: 16.7969, lng: 96.17 },
+    openingHours: [
+      { day: 'mon', open: '00:00', close: '24:00' },
+      { day: 'tue', open: '00:00', close: '24:00' },
+      { day: 'wed', open: '00:00', close: '24:00' },
+      { day: 'thu', open: '00:00', close: '24:00' },
+      { day: 'fri', open: '00:00', close: '24:00' },
+      { day: 'sat', open: '00:00', close: '24:00' },
+      { day: 'sun', open: '00:00', close: '24:00' },
+    ],
+    coverPhoto: null,
+    photos: [],
+    rating: { average: 4.2, count: 47 },
+  },
+  {
+    id: 24,
+    name: 'Pyay Road Pharmacy',
+    categoryId: 5,
+    ownerId: 5,
+    address: 'Demo business — not a real shop',
+    description: 'Demo shop: pharmacy with a pharmacist on duty and blood-pressure checks.',
+    phone: '09 2550 7766',
+    location: { lat: 16.8213, lng: 96.1316 },
+    openingHours: [
+      { day: 'mon', open: '08:00', close: '22:00' },
+      { day: 'tue', open: '08:00', close: '22:00' },
+      { day: 'wed', open: '08:00', close: '22:00' },
+      { day: 'thu', open: '08:00', close: '22:00' },
+      { day: 'fri', open: '08:00', close: '22:00' },
+      { day: 'sat', open: '08:00', close: '22:00' },
+      { day: 'sun', open: '08:00', close: '22:00' },
+    ],
+    coverPhoto: null,
+    photos: [],
+    rating: { average: 4.4, count: 36 },
   },
 ];

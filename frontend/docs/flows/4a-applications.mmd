@@ -1,0 +1,15 @@
+---
+title: "4a — Admin: new shops and renewals"
+---
+flowchart TD
+  S([From 4]) --> NEWQ{New shop?}
+  NEWQ -- Yes --> CHQ{"Shop is real? storefront photo<br/>matches the map pin"}
+  CHQ -- No --> RJ[("places.status = rejected<br/>owner_upgrades.status = rejected")]
+  RJ --> RF["Refund (outside the app)<br/>+ notify"]
+  CHQ -- Yes --> PYQ
+  NEWQ -- "No (renewal)" --> PYQ{"Proof matches amount<br/>and payment_ref?"}
+  PYQ -- No --> RJP[("owner_upgrades.status = rejected")]
+  RJP --> N2["Notify: send the proof again"]
+  PYQ -- Yes --> OKP[("owner_upgrades: approved, admin_id, reviewed_at,<br/>starts_at = now or old expires_at,<br/>expires_at = starts_at + months<br/>places.status = approved")]
+  OKP --> N3["Notify: shop is live"]
+  RF & N2 & N3 --> E([Back to 4])

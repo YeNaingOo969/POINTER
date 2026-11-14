@@ -1,0 +1,10 @@
+---
+title: "2c — Messages"
+---
+flowchart TD
+  S([From 2 or 2a]) --> MSQ{"Blocked by either side?<br/>(blocks)"}
+  MSQ -- Yes --> NM[Cannot send a message]
+  MSQ -- No --> ACQ{Chat already accepted?}
+  ACQ -- Yes --> SM[("messages: send")]
+  ACQ -- No --> MR[("messages: status = request")]
+  NM & SM & MR --> E([Back to 2])

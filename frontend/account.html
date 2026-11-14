@@ -22,11 +22,7 @@
         <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
         <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
       </a>
-      <a class="app-top__pill" href="/explore.html">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
-        <span data-i18n="place.backToMap">Map</span>
-      </a>
-      <button class="lang-toggle app-top__pill" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+      <button class="lang-toggle app-top__pill app-top__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
     </header>
 
     <header class="account-hero">
@@ -36,6 +32,7 @@
         <dl class="account-stats" hidden>
           <div><dt class="account-stats__n" data-stat="saved">0</dt><dd data-i18n="account.statSaved">saved</dd></div>
           <div><dt class="account-stats__n" data-stat="reviews">0</dt><dd data-i18n="account.statReviews">reviews</dd></div>
+          <div><dt class="account-stats__n" data-stat="tickets">0</dt><dd data-i18n="acct2.statTickets">tickets</dd></div>
         </dl>
         <button class="account-hero__logout" type="button" data-i18n="auth.logout" hidden>Log out</button>
       </div>
@@ -48,6 +45,12 @@
         <p class="account-empty" data-empty="saved" data-i18n="account.emptySaved" hidden>No saved places yet.</p>
       </section>
 
+      <section class="account-section" aria-labelledby="tickets-title">
+        <h2 id="tickets-title" data-i18n="acct2.tickets">My tickets</h2>
+        <ul class="account-tickets"></ul>
+        <p class="account-empty" data-empty="tickets" data-i18n="acct2.emptyTickets" hidden>No tickets yet — find one on Deals.</p>
+      </section>
+
       <section class="account-section" aria-labelledby="business-title">
         <h2 id="business-title" data-i18n="account.business">My business</h2>
         <div class="account-business"></div>
@@ -57,6 +60,12 @@
         <h2 id="reviews-title" data-i18n="account.reviews">My reviews</h2>
         <ul class="account-reviews"></ul>
         <p class="account-empty" data-empty="reviews" data-i18n="account.emptyReviews" hidden>You haven't written a review yet.</p>
+      </section>
+
+      <section class="account-section" aria-labelledby="blocked-title">
+        <h2 id="blocked-title" data-i18n="acct2.blocked">Blocked shops and people</h2>
+        <ul class="account-blocked"></ul>
+        <p class="account-empty" data-empty="blocked" data-i18n="acct2.emptyBlocked" hidden>You haven't blocked anyone.</p>
       </section>
 
       <p class="account-demo" data-i18n="account.demo" hidden>Demo data.</p>

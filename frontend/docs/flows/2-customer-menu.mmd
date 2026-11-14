@@ -1,0 +1,17 @@
+---
+title: "2 — Customer: main menu"
+---
+flowchart TD
+  S([Start: customer mode]) --> H["Home: latest posts, categories,<br/>notifications"]
+  H --> W{What to do?}
+  W -- Find a place --> A[["→ 2a Find a place"]]
+  W -- Deals --> B[["→ 2b Deals and tickets"]]
+  W -- Messages --> C[["→ 2c Messages"]]
+  W -- My account --> D[["→ 2d My account"]]
+  W -- Add my business --> E2[["→ 2e Add my business"]]
+  W -- Owner mode --> OKQ{"Approved place with an<br/>active subscription?"}
+  OKQ -- Yes --> OM[["→ 3 Owner"]]
+  OKQ -- "No (button hidden)" --> H
+  W -- Sign out --> X([End])
+  A & B & C & D & E2 --> BH[Back to Home]
+  BH --> H

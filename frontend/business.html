@@ -114,6 +114,39 @@
             <small class="biz-error" data-for="photo"></small>
           </div>
 
+          <fieldset class="biz-field biz-plan">
+            <legend data-i18n="biz2.plan">Plan</legend>
+            <small class="biz-hint" data-i18n="biz2.planHint">You pay with the request. If the admin rejects your shop, the money is returned.</small>
+            <div class="biz-plan__options">
+              <label class="biz-plan__option"><input type="radio" name="months" value="1" data-amount="15000" /><b data-i18n="biz2.m1">1 month</b><span>15,000 Ks</span></label>
+              <label class="biz-plan__option"><input type="radio" name="months" value="3" data-amount="40000" checked /><b data-i18n="biz2.m3">3 months</b><span>40,000 Ks</span></label>
+              <label class="biz-plan__option"><input type="radio" name="months" value="12" data-amount="150000" /><b data-i18n="biz2.m12">12 months</b><span>150,000 Ks</span></label>
+            </div>
+            <small class="biz-hint" data-i18n="biz2.demoPrice">Demo prices — the team will set the real ones.</small>
+          </fieldset>
+
+          <label class="biz-field">
+            <span data-i18n="biz2.payWith">Pay with</span>
+            <select name="paymentMethod">
+              <option value="KBZPay">KBZPay</option>
+              <option value="Wave Pay">Wave Pay</option>
+              <option value="AYA Pay">AYA Pay</option>
+            </select>
+          </label>
+
+          <label class="biz-field">
+            <span data-i18n="biz2.ref">Transaction ID</span>
+            <input name="paymentRef" type="text" maxlength="100" autocomplete="off" />
+            <small class="biz-hint" data-i18n="biz2.refHint">The number on your payment receipt.</small>
+            <small class="biz-error" data-for="paymentRef"></small>
+          </label>
+
+          <label class="biz-field">
+            <span data-i18n="biz2.proof">Screenshot of the payment</span>
+            <input name="proof" type="file" accept="image/jpeg,image/png,image/webp" />
+            <small class="biz-error" data-for="proof"></small>
+          </label>
+
           <button class="biz-button biz-button--gold biz-submit" type="submit" data-i18n="business.send">Send request</button>
           <p class="biz-demo" data-i18n="business.demo">Demo: the request is kept in this browser only.</p>
         </div>

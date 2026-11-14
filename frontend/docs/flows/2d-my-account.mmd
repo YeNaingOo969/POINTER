@@ -1,0 +1,11 @@
+---
+title: "2d — My account"
+---
+flowchart TD
+  S([From 2]) --> MA{Which list?}
+  MA -- Saved places --> SV["favorites → open or unsave"]
+  MA -- My reviews --> RV["reviews → edit or delete"]
+  MA -- My tickets --> TK["tickets: active / used / expired"]
+  MA -- My business --> BZ["Request and subscription status"]
+  MA -- Blocked list --> BL[("blocks: unblock")]
+  SV & RV & TK & BZ & BL --> E([Back to 2])

@@ -1,0 +1,14 @@
+---
+title: "3c — Owner: place, reviews, messages, blocking"
+---
+flowchart TD
+  S([From 3]) --> W{Which?}
+  W -- My place --> EP[/"Name, category, description, phone,<br/>open_hours, photos, map pin"/]
+  EP --> EPT[("places, place_photos")]
+  W -- Reviews --> RR[/"Reply (reviews cannot be deleted)"/]
+  RR --> RRT[("reviews.owner_reply")]
+  W -- Messages --> MS[/"Accept requests, read, reply"/]
+  MS --> MST[("messages")]
+  W -- Block a customer --> BB{Block or unblock?}
+  BB --> BBT[("blocks")]
+  EPT & RRT & MST & BBT --> E([Back to dashboard])

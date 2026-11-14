@@ -45,6 +45,11 @@
           <p class="place-about__text"></p>
         </section>
 
+        <section class="place-section place-posts" aria-labelledby="posts-title" hidden>
+          <h2 id="posts-title" data-i18n="posts.title">From the shop</h2>
+          <div class="place-posts__list"></div>
+        </section>
+
         <section class="place-section" aria-labelledby="photos-title">
           <h2 id="photos-title" data-i18n="place.photos">Photos</h2>
           <p class="place-muted" data-i18n="place.photosSoon">Real photos of this place are coming soon.</p>
@@ -100,6 +105,11 @@
           <a class="place-button place-actions__map" data-i18n="place.viewOnMap">View on the map</a>
           <div class="place-actions__row">
             <button class="place-button place-actions__save" type="button" aria-pressed="false"></button>
+            <a class="place-button place-actions__message" hidden><span aria-hidden="true">✉</span> <span data-i18n="act.message">Message</span></a>
+          </div>
+          <div class="place-actions__more">
+            <button class="place-link place-actions__report" type="button" data-i18n="act.report">Report</button>
+            <button class="place-link place-actions__block" type="button" data-i18n="act.block" hidden>Block shop</button>
           </div>
         </div>
 

@@ -7,9 +7,14 @@ import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/components/map-ui.css';
 import '../styles/components/login-dialog.css';
+import '../styles/pages/app.css';
+import '../styles/components/app-nav.css';
 import '../styles/pages/place.css';
+import { mountAppNav } from '../components/app-nav.js';
 import { initI18n, t, categoryName } from '../i18n/i18n.js';
-import { getPlace, getReviews, addReview, updateReview, deleteReview, getSession, getMyPlace, setSaved } from '../api/api.js';
+import { getPlace, getReviews, addReview, updateReview, deleteReview, getSession, getMyPlace, setSaved, getPlacePosts, setBlocked } from '../api/api.js';
+import { postCard } from '../components/post-card.js';
+import { openReport } from '../components/report-dialog.js';
 import { createMap, prefersReducedMotion } from '../map/map.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
 import { weekHours } from '../lib/opening-hours.js';
@@ -19,6 +24,7 @@ import { reveal, revealList } from '../lib/reveal.js';
 import { askToLogin } from '../components/login-dialog.js';
 
 initI18n();
+mountAppNav(null);
 
 const $ = (sel) => document.querySelector(sel);
 const placeId = new URLSearchParams(location.search).get('id');
@@ -110,6 +116,11 @@ function renderActions() {
     call.title = place.phone;
   }
   const ownShop = Boolean(user && place.ownerId === user.id);
+  // Message and Block only for shops with an owner (public places are run by the admin).
+  const msg = $('.place-actions__message');
+  msg.hidden = !place.ownerId || ownShop;
+  msg.href = `/messages.html?with=${place.ownerId}`;
+  $('.place-actions__block').hidden = !place.ownerId || ownShop;
   $('.place-reviews__own').hidden = !ownShop;
   const write = $('.place-reviews__write');
   write.hidden = ownShop;
@@ -322,6 +333,22 @@ function heroParallax() {
 
 // ---- Start ----
 
+/** Report the place; block its owner (their shop then disappears for this user). Users only. */
+function wireReportAndBlock() {
+  const needUser = async () => user ?? ((await askToLogin())?.user ?? null);
+  $('.place-actions__report').addEventListener('click', async () => {
+    if (!(user = await needUser())) return;
+    openReport('place', place.id);
+  });
+  $('.place-actions__block').addEventListener('click', async () => {
+    if (!(user = await needUser())) return;
+    if (!confirm(t('act.blockConfirm'))) return;
+    await setBlocked(place.ownerId, true);
+    toast(t('act.blocked'));
+    setTimeout(() => { location.href = '/explore.html'; }, 1600);
+  });
+}
+
 async function start() {
   try {
     if (!placeId) throw new Error('No place id');
@@ -331,7 +358,10 @@ async function start() {
     $('.place-missing').hidden = false;
     return;
   }
-  [reviews, mine, { user }] = await Promise.all([getReviews(place.id), getMyPlace(place.id), getSession()]);
+  let posts;
+  [reviews, mine, { user }, posts] = await Promise.all([getReviews(place.id), getMyPlace(place.id), getSession(), getPlacePosts(place.id)]);
+  $('.place-posts').hidden = posts.length === 0;
+  $('.place-posts__list').replaceChildren(...posts.map((p) => postCard(p, { showShop: false })));
   $('.place-main').hidden = false;
   renderAll();
   document.body.classList.add('is-ready'); // hero text rises in (CSS)
@@ -339,6 +369,7 @@ async function start() {
   reveal();
   heroParallax();
   wireActions();
+  wireReportAndBlock();
   startHeroMap().catch((error) => console.error('Hero map failed', error));
 }
 

@@ -109,7 +109,12 @@
   },
   "nav": {
     "login": "Log in",
-    "account": "My account"
+    "account": "My account",
+    "label": "Main",
+    "home": "Home",
+    "map": "Map",
+    "deals": "Deals",
+    "messages": "Messages"
   },
   "auth": {
     "title": "Welcome to POINTER",
@@ -260,5 +265,132 @@
     "footMap": "Map data © OpenStreetMap contributors",
     "schoolBy": "A school project by Group 1",
     "schoolPlace": "Yangon, Myanmar · 2026"
+  },
+  "time": {
+    "minutes": "{n} min ago",
+    "hours": "{n} h ago",
+    "days": "{n} d ago",
+    "left": "{h} h {m} min left",
+    "leftMin": "{m} min left"
+  },
+  "notif": {
+    "title": "Notifications",
+    "empty": "Nothing new yet.",
+    "new_deal": "A shop posted a new deal",
+    "message": "New message from a shop",
+    "review_reply": "A shop replied to your review",
+    "request_approved": "Your business is approved",
+    "request_rejected": "Your business request was not approved",
+    "renewal_reminder": "Your subscription ends soon"
+  },
+  "deals": {
+    "eyebrow": "Deals & tickets",
+    "title": "Deals around Yangon",
+    "lede": "Every deal is posted by the shop itself. Take a ticket, follow the route and show it at the counter — it works for two hours.",
+    "ending": "Ending soon",
+    "newest": "Newest",
+    "all": "All",
+    "endsIn": "Ends in {t}",
+    "left": "{n} tickets left",
+    "get": "Get a ticket",
+    "show": "Show my ticket",
+    "ended": "Deal ended",
+    "empty": "No deals in this group right now.",
+    "demo": "Demo deals from made-up shops.",
+    "directions": "Directions",
+    "openPlace": "Open the shop",
+    "loadFailed": "Couldn't load the deals."
+  },
+  "ticket": {
+    "title": "Your ticket",
+    "code": "Ticket code",
+    "validUntil": "Valid until",
+    "now": "Now in Yangon",
+    "used": "Used",
+    "expired": "Expired",
+    "active": "Active",
+    "note": "Show this code at the counter. The shop checks it on POINTER.",
+    "close": "Close",
+    "taken": "Ticket ready — it works for two hours.",
+    "already": "You already have a ticket for this deal.",
+    "endedErr": "This deal has ended."
+  },
+  "home": {
+    "eyebrow": "Home",
+    "hello": "Good to see you,",
+    "helloGuest": "Discover Yangon",
+    "lede": "New posts and deals from shops, and every group of places in the city.",
+    "groups": "Browse by group",
+    "latest": "Latest from shops",
+    "deals": "Deals ending soon",
+    "seeAll": "See all deals",
+    "explore": "Open the map",
+    "empty": "No posts yet.",
+    "loadFailed": "Couldn't load the home page."
+  },
+  "posts": {
+    "pinned": "Pinned",
+    "discount": "Deal",
+    "normal": "News",
+    "title": "From the shop"
+  },
+  "msg": {
+    "title": "Messages",
+    "lede": "Chat with shops. Your first message is a request until the shop accepts it.",
+    "empty": "No conversations yet. Open a shop and tap Message.",
+    "pick": "Choose a conversation",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "request": "Message request — the shop sees it once they accept.",
+    "blocked": "You blocked this shop. Unblock it in My account to message again.",
+    "openShop": "Open the shop",
+    "errBlocked": "You can't message this shop.",
+    "errSend": "Couldn't send. Try again.",
+    "back": "All messages",
+    "new": "New conversation",
+    "you": "You"
+  },
+  "act": {
+    "message": "Message",
+    "report": "Report",
+    "block": "Block shop",
+    "blockConfirm": "Hide this shop from your search, map and deals?",
+    "blocked": "Shop blocked — it won't show for you any more.",
+    "unblocked": "Unblocked"
+  },
+  "report": {
+    "title": "Report",
+    "text": "What's wrong? An admin will check it.",
+    "placeholder": "Tell us what is wrong",
+    "send": "Send report",
+    "cancel": "Cancel",
+    "thanks": "Thanks — an admin will look at it.",
+    "wrongInfo": "Wrong information",
+    "closed": "Closed for good",
+    "rude": "Rude or fake content",
+    "other": "Something else"
+  },
+  "acct2": {
+    "tickets": "My tickets",
+    "emptyTickets": "No tickets yet — find one on Deals.",
+    "blocked": "Blocked shops and people",
+    "emptyBlocked": "You haven't blocked anyone.",
+    "unblock": "Unblock",
+    "statTickets": "tickets"
+  },
+  "biz2": {
+    "plan": "Plan",
+    "planHint": "You pay with the request. If the admin rejects your shop, the money is returned.",
+    "m1": "1 month",
+    "m3": "3 months",
+    "m12": "12 months",
+    "demoPrice": "Demo prices — the team will set the real ones.",
+    "payWith": "Pay with",
+    "ref": "Transaction ID",
+    "refHint": "The number on your payment receipt.",
+    "proof": "Screenshot of the payment",
+    "errRef": "Enter the transaction ID from your receipt.",
+    "errProof": "Add a screenshot of the payment.",
+    "paid": "Payment"
   }
 }

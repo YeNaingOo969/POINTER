@@ -101,7 +101,9 @@ is closed. A `close` before `open` runs past midnight. `NULL` or `[]` means the 
 | Login / register | `login.html` | done: log in, create account, validation, `?next=` return |
 | My account | `account.html` | done: saved places, my reviews, **my business** (request status or "Add your business"). Tickets come in phase 2 |
 | Add your business | `business.html` | done: request form (name, group, description, phone, hours per day, map pin, shop-front photo) → "Waiting for review" |
-| Home | `home.html` | phase 2: categories, deals, latest posts |
+| Home | `home.html` | done (mock): greeting, category groups, deals ending soon, latest posts |
+| Deals | `deals.html` | done (mock): active deals by ending soon / newest and group, tickets (2 h) |
+| Messages | `messages.html` | done (mock): conversations, message requests, blocked state |
 | Admin dashboard | `admin.html` | phase 3 |
 
 ## Endpoints
@@ -172,6 +174,54 @@ real type with `finfo`, store under a random file name). Response / `BusinessReq
 openingHours, lat, lng, photoUrl, createdAt }` (`photoUrl` = `places.storefront_photo`; the request is
 the `places` row itself, see the Database table). One business per user; a rejected user may send a
 new request. No licence or documents — only the shop-front photo (privacy, scope doc §4).
+
+### Phase 2 — customer pages (Home, Deals and tickets, Messages, reports, blocking)
+
+Built on mock data (2026-11-14) following `docs/flows/` 2, 2a–2e. Functions are in
+[src/api/community.js](src/api/community.js) (re-exported by `api.js`); mock rows in
+[src/data/community.js](src/data/community.js). Pages: `home.html`, `deals.html`, `messages.html`,
+plus new parts of `place.html` (shop posts, Message, Report, Block), `account.html` (My tickets,
+Blocked list) and `business.html` (plan + payment). Logged-in only unless marked.
+
+| Function | Endpoint | Request → response | Tables |
+|---|---|---|---|
+| `getHome()` (visitors too) | `GET /api/home.php` | → `{ posts: Post[6], deals: Post[4] }` | posts, places |
+| `getDeals({ sort, group })` (visitors too) | `GET /api/deals.php?sort=ending\|newest&group=food` | → `Post[]` active discount posts | posts, places, categories, blocks |
+| `getPost(id)` (visitors too) | `GET /api/posts.php?id=101` | → `Post` · 404 | posts |
+| `getPlacePosts(placeId)` (visitors too) | `GET /api/posts.php?place_id=20` | → `Post[]` pinned first, ended deals left out | posts |
+| `getMyTicket(postId)` | `GET /api/my-ticket.php?post_id=101` | → `Ticket \| null` (visitor: `null`) | tickets |
+| `takeTicket(postId)` | `POST /api/tickets.php { postId }` | → `201 Ticket` · 409 already has one · 410 ended / none left | tickets |
+| `getMyTickets()` | `GET /api/my-tickets.php` | → `[Ticket & { post: Post }]` newest first | tickets, posts |
+| `getConversations()` | `GET /api/conversations.php` | → `[{ other: { id, name, placeId }, last: Message, unread, status, blocked }]` | messages, blocks |
+| `getMessages(userId)` | `GET /api/messages.php?with=1` | → `{ other, status: accepted\|request\|new, blocked, messages: Message[] }`, marks theirs read | messages |
+| `sendMessage(to, body)` | `POST /api/messages.php { to, body }` | → `201 Message` · 403 blocked (either side) · 422 empty / > 1000 chars | messages, blocks |
+| `getMyBlocks()` | `GET /api/blocks.php` | → `[{ user: { id, name, placeId } }]` | blocks |
+| `setBlocked(userId, on)` | `POST /api/blocks.php { userId }` · `DELETE /api/blocks.php?user_id=1` | → `{ blocked }` | blocks |
+| `submitReport({ targetType, targetId, reason })` | `POST /api/reports.php` | → `201 { id, status: 'open' }` · 422 no reason | reports |
+| `getNotifications()` | `GET /api/notifications.php` | → `[{ id, type, refId, isRead, createdAt }]` (visitor: `[]`) | notifications |
+| `markNotificationsRead()` | `POST /api/notifications.php { read: 'all' }` | → `{ ok: true }` | notifications |
+
+**Post** = `{ id, placeId, type: 'normal'|'discount', content, imageUrl, discountText, ticketLimit, expiresAt,
+isPinned, createdAt, place: { id, name, address, ownerId, category }, ticketsTaken, ticketsLeft, ended }`
+(`ticketsTaken` / `ticketsLeft` / `ended` only matter for discounts; `ended` = expired or limit reached).
+
+**Ticket** = `{ id, postId, code, status: 'active'|'used'|'expired', createdAt, expiresAt, usedAt }` —
+`expiresAt` is `tickets.created_at + 2 h` (no column needed); `code` is unique (`tickets.ticket_code`),
+e.g. `GB-7Q4K` (shop initials + 4 characters). One ticket per user per post.
+
+**Message** = `{ id, senderId, receiverId, body, status: 'request'|'accepted', isRead, createdAt }`. The first
+message between two people is a `request` until the receiver replies or accepts (owner side, phase 2b).
+
+**Blocking a shop** = blocking its owner (`blocks.blocked_id = places.owner_id`). For that user, the
+owner's place leaves `places.php`, its posts leave Home and Deals, and messages in either direction
+get 403. **Notification types:** `new_deal` (ref = post id), `message` (ref = message id),
+`review_reply` (ref = review id), `request_approved` / `request_rejected` (ref = place id),
+`renewal_reminder` (ref = owner_upgrades id).
+
+**Business request payment** — `submitBusinessRequest` now also sends `months` (1/3/12), `amount`,
+`paymentMethod` (KBZPay / Wave Pay / AYA Pay), `paymentRef` and `proof` (image, same checks as the
+photo). Save them as an `owner_upgrades` row with `status = 'pending'` next to the pending `places` row.
+Prices on the form (15,000 / 40,000 / 150,000 Ks) are placeholders until the team sets real ones.
 
 ### Routes (frontend only; optional PHP proxy later)
 

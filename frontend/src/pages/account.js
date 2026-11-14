@@ -5,17 +5,22 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/components/app-top.css';
+import '../styles/components/app-nav.css';
+import '../styles/pages/app.css';
 import '../styles/pages/account.css';
 import { initI18n, t, categoryName } from '../i18n/i18n.js';
-import { getSession, getMySaves, getMyReviews, getMyBusinessRequest, setSaved, deleteReview, logout } from '../api/api.js';
+import { getSession, getMySaves, getMyReviews, getMyBusinessRequest, setSaved, deleteReview, logout, getMyTickets, getMyBlocks, setBlocked } from '../api/api.js';
+import { mountAppNav } from '../components/app-nav.js';
+import { openTicket } from '../components/ticket-dialog.js';
 import { USE_MOCK } from '../api/config.js';
 import { dateInYangon, number, stars } from '../lib/format.js';
 import { reveal, revealList, countUp } from '../lib/reveal.js';
 
 initI18n();
+mountAppNav('account');
 
 const $ = (sel) => document.querySelector(sel);
-const data = { saves: [], reviews: [], business: null };
+const data = { saves: [], reviews: [], business: null, tickets: [], blocks: [] };
 
 let toastTimer = 0;
 function toast(message) {
@@ -39,7 +44,7 @@ function el(tag, className, ...children) {
 // ---- Rendering ----
 
 function renderStats() {
-  const counts = { saved: data.saves.length, reviews: data.reviews.length };
+  const counts = { saved: data.saves.length, reviews: data.reviews.length, tickets: data.tickets.length, blocked: data.blocks.length };
   for (const n of document.querySelectorAll('[data-stat]')) {
     if (n.dataset.counted) n.textContent = number(counts[n.dataset.stat]);
     else { n.dataset.counted = '1'; countUp(n, counts[n.dataset.stat]); }
@@ -110,8 +115,42 @@ function renderReviews() {
   revealList([...$('.account-reviews').children]);
 }
 
+function renderTickets() {
+  $('.account-tickets').replaceChildren(...data.tickets.map((ticket) => {
+    const show = el('button', 'account-chip-button', t('deals.show'));
+    show.type = 'button';
+    show.addEventListener('click', () => openTicket(ticket, ticket.post));
+    const state = el('span', 'account-ticket__state', t(`ticket.${ticket.status}`));
+    state.dataset.state = ticket.status;
+    const shop = el('a', 'account-review__place', ticket.post.place.name);
+    shop.href = placeLink(ticket.post.place);
+    return el('li', 'account-review account-ticket',
+      el('div', 'account-review__head', shop, state),
+      el('p', 'account-review__text', ticket.post.discountText),
+      el('div', 'account-review__foot', el('code', null, ticket.code), show));
+  }));
+}
+
+function renderBlocks() {
+  $('.account-blocked').replaceChildren(...data.blocks.map(({ user: other }) => {
+    const unblock = el('button', 'account-chip-button', t('acct2.unblock'));
+    unblock.type = 'button';
+    unblock.addEventListener('click', async () => {
+      unblock.disabled = true;
+      await setBlocked(other.id, false);
+      data.blocks = data.blocks.filter((b) => b.user.id !== other.id);
+      renderBlocks();
+      renderStats();
+      toast(t('act.unblocked'));
+    });
+    return el('li', 'account-review', el('div', 'account-review__head', el('b', null, other.name), unblock));
+  }));
+}
+
 function renderAll() {
   renderStats();
+  renderTickets();
+  renderBlocks();
   renderSaves();
   renderReviews();
   renderBusiness();
@@ -130,7 +169,7 @@ async function start() {
       return;
     }
     $('.account-hero__name').textContent = user.name;
-    [data.saves, data.reviews, data.business] = await Promise.all([getMySaves(), getMyReviews(), getMyBusinessRequest()]);
+    [data.saves, data.reviews, data.business, data.tickets, data.blocks] = await Promise.all([getMySaves(), getMyReviews(), getMyBusinessRequest(), getMyTickets(), getMyBlocks()]);
     $('.account-stats').hidden = false;
     $('.account-hero__logout').hidden = false;
     $('.account-main').hidden = false;

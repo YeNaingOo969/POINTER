@@ -1,0 +1,23 @@
+---
+title: "2a — Find a place and act on it"
+---
+flowchart TD
+  S([From 2]) --> F[/"Search, category filter or map"/]
+  F --> SHT[("search_history")]
+  SHT --> PD["Place detail: photos, about, hours,<br/>address, posts, reviews"]
+  PD --> NA{Next action?}
+  NA -- Directions --> DR["Route on POINTER map<br/>or Google Maps"]
+  NA -- Call --> CL["Call places.phone (if set)"]
+  NA -- Save --> FV[("favorites: add / remove")]
+  NA -- Review --> OWN{"My own place?<br/>places.owner_id = me"}
+  OWN -- Yes --> NR["Cannot review own shop"]
+  OWN -- No --> RVQ{Already reviewed?}
+  RVQ -- No --> WR[/"Rating 1–5 + comment"/]
+  WR --> RVT[("reviews")]
+  RVQ -- Yes --> ED[/"Edit (updated_at) or delete"/]
+  NA -- Report --> RP[/"Report + reason"/]
+  RP --> RPT[("reports: status = open")]
+  NA -- Block shop --> BK[("blocks: blocked_id = places.owner_id")]
+  NA -- Message shop --> MS[["→ 2c"]]
+  NA -- Discount post --> DP[["→ 2b"]]
+  DR & CL & FV & NR & RVT & ED & RPT & BK --> E([Back to 2])

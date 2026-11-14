@@ -6,13 +6,16 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components/brand.css';
 import '../styles/components/app-top.css';
+import '../styles/components/app-nav.css';
 import '../styles/pages/business.css';
+import { mountAppNav } from '../components/app-nav.js';
 import { initI18n, t, categoryName } from '../i18n/i18n.js';
 import { getSession, getCategories, getMyBusinessRequest, submitBusinessRequest } from '../api/api.js';
 import { createMap, maplibregl } from '../map/map.js';
 import { reveal } from '../lib/reveal.js';
 
 initI18n();
+mountAppNav(null);
 
 const $ = (sel) => document.querySelector(sel);
 const form = $('.biz-form');
@@ -129,8 +132,18 @@ function validate() {
   if (!hours.length || hours.some((h) => !h.open || !h.close)) errors.hours = t('business.errHours');
   if (!pin) errors.location = t('business.errPin');
   if (!f.photo.files[0]) errors.photo = t('business.errPhoto');
-  for (const key of ['name', 'categoryId', 'description', 'phone', 'hours', 'location', 'photo']) showError(key, errors[key] ?? '');
-  return Object.keys(errors).length ? null : { name, categoryId: Number(f.categoryId.value), description, phone: f.phone.value.trim(), openingHours: hours };
+  // Payment sent with the request (owner_upgrades row, checked by an admin).
+  const paymentRef = f.paymentRef.value.trim();
+  if (paymentRef.length < 4) errors.paymentRef = t('biz2.errRef');
+  const proof = f.proof.files[0];
+  if (!proof) errors.proof = t('biz2.errProof');
+  else if (!PHOTO_TYPES.includes(proof.type) || proof.size > MAX_PHOTO_BYTES) errors.proof = t('business.errPhotoType');
+  for (const key of ['name', 'categoryId', 'description', 'phone', 'hours', 'location', 'photo', 'paymentRef', 'proof']) showError(key, errors[key] ?? '');
+  const plan = form.querySelector('input[name="months"]:checked');
+  return Object.keys(errors).length ? null : {
+    name, categoryId: Number(f.categoryId.value), description, phone: f.phone.value.trim(), openingHours: hours,
+    months: Number(plan.value), amount: Number(plan.dataset.amount), paymentMethod: f.paymentMethod.value, paymentRef, proof,
+  };
 }
 
 function showStatus(request) {

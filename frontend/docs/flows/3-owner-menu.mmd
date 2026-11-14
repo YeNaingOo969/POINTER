@@ -1,0 +1,20 @@
+---
+title: "3 — Shop owner: subscription check and dashboard"
+---
+flowchart TD
+  S([Start: owner mode]) --> CK{"places.status = approved and<br/>owner_upgrades.expires_at > now?"}
+  CK -- No --> HID["Place hidden from map,<br/>search and deals"]
+  HID --> RN[/"Renew: months, pay, proof"/]
+  RN --> RNT[("owner_upgrades: status = pending")]
+  RNT --> WA["Wait for admin → 4a"]
+  WA --> BC[["Back to customer → 2"]]
+  CK -- Yes --> D["Dashboard: my place, posts, tickets taken,<br/>reviews, days left"]
+  D --> RMQ{"Expires within 7 days?"}
+  RMQ -- Yes --> RM["Renewal reminder"]
+  RMQ -- No --> W
+  RM --> W{What to do?}
+  W -- "Place, reviews, messages, blocking" --> A[["→ 3c"]]
+  W -- "New or manage posts" --> B[["→ 3a"]]
+  W -- Confirm ticket --> C[["→ 3b"]]
+  W -- Customer mode --> CM[["→ 2"]]
+  A & B & C --> D

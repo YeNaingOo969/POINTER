@@ -1,0 +1,14 @@
+---
+title: "4 — Admin: dashboard"
+---
+flowchart TD
+  S([Start]) --> SI[/"Sign in (users.role = admin)"/]
+  SI --> D["Dashboard: pending shops and payments, shops,<br/>users, reports and appeals, categories"]
+  D --> W{What to do?}
+  W -- Applications --> A[["→ 4a"]]
+  W -- "Shops / categories" --> B[["→ 4b"]]
+  W -- "Reports & appeals" --> C[["→ 4c"]]
+  W -- "Users / audit log" --> U[["→ 4d"]]
+  W -- Sign out --> E([End])
+  A & B & C & U --> LOG[("Every change writes audit_log:<br/>admin_id, action, target_type, target_id")]
+  LOG --> D

@@ -6,7 +6,9 @@ import '../styles/components/brand.css';
 import '../styles/components/map-ui.css';
 import '../styles/components/place-search.css';
 import '../styles/components/place-card.css';
+import '../styles/components/app-nav.css';
 import '../styles/pages/explore.css';
+import { mountAppNav } from '../components/app-nav.js';
 import { initI18n, t, categoryName } from '../i18n/i18n.js';
 import { getPlaces, getCategories } from '../api/api.js';
 import { createMap, moveCamera } from '../map/map.js';
@@ -19,6 +21,7 @@ import { addRouteLayer } from '../map/route-layer.js';
 import { addBusStops, clickedBusStop } from '../map/bus-stops.js';
 
 initI18n();
+mountAppNav('map', { bottom: true });
 
 const container = document.getElementById('map');
 const status = document.querySelector('.explore-status');
@@ -76,6 +79,9 @@ async function start() {
       markers.filter(group);
       if (card.place && group && card.place.category?.group !== group) closePlace();
     });
+    // explore.html?group=food (from Home) starts with that group selected.
+    const startGroup = new URLSearchParams(location.search).get('group');
+    document.querySelector(`.cat-filter__chip[data-cat="${startGroup}"]`)?.click();
     const routePanel = createRoutePanel(document.querySelector('.route-panel'), places, {
       onRoute: (route) => routeLayer.show(route, cardPadding()),
       onClear: () => routeLayer.clear(),

@@ -1,0 +1,21 @@
+---
+title: "1a — Guest, register and sign in"
+---
+flowchart TD
+  S([Start]) --> O[Open POINTER]
+  O --> L{Logged in?}
+  L -- Yes --> N1[["Account check → 1b"]]
+  L -- No --> G["Guest mode: Home, Map, Deals,<br/>place details (view only)"]
+  G --> GA{"Taps a member action?<br/>save · review · ticket · message · add business"}
+  GA -- No --> GE([Leave as guest])
+  GA -- Yes --> LD[/"Log in to continue dialog"/]
+  LD --> HA{Has an account?}
+  HA -- No --> R[/"Register: name, email, password"/]
+  R --> RV{"Valid and email not used?"}
+  RV -- No --> R
+  RV -- Yes --> NU[("users: role = user, status = active")]
+  NU --> N1
+  HA -- Yes --> SI[/"Sign in: email + password"/]
+  SI --> CV{Credentials valid?}
+  CV -- "No: show error" --> SI
+  CV -- Yes --> N1

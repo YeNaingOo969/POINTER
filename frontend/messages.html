@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Messages — POINTER</title>
+    <meta name="description" content="Chat with shops on POINTER." />
+    <meta name="theme-color" content="#1a1410" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
+    />
+  </head>
+  <body class="page-app page-messages">
+    <header class="app-top">
+      <a class="brand app-top__pill app-top__brand" href="/" aria-label="POINTER home">
+        <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
+        <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
+      </a>
+      <button class="lang-toggle app-top__pill app-top__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+    </header>
+
+    <header class="app-hero">
+      <div class="app-hero__inner">
+        <p class="app-hero__eyebrow" data-i18n="msg.title">Messages</p>
+        <h1 class="app-hero__title" data-i18n="msg.title">Messages</h1>
+        <p class="app-hero__lede" data-i18n="msg.lede">Chat with shops.</p>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div class="msg-layout">
+        <section class="msg-panel msg-panel--list" aria-labelledby="msg-list-title">
+          <h2 id="msg-list-title" class="sr-only" data-i18n="msg.title">Messages</h2>
+          <ul class="msg-list"></ul>
+          <p class="msg-empty" data-i18n="msg.empty" hidden>No conversations yet.</p>
+        </section>
+        <section class="msg-panel msg-panel--chat" aria-live="polite">
+          <p class="msg-pick" data-i18n="msg.pick">Choose a conversation</p>
+          <div class="msg-chat" hidden>
+            <div class="msg-chat__head"></div>
+            <ol class="msg-chat__log"></ol>
+            <p class="msg-chat__note" hidden></p>
+            <form class="msg-form">
+              <textarea name="body" rows="1" maxlength="1000" aria-label="Message"></textarea>
+              <button class="app-button app-button--gold" type="submit" data-i18n="msg.send">Send</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="/src/pages/messages.js"></script>
+  </body>
+</html>

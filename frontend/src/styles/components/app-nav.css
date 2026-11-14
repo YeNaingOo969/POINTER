@@ -1,0 +1,143 @@
+/* App tabs (Home · Map · Deals · Messages · Account) and the notification bell. Desktop: glass pills
+   in the top centre. Phone: a tab bar fixed at the bottom (thumb reach). */
+
+.app-tabs {
+  position: fixed;
+  top: max(var(--space-3), env(safe-area-inset-top));
+  left: 50%;
+  z-index: var(--z-nav);
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+  transform: translateX(-50%);
+}
+
+.app-tabs__link {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  color: rgb(244 234 216 / 0.82);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.app-tabs__link:hover { color: var(--cream); background: rgb(255 255 255 / 0.08); }
+.app-tabs__link[aria-current='page'] { background: var(--gold); color: var(--dusk); }
+.app-tabs__link:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.app-tabs svg,
+.notif__bell svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Map page: bottom centre on desktop, out of the way of the search bar. */
+.app-tabs--bottom { top: auto; bottom: max(var(--space-4), env(safe-area-inset-bottom)); }
+
+/* Phone: bottom tab bar with icon over label. */
+@media (max-width: 860px) {
+  .app-tabs {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-around;
+    padding: 6px 6px max(6px, env(safe-area-inset-bottom));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    transform: none;
+  }
+  .app-tabs__link {
+    flex-direction: column;
+    gap: 2px;
+    height: auto;
+    padding: 6px 10px;
+    font-size: var(--text-xs);
+  }
+  .has-app-tabs { padding-bottom: 76px; }
+}
+
+/* ---- Notification bell ---- */
+
+.notif { position: relative; margin-left: auto; }
+.notif + [data-lang-toggle] { margin-left: 0; }
+
+.notif__bell { position: relative; width: 48px; justify-content: center; padding: 0; }
+
+.notif__badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--ember);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.notif__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(340px, calc(100vw - 24px));
+  max-height: 60vh;
+  overflow: auto;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-float);
+  animation: notif-in var(--dur-base) var(--ease-out);
+}
+
+.notif__panel[hidden] { display: none; }
+.notif__title { margin: 0 0 var(--space-2); font-weight: 700; }
+.notif__list { margin: 0; padding: 0; list-style: none; }
+.notif__item a {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: inherit;
+  text-decoration: none;
+}
+.notif__item a:hover { background: var(--land); }
+.notif__item.is-unread a { box-shadow: inset 3px 0 0 var(--gold); font-weight: 600; }
+.notif__item small { color: var(--ink-muted); font-weight: 400; }
+.notif__empty { margin: 0; color: var(--ink-muted); }
+
+@keyframes notif-in { from { opacity: 0; transform: translateY(-6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .notif__panel { animation: none; }
+  .app-tabs__link { transition: none; }
+}
+
+/* Map page: keep the place card and the map controls above the tab bar. */
+.page-explore.has-app-tabs { padding-bottom: 0; }
+@media (min-width: 861px) {
+  .page-explore .place-card { bottom: calc(max(var(--space-3), env(safe-area-inset-bottom)) + 64px); }
+  .page-explore .maplibregl-ctrl-bottom-right, .page-explore .maplibregl-ctrl-bottom-left { margin-bottom: 64px; }
+}
+@media (max-width: 860px) {
+  .page-explore .place-card { bottom: 64px; }
+  .page-explore .maplibregl-ctrl-bottom-right, .page-explore .maplibregl-ctrl-bottom-left { margin-bottom: 66px; }
+}

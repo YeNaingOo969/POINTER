@@ -674,3 +674,12 @@
 }
 .review__reply b { color: var(--gold-deep); font-size: var(--text-xs); }
 .review__reply p { margin: 0.2em 0 0; }
+
+/* Shop posts on the place page, and the quiet Report / Block links under the actions. */
+.place-posts__list { display: grid; gap: var(--space-4); }
+.place-actions__more { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; margin-top: var(--space-2); }
+.place-link { padding: var(--space-1) 0; border: 0; background: none; color: var(--ink-muted); font: inherit; font-size: var(--text-sm); text-decoration: underline; cursor: pointer; }
+.place-link:hover { color: var(--danger); }
+.place-actions__message[hidden], .place-link[hidden] { display: none; }
+.report-dialog__reasons { display: grid; gap: var(--space-2); margin: var(--space-4) 0; text-align: left; }
+.report-dialog textarea { width: 100%; padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-sm); font: inherit; }

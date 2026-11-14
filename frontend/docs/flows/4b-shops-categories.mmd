@@ -1,0 +1,14 @@
+---
+title: "4b — Admin: shops and categories"
+---
+flowchart TD
+  S([From 4]) --> SHQ{Which action?}
+  SHQ -- View --> SV[Shop details]
+  SHQ -- Edit --> SE[/"Edit info and photos"/]
+  SHQ -- Hide / remove --> SRQ{Confirm?}
+  SRQ -- Yes --> SRT[("places.status = hidden")]
+  SRT --> N4[Notify the owner]
+  SHQ -- Add public place --> PP[/"Landmark, pagoda, park, hospital:<br/>owner_id = NULL, status = approved"/]
+  SHQ -- Categories --> CA[/"name_en, name_my, group_name"/]
+  SV & SE & N4 & PP & CA --> E([Back to 4])
+  SRQ -- No --> E

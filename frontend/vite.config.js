@@ -9,6 +9,9 @@ const pages = {
   login: 'login.html',
   account: 'account.html',
   business: 'business.html',
+  deals: 'deals.html',
+  home: 'home.html',
+  messages: 'messages.html',
 };
 
 export default defineConfig({

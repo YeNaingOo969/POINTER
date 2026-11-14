@@ -109,7 +109,12 @@
   },
   "nav": {
     "login": "Log in",
-    "account": "ကျွန်ုပ်၏ account"
+    "account": "ကျွန်ုပ်၏ account",
+    "label": "အဓိက",
+    "home": "ပင်မ",
+    "map": "မြေပုံ",
+    "deals": "Deals",
+    "messages": "စာများ"
   },
   "filter": {
     "label": "အုပ်စုအလိုက် စစ်ထုတ်ရန်",
@@ -260,5 +265,132 @@
     "footMap": "မြေပုံ data © OpenStreetMap contributors",
     "schoolBy": "Group 1 ရဲ့ ကျောင်း project",
     "schoolPlace": "ရန်ကုန်၊ မြန်မာ · ၂၀၂၆"
+  },
+  "time": {
+    "minutes": "{n} မိနစ်က",
+    "hours": "{n} နာရီက",
+    "days": "{n} ရက်က",
+    "left": "{h} နာရီ {m} မိနစ် ကျန်",
+    "leftMin": "{m} မိနစ် ကျန်"
+  },
+  "notif": {
+    "title": "အသိပေးချက်များ",
+    "empty": "အသစ် မရှိသေးပါ။",
+    "new_deal": "ဆိုင်တစ်ဆိုင်က deal အသစ် တင်ထားပါတယ်",
+    "message": "ဆိုင်ဆီက စာအသစ်",
+    "review_reply": "သင့် သုံးသပ်ချက်ကို ဆိုင်က ပြန်ဖြေထားပါတယ်",
+    "request_approved": "သင့်ဆိုင်ကို အတည်ပြုပြီးပါပြီ",
+    "request_rejected": "သင့်ဆိုင် တောင်းဆိုချက် အတည်မပြုပါ",
+    "renewal_reminder": "သင့် subscription မကြာမီ ကုန်ပါမယ်"
+  },
+  "deals": {
+    "eyebrow": "Deals & tickets",
+    "title": "ရန်ကုန်က Deals",
+    "lede": "Deal တိုင်းကို ဆိုင်ကိုယ်တိုင် တင်တာပါ။ Ticket ယူ၊ လမ်းကြောင်းအတိုင်း သွားပြီး ကောင်တာမှာ ပြပါ — နှစ်နာရီ အသုံးပြုလို့ ရပါတယ်။",
+    "ending": "မကြာမီ ကုန်မယ့်",
+    "newest": "အသစ်ဆုံး",
+    "all": "အားလုံး",
+    "endsIn": "{t} အတွင်း ကုန်မယ်",
+    "left": "Ticket {n} ခု ကျန်",
+    "get": "Ticket ယူမယ်",
+    "show": "ကျွန်ုပ်ရဲ့ ticket",
+    "ended": "Deal ပြီးသွားပါပြီ",
+    "empty": "ဒီအုပ်စုမှာ deal မရှိသေးပါ။",
+    "demo": "နမူနာ ဆိုင်တွေရဲ့ နမူနာ deal များ။",
+    "directions": "လမ်းညွှန်",
+    "openPlace": "ဆိုင်ကို ကြည့်မယ်",
+    "loadFailed": "Deals ကို မဖွင့်နိုင်ပါ။"
+  },
+  "ticket": {
+    "title": "သင့် ticket",
+    "code": "Ticket ကုဒ်",
+    "validUntil": "သုံးလို့ရတဲ့ အချိန်",
+    "now": "ရန်ကုန် အချိန်",
+    "used": "သုံးပြီး",
+    "expired": "သက်တမ်းကုန်",
+    "active": "သုံးလို့ရ",
+    "note": "ဒီကုဒ်ကို ကောင်တာမှာ ပြပါ။ ဆိုင်က POINTER မှာ စစ်ပါမယ်။",
+    "close": "ပိတ်မယ်",
+    "taken": "Ticket ရပါပြီ — နှစ်နာရီ သုံးလို့ ရပါတယ်။",
+    "already": "ဒီ deal အတွက် ticket ရှိပြီးသားပါ။",
+    "endedErr": "ဒီ deal ပြီးသွားပါပြီ။"
+  },
+  "home": {
+    "eyebrow": "ပင်မ",
+    "hello": "ပြန်တွေ့ရတာ ဝမ်းသာပါတယ်၊",
+    "helloGuest": "ရန်ကုန်ကို ရှာဖွေကြစို့",
+    "lede": "ဆိုင်တွေရဲ့ post နဲ့ deal အသစ်တွေ၊ မြို့ထဲက နေရာ အုပ်စုအားလုံး။",
+    "groups": "အုပ်စုအလိုက် ကြည့်မယ်",
+    "latest": "ဆိုင်တွေဆီက အသစ်",
+    "deals": "မကြာမီ ကုန်မယ့် deals",
+    "seeAll": "Deals အားလုံး",
+    "explore": "မြေပုံ ဖွင့်မယ်",
+    "empty": "Post မရှိသေးပါ။",
+    "loadFailed": "ပင်မ စာမျက်နှာကို မဖွင့်နိုင်ပါ။"
+  },
+  "posts": {
+    "pinned": "ထိပ်တင်",
+    "discount": "Deal",
+    "normal": "သတင်း",
+    "title": "ဆိုင်ဆီက"
+  },
+  "msg": {
+    "title": "စာများ",
+    "lede": "ဆိုင်တွေနဲ့ စကားပြောပါ။ ပထမဆုံး စာက ဆိုင်က လက်ခံတဲ့အထိ request အဖြစ် ရှိနေပါမယ်။",
+    "empty": "စကားဝိုင်း မရှိသေးပါ။ ဆိုင်တစ်ဆိုင်ကို ဖွင့်ပြီး Message ကို နှိပ်ပါ။",
+    "pick": "စကားဝိုင်း တစ်ခု ရွေးပါ",
+    "placeholder": "စာရေးပါ…",
+    "send": "ပို့မယ်",
+    "request": "Message request — ဆိုင်က လက်ခံမှ မြင်ရပါမယ်။",
+    "blocked": "ဒီဆိုင်ကို block ထားပါတယ်။ စာပြန်ပို့ချင်ရင် My account မှာ unblock လုပ်ပါ။",
+    "openShop": "ဆိုင်ကို ကြည့်မယ်",
+    "errBlocked": "ဒီဆိုင်ကို စာပို့လို့ မရပါ။",
+    "errSend": "မပို့နိုင်ပါ။ ထပ်ကြိုးစားပါ။",
+    "back": "စာအားလုံး",
+    "new": "စကားဝိုင်း အသစ်",
+    "you": "သင်"
+  },
+  "act": {
+    "message": "စာပို့မယ်",
+    "report": "Report",
+    "block": "ဆိုင်ကို block",
+    "blockConfirm": "ဒီဆိုင်ကို သင့် ရှာဖွေမှု၊ မြေပုံနဲ့ deals ထဲက ဖျောက်မလား?",
+    "blocked": "ဆိုင်ကို block လိုက်ပါပြီ — သင့်အတွက် မပေါ်တော့ပါ။",
+    "unblocked": "Unblock လုပ်ပြီးပါပြီ"
+  },
+  "report": {
+    "title": "Report",
+    "text": "ဘာမှားနေလဲ? Admin က စစ်ပေးပါမယ်။",
+    "placeholder": "ဘာမှားနေလဲ ပြောပြပါ",
+    "send": "Report ပို့မယ်",
+    "cancel": "မလုပ်တော့ဘူး",
+    "thanks": "ကျေးဇူးပါ — admin က ကြည့်ပေးပါမယ်။",
+    "wrongInfo": "အချက်အလက် မှားနေ",
+    "closed": "အပြီးပိတ်သွားပြီ",
+    "rude": "ရိုင်းစိုင်း / အတု",
+    "other": "တခြား"
+  },
+  "acct2": {
+    "tickets": "ကျွန်ုပ်ရဲ့ tickets",
+    "emptyTickets": "Ticket မရှိသေးပါ — Deals မှာ ရှာပါ။",
+    "blocked": "Block ထားတဲ့ ဆိုင်နဲ့ လူများ",
+    "emptyBlocked": "ဘယ်သူ့ကိုမှ block မထားပါ။",
+    "unblock": "Unblock",
+    "statTickets": "tickets"
+  },
+  "biz2": {
+    "plan": "Plan",
+    "planHint": "Request နဲ့အတူ ငွေပေးရပါတယ်။ Admin က ဆိုင်ကို ငြင်းရင် ငွေပြန်အမ်းပါမယ်။",
+    "m1": "၁ လ",
+    "m3": "၃ လ",
+    "m12": "၁၂ လ",
+    "demoPrice": "နမူနာ စျေးနှုန်းပါ — အမှန်ကို team က သတ်မှတ်ပါမယ်။",
+    "payWith": "ငွေပေးမယ့်နည်း",
+    "ref": "Transaction ID",
+    "refHint": "ငွေလွှဲ ပြေစာပေါ်က နံပါတ်။",
+    "proof": "ငွေလွှဲ screenshot",
+    "errRef": "ပြေစာပေါ်က transaction ID ထည့်ပါ။",
+    "errProof": "ငွေလွှဲ screenshot ထည့်ပါ။",
+    "paid": "ငွေပေးချေမှု"
   }
 }
