@@ -1094,3 +1094,12 @@
   .finale__meta { justify-items: start; text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) { .school { transition: none; } .school:hover { translate: none; } }
+
+/* ---- More props: a big one (offering flowers) and props floating beside the reviews, deal and form ---- */
+.prop--big { width: clamp(7rem, 15vw, 13.5rem); }
+.prop--float { z-index: 3; width: clamp(4.5rem, 8vw, 7.5rem); }
+@media (max-width: 820px) {
+  .prop--float { width: 4.5rem; }
+  /* Phone: the deal card fills the width, so the gift sits above its top-right corner. */
+  .dealviz .prop--float { left: auto; right: 0; top: -3.2rem; }
+}

@@ -14,6 +14,7 @@ import { categories } from '../landing/categories.js';
 import { reviewStory } from '../landing/reviews.js';
 import { dealStory } from '../landing/deals.js';
 import { ownersStatic, ownersAndEnding } from '../landing/owners.js';
+import { floatProps } from '../landing/float-props.js';
 
 gsap.registerPlugin(ScrollTrigger);
 initI18n(); // English by default; small texts switch to Burmese (headlines stay English)
@@ -28,7 +29,7 @@ ownersStatic();
 const mm = gsap.matchMedia();
 document.fonts.ready.then(() => {
   mm.add('(prefers-reduced-motion: no-preference)', () => {
-    const cleanups = [heroDive(), aboutReveal(), mapStory(), categories(), reviewStory(), dealStory(), ownersAndEnding()];
+    const cleanups = [heroDive(), aboutReveal(), mapStory(), categories(), reviewStory(), dealStory(), ownersAndEnding(), floatProps()];
     return () => cleanups.forEach((fn) => fn());
   });
   ScrollTrigger.refresh();

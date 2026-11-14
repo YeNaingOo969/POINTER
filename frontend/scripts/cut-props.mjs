@@ -3,9 +3,11 @@
 //
 // Usage:
 //   npm run cut:props -- public/keyed/props-c.png [--names key,fan,star] [--width 320] [--out <dir>]
+//   npm run cut:props -- public/keyed/bottle.png --single --names medicine   (one object made of parts)
 //
 // Objects are found as separate islands of opaque pixels and numbered left to right, top to bottom
 // (row by row). --names renames them in that order; without it they are saved as <sheet>-1.webp…
+// --single keeps every island together as one prop (a bottle with pills beside it).
 // Tiny islands (stray specks of spill) are skipped. Output goes to public/images/landing/props.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,6 +19,7 @@ const { values: opt, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     names: { type: 'string' },
+    single: { type: 'boolean', default: false },
     width: { type: 'string', default: '320' },
     out: { type: 'string', default: path.join(ROOT, 'public', 'images', 'landing', 'props') },
   },
@@ -73,7 +76,10 @@ for (const box of boxes) {
   const row = rows.find((r) => Math.abs(r.cy - cy) < mh * 0.15);
   if (row) row.boxes.push(box); else rows.push({ cy, boxes: [box] });
 }
-const ordered = rows.flatMap((r) => r.boxes.sort((a, b) => a.x0 - b.x0));
+let ordered = rows.flatMap((r) => r.boxes.sort((a, b) => a.x0 - b.x0));
+if (opt.single && ordered.length > 1) {
+  ordered = [ordered.reduce((u, b) => ({ x0: Math.min(u.x0, b.x0), y0: Math.min(u.y0, b.y0), x1: Math.max(u.x1, b.x1), y1: Math.max(u.y1, b.y1) }))];
+}
 
 fs.mkdirSync(opt.out, { recursive: true });
 const base = path.parse(sheet).name;
