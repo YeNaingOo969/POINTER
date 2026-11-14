@@ -84,10 +84,18 @@ function renderBusiness() {
     return;
   }
   const status = el('span', `account-status account-status--${r.status}`, t(`account.biz${r.status[0].toUpperCase()}${r.status.slice(1)}`));
-  box.replaceChildren(
-    el('div', 'account-business__head', el('b', 'account-business__name', r.name), status),
-    el('p', 'account-business__meta', `${t('account.bizSent')} ${dateInYangon(r.createdAt)}`),
-  );
+  box.replaceChildren(el('div', 'account-business__head', el('b', 'account-business__name', r.name), status));
+  if (r.status === 'approved' && r.subscription) {
+    // Approved shop: subscription line and the way into Owner mode (flowchart 1b / 3).
+    const line = r.subscription.active
+      ? t('acct2.ownerActive').replace('{d}', dateInYangon(r.subscription.expiresAt))
+      : t('acct2.ownerHidden');
+    const go = el('a', 'account-button account-button--gold', t('acct2.ownerMode'));
+    go.href = '/owner.html';
+    box.append(el('p', 'account-business__meta', line), go);
+  } else if (r.createdAt) {
+    box.append(el('p', 'account-business__meta', `${t('account.bizSent')} ${dateInYangon(r.createdAt)}`));
+  }
 }
 
 function renderReviews() {

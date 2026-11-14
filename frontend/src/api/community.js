@@ -7,7 +7,8 @@ import { mockResponse, mockError, request } from './client.js';
 import { readDemo, writeDemo } from './demo-store.js';
 import { places as placeRows } from '../data/places.js';
 import { categories } from '../data/categories.js';
-import { posts as postRows, takenElsewhere, owners, seedMessages, seedNotifications } from '../data/community.js';
+import { takenElsewhere, owners, seedMessages, seedNotifications, customerTickets, people } from '../data/community.js';
+import { allPosts, isLive, withEdits } from './mock-shared.js';
 
 const TICKET_HOURS = 2;
 const HOUR = 3600 * 1000;
@@ -20,7 +21,7 @@ function me() {
   return session.user;
 }
 const meOrNull = () => readDemo('session', null)?.user ?? null;
-const placeById = (id) => placeRows.find((p) => p.id === id);
+const placeById = (id) => withEdits(placeRows.find((p) => p.id === id));
 const summary = (p) => ({
   id: p.id, name: p.name, address: p.address, ownerId: p.ownerId,
   category: categories.find((c) => c.id === p.categoryId) ?? null,
@@ -29,16 +30,17 @@ const blockedIds = () => new Set(readDemo('blocks', []));
 const myTickets = () => readDemo('tickets', []);
 
 /** Ticket as the API returns it: status follows the 2-hour rule (tickets.created_at + 2 h). */
-function ticketOut(t) {
+export function ticketOut(t) {
   const expiresAt = new Date(new Date(t.createdAt).getTime() + TICKET_HOURS * HOUR).toISOString();
   const status = t.usedAt ? 'used' : Date.now() > new Date(expiresAt).getTime() ? 'expired' : 'active';
   return { ...t, status, expiresAt };
 }
 
-function postOut(p) {
+export function postOut(p) {
   const place = placeById(p.placeId);
   const mine = myTickets().filter((t) => t.postId === p.id).length;
-  const taken = (takenElsewhere[p.id] ?? 0) + mine;
+  const seeded = customerTickets.filter((t) => t.postId === p.id).length;
+  const taken = (takenElsewhere[p.id] ?? 0) + seeded + mine;
   return {
     ...p,
     place: summary(place),
@@ -49,7 +51,10 @@ function postOut(p) {
 }
 
 /** Posts a visitor may see: not from shops whose owner they blocked. */
-const visiblePosts = () => postRows.filter((p) => !blockedIds().has(placeById(p.placeId)?.ownerId));
+const visiblePosts = () => allPosts().filter((p) => {
+  const place = placeById(p.placeId);
+  return isLive(place) && !blockedIds().has(place.ownerId);
+});
 
 // ---- posts and deals ----
 
@@ -74,7 +79,7 @@ export function getDeals({ sort = 'ending', group = null } = {}) {
  */
 export function getPost(id) {
   if (!USE_MOCK) return request('posts.php', { query: { id } });
-  const row = postRows.find((p) => p.id === Number(id));
+  const row = allPosts().find((p) => p.id === Number(id));
   return row ? mockResponse(postOut(row)) : mockError('Post not found', 404);
 }
 
@@ -84,7 +89,7 @@ export function getPost(id) {
  */
 export function getPlacePosts(placeId) {
   if (!USE_MOCK) return request('posts.php', { query: { place_id: placeId } });
-  const list = postRows.filter((p) => p.placeId === Number(placeId)).map(postOut).filter((p) => !p.ended)
+  const list = allPosts().filter((p) => p.placeId === Number(placeId)).map(postOut).filter((p) => !p.ended)
     .sort((a, b) => Number(b.isPinned) - Number(a.isPinned) || b.createdAt.localeCompare(a.createdAt));
   return mockResponse(list);
 }
@@ -123,7 +128,7 @@ export function getMyTicket(postId) {
 export async function takeTicket(postId) {
   if (!USE_MOCK) return request('tickets.php', { method: 'POST', body: { postId } });
   me();
-  const row = postRows.find((p) => p.id === Number(postId));
+  const row = allPosts().find((p) => p.id === Number(postId));
   if (!row || row.type !== 'discount') return mockError('Post not found', 404);
   if (myTickets().some((t) => t.postId === row.id)) return mockError('You already have a ticket for this deal', 409);
   if (postOut(row).ended) return mockError('This deal has ended', 410);
@@ -143,7 +148,8 @@ export async function takeTicket(postId) {
 export function getMyTickets() {
   if (!USE_MOCK) return request('my-tickets.php');
   me();
-  return mockResponse(myTickets().map((t) => ({ ...ticketOut(t), post: postOut(postRows.find((p) => p.id === t.postId)) })));
+  const posts = allPosts();
+  return mockResponse(myTickets().map((t) => ({ ...ticketOut(t), post: postOut(posts.find((p) => p.id === t.postId)) })).filter((t) => t.post.place));
 }
 
 // ---- messages ----
@@ -172,7 +178,7 @@ export function getConversations() {
   const list = [...byOther.entries()].map(([otherId, msgs]) => {
     msgs.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
     return {
-      other: owners[otherId] ?? { id: otherId, name: `User ${otherId}`, placeId: null },
+      other: owners[otherId] ?? { id: otherId, name: people[otherId] ?? `User ${otherId}`, placeId: null },
       last: msgs.at(-1),
       unread: msgs.filter((m) => m.receiverId === user.id && !m.isRead).length,
       status: msgs.some((m) => m.status === 'accepted') ? 'accepted' : 'request',
@@ -196,7 +202,7 @@ export function getMessages(otherId) {
   const thread = all.filter((m) => (m.senderId === id && m.receiverId === user.id) || (m.senderId === user.id && m.receiverId === id))
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
   return mockResponse({
-    other: owners[id] ?? { id, name: `User ${id}`, placeId: null },
+    other: owners[id] ?? { id, name: people[id] ?? `User ${id}`, placeId: null },
     status: thread.some((m) => m.status === 'accepted') ? 'accepted' : thread.length ? 'request' : 'new',
     blocked: blockedIds().has(id),
     messages: thread,
@@ -219,6 +225,19 @@ export async function sendMessage(to, body) {
   const msg = { id: Date.now(), senderId: user.id, receiverId: id, body: text, status: accepted ? 'accepted' : 'request', isRead: false, createdAt: new Date().toISOString() };
   writeDemo('messages', [...all, msg]);
   return mockResponse(msg);
+}
+
+/**
+ * Accept a message request from someone (the receiver's side), so both can chat freely.
+ * POST /api/messages.php { accept: userId } → { status: 'accepted' }
+ */
+export async function acceptMessageRequest(userId) {
+  if (!USE_MOCK) return request('messages.php', { method: 'POST', body: { accept: userId } });
+  const user = me();
+  const id = Number(userId);
+  writeDemo('messages', allMessages().map((m) => (
+    (m.senderId === id && m.receiverId === user.id) || (m.senderId === user.id && m.receiverId === id) ? { ...m, status: 'accepted' } : m)));
+  return mockResponse({ status: 'accepted' });
 }
 
 // ---- blocking and reports ----

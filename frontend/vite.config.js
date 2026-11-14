@@ -12,6 +12,7 @@ const pages = {
   deals: 'deals.html',
   home: 'home.html',
   messages: 'messages.html',
+  owner: 'owner.html',
 };
 
 export default defineConfig({

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Owner mode — POINTER</title>
+    <meta name="description" content="Manage your shop on POINTER: posts, deals, tickets and reviews." />
+    <meta name="theme-color" content="#1a1410" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Onest:wght@400;500;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap"
+    />
+  </head>
+  <body class="page-app page-owner">
+    <header class="app-top">
+      <a class="brand app-top__pill app-top__brand" href="/" aria-label="POINTER home">
+        <img class="brand__mark" src="/images/brand/pointer-mark.svg" width="64" height="64" alt="" />
+        <img class="brand__word" src="/images/brand/pointer-word.svg" width="117" height="20" alt="" />
+      </a>
+      <button class="lang-toggle app-top__pill app-top__lang" type="button" data-lang-toggle data-i18n="lang.switch" data-i18n-attr="aria-label:lang.label" aria-label="Switch to Burmese">မြန်မာ</button>
+    </header>
+
+    <header class="app-hero owner-hero">
+      <div class="app-hero__inner">
+        <p class="app-hero__eyebrow"><span data-i18n="owner.eyebrow">Owner mode</span> · <a class="owner-back" href="/home.html" data-i18n="owner.back">Back to customer mode</a></p>
+        <h1 class="app-hero__title owner-name">…</h1>
+        <p class="owner-sub"></p>
+        <p class="owner-sub owner-sub--sub"></p>
+        <dl class="owner-stats" hidden></dl>
+      </div>
+    </header>
+
+    <main class="app-main owner-main" hidden>
+      <p class="owner-banner" hidden></p>
+
+      <!-- Subscription ended: renew (flowchart 3) -->
+      <section class="app-section owner-card owner-renew" aria-labelledby="renew-title" hidden>
+        <h2 id="renew-title" data-i18n="owner.hidden">Your shop is hidden</h2>
+        <p data-i18n="owner.hiddenText">Your subscription has ended.</p>
+        <form class="owner-form owner-renew__form">
+          <div class="biz-plan__options">
+            <label class="biz-plan__option"><input type="radio" name="months" value="1" data-amount="15000" /><b data-i18n="biz2.m1">1 month</b><span>15,000 Ks</span></label>
+            <label class="biz-plan__option"><input type="radio" name="months" value="3" data-amount="40000" checked /><b data-i18n="biz2.m3">3 months</b><span>40,000 Ks</span></label>
+            <label class="biz-plan__option"><input type="radio" name="months" value="12" data-amount="150000" /><b data-i18n="biz2.m12">12 months</b><span>150,000 Ks</span></label>
+          </div>
+          <label><span data-i18n="biz2.payWith">Pay with</span>
+            <select name="paymentMethod"><option>KBZPay</option><option>Wave Pay</option><option>AYA Pay</option></select></label>
+          <label><span data-i18n="biz2.ref">Transaction ID</span><input name="paymentRef" type="text" maxlength="100" autocomplete="off" /></label>
+          <label><span data-i18n="biz2.proof">Screenshot of the payment</span><input name="proof" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+          <p class="owner-error" role="alert"></p>
+          <button class="app-button app-button--gold" type="submit" data-i18n="owner.renewSend">Send renewal</button>
+        </form>
+      </section>
+
+      <div class="owner-grid owner-live">
+        <!-- 3b: check a ticket -->
+        <section class="app-section owner-card owner-ticket" aria-labelledby="ticket-title">
+          <h2 id="ticket-title" data-i18n="owner.ticketTitle">Check a ticket</h2>
+          <form class="owner-ticket__form">
+            <input name="code" type="text" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="GB-7Q4K" aria-describedby="ticket-hint" />
+            <button class="app-button app-button--dark" type="submit" data-i18n="owner.ticketCheck">Check</button>
+          </form>
+          <small id="ticket-hint" class="app-muted" data-i18n="owner.ticketHint">Type the code on the customer's phone.</small>
+          <div class="owner-ticket__result" aria-live="polite"></div>
+        </section>
+
+        <!-- 3a: new post -->
+        <section class="app-section owner-card" aria-labelledby="newpost-title">
+          <h2 id="newpost-title" data-i18n="owner.newPost">New post</h2>
+          <form class="owner-form owner-post-form">
+            <div class="owner-type" role="radiogroup">
+              <label><input type="radio" name="type" value="normal" checked /> <span data-i18n="owner.typeNormal">News</span></label>
+              <label><input type="radio" name="type" value="discount" /> <span data-i18n="owner.typeDiscount">Discount</span></label>
+            </div>
+            <label><span data-i18n="owner.content">What do you want to say?</span><textarea name="content" rows="3" maxlength="1000"></textarea></label>
+            <div class="owner-discount" hidden>
+              <label><span data-i18n="owner.discountText">The discount</span><input name="discountText" type="text" maxlength="255" /></label>
+              <div class="owner-form__row">
+                <label><span data-i18n="owner.ticketLimit">How many tickets</span><input name="ticketLimit" type="number" min="1" max="500" value="30" /></label>
+                <label><span data-i18n="owner.endsAt">Ends at</span><input name="expiresAt" type="datetime-local" /></label>
+              </div>
+            </div>
+            <p class="owner-error" role="alert"></p>
+            <button class="app-button app-button--gold" type="submit" data-i18n="owner.publish">Post it</button>
+          </form>
+        </section>
+      </div>
+
+      <section class="app-section owner-live" aria-labelledby="posts-title">
+        <h2 id="posts-title" data-i18n="owner.myPosts">My posts</h2>
+        <div class="deal-grid owner-posts"></div>
+        <p class="app-muted owner-posts__empty" data-i18n="owner.noPosts" hidden>No posts yet.</p>
+      </section>
+
+      <div class="owner-grid owner-live">
+        <!-- 3c: reviews -->
+        <section class="app-section owner-card" aria-labelledby="oreviews-title">
+          <h2 id="oreviews-title" data-i18n="owner.reviews">Reviews</h2>
+          <p class="app-muted" data-i18n="owner.noDelete">You can reply to reviews but not delete them.</p>
+          <ul class="owner-reviews"></ul>
+          <p class="app-muted owner-reviews__empty" data-i18n="owner.noReviews" hidden>No reviews yet.</p>
+        </section>
+
+        <!-- 3c: place and messages -->
+        <section class="app-section owner-card" aria-labelledby="oplace-title">
+          <h2 id="oplace-title" data-i18n="owner.myPlace">My place</h2>
+          <p class="app-muted" data-i18n="owner.placeHint">Name, group and map pin are changed by an admin.</p>
+          <form class="owner-form owner-place-form">
+            <label><span data-i18n="owner.description">Description</span><textarea name="description" rows="4" maxlength="600"></textarea></label>
+            <label><span data-i18n="owner.phone">Phone</span><input name="phone" type="tel" maxlength="20" /></label>
+            <p class="owner-error" role="alert"></p>
+            <div class="owner-form__row">
+              <button class="app-button app-button--gold" type="submit" data-i18n="owner.savePlace">Save changes</button>
+              <a class="app-button owner-view" data-i18n="owner.view">View my place</a>
+            </div>
+          </form>
+          <h2 style="margin-top: 2rem" data-i18n="owner.messages">Messages</h2>
+          <p data-i18n="owner.messagesText">Customers' first messages arrive as requests.</p>
+          <a class="app-button" href="/messages.html" data-i18n="owner.openMessages">Open Messages</a>
+        </section>
+      </div>
+      <p class="app-demo" data-i18n="owner.demo" hidden>Demo shop.</p>
+    </main>
+
+    <section class="app-main owner-none" hidden>
+      <p data-i18n="owner.notOwner">Owner mode is for shops that are approved.</p>
+      <a class="app-button app-button--gold" href="/business.html" data-i18n="owner.add">Add your business</a>
+    </section>
+
+    <script type="module" src="/src/pages/owner.js"></script>
+  </body>
+</html>

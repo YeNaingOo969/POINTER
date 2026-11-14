@@ -11,7 +11,7 @@ import '../styles/components/login-dialog.css';
 import '../styles/pages/app.css';
 import '../styles/pages/messages.css';
 import { initI18n, t } from '../i18n/i18n.js';
-import { getSession, getConversations, getMessages, sendMessage } from '../api/api.js';
+import { getSession, getConversations, getMessages, sendMessage, acceptMessageRequest } from '../api/api.js';
 import { mountAppNav } from '../components/app-nav.js';
 import { askToLogin } from '../components/login-dialog.js';
 import { el, ago, toast } from '../lib/dom.js';
@@ -64,6 +64,14 @@ async function open(id) {
   const note = $('.msg-chat__note');
   note.hidden = !(chat.blocked || chat.status === 'request');
   note.textContent = chat.blocked ? t('msg.blocked') : t('msg.request');
+  // A request someone sent me: I can accept it (shop owners get these from customers).
+  const theirs = chat.status === 'request' && chat.messages.some((m) => m.senderId === id);
+  if (theirs && !chat.blocked) {
+    const accept = el('button', 'app-button app-button--gold', t('owner.accept'));
+    accept.type = 'button';
+    accept.addEventListener('click', async () => { await acceptMessageRequest(id); toast(t('owner.accepted')); open(id); });
+    note.replaceChildren(t('msg.request'), ' ', accept);
+  }
   $('.msg-form').hidden = chat.blocked;
   $('.msg-chat').hidden = false;
   $('.msg-pick').hidden = true;

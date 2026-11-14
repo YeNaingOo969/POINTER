@@ -1,0 +1,67 @@
+/* Owner mode: stats in the dusk header, cards for tickets, posts, reviews and the place. */
+
+.owner-back { color: var(--gold); text-decoration: underline; }
+.owner-sub { margin: var(--space-2) 0 0; color: rgb(244 234 216 / 0.8); }
+.owner-sub--sub { color: #f1d6a3; font-weight: 500; }
+
+.owner-stats { display: flex; flex-wrap: wrap; gap: var(--space-8); margin: var(--space-6) 0 0; }
+.owner-stats[hidden] { display: none; }
+.owner-stats div { display: grid; gap: var(--space-1); }
+.owner-stats dt { font-family: var(--font-display); font-variation-settings: 'SOFT' 100; font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1; color: var(--gold); }
+.owner-stats dd { margin: 0; font-size: var(--text-sm); color: rgb(244 234 216 / 0.75); }
+
+.owner-banner { margin: 0; padding: var(--space-4) var(--space-6); border-radius: var(--radius-md); background: rgb(232 176 74 / 0.18); color: var(--gold-deep); font-weight: 600; }
+.owner-banner[hidden] { display: none; }
+
+.owner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-6); }
+.owner-grid[hidden], .owner-live[hidden], .owner-renew[hidden], .owner-none[hidden] { display: none; }
+
+.owner-card { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-card); }
+
+.owner-form { display: grid; gap: var(--space-3); }
+.owner-form label { display: grid; gap: var(--space-1); font-weight: 600; font-size: var(--text-sm); }
+.owner-form input, .owner-form textarea, .owner-form select, .owner-ticket__form input {
+  min-height: 44px; padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--surface); font: inherit; font-weight: 400;
+}
+.owner-form textarea { resize: vertical; }
+.owner-form__row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: end; }
+.owner-form__row > label { flex: 1 1 160px; }
+.owner-type { display: flex; gap: var(--space-4); }
+.owner-type label { display: inline-flex; gap: var(--space-2); align-items: center; }
+.owner-discount { display: grid; gap: var(--space-3); }
+.owner-discount[hidden] { display: none; }
+.owner-error { min-height: 1em; margin: 0; color: var(--danger); font-size: var(--text-sm); }
+
+/* Ticket check: big code field, coloured result card. */
+.owner-ticket__form { display: flex; gap: var(--space-2); }
+.owner-ticket__form input { flex: 1; min-width: 0; font-family: var(--font-mono); font-size: var(--text-lg); letter-spacing: 0.1em; text-transform: uppercase; }
+.owner-ticket__result { margin-top: var(--space-4); }
+.owner-ticket__card { display: grid; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-md); background: var(--land); }
+.owner-ticket__card p { margin: 0; }
+.owner-ticket__card.is-ok { background: rgb(59 143 90 / 0.12); box-shadow: inset 4px 0 0 var(--status-open); }
+.owner-ticket__card.is-done { background: rgb(59 143 90 / 0.18); color: var(--status-open); }
+.owner-ticket__card.is-used, .owner-ticket__card.is-expired, .owner-ticket__card.is-other_shop, .owner-ticket__card.is-not_found { background: rgb(183 71 47 / 0.1); box-shadow: inset 4px 0 0 var(--danger); }
+
+.owner-danger { color: var(--danger); }
+
+.owner-reviews { display: grid; gap: var(--space-4); margin: var(--space-4) 0 0; padding: 0; list-style: none; }
+.owner-review { padding-bottom: var(--space-4); border-bottom: 1px solid var(--line); }
+.owner-review p { margin: var(--space-2) 0; }
+.owner-review__head { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: baseline; }
+.owner-review__stars { color: var(--gold-deep); }
+
+.owner-post .account-chip-button {
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.owner-post .account-chip-button:hover { background: var(--land); }
+.owner-post .owner-danger { color: var(--danger); }

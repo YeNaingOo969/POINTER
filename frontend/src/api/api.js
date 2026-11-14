@@ -8,6 +8,7 @@ import { readDemo, writeDemo } from './demo-store.js';
 import { places as placeRows } from '../data/places.js';
 import { categories } from '../data/categories.js';
 import { reviews } from '../data/reviews.js';
+import { isLive, subscriptionFor, withEdits } from './mock-shared.js';
 
 function requireDemoUser() {
   const session = readDemo('session', null);
@@ -27,7 +28,7 @@ export function getPlaces() {
   if (!USE_MOCK) return request('places.php');
   // Shops whose owner the user blocked are left out (blocks.blocked_id = places.owner_id).
   const blocked = new Set(readDemo('blocks', []));
-  return mockResponse(places.filter((p) => !blocked.has(p.ownerId)));
+  return mockResponse(places.map(withEdits).filter((p) => isLive(p) && !blocked.has(p.ownerId)));
 }
 
 /**
@@ -38,7 +39,7 @@ export async function getPlace(id) {
   if (!USE_MOCK) return request('places.php', { query: { id } });
   const place = places.find((p) => p.id === Number(id));
   if (!place) return mockError('Place not found', 404);
-  return mockResponse(place);
+  return mockResponse(withEdits(place));
 }
 
 /**
@@ -167,7 +168,9 @@ export async function deleteReview(id) {
 export function getReviews(placeId) {
   if (!USE_MOCK) return request('reviews.php', { query: { place_id: placeId } });
   const mine = readDemo('reviews', []).filter((r) => r.placeId === placeId);
-  const all = [...mine, ...reviews.filter((r) => r.placeId === placeId)];
+  const replies = readDemo('ownerReplies', {});
+  const all = [...mine, ...reviews.filter((r) => r.placeId === placeId)]
+    .map((r) => (replies[r.id] ? { ...r, ownerReply: replies[r.id] } : r));
   return mockResponse(all.sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
 }
 
@@ -239,6 +242,13 @@ export async function submitBusinessRequest(fields) {
 export async function getMyBusinessRequest() {
   if (!USE_MOCK) return request('my-business-request.php');
   const user = requireDemoUser();
+  // Demo owners (users 1–5) already have an approved shop.
+  const owned = places.find((p) => p.ownerId === user.id);
+  if (owned) {
+    const sub = subscriptionFor(user.id);
+    return mockResponse({ id: owned.id, status: 'approved', name: owned.name, categoryId: owned.category?.id, placeId: owned.id,
+      subscription: sub && { months: sub.months, expiresAt: sub.expiresAt, active: new Date(sub.expiresAt) > new Date() } });
+  }
   const r = readDemo('businessRequest', null);
   return mockResponse(r && r.userId === user.id ? r : null);
 }
@@ -287,3 +297,6 @@ export function getRoute(from, to, mode) {
 
 // Phase 2 customer features: deals, tickets, messages, blocks, reports, notifications.
 export * from './community.js';
+
+// Phase 2 shop-owner features: dashboard, posts, tickets at the counter, replies, renewal.
+export * from './owner.js';

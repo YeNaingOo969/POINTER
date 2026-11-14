@@ -103,7 +103,8 @@ is closed. A `close` before `open` runs past midnight. `NULL` or `[]` means the 
 | Add your business | `business.html` | done: request form (name, group, description, phone, hours per day, map pin, shop-front photo) → "Waiting for review" |
 | Home | `home.html` | done (mock): greeting, category groups, deals ending soon, latest posts |
 | Deals | `deals.html` | done (mock): active deals by ending soon / newest and group, tickets (2 h) |
-| Messages | `messages.html` | done (mock): conversations, message requests, blocked state |
+| Messages | `messages.html` | done (mock): conversations, message requests (accept), blocked state |
+| Owner mode | `owner.html` | done (mock): subscription check + renew, ticket check, posts, review replies, place edit |
 | Admin dashboard | `admin.html` | phase 3 |
 
 ## Endpoints
@@ -222,6 +223,32 @@ get 403. **Notification types:** `new_deal` (ref = post id), `message` (ref = me
 `paymentMethod` (KBZPay / Wave Pay / AYA Pay), `paymentRef` and `proof` (image, same checks as the
 photo). Save them as an `owner_upgrades` row with `status = 'pending'` next to the pending `places` row.
 Prices on the form (15,000 / 40,000 / 150,000 Ks) are placeholders until the team sets real ones.
+
+### Phase 2 — shop owner (`owner.html`, flowcharts 3, 3a–3c)
+
+Functions in [src/api/owner.js](src/api/owner.js). Only for a user whose place is approved; otherwise
+403 and the page offers "Add your business". When the subscription has ended the page shows only the
+renewal form; within 7 days of the end it shows a reminder and the form above the dashboard.
+Way in: My account → My business → **Owner mode** (shown when the request is approved).
+
+| Function | Endpoint | Request → response | Tables |
+|---|---|---|---|
+| `getOwnerDashboard()` | `GET /api/owner/dashboard.php` | → `{ place, subscription: { months, startsAt, expiresAt, active, daysLeft } \| null, pending, stats: { posts, activeDeals, ticketsTaken, ticketsUsed, rating }, posts: Post[] (ended ones too), reviews: Review[] }` · 403 no shop | places, owner_upgrades, posts, tickets, reviews |
+| `createPost(fields)` | `POST /api/owner/posts.php` (multipart) | `type`, `content`, `image?`; discount: `discountText`, `ticketLimit` (1–500), `expiresAt` (future) → `201 Post` · 403 subscription not active · 422 | posts |
+| `updatePost(id, fields)` / `setPostPinned(id, on)` | `PUT /api/owner/posts.php?id=101` | `{ content?, discountText?, ticketLimit?, expiresAt?, isPinned? }` → `Post` · 403 not yours | posts |
+| `deletePost(id)` | `DELETE /api/owner/posts.php?id=101` | → `{ deleted: true }` (tickets already taken stay valid until they expire) | posts |
+| `checkTicket(code)` | `GET /api/owner/ticket.php?code=GB-7Q4K` | → `{ result: ok\|not_found\|other_shop\|used\|expired, ticket?: Ticket & { userName }, post? }` (does not use it) | tickets, posts |
+| `confirmTicket(code)` | `POST /api/owner/ticket.php { code }` | → `{ result: 'used', ticket }` (`status = used`, `used_at = now`) · 404 · 403 other shop · 409 used / expired | tickets |
+| `replyToReview(id, reply)` | `PUT /api/owner/review-reply.php?id=12 { reply }` | → `{ id, ownerReply }` · 403 not my place · 422 empty / > 600 | reviews.owner_reply |
+| `updateMyPlace(fields)` | `PUT /api/owner/place.php { description, phone }` | → `Place` (name, group and pin stay with the admin) · 422 | places |
+| `renewSubscription(fields)` | `POST /api/owner/renew.php` (multipart) | `months, amount, paymentMethod, paymentRef, proof` → `201 { id, status: 'pending', … }` (admin approves in 4a) | owner_upgrades |
+| `acceptMessageRequest(userId)` | `POST /api/messages.php { accept: userId }` | → `{ status: 'accepted' }` (both sides of that chat) | messages |
+
+Rules: a ticket is valid only for one of the owner's own posts, while `status = active` and
+`created_at + 2 h > now`. Owners can reply to reviews but not delete them, and can't review their own
+place. While `USE_MOCK` is true the "Log in to continue" dialog has **Try as a demo shop owner**
+(Golden Bean Café, user 1); demo shops 2–5 cover the other cases (2 ends in 5 days, 3 has ended).
+Test ticket codes for shop 1: `GB-7Q4K` (valid), `GB-H2NM` (used), `GB-R8XT` (expired).
 
 ### Routes (frontend only; optional PHP proxy later)
 

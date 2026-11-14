@@ -41,3 +41,26 @@ export const seedNotifications = [
   { id: 2, type: 'message', refId: 1, isRead: false, createdAt: at(-5) },
   { id: 3, type: 'review_reply', refId: 19, isRead: true, createdAt: at(-48) },
 ];
+
+const DAY = 24 * HOUR;
+const atDays = (days) => new Date(Date.now() + days * DAY).toISOString();
+
+/** owner_upgrades rows (approved) per owner: one active, one ending soon, one expired (shop hidden). */
+export const ownerUpgrades = [
+  { id: 501, userId: 1, months: 3, amount: 40000, paymentMethod: 'KBZPay', status: 'approved', startsAt: atDays(-70), expiresAt: atDays(20) },
+  { id: 502, userId: 2, months: 1, amount: 15000, paymentMethod: 'Wave Pay', status: 'approved', startsAt: atDays(-25), expiresAt: atDays(5) },
+  { id: 503, userId: 3, months: 1, amount: 15000, paymentMethod: 'AYA Pay', status: 'approved', startsAt: atDays(-32), expiresAt: atDays(-2) },
+  { id: 504, userId: 4, months: 12, amount: 150000, paymentMethod: 'KBZPay', status: 'approved', startsAt: atDays(-100), expiresAt: atDays(265) },
+  { id: 505, userId: 5, months: 3, amount: 40000, paymentMethod: 'Wave Pay', status: 'approved', startsAt: atDays(-10), expiresAt: atDays(80) },
+];
+
+/** Tickets other customers took, so a demo owner has codes to check at the counter. */
+export const customerTickets = [
+  { id: 9001, postId: 101, code: 'GB-7Q4K', userName: 'Aung Aung', createdAt: at(-0.5), usedAt: null },
+  { id: 9002, postId: 101, code: 'GB-H2NM', userName: 'Thiri', createdAt: at(-1.5), usedAt: at(-1) },
+  { id: 9003, postId: 101, code: 'GB-R8XT', userName: 'Min Khant', createdAt: at(-5), usedAt: null },
+  { id: 9004, postId: 102, code: 'SM-K8P2', userName: 'Hnin', createdAt: at(-0.2), usedAt: null },
+];
+
+/** Names of people who are not shops (for an owner's inbox). */
+export const people = { 999: 'Demo user' };
