@@ -4,9 +4,13 @@
 
 > Changed on 2026-11-12 (new scope document): 7 category groups (seed them from HANDOFF.md),
 > `description` and `phone` on places, and a `categories.php` endpoint.
+>
+> Changed on 2026-11-14 (team ER, 15 tables): categories have `name_en` / `name_my` / `group_name`;
+> opening hours are JSON text in `places.open_hours`; photos are in `place_photos` and
+> `places.cover_photo`; YBS lines and facilities are gone; banned users can't log in.
 
 **Database:** the team's dbdiagram schema — tables `users`, `places`, `categories`,
-`operating_hours`, `place_images`, `reviews`
+`place_photos`, `reviews`
 
 Task 2 (My account) needs the login session from this task, so please finish the
 **Accounts** part first.
@@ -53,7 +57,7 @@ Open http://localhost:5173/login.html. It works now with fake data kept in the b
 |---|---|---|---|---|
 | `getSession()` | `GET /api/session.php` | — | `200 { "user": { "id": 1, "name": "Aung Aung", "role": "user" } \| null, "csrfToken": "..." }` | — |
 | `register()` | `POST /api/register.php` | `{ "name", "email", "password" }` | `201 { "user": {...} }` and the user is logged in | `422` invalid input · `409 { "error": "Email already registered" }` |
-| `login()` | `POST /api/login.php` | `{ "email", "password" }` | `200 { "user": {...} }` | `401 { "error": "Wrong email or password" }` |
+| `login()` | `POST /api/login.php` | `{ "email", "password" }` | `200 { "user": {...} }` | `401 { "error": "Wrong email or password" }` · `403 { "error": "This account is suspended" }` when `users.status` = `banned` |
 | `logout()` | `POST /api/logout.php` | — | `200 { "user": null }` | — |
 
 `role` is `user` or `admin`. A new account is always `user`.
@@ -77,7 +81,7 @@ find out which emails are registered.
 
 | Function in `api.js` | Endpoint | Success | Errors |
 |---|---|---|---|
-| `getCategories()` | `GET /api/categories.php` | `200 [{ "id", "name", "icon" }]` — the 7 groups in HANDOFF.md | — |
+| `getCategories()` | `GET /api/categories.php` | `200 [{ "id", "name", "nameMy", "group" }]` — the 7 groups in HANDOFF.md (`name_en`, `name_my`, `group_name`) | — |
 | `getPlaces()` | `GET /api/places.php` | `200 Place[]` (approved places only, not pending requests) | — |
 | `getPlace(id)` | `GET /api/places.php?id=1` | `200 Place` | `404 { "error": "Place not found" }` |
 
@@ -88,12 +92,12 @@ seed data, with the categories in `frontend/src/data/categories.js`) and the fie
 | JSON | From |
 |---|---|
 | `id`, `name`, `address`, `ownerId` | `places.id`, `places.name`, `places.address`, `places.owner_id` |
-| `category` | `{ "id", "name", "icon" }` joined from `categories` on `places.category_id`, or `null` |
+| `category` | `{ "id", "name": name_en, "nameMy": name_my, "group": group_name }` joined from `categories` on `places.category_id`, or `null` |
 | `description`, `phone` | `places.description`, `places.phone` (string or `null`; the page shows a Call button when `phone` is set) |
-| `location` | `{ "lat": latitude, "lng": longitude }` (numbers, not strings) |
-| `ybsLines`, `facilities` | comma-separated text → JSON array (`[]` when empty) |
-| `openingHours` | `operating_hours` rows grouped back into `[{ "days": "mon-sun", "open": "04:00", "close": "22:00" }]`; days in a row with the same times become a range (`mon-fri`), a single day stays `mon`; times `HH:MM`; no rows → `[]` |
-| `photos` | `place_images` → `[{ "url": image_url }]` (real photos only) |
+| `location` | `{ "lat": lat, "lng": lng }` (numbers, not strings) |
+| `openingHours` | `json_decode(places.open_hours)` — `[{ "day": "mon", "open": "04:00", "close": "22:00" }, …]`, one row per open day (format in HANDOFF.md); `NULL` → `[]` |
+| `coverPhoto` | `places.cover_photo` or `null` |
+| `photos` | `place_photos` → `[{ "url": url }]` (real photos only) |
 | `rating` | `{ "average": AVG(rating) rounded to 1 decimal, "count": COUNT(*) }` from `reviews`; no reviews → `{ "average": 0, "count": 0 }` |
 
 Tip: cast numbers in PHP (`(int)`, `(float)`) before `json_encode`, because PDO returns them
@@ -103,10 +107,10 @@ as strings.
 
 - [ ] Register → logged in → reload the page → still logged in (`session.php` returns the user).
 - [ ] Wrong password shows "Wrong email or password"; a used email shows the "already
-      registered" message.
+      registered" message; a `banned` user gets 403.
 - [ ] Log out works; POST without the right `X-CSRF-Token` gets 403.
 - [ ] Passwords in the database are `password_hash` strings, never plain text.
 - [ ] With `USE_MOCK = false` the Explore map shows all places from MariaDB, and
-      `place.html?id=1` shows category, about, hours, address, YBS lines, facilities and rating, and `place.html?id=20` a Call button;
+      `place.html?id=1` shows category, about, hours, address and rating, and `place.html?id=20` a Call button;
       `place.html?id=999` shows "We couldn't find this place."
 - [ ] Every query uses prepared statements.

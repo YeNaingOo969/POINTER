@@ -62,7 +62,7 @@ function renderSaves() {
     const link = el('a', 'account-place__link', el('span', 'account-place__name', place.name), el('span', 'account-place__town', categoryName(place.category) || place.address));
     link.href = placeLink(place);
     const item = el('li', 'account-place', link, unsave);
-    item.dataset.cat = place.category?.icon ?? 'other';
+    item.dataset.cat = place.category?.group ?? 'other';
     return item;
   }));
   revealList([...$('.account-places').children]);

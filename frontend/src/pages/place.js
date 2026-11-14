@@ -95,8 +95,6 @@ function renderFacts() {
     dl.append(dt, dd);
   };
   fact(t('card.address'), place.address);
-  fact(t('card.ybsLines'), place.ybsLines?.join(', '));
-  fact(t('card.facilities'), place.facilities?.join(' · '));
 }
 
 function renderActions() {
@@ -146,6 +144,16 @@ function renderReviews() {
     time.dateTime = r.createdAt;
     time.textContent = dateInYangon(r.createdAt);
     li.querySelector('.review__text').textContent = r.text;
+    if (r.ownerReply) {
+      const reply = document.createElement('div');
+      reply.className = 'review__reply';
+      const label = document.createElement('b');
+      label.textContent = t('place.ownerReply');
+      const text = document.createElement('p');
+      text.textContent = r.ownerReply;
+      reply.append(label, text);
+      li.append(reply);
+    }
     if (r.updatedAt) time.textContent += ` · ${t('place.edited')}`;
     if (user && r.user.id === user.id) {
       li.classList.add('review--mine');

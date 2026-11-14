@@ -69,7 +69,7 @@ function buildHours() {
   });
 }
 
-/** [{ day, open, close }] for the open days — becomes operating_hours rows on the server. */
+/** [{ day, open, close }] for the open days — saved as JSON text in places.open_hours. */
 function readHours() {
   return DAYS
     .filter((day) => !form.elements[`closed-${day}`].checked)

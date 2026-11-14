@@ -3,15 +3,6 @@
     "switch": "မြန်မာ",
     "label": "Switch to Burmese"
   },
-  "cat": {
-    "food": "Food & drink",
-    "stay": "Stay",
-    "visit": "Places to visit",
-    "shop": "Shopping",
-    "health": "Health",
-    "beauty": "Beauty & wellness",
-    "other": "Other"
-  },
   "brand": {
     "tagline": "Find your Yangon",
     "skip": "Skip intro"
@@ -38,9 +29,7 @@
     "directions": "Directions in Google Maps",
     "demo": "Ratings are demo data.",
     "details": "More details",
-    "closedNow": "Closed now",
-    "ybsLines": "YBS lines",
-    "facilities": "Facilities"
+    "closedNow": "Closed now"
   },
   "route": {
     "title": "Route here",
@@ -95,7 +84,8 @@
     "saveChanges": "Save changes",
     "deleteReview": "Delete review",
     "reviewUpdated": "Your review is updated.",
-    "ownShop": "This is your shop, so you can't review it — but you can reply to reviews."
+    "ownShop": "This is your shop, so you can't review it — but you can reply to reviews.",
+    "ownerReply": "Reply from the owner"
   },
   "days": {
     "mon": "Monday",

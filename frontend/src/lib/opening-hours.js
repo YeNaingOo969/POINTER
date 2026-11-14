@@ -1,8 +1,9 @@
 // Open / closed status from a place's openingHours, in Yangon time (Asia/Yangon, UTC+6:30),
 // whatever the visitor's own clock is set to.
 //
-// openingHours: [{ days: 'mon-sun' | 'mon-sat' | 'tue' …, open: 'HH:MM', close: 'HH:MM' }]
-//   An empty list means the hours are not known. close '24:00' (or before open) runs past midnight.
+// openingHours: [{ day: 'mon' … 'sun', open: 'HH:MM', close: 'HH:MM' }] — one row per open day, as
+//   stored in places.open_hours (JSON text). A day can have two rows (lunch break). A missing day is
+//   closed; an empty list means the hours are not known. close '24:00' (or before open) runs past midnight.
 
 const DAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
@@ -19,11 +20,8 @@ const toMinutes = (hhmm) => {
   return h * 60 + m;
 };
 
-/** Does a 'mon-sat' style range (or a single day) include weekday `day`? */
-function includesDay(range, day) {
-  const [from, to = from] = range.split('-').map((d) => DAYS.indexOf(d));
-  return from <= to ? day >= from && day <= to : day >= from || day <= to;
-}
+/** Is this row for weekday index `day` (0 = Sunday)? */
+const isDay = (row, day) => DAYS.indexOf(row.day) === day;
 
 /**
  * @returns {{ state: 'open' | 'closed' | 'unknown', until?: string, next?: string }}
@@ -32,16 +30,17 @@ function includesDay(range, day) {
 export function openStatus(openingHours, now = new Date()) {
   if (!openingHours?.length) return { state: 'unknown' };
   const { day, minutes } = yangonNow(now);
-  for (const { days, open, close } of openingHours) {
+  for (const row of openingHours) {
+    const { open, close } = row;
     const start = toMinutes(open);
     let end = toMinutes(close);
     if (end <= start) end += 24 * 60; // runs past midnight
-    if (includesDay(days, day) && minutes >= start && minutes < end) return { state: 'open', until: close };
+    if (isDay(row, day) && minutes >= start && minutes < end) return { state: 'open', until: close };
     // Opened yesterday and still running past midnight.
-    if (end > 24 * 60 && includesDay(days, (day + 6) % 7) && minutes < end - 24 * 60) return { state: 'open', until: close };
+    if (end > 24 * 60 && isDay(row, (day + 6) % 7) && minutes < end - 24 * 60) return { state: 'open', until: close };
   }
   const laterToday = openingHours
-    .filter(({ days, open }) => includesDay(days, day) && toMinutes(open) > minutes)
+    .filter((row) => isDay(row, day) && toMinutes(row.open) > minutes)
     .map(({ open }) => open)
     .sort()[0];
   return { state: 'closed', next: laterToday };
@@ -51,8 +50,8 @@ export function openStatus(openingHours, now = new Date()) {
 export function todaysHours(openingHours, now = new Date()) {
   if (!openingHours?.length) return null;
   const { day } = yangonNow(now);
-  const today = openingHours.find(({ days }) => includesDay(days, day));
-  return today ? `${today.open}–${today.close}` : null;
+  const today = openingHours.filter((row) => isDay(row, day));
+  return today.length ? today.map(({ open, close }) => `${open}–${close}`).join(', ') : null;
 }
 
 /**
@@ -64,7 +63,7 @@ export function weekHours(openingHours, now = new Date()) {
   const order = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
   const today = DAYS[yangonNow(now).day];
   return order.map((day) => {
-    const ranges = openingHours.filter(({ days }) => includesDay(days, DAYS.indexOf(day)));
+    const ranges = openingHours.filter((row) => isDay(row, DAYS.indexOf(day)));
     return {
       day,
       today: day === today,

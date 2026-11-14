@@ -19,7 +19,7 @@ owners, posts, deals and tickets, home page), then phase 3 (admin, reports, mess
   401 / 403 / 404 / 409 and your message as-is for 422.
 - **Language:** the interface is English by default with a Burmese switch (frontend only, saved in
   the browser). Data is shown exactly as stored — place names, descriptions and reviews can be in
-  either language. Category names are translated by the frontend from the category `icon` key.
+  either language. Category names come from `categories.name_en` / `name_my`.
 
 ## Backend tasks
 
@@ -38,32 +38,49 @@ cookie works. Every POST / PUT / DELETE sends the CSRF token from `session.php` 
 
 ## Database
 
-The team's own schema (dbdiagram, 13 tables): `users`, `categories`, `places`, `place_images`,
-`operating_hours`, `reviews`, `favourites`, `history`, `promotions`, `user_redeems`, `place_posts`,
-`messages`, `audit_logs`. The frontend uses them like this:
+The team's schema (dbdiagram, 15 tables, updated 2026-11-14): `users`, `categories`, `places`,
+`place_photos`, `reviews`, `favorites`, `posts`, `tickets`, `owner_upgrades`, `messages`, `blocks`,
+`notifications`, `reports`, `search_history`, `audit_log`. The frontend uses them like this:
 
 | Frontend | Table |
 |---|---|
-| Places, the map, search, place card / page | `places` + `categories` + `operating_hours` + `place_images`; rating from `reviews` |
+| Places, the map, search, place card / page | `places` + `categories` + `place_photos`; rating from `reviews` |
+| Opening hours | `places.open_hours` — JSON text, format below |
 | Category filter, business form | `categories` — the **7 groups** below |
-| Log in / register / session | `users` (`password_hash`, `role` = `user` or `admin`) |
-| Reviews | `reviews` (`comment` is the review text) |
-| Save button, saved places | `favourites` |
-| "Add your business" request | suggestion: a `places` row with `owner_id` = the user and `status` = `pending` / `approved` / `rejected` (+ `operating_hours`, the photo in `place_images`) — no new table needed |
-| Posts, deals, tickets, admin (phases 2–3) | `place_posts`, `promotions`, `audit_logs`, … |
-| No longer used | `history` — check-ins were dropped by the scope document |
+| Log in / register / session | `users` (`password_hash`, `role` = `user` or `admin`, `status` = `active` or `banned`) |
+| Reviews | `reviews` (`comment` is the review text, `owner_reply` the shop's answer, `updated_at` set on edit) |
+| Save button, saved places | `favorites` |
+| "Add your business" request | a `places` row with `owner_id` = the user, `status` = `pending` / `approved` / `rejected`, `open_hours` and the photo in `storefront_photo` |
+| Phase 2: posts, deals, tickets | `posts` (`type`, `discount_text`, `ticket_limit`, `expires_at`, `is_pinned`), `tickets` (`ticket_code`, `status`, `used_at`) |
+| Phase 2: owner payment | `owner_upgrades` (`months`, `amount`, payment method / reference / proof, `status`, `starts_at`, `expires_at`, reviewed by an admin) |
+| Phase 3 | `messages`, `blocks`, `notifications`, `reports`, `audit_log` |
+| Later: recent searches on the map | `search_history` |
 
-**Categories** (`categories` rows; `icon` is the key the frontend uses for colour and translation):
+Please also add a **unique key on `reviews (user_id, place_id)`** — one review per user per place
+(not visible in the diagram).
 
-| id | name | icon |
-|---|---|---|
-| 1 | Food & drink | `food` |
-| 2 | Stay | `stay` |
-| 3 | Places to visit | `visit` |
-| 4 | Shopping | `shop` |
-| 5 | Health | `health` |
-| 6 | Beauty & wellness | `beauty` |
-| 7 | Other | `other` |
+**Categories** (`categories` rows; `group_name` is the key the frontend uses for the group's colour):
+
+| id | name_en | name_my | group_name |
+|---|---|---|---|
+| 1 | Food & drink | စားသောက်ဆိုင် | `food` |
+| 2 | Stay | တည်းခိုရန် | `stay` |
+| 3 | Places to visit | လည်ပတ်စရာ | `visit` |
+| 4 | Shopping | စျေးဝယ်ရန် | `shop` |
+| 5 | Health | ကျန်းမာရေး | `health` |
+| 6 | Beauty & wellness | အလှအပ | `beauty` |
+| 7 | Other | အခြား | `other` |
+
+**Opening hours** (`places.open_hours`, TEXT): a JSON array with one row per open day, exactly
+what the business form sends and what `places.php` returns as `openingHours`:
+
+```json
+[{ "day": "mon", "open": "06:00", "close": "11:00" }, { "day": "mon", "open": "17:00", "close": "22:00" },
+ { "day": "sat", "open": "20:00", "close": "02:00" }]
+```
+
+`day` is `mon`…`sun`; times are `HH:MM`. A day can have two rows (a lunch break). A day with no row
+is closed. A `close` before `open` runs past midnight. `NULL` or `[]` means the hours are not known.
 
 ## Roles
 
@@ -80,7 +97,7 @@ The team's own schema (dbdiagram, 13 tables): `users`, `categories`, `places`, `
 |---|---|---|
 | Landing | `index.html` | done (v2): 10-section scroll story — static, no backend data |
 | Explore map | `explore.html` | done: pastel map, place bubbles (dot = group, ring = open / closed), **7-group filter**, search, place card, routes, YBS stops |
-| Place detail | `place.html?id=<id>` | done: map hero, about, opening hours, address, YBS lines, facilities, **Call**, directions, save, reviews (write, **edit / delete your own**) |
+| Place detail | `place.html?id=<id>` | done: map hero, about, opening hours, address, **Call**, directions, save, reviews (write, **edit / delete your own**, owner's reply shown) |
 | Login / register | `login.html` | done: log in, create account, validation, `?next=` return |
 | My account | `account.html` | done: saved places, my reviews, **my business** (request status or "Add your business"). Tickets come in phase 2 |
 | Add your business | `business.html` | done: request form (name, group, description, phone, hours per day, map pin, shop-front photo) → "Waiting for review" |
@@ -91,7 +108,8 @@ The team's own schema (dbdiagram, 13 tables): `users`, `categories`, `places`, `
 
 ### `GET /api/categories.php` → `Category[]`
 
-`[{ id, name, icon }]` — the 7 rows above. Used by the explore filter and the business form.
+`[{ id, name, nameMy, group }]` — the 7 rows above (`name_en`, `name_my`, `group_name`). Used by the
+explore filter and the business form.
 
 ### `GET /api/places.php` → `Place[]` · `GET /api/places.php?id=1` → `Place`
 
@@ -103,16 +121,15 @@ data: [src/data/places.js](src/data/places.js) + [src/data/categories.js](src/da
 |---|---|---|
 | `id` | int | `places.id` (also the URL: `place.html?id=1`) |
 | `name` | string | `places.name` |
-| `category` | `{ id, name, icon }` or `null` | join `categories` on `places.category_id` |
+| `category` | `{ id, name, nameMy, group }` or `null` | join `categories` on `places.category_id` |
 | `ownerId` | int or `null` | `places.owner_id` (`null` for places the admin manages, e.g. pagodas) |
 | `address` | string | `places.address` |
 | `description` | string or `null` | `places.description` |
 | `phone` | string or `null` | `places.phone` — the place page shows a **Call** button when set |
-| `location` | `{ lat, lng }` (numbers) | `places.latitude`, `places.longitude` |
-| `ybsLines` | string[] | `places.ybs_lines`, comma-separated text → array (`[]` when empty) |
-| `facilities` | string[] | `places.facilities`, comma-separated text → array |
-| `openingHours` | `[{ days, open, close }]` | `operating_hours` rows grouped: days with the same times become a range (`mon-fri`), a single day stays `mon`; times `HH:MM`; a `close` before `open` runs past midnight. **No rows → `[]`** (hours unknown) |
-| `photos` | `[{ url }]` | `place_images.image_url` (real photos only) |
+| `location` | `{ lat, lng }` (numbers, not strings) | `places.lat`, `places.lng` |
+| `openingHours` | `[{ day, open, close }]` | `json_decode(places.open_hours)` — format above; `NULL` → `[]` (hours unknown) |
+| `coverPhoto` | string or `null` | `places.cover_photo` (real photo, set by the owner or admin) |
+| `photos` | `[{ url }]` | `place_photos.url` (real photos only) |
 | `rating` | `{ average, count }` | `AVG(rating)` rounded to 1 decimal and `COUNT(*)` from `reviews` |
 
 Search and the category filter run in the browser over this list.
@@ -128,7 +145,7 @@ logged-in user: return `401 { "error": "Login required" }` otherwise — the pag
 |---|---|---|
 | `getSession()` | `GET /api/session.php` | → `{ user: { id, name, role: 'user' \| 'admin' } \| null, csrfToken }` |
 | `register(…)` | `POST /api/register.php` `{ name, email, password }` | → `201 { user }` · 409 email taken · 422 invalid |
-| `login(…)` | `POST /api/login.php` `{ email, password }` | → `{ user }` · 401 wrong email or password |
+| `login(…)` | `POST /api/login.php` `{ email, password }` | → `{ user }` · 401 wrong email or password · 403 `users.status` = `banned` |
 | `logout()` | `POST /api/logout.php` | → `{ user: null }` |
 | `getReviews(placeId)` | `GET /api/reviews.php?place_id=1` | → `Review[]`, newest first |
 | `addReview(placeId, { rating, text })` | `POST /api/reviews.php` `{ placeId, rating, text }` | → `201 Review` · 409 already reviewed · **403 the user owns this place** |
@@ -141,17 +158,19 @@ logged-in user: return `401 { "error": "Login required" }` otherwise — the pag
 | `submitBusinessRequest(fields)` | `POST /api/business-requests.php` (multipart) | → `201 BusinessRequest` · 409 already has a business or a pending request · 422 invalid |
 | `getMyBusinessRequest()` | `GET /api/my-business-request.php` | → `BusinessRequest \| null` |
 
-**Review shape:** `{ id, placeId, user: { id, name }, rating: 1–5, text, createdAt, updatedAt? }`
-— `text` is `reviews.comment`, the user's own words (max 600 chars; escape it when you output
-HTML). Mock data: [src/data/reviews.js](src/data/reviews.js). One review and one save per user
-per place.
+**Review shape:** `{ id, placeId, user: { id, name }, rating: 1–5, text, createdAt, updatedAt, ownerReply }`
+— `text` is `reviews.comment`, `updatedAt` is `reviews.updated_at` (`null` if never edited),
+`ownerReply` is `reviews.owner_reply` (`null` until the owner answers; owners write it in phase 2).
+`text` is the user's own words (max 600 chars; escape it when you output HTML). Mock data:
+[src/data/reviews.js](src/data/reviews.js). One review and one save per user per place.
 
 **Business request** — multipart fields: `name` (2–100), `categoryId` (1–7), `description`
 (10–600), `phone`, `openingHours` (JSON text: `[{ "day": "mon", "open": "06:00", "close": "11:00" }]`,
 open days only), `lat`, `lng` (inside Yangon), `photo` (JPEG / PNG / WebP, max 5 MB — check the
 real type with `finfo`, store under a random file name). Response / `BusinessRequest` =
 `{ id, status: 'pending' | 'approved' | 'rejected', name, categoryId, description, phone,
-openingHours, lat, lng, photoUrl, createdAt }`. One business per user; a rejected user may send a
+openingHours, lat, lng, photoUrl, createdAt }` (`photoUrl` = `places.storefront_photo`; the request is
+the `places` row itself, see the Database table). One business per user; a rejected user may send a
 new request. No licence or documents — only the shop-front photo (privacy, scope doc §4).
 
 ### Routes (frontend only; optional PHP proxy later)

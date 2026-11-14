@@ -662,3 +662,15 @@
 @media (prefers-reduced-motion: reduce) {
   .place-hero__eyebrow, .place-hero__title, .place-hero__chips { opacity: 1; translate: none; }
 }
+
+/* The shop owner's answer under a review (reviews.owner_reply). */
+.review__reply {
+  margin: var(--space-3) 0 0 var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius-sm, 0.5rem) var(--radius-sm, 0.5rem) 0;
+  background: rgb(232 176 74 / 0.08);
+  font-size: var(--text-sm);
+}
+.review__reply b { color: var(--gold-deep); font-size: var(--text-xs); }
+.review__reply p { margin: 0.2em 0 0; }

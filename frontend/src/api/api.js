@@ -40,7 +40,7 @@ export async function getPlace(id) {
 
 /**
  * The seven category groups, for filters and the business form.
- * GET /api/categories.php → [{ id, name, icon }]   (icon: food | stay | visit | shop | health | beauty | other)
+ * GET /api/categories.php → [{ id, name, nameMy, group }]   (group: food | stay | visit | shop | health | beauty | other)
  */
 export function getCategories() {
   return USE_MOCK ? mockResponse(categories) : request('categories.php');
@@ -118,7 +118,7 @@ export function logout() {
 // ---- My account (account.html) ----
 
 /**
- * The logged-in user's saved places (favourites), newest first. 401 when not logged in.
+ * The logged-in user's saved places (favorites), newest first. 401 when not logged in.
  * GET /api/my-saves.php → [{ place: PlaceSummary }]   PlaceSummary = { id, name, address, category }
  */
 export async function getMySaves() {
@@ -180,7 +180,7 @@ export async function addReview(placeId, { rating, text }) {
   if (readDemo('reviews', []).some((r) => r.placeId === placeId && r.user.id === user.id)) {
     return mockError('You already reviewed this place', 409);
   }
-  const review = { id: Date.now(), placeId, user: { id: user.id, name: user.name }, rating, text, createdAt: new Date().toISOString() };
+  const review = { id: Date.now(), placeId, user: { id: user.id, name: user.name }, rating, text, createdAt: new Date().toISOString(), updatedAt: null, ownerReply: null };
   writeDemo('reviews', [review, ...readDemo('reviews', [])]);
   return mockResponse(review);
 }

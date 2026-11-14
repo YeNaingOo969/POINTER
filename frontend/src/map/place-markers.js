@@ -16,7 +16,7 @@ function markerElement(place) {
   el.className = isFeatured(place) ? 'place-pin is-featured' : 'place-pin';
   el.dataset.id = place.id;
   el.dataset.open = openStatus(place.openingHours).state;
-  el.dataset.cat = place.category?.icon ?? 'other';
+  el.dataset.cat = place.category?.group ?? 'other';
   el.innerHTML = `
     <span class="place-pin__bubble">
       <span class="place-pin__dot" aria-hidden="true"></span>
@@ -80,10 +80,10 @@ export function addPlaceMarkers(map, places, { onSelect } = {}) {
     select(id) {
       entries.forEach(({ el, place }) => el.classList.toggle('is-selected', place.id === id));
     },
-    /** Show only one category group (its `icon` key, e.g. 'food'); null shows every place. */
-    filter(icon) {
+    /** Show only one category group (its `group` key, e.g. 'food'); null shows every place. */
+    filter(group) {
       entries.forEach(({ el, place }, i) => {
-        const show = !icon || (place.category?.icon ?? 'other') === icon;
+        const show = !group || (place.category?.group ?? 'other') === group;
         clearTimeout(el.hideTimer);
         el.style.setProperty('--i', String(i % 12));
         if (show) {

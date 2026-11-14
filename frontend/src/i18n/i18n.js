@@ -27,12 +27,10 @@ export function t(key) {
   return find(DICTIONARIES[currentLang]) ?? find(DICTIONARIES[DEFAULT_LANG]) ?? key;
 }
 
-/** A category group's name in the current language (the database only stores English). */
+/** A category's name in the current language (categories.name_en / name_my). */
 export function categoryName(category) {
   if (!category) return '';
-  const key = `cat.${category.icon}`;
-  const name = t(key);
-  return name === key ? category.name : name;
+  return currentLang === 'my' && category.nameMy ? category.nameMy : category.name;
 }
 
 export const getLang = () => currentLang;

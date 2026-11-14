@@ -9,6 +9,8 @@
 //        --similarity <n>  chromakey tolerance 0.01–0.4 (default 0.15; raise if green remains)
 //        --force
 // Generate the source on a flat pure green background and avoid green clothes/props — they get keyed out.
+// Objects that must stay green (leaves) can be generated on pure blue (#0000FF) instead; the screen colour
+// is read from the corners, so both work without a flag.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -29,7 +31,7 @@ const FPS = opt('fps', 24);
 const SIMILARITY = opt('similarity', 0.15);
 const PINGPONG = hasFlag('pingpong');
 
-/** Average colour of the four corners — the screen colour the model actually painted. */
+/** Average colour of the four corners — the screen colour the model actually painted (green or blue). */
 async function keyColour(imageFile) {
   const { data, info } = await sharp(imageFile).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const s = 8;
@@ -37,15 +39,18 @@ async function keyColour(imageFile) {
   const sum = [0, 0, 0];
   for (const [x, y] of pts) for (let c = 0; c < 3; c++) sum[c] += data[(y * info.width + x) * 3 + c];
   const [r, g, b] = sum.map((v) => Math.round(v / pts.length));
-  if (!(g > r + 60 && g > b + 60)) throw new Error(`ထောင့်တွေက အစိမ်းမဟုတ်ပါ (rgb ${r},${g},${b}) — green screen နောက်ခံ လိုပါတယ်`);
-  return `0x${[r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')}`;
+  const screen = g > r + 60 && g > b + 60 ? 'green' : b > r + 60 && b > g + 60 ? 'blue' : null;
+  if (!screen) throw new Error(`ထောင့်တွေက အစိမ်း/အပြာ မဟုတ်ပါ (rgb ${r},${g},${b}) — green (သို့) blue screen နောက်ခံ လိုပါတယ်`);
+  return { screen, hex: `0x${[r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')}` };
 }
 
-// chromakey makes the screen transparent; geq then clamps green to max(red, blue) — the
-// classic spill limiter. ffmpeg's despill filter shifted skin to red or jeans to purple.
-const keyFilter = (colour) =>
-  `format=rgba,chromakey=${colour}:${SIMILARITY}:0.05,` +
-  `geq=r='r(X,Y)':g='min(g(X,Y),max(r(X,Y),b(X,Y)))':b='b(X,Y)':a='alpha(X,Y)'`;
+// chromakey makes the screen transparent; geq then clamps the screen channel to the max of the
+// other two — the classic spill limiter. ffmpeg's despill filter shifted skin to red or jeans to purple.
+const DESPILL = {
+  green: `geq=r='r(X,Y)':g='min(g(X,Y),max(r(X,Y),b(X,Y)))':b='b(X,Y)':a='alpha(X,Y)'`,
+  blue: `geq=r='r(X,Y)':g='g(X,Y)':b='min(b(X,Y),max(r(X,Y),g(X,Y)))':a='alpha(X,Y)'`,
+};
+const keyFilter = ({ screen, hex }) => `format=rgba,chromakey=${hex}:${SIMILARITY}:0.05,${DESPILL[screen]}`;
 const scale = `scale='min(${WIDTH},iw)':-2:flags=lanczos`;
 
 async function keyImage(file, outDir, name) {

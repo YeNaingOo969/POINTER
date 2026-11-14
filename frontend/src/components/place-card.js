@@ -1,6 +1,6 @@
 // Place card: the quick summary shown when a place is picked on the map or in search.
 // Desktop: a floating card at the bottom left. Phone: a bottom sheet (see place-card.css).
-// Shows only what the database stores: name, category, hours, rating, address, YBS lines, facilities.
+// Shows only what the database stores: name, category, hours, rating, address.
 import { t, categoryName } from '../i18n/i18n.js';
 import { todaysHours } from '../lib/opening-hours.js';
 import { googleMapsUrl } from '../lib/format.js';
@@ -22,7 +22,7 @@ export function createPlaceCard(root, { onClose } = {}) {
 
     renderChips($('.place-card__chips'), place, 'place-card__chip');
 
-    // Facts: hours today, address, bus lines, facilities (each only when known).
+    // Facts: hours today and address (each only when known).
     const facts = $('.place-card__facts');
     facts.replaceChildren();
     const fact = (label, value) => {
@@ -35,8 +35,6 @@ export function createPlaceCard(root, { onClose } = {}) {
     };
     fact(t('card.hoursToday'), todaysHours(place.openingHours) ?? (place.openingHours?.length ? t('card.closedToday') : null));
     fact(t('card.address'), place.address);
-    fact(t('card.ybsLines'), place.ybsLines?.join(', '));
-    fact(t('card.facilities'), place.facilities?.join(' · '));
 
     $('.place-card__directions').href = googleMapsUrl(place.location);
     $('.place-card__details').href = `/place.html?id=${place.id}`;

@@ -69,9 +69,9 @@ async function start() {
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
     addBusStops(map);
     const routeLayer = addRouteLayer(map);
-    createCategoryFilter(document.querySelector('.cat-filter'), categories, (icon) => {
-      markers.filter(icon);
-      if (card.place && icon && card.place.category?.icon !== icon) closePlace();
+    createCategoryFilter(document.querySelector('.cat-filter'), categories, (group) => {
+      markers.filter(group);
+      if (card.place && group && card.place.category?.group !== group) closePlace();
     });
     const routePanel = createRoutePanel(document.querySelector('.route-panel'), places, {
       onRoute: (route) => routeLayer.show(route, cardPadding()),
@@ -88,13 +88,13 @@ async function start() {
   }
 }
 
-/** "All" + one chip per category group; `onChange(icon | null)`. */
+/** "All" + one chip per category group; `onChange(group | null)`. */
 function createCategoryFilter(nav, categories, onChange) {
   for (const c of categories) {
     const chip = document.createElement('button');
     chip.type = 'button';
     chip.className = 'cat-filter__chip';
-    chip.dataset.cat = c.icon;
+    chip.dataset.cat = c.group;
     chip.setAttribute('aria-pressed', 'false');
     chip.textContent = categoryName(c);
     nav.append(chip);
@@ -102,9 +102,9 @@ function createCategoryFilter(nav, categories, onChange) {
   nav.addEventListener('click', (e) => {
     const chip = e.target.closest('.cat-filter__chip');
     if (!chip) return;
-    const icon = chip.getAttribute('aria-pressed') === 'true' && chip.dataset.cat ? '' : chip.dataset.cat;
-    nav.querySelectorAll('.cat-filter__chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.cat === icon)));
-    onChange(icon || null);
+    const group = chip.getAttribute('aria-pressed') === 'true' && chip.dataset.cat ? '' : chip.dataset.cat;
+    nav.querySelectorAll('.cat-filter__chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.cat === group)));
+    onChange(group || null);
   });
 }
 
