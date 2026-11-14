@@ -1,0 +1,5802 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-14T04:58:33Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 4363654,
+  "bounds": {
+    "minlat": 16.8199442,
+    "minlon": 96.1791093,
+    "maxlat": 16.8201895,
+    "maxlon": 96.1799086
+  },
+  "geometry": [
+    { "lat": 16.8201895, "lon": 96.1799086 },
+    { "lat": 16.8199442, "lon": 96.1791093 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "လေးထောင့်ကန်လမ်း",
+    "name:en": "Lay Daungkan Road",
+    "name:my": "လေးထောင့်ကန်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 4367175,
+  "bounds": {
+    "minlat": 16.8699338,
+    "minlon": 96.1566864,
+    "maxlat": 16.8706714,
+    "maxlon": 96.1575444
+  },
+  "geometry": [
+    { "lat": 16.8706714, "lon": 96.1575243 },
+    { "lat": 16.8705280, "lon": 96.1575444 },
+    { "lat": 16.8704158, "lon": 96.1575382 },
+    { "lat": 16.8703103, "lon": 96.1575063 },
+    { "lat": 16.8702210, "lon": 96.1574494 },
+    { "lat": 16.8701280, "lon": 96.1573592 },
+    { "lat": 16.8701016, "lon": 96.1573144 },
+    { "lat": 16.8700836, "lon": 96.1572840 },
+    { "lat": 16.8700569, "lon": 96.1572387 },
+    { "lat": 16.8699338, "lon": 96.1566864 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "အုတ်ပုံဆိပ်လမ်း",
+    "name:en": "Oak Pone Seik Road",
+    "name:my": "အုတ်ပုံဆိပ်လမ်း",
+    "oneway": "no",
+    "parking:lane:both": "no_parking"
+  }
+},
+{
+  "type": "way",
+  "id": 4367176,
+  "bounds": {
+    "minlat": 16.8706714,
+    "minlon": 96.1572112,
+    "maxlat": 16.8719334,
+    "maxlon": 96.1575243
+  },
+  "geometry": [
+    { "lat": 16.8719334, "lon": 96.1572112 },
+    { "lat": 16.8714176, "lon": 96.1573430 },
+    { "lat": 16.8710176, "lon": 96.1574417 },
+    { "lat": 16.8707889, "lon": 96.1575053 },
+    { "lat": 16.8706714, "lon": 96.1575243 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "အုတ်ပုံဆိပ်လမ်း",
+    "name:en": "Oak Pone Seik Road",
+    "name:my": "အုတ်ပုံဆိပ်လမ်း",
+    "oneway": "no",
+    "parking:lane:both": "no_parking"
+  }
+},
+{
+  "type": "way",
+  "id": 4368433,
+  "bounds": {
+    "minlat": 16.8885921,
+    "minlon": 96.1520369,
+    "maxlat": 16.8888133,
+    "maxlon": 96.1531065
+  },
+  "geometry": [
+    { "lat": 16.8888133, "lon": 96.1531065 },
+    { "lat": 16.8885921, "lon": 96.1520369 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဥက္ကလာလမ်း",
+    "name:en": "Okkala Road",
+    "name:my": "ဥက္ကလာလမ်း",
+    "parking:both": "no",
+    "parking:both:restriction": "no_parking"
+  }
+},
+{
+  "type": "way",
+  "id": 24316338,
+  "bounds": {
+    "minlat": 16.8782571,
+    "minlon": 96.0790830,
+    "maxlat": 16.8831788,
+    "maxlon": 96.0935201
+  },
+  "geometry": [
+    { "lat": 16.8831788, "lon": 96.0935201 },
+    { "lat": 16.8824590, "lon": 96.0921751 },
+    { "lat": 16.8822383, "lon": 96.0917540 },
+    { "lat": 16.8820381, "lon": 96.0913115 },
+    { "lat": 16.8817275, "lon": 96.0905551 },
+    { "lat": 16.8814756, "lon": 96.0899060 },
+    { "lat": 16.8798166, "lon": 96.0856305 },
+    { "lat": 16.8790825, "lon": 96.0838013 },
+    { "lat": 16.8788926, "lon": 96.0832997 },
+    { "lat": 16.8787386, "lon": 96.0827740 },
+    { "lat": 16.8786321, "lon": 96.0821169 },
+    { "lat": 16.8782571, "lon": 96.0790830 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "လှိုင်မြစ်လမ်း",
+    "name:en": "Hlaing River Road",
+    "name:my": "လှိုင်မြစ်လမ်း",
+    "oneway": "no",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 24334900,
+  "bounds": {
+    "minlat": 16.9407193,
+    "minlon": 96.1286940,
+    "maxlat": 16.9412609,
+    "maxlon": 96.1288171
+  },
+  "geometry": [
+    { "lat": 16.9412609, "lon": 96.1286940 },
+    { "lat": 16.9407193, "lon": 96.1288171 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "အမှတ် (၁) ရန်ကုန်-မန္တလေး အဝေးပြေးလမ်းမကြီး",
+    "name:en": "No 1 Yangon - Mandalay Highway",
+    "name:my": "အမှတ် (၁) ရန်ကုန်-မန္တလေး အဝေးပြေးလမ်းမကြီး",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 24823191,
+  "bounds": {
+    "minlat": 16.8486619,
+    "minlon": 96.2095814,
+    "maxlat": 16.8506978,
+    "maxlon": 96.2103732
+  },
+  "geometry": [
+    { "lat": 16.8506978, "lon": 96.2103732 },
+    { "lat": 16.8486619, "lon": 96.2095814 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "အမှတ် ၂ လမ်း",
+    "name:en": "No.2 Main Road",
+    "name:my": "အမှတ် ၂ လမ်း",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 24940017,
+  "bounds": {
+    "minlat": 16.7817442,
+    "minlon": 96.2286949,
+    "maxlat": 16.7974992,
+    "maxlon": 96.2384575
+  },
+  "geometry": [
+    { "lat": 16.7974992, "lon": 96.2286949 },
+    { "lat": 16.7817442, "lon": 96.2384575 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "foot": "yes",
+    "highway": "primary",
+    "horse": "yes",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "သံလျှင် တံတား",
+    "name:en": "Thanlyin Bridge",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 35894614,
+  "bounds": {
+    "minlat": 16.7793700,
+    "minlon": 96.1618836,
+    "maxlat": 16.7818637,
+    "maxlon": 96.1623687
+  },
+  "geometry": [
+    { "lat": 16.7818637, "lon": 96.1623687 },
+    { "lat": 16.7816844, "lon": 96.1623606 },
+    { "lat": 16.7813898, "lon": 96.1623443 },
+    { "lat": 16.7810692, "lon": 96.1623249 },
+    { "lat": 16.7809238, "lon": 96.1623115 },
+    { "lat": 16.7808141, "lon": 96.1622929 },
+    { "lat": 16.7806956, "lon": 96.1622646 },
+    { "lat": 16.7805613, "lon": 96.1622237 },
+    { "lat": 16.7800918, "lon": 96.1620311 },
+    { "lat": 16.7798819, "lon": 96.1619601 },
+    { "lat": 16.7797072, "lon": 96.1619178 },
+    { "lat": 16.7795123, "lon": 96.1618934 },
+    { "lat": 16.7793700, "lon": 96.1618836 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "cycleway": "lane",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ပန်းဆိုးတန်း ကုန်းကျော်တံတား",
+    "name:en": "Pansodan Bridge",
+    "name:my": "ပန်းဆိုးတန်း ကုန်းကျော်တံတား",
+    "parking:both": "no",
+    "parking:both:restriction": "no_parking",
+    "sidewalk:left": "yes",
+    "sidewalk:right": "separate"
+  }
+},
+{
+  "type": "way",
+  "id": 35894642,
+  "bounds": {
+    "minlat": 16.7808277,
+    "minlon": 96.1591636,
+    "maxlat": 16.7812915,
+    "maxlon": 96.1591753
+  },
+  "geometry": [
+    { "lat": 16.7808277, "lon": 96.1591636 },
+    { "lat": 16.7812915, "lon": 96.1591753 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "name": "ဆူးလေဘုရားလမ်း",
+    "name:en": "Sule Pagoda Road",
+    "name:my": "ဆူးလေဘုရားလမ်း",
+    "oneway": "yes",
+    "sidewalk:right": "yes",
+    "surface": "asphalt",
+    "wikipedia": "my:ဆူးလေဘုရားလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 35894669,
+  "bounds": {
+    "minlat": 16.8101804,
+    "minlon": 96.1922330,
+    "maxlat": 16.8117467,
+    "maxlon": 96.1922493
+  },
+  "geometry": [
+    { "lat": 16.8117467, "lon": 96.1922493 },
+    { "lat": 16.8101804, "lon": 96.1922330 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 35894756,
+  "bounds": {
+    "minlat": 16.8063415,
+    "minlon": 96.1822775,
+    "maxlat": 16.8063968,
+    "maxlon": 96.1825335
+  },
+  "geometry": [
+    { "lat": 16.8063968, "lon": 96.1822775 },
+    { "lat": 16.8063415, "lon": 96.1825335 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "သမိန်ဗရမ်းလမ်း",
+    "name:en": "Thamein Ba Yan Street",
+    "name:my": "သမိန်ဗရမ်းလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 35918915,
+  "bounds": {
+    "minlat": 16.7866553,
+    "minlon": 96.1340599,
+    "maxlat": 16.7867498,
+    "maxlon": 96.1340711
+  },
+  "geometry": [
+    { "lat": 16.7867498, "lon": 96.1340711 },
+    { "lat": 16.7866959, "lon": 96.1340647 },
+    { "lat": 16.7866553, "lon": 96.1340599 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဗဟိုလမ်း",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 35918956,
+  "bounds": {
+    "minlat": 16.7902397,
+    "minlon": 96.1311015,
+    "maxlat": 16.7902933,
+    "maxlon": 96.1312719
+  },
+  "geometry": [
+    { "lat": 16.7902933, "lon": 96.1312719 },
+    { "lat": 16.7902397, "lon": 96.1311015 }
+  ],
+  "tags": {
+    "alt_name:en": "Helpin Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "loc_name": "အလုံလမ်း",
+    "name": "အလုံလမ်း",
+    "name:en": "Ahlone Road",
+    "name:my": "အလုံလမ်း",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 35922489,
+  "bounds": {
+    "minlat": 16.8629830,
+    "minlon": 96.1790711,
+    "maxlat": 16.8643104,
+    "maxlon": 96.1804524
+  },
+  "geometry": [
+    { "lat": 16.8629830, "lon": 96.1790711 },
+    { "lat": 16.8643104, "lon": 96.1804524 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:name": "ဘေလီတံတား",
+    "bridge:name:en": "Bailey Bridge",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ပင်လုံလမ်း",
+    "name:en": "Pinlon Road",
+    "name:my": "ပင်လုံလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 35933069,
+  "bounds": {
+    "minlat": 16.9233250,
+    "minlon": 96.0707380,
+    "maxlat": 16.9284081,
+    "maxlon": 96.0792599
+  },
+  "geometry": [
+    { "lat": 16.9233250, "lon": 96.0707380 },
+    { "lat": 16.9284081, "lon": 96.0792599 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 35993793,
+  "bounds": {
+    "minlat": 16.8888378,
+    "minlon": 96.1609461,
+    "maxlat": 16.8901000,
+    "maxlon": 96.1620616
+  },
+  "geometry": [
+    { "lat": 16.8888378, "lon": 96.1620616 },
+    { "lat": 16.8901000, "lon": 96.1609461 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "30",
+    "name": "စက်မှုလမ်း",
+    "name:en": "Industrial Road",
+    "name:my": "စက်မှုလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking"
+  }
+},
+{
+  "type": "way",
+  "id": 91246188,
+  "bounds": {
+    "minlat": 16.7842316,
+    "minlon": 96.1429564,
+    "maxlat": 16.7845069,
+    "maxlon": 96.1430371
+  },
+  "geometry": [
+    { "lat": 16.7845069, "lon": 96.1429564 },
+    { "lat": 16.7843984, "lon": 96.1429889 },
+    { "lat": 16.7842316, "lon": 96.1430371 }
+  ],
+  "tags": {
+    "alt_name:en": "Prome Road",
+    "bridge": "yes",
+    "highway": "trunk",
+    "lanes": "6",
+    "layer": "1",
+    "name": "ပြည်လမ်း",
+    "name:en": "Pyay Road",
+    "name:my": "ပြည်လမ်း",
+    "name:th": "ถนนปเย"
+  }
+},
+{
+  "type": "way",
+  "id": 91246189,
+  "bounds": {
+    "minlat": 16.7855361,
+    "minlon": 96.1380461,
+    "maxlat": 16.7857563,
+    "maxlon": 96.1381160
+  },
+  "geometry": [
+    { "lat": 16.7855361, "lon": 96.1381160 },
+    { "lat": 16.7857563, "lon": 96.1380461 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 105886158,
+  "bounds": {
+    "minlat": 16.7475908,
+    "minlon": 96.1043383,
+    "maxlat": 16.7476835,
+    "maxlon": 96.1049479
+  },
+  "geometry": [
+    { "lat": 16.7475908, "lon": 96.1043383 },
+    { "lat": 16.7476835, "lon": 96.1049479 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "source": "Yahoo hires"
+  }
+},
+{
+  "type": "way",
+  "id": 164199241,
+  "bounds": {
+    "minlat": 16.8781836,
+    "minlon": 96.1714477,
+    "maxlat": 16.8783171,
+    "maxlon": 96.1715236
+  },
+  "geometry": [
+    { "lat": 16.8781836, "lon": 96.1715236 },
+    { "lat": 16.8783171, "lon": 96.1714477 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဦးဝိစာရလမ်း",
+    "name:en": "U Wisara Road",
+    "name:my": "ဦးဝိစာရလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 164200082,
+  "bounds": {
+    "minlat": 16.8134154,
+    "minlon": 96.2154067,
+    "maxlat": 16.8162445,
+    "maxlon": 96.2164853
+  },
+  "geometry": [
+    { "lat": 16.8134154, "lon": 96.2164853 },
+    { "lat": 16.8162445, "lon": 96.2154067 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Kamarkyi Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 164201903,
+  "bounds": {
+    "minlat": 16.8424065,
+    "minlon": 96.2057242,
+    "maxlat": 16.8428123,
+    "maxlon": 96.2072115
+  },
+  "geometry": [
+    { "lat": 16.8424065, "lon": 96.2072115 },
+    { "lat": 16.8428123, "lon": 96.2057242 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "name": "လေးထောင့်ကန်လမ်း",
+    "name:en": "Lay Daungkan Road",
+    "name:my": "လေးထောင့်ကန်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 164201912,
+  "bounds": {
+    "minlat": 16.8422997,
+    "minlon": 96.2056833,
+    "maxlat": 16.8426984,
+    "maxlon": 96.2071887
+  },
+  "geometry": [
+    { "lat": 16.8426984, "lon": 96.2056833 },
+    { "lat": 16.8422997, "lon": 96.2071887 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "name": "လေးထောင့်ကန်လမ်း",
+    "name:en": "Lay Daungkan Road",
+    "name:my": "လေးထောင့်ကန်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 169939325,
+  "bounds": {
+    "minlat": 16.8202548,
+    "minlon": 96.1246459,
+    "maxlat": 16.8205948,
+    "maxlon": 96.1273241
+  },
+  "geometry": [
+    { "lat": 16.8205948, "lon": 96.1273241 },
+    { "lat": 16.8203992, "lon": 96.1263036 },
+    { "lat": 16.8202763, "lon": 96.1256905 },
+    { "lat": 16.8202548, "lon": 96.1254739 },
+    { "lat": 16.8202552, "lon": 96.1252702 },
+    { "lat": 16.8202960, "lon": 96.1250619 },
+    { "lat": 16.8203547, "lon": 96.1248720 },
+    { "lat": 16.8204785, "lon": 96.1246459 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "နာနတ်တော်လမ်း - Nar Nat Taw Road",
+    "name:en": "Nar Nat Taw Road",
+    "name:my": "နာနတ်တောလမ်း",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 180591583,
+  "bounds": {
+    "minlat": 16.7736029,
+    "minlon": 96.1792176,
+    "maxlat": 16.7740700,
+    "maxlon": 96.1810125
+  },
+  "geometry": [
+    { "lat": 16.7736257, "lon": 96.1792176 },
+    { "lat": 16.7736029, "lon": 96.1800882 },
+    { "lat": 16.7736364, "lon": 96.1803020 },
+    { "lat": 16.7737147, "lon": 96.1804731 },
+    { "lat": 16.7737944, "lon": 96.1806090 },
+    { "lat": 16.7740700, "lon": 96.1810125 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:structure": "cable-stayed",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "မဟာဗန္ဓုလလမ်း",
+    "name:en": "Maha Bandula Road",
+    "name:my": "မဟာဗန္ဓုလလမ်း",
+    "old_name:en": "Dalhousie Road",
+    "surface": "asphalt",
+    "wikipedia": "en:Maha Bandula Road"
+  }
+},
+{
+  "type": "way",
+  "id": 186842498,
+  "bounds": {
+    "minlat": 16.9225016,
+    "minlon": 96.1748545,
+    "maxlat": 16.9226420,
+    "maxlon": 96.1752181
+  },
+  "geometry": [
+    { "lat": 16.9226420, "lon": 96.1752181 },
+    { "lat": 16.9225016, "lon": 96.1748545 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ပုဂံလမ်း",
+    "name:en": "Bagan Road",
+    "name:my": "ပုဂံလမ်း",
+    "parking:lane:both": "no_parking",
+    "source": "Yahoo hires"
+  }
+},
+{
+  "type": "way",
+  "id": 200491605,
+  "bounds": {
+    "minlat": 16.8873114,
+    "minlon": 96.1531065,
+    "maxlat": 16.8888204,
+    "maxlon": 96.1541713
+  },
+  "geometry": [
+    { "lat": 16.8888133, "lon": 96.1531065 },
+    { "lat": 16.8888204, "lon": 96.1534253 },
+    { "lat": 16.8888164, "lon": 96.1535318 },
+    { "lat": 16.8888074, "lon": 96.1535990 },
+    { "lat": 16.8887882, "lon": 96.1536606 },
+    { "lat": 16.8887266, "lon": 96.1537947 },
+    { "lat": 16.8886803, "lon": 96.1538518 },
+    { "lat": 16.8886291, "lon": 96.1539020 },
+    { "lat": 16.8885648, "lon": 96.1539531 },
+    { "lat": 16.8885001, "lon": 96.1539999 },
+    { "lat": 16.8884077, "lon": 96.1540294 },
+    { "lat": 16.8880871, "lon": 96.1540765 },
+    { "lat": 16.8873114, "lon": 96.1541713 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary_link",
+    "lanes": "1",
+    "layer": "1",
+    "oneway": "yes",
+    "parking:both": "no",
+    "parking:both:restriction": "no_parking"
+  }
+},
+{
+  "type": "way",
+  "id": 211020154,
+  "bounds": {
+    "minlat": 16.7913492,
+    "minlon": 96.2862286,
+    "maxlat": 16.7918450,
+    "maxlon": 96.2865954
+  },
+  "geometry": [
+    { "lat": 16.7918450, "lon": 96.2865954 },
+    { "lat": 16.7913492, "lon": 96.2862286 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "source": "Bing",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 211021588,
+  "bounds": {
+    "minlat": 16.8141900,
+    "minlon": 96.2884532,
+    "maxlat": 16.8144088,
+    "maxlon": 96.2884902
+  },
+  "geometry": [
+    { "lat": 16.8144088, "lon": 96.2884532 },
+    { "lat": 16.8141900, "lon": 96.2884902 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 211021590,
+  "bounds": {
+    "minlat": 16.8181968,
+    "minlon": 96.2793267,
+    "maxlat": 16.8286147,
+    "maxlon": 96.2869663
+  },
+  "geometry": [
+    { "lat": 16.8181968, "lon": 96.2869663 },
+    { "lat": 16.8286147, "lon": 96.2793267 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "သန်လျင်တံတား အမှတ် ၂",
+    "name:en": "Thanlyin Bridge No. 2",
+    "name:my": "သန်လျင်တံတား အမှတ် ၂",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 211210565,
+  "bounds": {
+    "minlat": 16.8171334,
+    "minlon": 96.1879628,
+    "maxlat": 16.8175054,
+    "maxlon": 96.1884279
+  },
+  "geometry": [
+    { "lat": 16.8175054, "lon": 96.1879628 },
+    { "lat": 16.8171334, "lon": 96.1884279 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 211210576,
+  "bounds": {
+    "minlat": 16.8171815,
+    "minlon": 96.1880210,
+    "maxlat": 16.8175692,
+    "maxlon": 96.1884810
+  },
+  "geometry": [
+    { "lat": 16.8171815, "lon": 96.1884810 },
+    { "lat": 16.8175692, "lon": 96.1880210 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 221165644,
+  "bounds": {
+    "minlat": 16.8222271,
+    "minlon": 96.1315969,
+    "maxlat": 16.8232504,
+    "maxlon": 96.1318758
+  },
+  "geometry": [
+    { "lat": 16.8232504, "lon": 96.1315969 },
+    { "lat": 16.8222271, "lon": 96.1318758 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "trunk",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "Pyay Road",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 252569198,
+  "bounds": {
+    "minlat": 16.8580120,
+    "minlon": 96.1017326,
+    "maxlat": 16.8581063,
+    "maxlon": 96.1019349
+  },
+  "geometry": [
+    { "lat": 16.8580120, "lon": 96.1017326 },
+    { "lat": 16.8581063, "lon": 96.1019349 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "သမိုင်းဘူတာရုံလမ်း",
+    "name:en": "Thamaing Station Road",
+    "name:my": "သမိုင်းဘူတာရုံလမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 253295190,
+  "bounds": {
+    "minlat": 16.8587917,
+    "minlon": 96.1053917,
+    "maxlat": 16.8599950,
+    "maxlon": 96.1122762
+  },
+  "geometry": [
+    { "lat": 16.8587917, "lon": 96.1053917 },
+    { "lat": 16.8588892, "lon": 96.1059577 },
+    { "lat": 16.8590998, "lon": 96.1071019 },
+    { "lat": 16.8592241, "lon": 96.1079905 },
+    { "lat": 16.8593463, "lon": 96.1087015 },
+    { "lat": 16.8595490, "lon": 96.1098894 },
+    { "lat": 16.8597845, "lon": 96.1112122 },
+    { "lat": 16.8599950, "lon": 96.1122762 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "2",
+    "maxspeed": "40",
+    "name": "သမိုင်းဘူတာရုံဂုန်းကျော်တံတားလမ်း",
+    "name:en": "Thamaing Station Pass Over Bridge",
+    "name:my": "သမိုင်းဘူတာရုံဂုန်းကျော်တံတားလမ်း",
+    "oneway": "no",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 253301019,
+  "bounds": {
+    "minlat": 16.8577295,
+    "minlon": 96.1078874,
+    "maxlat": 16.8615672,
+    "maxlon": 96.1086908
+  },
+  "geometry": [
+    { "lat": 16.8577295, "lon": 96.1086165 },
+    { "lat": 16.8581952, "lon": 96.1086801 },
+    { "lat": 16.8583608, "lon": 96.1086908 },
+    { "lat": 16.8585623, "lon": 96.1086785 },
+    { "lat": 16.8587032, "lon": 96.1086467 },
+    { "lat": 16.8589160, "lon": 96.1085920 },
+    { "lat": 16.8591680, "lon": 96.1085257 },
+    { "lat": 16.8594736, "lon": 96.1084480 },
+    { "lat": 16.8598663, "lon": 96.1083301 },
+    { "lat": 16.8605671, "lon": 96.1081410 },
+    { "lat": 16.8615672, "lon": 96.1078874 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:name": "ဘုရင့်နောင်ကုန်းကျော်တံတား",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Pass Over Bridge",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 265794305,
+  "bounds": {
+    "minlat": 16.8092175,
+    "minlon": 96.1710162,
+    "maxlat": 16.8114878,
+    "maxlon": 96.1711656
+  },
+  "geometry": [
+    { "lat": 16.8114878, "lon": 96.1711197 },
+    { "lat": 16.8113359, "lon": 96.1711656 },
+    { "lat": 16.8112457, "lon": 96.1711594 },
+    { "lat": 16.8110810, "lon": 96.1711521 },
+    { "lat": 16.8108656, "lon": 96.1711382 },
+    { "lat": 16.8106703, "lon": 96.1711247 },
+    { "lat": 16.8101015, "lon": 96.1710710 },
+    { "lat": 16.8095878, "lon": 96.1710210 },
+    { "lat": 16.8094369, "lon": 96.1710162 },
+    { "lat": 16.8092759, "lon": 96.1710342 },
+    { "lat": 16.8092175, "lon": 96.1710378 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ဗညားဒလလမ်း(တံတား)",
+    "name:en": "Banyar Dala Road (bridge)",
+    "name:my": "ဗညားဒလလမ်း(တံတား)",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 265969033,
+  "bounds": {
+    "minlat": 16.7840093,
+    "minlon": 96.1782499,
+    "maxlat": 16.7862804,
+    "maxlon": 96.1805390
+  },
+  "geometry": [
+    { "lat": 16.7840093, "lon": 96.1805390 },
+    { "lat": 16.7851466, "lon": 96.1793771 },
+    { "lat": 16.7862804, "lon": 96.1782499 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "သာကေတတံတား",
+    "name:en": "Thaketa Bridge",
+    "name:my": "သာကေတတံတား",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 274922221,
+  "bounds": {
+    "minlat": 16.8232504,
+    "minlon": 96.1307714,
+    "maxlat": 16.8307443,
+    "maxlon": 96.1320495
+  },
+  "geometry": [
+    { "lat": 16.8307443, "lon": 96.1320495 },
+    { "lat": 16.8303242, "lon": 96.1319279 },
+    { "lat": 16.8271135, "lon": 96.1309062 },
+    { "lat": 16.8268310, "lon": 96.1308227 },
+    { "lat": 16.8265366, "lon": 96.1307777 },
+    { "lat": 16.8263179, "lon": 96.1307714 },
+    { "lat": 16.8261871, "lon": 96.1307881 },
+    { "lat": 16.8232504, "lon": 96.1315969 }
+  ],
+  "tags": {
+    "alt_name": "Hledan Pass Over",
+    "bicycle": "yes",
+    "bridge": "yes",
+    "foot": "no",
+    "highway": "trunk",
+    "horse": "no",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "Pyay Road",
+    "name:en": "Pyay Road",
+    "name:my": "ပြည်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 283656287,
+  "bounds": {
+    "minlat": 16.8888133,
+    "minlon": 96.1531065,
+    "maxlat": 16.8909448,
+    "maxlon": 96.1539741
+  },
+  "geometry": [
+    { "lat": 16.8909448, "lon": 96.1537952 },
+    { "lat": 16.8907205, "lon": 96.1538172 },
+    { "lat": 16.8900454, "lon": 96.1539105 },
+    { "lat": 16.8896106, "lon": 96.1539694 },
+    { "lat": 16.8894085, "lon": 96.1539741 },
+    { "lat": 16.8892690, "lon": 96.1539410 },
+    { "lat": 16.8891634, "lon": 96.1538987 },
+    { "lat": 16.8891019, "lon": 96.1538545 },
+    { "lat": 16.8890216, "lon": 96.1537745 },
+    { "lat": 16.8889710, "lon": 96.1536963 },
+    { "lat": 16.8889249, "lon": 96.1536030 },
+    { "lat": 16.8888991, "lon": 96.1535125 },
+    { "lat": 16.8888133, "lon": 96.1531065 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary_link",
+    "lanes": "4",
+    "layer": "1",
+    "oneway": "no",
+    "parking:lane:both": "no_parking",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 283790763,
+  "bounds": {
+    "minlat": 16.8553194,
+    "minlon": 96.0957773,
+    "maxlat": 16.8572881,
+    "maxlon": 96.1000952
+  },
+  "geometry": [
+    { "lat": 16.8553194, "lon": 96.0957773 },
+    { "lat": 16.8555771, "lon": 96.0963406 },
+    { "lat": 16.8572312, "lon": 96.0999703 },
+    { "lat": 16.8572881, "lon": 96.1000952 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်တံတား ၁",
+    "name:en": "Bayint Naung Bridge 1",
+    "name:my": "ဘုရင့်နောင်တံတား ၁",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 283842523,
+  "bounds": {
+    "minlat": 16.9546804,
+    "minlon": 96.1899909,
+    "maxlat": 16.9549783,
+    "maxlon": 96.1902181
+  },
+  "geometry": [
+    { "lat": 16.9549783, "lon": 96.1902181 },
+    { "lat": 16.9546804, "lon": 96.1899909 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 286446675,
+  "bounds": {
+    "minlat": 16.8631231,
+    "minlon": 96.1789239,
+    "maxlat": 16.8644406,
+    "maxlon": 96.1802908
+  },
+  "geometry": [
+    { "lat": 16.8644406, "lon": 96.1802908 },
+    { "lat": 16.8631231, "lon": 96.1789239 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:name": "ဘေလီတံတား",
+    "bridge:name:en": "Bailey Bridge",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ပင်လုံလမ်း",
+    "name:en": "Pinlon Road",
+    "name:my": "ပင်လုံလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 286468310,
+  "bounds": {
+    "minlat": 16.8084997,
+    "minlon": 96.1832766,
+    "maxlat": 16.8087907,
+    "maxlon": 96.1833517
+  },
+  "geometry": [
+    { "lat": 16.8087907, "lon": 96.1833517 },
+    { "lat": 16.8084997, "lon": 96.1832766 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "အထက်ပုစွန်တောင်လမ်းမကြီး",
+    "name:en": "Upper Pazundaung Road",
+    "name:my": "အထက်ပုစွန်တောင်လမ်းမကြီး",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 286482100,
+  "bounds": {
+    "minlat": 16.7873540,
+    "minlon": 96.1761654,
+    "maxlat": 16.7877058,
+    "maxlon": 96.1762942
+  },
+  "geometry": [
+    { "lat": 16.7873540, "lon": 96.1762942 },
+    { "lat": 16.7874629, "lon": 96.1762540 },
+    { "lat": 16.7875121, "lon": 96.1762358 },
+    { "lat": 16.7875495, "lon": 96.1762220 },
+    { "lat": 16.7875876, "lon": 96.1762079 },
+    { "lat": 16.7876172, "lon": 96.1761970 },
+    { "lat": 16.7877058, "lon": 96.1761654 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "သာကေတတံတား",
+    "name:en": "Thaketa Bridge",
+    "name:my": "သာကေတတံတား",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 286482104,
+  "bounds": {
+    "minlat": 16.7868173,
+    "minlon": 96.1766374,
+    "maxlat": 16.7869474,
+    "maxlon": 96.1769422
+  },
+  "geometry": [
+    { "lat": 16.7868173, "lon": 96.1769422 },
+    { "lat": 16.7868516, "lon": 96.1768471 },
+    { "lat": 16.7868952, "lon": 96.1767411 },
+    { "lat": 16.7869474, "lon": 96.1766374 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "30 mph",
+    "name": "သာကေတတံတား",
+    "name:en": "Thaketa Bridge",
+    "name:my": "သာကေတတံတား",
+    "oneway": "no",
+    "source:maxspeed": "sign",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 287375927,
+  "bounds": {
+    "minlat": 16.7817995,
+    "minlon": 96.2288046,
+    "maxlat": 16.7975615,
+    "maxlon": 96.2385549
+  },
+  "geometry": [
+    { "lat": 16.7817995, "lon": 96.2385549 },
+    { "lat": 16.7975615, "lon": 96.2288046 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "foot": "yes",
+    "highway": "primary",
+    "horse": "no",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "သံလျှင် တံတား",
+    "name:en": "Thanlyin Bridge",
+    "name:my": "သံလျှင် တံတား",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 293065338,
+  "bounds": {
+    "minlat": 16.8198177,
+    "minlon": 96.1791788,
+    "maxlat": 16.8200402,
+    "maxlon": 96.1799459
+  },
+  "geometry": [
+    { "lat": 16.8198177, "lon": 96.1791788 },
+    { "lat": 16.8200402, "lon": 96.1799459 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "လေးထောင့်ကန်လမ်း",
+    "name:en": "Lay Daungkan Road",
+    "name:my": "လေးထောင့်ကန်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 293089898,
+  "bounds": {
+    "minlat": 16.8514682,
+    "minlon": 96.1635658,
+    "maxlat": 16.8528929,
+    "maxlon": 96.1662003
+  },
+  "geometry": [
+    { "lat": 16.8514682, "lon": 96.1635658 },
+    { "lat": 16.8516546, "lon": 96.1640116 },
+    { "lat": 16.8518230, "lon": 96.1643293 },
+    { "lat": 16.8528929, "lon": 96.1662003 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ပါရမီ လမ်း",
+    "name:en": "Parami Road"
+  }
+},
+{
+  "type": "way",
+  "id": 294035763,
+  "bounds": {
+    "minlat": 16.8912951,
+    "minlon": 96.0764255,
+    "maxlat": 16.8918725,
+    "maxlon": 96.0764268
+  },
+  "geometry": [
+    { "lat": 16.8918725, "lon": 96.0764268 },
+    { "lat": 16.8912951, "lon": 96.0764255 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "Kanaung Min Thar Gyi Road"
+  }
+},
+{
+  "type": "way",
+  "id": 296190215,
+  "bounds": {
+    "minlat": 16.8077796,
+    "minlon": 96.2364688,
+    "maxlat": 16.8078885,
+    "maxlon": 96.2369414
+  },
+  "geometry": [
+    { "lat": 16.8078885, "lon": 96.2369414 },
+    { "lat": 16.8077796, "lon": 96.2364688 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ရတနာ လမ်း",
+    "name:en": "Yadana Road",
+    "name:my": "ရတနာ လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 296190217,
+  "bounds": {
+    "minlat": 16.8055514,
+    "minlon": 96.2367290,
+    "maxlat": 16.8056228,
+    "maxlon": 96.2369972
+  },
+  "geometry": [
+    { "lat": 16.8055514, "lon": 96.2369972 },
+    { "lat": 16.8056228, "lon": 96.2367290 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Seik Kan Thar Road",
+    "name:en": "Seik Kan Thar Road",
+    "name:my": "ဆိပ်ကမ်းသာလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 306842167,
+  "bounds": {
+    "minlat": 16.8645390,
+    "minlon": 96.2102513,
+    "maxlat": 16.8647905,
+    "maxlon": 96.2105069
+  },
+  "geometry": [
+    { "lat": 16.8645390, "lon": 96.2105069 },
+    { "lat": 16.8647905, "lon": 96.2102513 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ပြည်ထောင်စုလမ်း",
+    "name:en": "Pyi Htaung Su Road",
+    "name:my": "ပြည်ထောင်စုလမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 306842169,
+  "bounds": {
+    "minlat": 16.8401408,
+    "minlon": 96.1839526,
+    "maxlat": 16.8402762,
+    "maxlon": 96.1840295
+  },
+  "geometry": [
+    { "lat": 16.8401408, "lon": 96.1840295 },
+    { "lat": 16.8402762, "lon": 96.1839526 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "သုမင်္ဂလာလမ်း",
+    "name:en": "Thu Mingalar Road",
+    "name:my": "သုမင်္ဂလာလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 306842175,
+  "bounds": {
+    "minlat": 16.8412862,
+    "minlon": 96.1918571,
+    "maxlat": 16.8414525,
+    "maxlon": 96.1920260
+  },
+  "geometry": [
+    { "lat": 16.8414525, "lon": 96.1918571 },
+    { "lat": 16.8412862, "lon": 96.1920260 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Mingalar Street"
+  }
+},
+{
+  "type": "way",
+  "id": 309211986,
+  "bounds": {
+    "minlat": 16.8797989,
+    "minlon": 96.0568093,
+    "maxlat": 16.8799209,
+    "maxlon": 96.0568312
+  },
+  "geometry": [
+    { "lat": 16.8797989, "lon": 96.0568312 },
+    { "lat": 16.8799209, "lon": 96.0568093 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "U Pone Nya Street",
+    "name:en": "U Pone Nya Street"
+  }
+},
+{
+  "type": "way",
+  "id": 309212030,
+  "bounds": {
+    "minlat": 16.8623576,
+    "minlon": 96.1761324,
+    "maxlat": 16.8625778,
+    "maxlon": 96.1763582
+  },
+  "geometry": [
+    { "lat": 16.8625778, "lon": 96.1761324 },
+    { "lat": 16.8623576, "lon": 96.1763582 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "သံသုမာလမ်း",
+    "name:en": "Than Thu Mar Road",
+    "name:my": "သံသုမာလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 342207093,
+  "bounds": {
+    "minlat": 16.8959777,
+    "minlon": 96.0642148,
+    "maxlat": 16.8963905,
+    "maxlon": 96.0643407
+  },
+  "geometry": [
+    { "lat": 16.8959777, "lon": 96.0642148 },
+    { "lat": 16.8963905, "lon": 96.0643407 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 342207095,
+  "bounds": {
+    "minlat": 16.8962384,
+    "minlon": 96.0545436,
+    "maxlat": 16.8966467,
+    "maxlon": 96.0547273
+  },
+  "geometry": [
+    { "lat": 16.8966467, "lon": 96.0547273 },
+    { "lat": 16.8962384, "lon": 96.0545436 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 345641467,
+  "bounds": {
+    "minlat": 16.8025872,
+    "minlon": 96.1545342,
+    "maxlat": 16.8093313,
+    "maxlon": 96.1559918
+  },
+  "geometry": [
+    { "lat": 16.8093313, "lon": 96.1557045 },
+    { "lat": 16.8091741, "lon": 96.1555784 },
+    { "lat": 16.8087485, "lon": 96.1551702 },
+    { "lat": 16.8083560, "lon": 96.1548130 },
+    { "lat": 16.8082046, "lon": 96.1547014 },
+    { "lat": 16.8080523, "lon": 96.1546207 },
+    { "lat": 16.8078965, "lon": 96.1545611 },
+    { "lat": 16.8077014, "lon": 96.1545342 },
+    { "lat": 16.8075768, "lon": 96.1545380 },
+    { "lat": 16.8074383, "lon": 96.1545660 },
+    { "lat": 16.8073166, "lon": 96.1546135 },
+    { "lat": 16.8072117, "lon": 96.1546752 },
+    { "lat": 16.8068807, "lon": 96.1549050 },
+    { "lat": 16.8065258, "lon": 96.1551344 },
+    { "lat": 16.8063125, "lon": 96.1552421 },
+    { "lat": 16.8061923, "lon": 96.1552918 },
+    { "lat": 16.8059712, "lon": 96.1553873 },
+    { "lat": 16.8058095, "lon": 96.1554604 },
+    { "lat": 16.8057277, "lon": 96.1555144 },
+    { "lat": 16.8053312, "lon": 96.1558088 },
+    { "lat": 16.8052126, "lon": 96.1558743 },
+    { "lat": 16.8051264, "lon": 96.1559138 },
+    { "lat": 16.8050336, "lon": 96.1559520 },
+    { "lat": 16.8049637, "lon": 96.1559686 },
+    { "lat": 16.8048823, "lon": 96.1559788 },
+    { "lat": 16.8047298, "lon": 96.1559889 },
+    { "lat": 16.8045610, "lon": 96.1559918 },
+    { "lat": 16.8043125, "lon": 96.1559870 },
+    { "lat": 16.8040452, "lon": 96.1559649 },
+    { "lat": 16.8039291, "lon": 96.1559562 },
+    { "lat": 16.8038434, "lon": 96.1559464 },
+    { "lat": 16.8037856, "lon": 96.1559371 },
+    { "lat": 16.8036975, "lon": 96.1559191 },
+    { "lat": 16.8036321, "lon": 96.1559034 },
+    { "lat": 16.8035652, "lon": 96.1558715 },
+    { "lat": 16.8035130, "lon": 96.1558447 },
+    { "lat": 16.8034136, "lon": 96.1557839 },
+    { "lat": 16.8033354, "lon": 96.1557384 },
+    { "lat": 16.8032442, "lon": 96.1556722 },
+    { "lat": 16.8031674, "lon": 96.1556256 },
+    { "lat": 16.8031072, "lon": 96.1555958 },
+    { "lat": 16.8030443, "lon": 96.1555731 },
+    { "lat": 16.8029878, "lon": 96.1555639 },
+    { "lat": 16.8029041, "lon": 96.1555715 },
+    { "lat": 16.8028410, "lon": 96.1555926 },
+    { "lat": 16.8027715, "lon": 96.1556402 },
+    { "lat": 16.8027056, "lon": 96.1557092 },
+    { "lat": 16.8026557, "lon": 96.1557876 },
+    { "lat": 16.8025872, "lon": 96.1559302 }
+  ],
+  "tags": {
+    "access": "yes",
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "note": "Also known as Kaba-aye Seti Rd. Seti (zay-ti) means also Pagoda",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 345641468,
+  "bounds": {
+    "minlat": 16.8026579,
+    "minlon": 96.1546010,
+    "maxlat": 16.8092832,
+    "maxlon": 96.1560541
+  },
+  "geometry": [
+    { "lat": 16.8026579, "lon": 96.1559915 },
+    { "lat": 16.8027111, "lon": 96.1558102 },
+    { "lat": 16.8027653, "lon": 96.1557269 },
+    { "lat": 16.8028114, "lon": 96.1556800 },
+    { "lat": 16.8028548, "lon": 96.1556435 },
+    { "lat": 16.8029119, "lon": 96.1556173 },
+    { "lat": 16.8029578, "lon": 96.1556122 },
+    { "lat": 16.8030249, "lon": 96.1556209 },
+    { "lat": 16.8030879, "lon": 96.1556409 },
+    { "lat": 16.8031397, "lon": 96.1556722 },
+    { "lat": 16.8031903, "lon": 96.1557031 },
+    { "lat": 16.8032527, "lon": 96.1557403 },
+    { "lat": 16.8033445, "lon": 96.1558017 },
+    { "lat": 16.8034064, "lon": 96.1558442 },
+    { "lat": 16.8034904, "lon": 96.1558914 },
+    { "lat": 16.8035402, "lon": 96.1559184 },
+    { "lat": 16.8036106, "lon": 96.1559515 },
+    { "lat": 16.8036724, "lon": 96.1559785 },
+    { "lat": 16.8037310, "lon": 96.1559925 },
+    { "lat": 16.8037946, "lon": 96.1560032 },
+    { "lat": 16.8038641, "lon": 96.1560170 },
+    { "lat": 16.8039319, "lon": 96.1560274 },
+    { "lat": 16.8040306, "lon": 96.1560366 },
+    { "lat": 16.8042888, "lon": 96.1560488 },
+    { "lat": 16.8045430, "lon": 96.1560541 },
+    { "lat": 16.8047119, "lon": 96.1560520 },
+    { "lat": 16.8048396, "lon": 96.1560412 },
+    { "lat": 16.8049671, "lon": 96.1560236 },
+    { "lat": 16.8051115, "lon": 96.1559748 },
+    { "lat": 16.8052346, "lon": 96.1559148 },
+    { "lat": 16.8053742, "lon": 96.1558322 },
+    { "lat": 16.8056790, "lon": 96.1556068 },
+    { "lat": 16.8058097, "lon": 96.1555232 },
+    { "lat": 16.8059649, "lon": 96.1554500 },
+    { "lat": 16.8062161, "lon": 96.1553435 },
+    { "lat": 16.8063524, "lon": 96.1552794 },
+    { "lat": 16.8065497, "lon": 96.1551820 },
+    { "lat": 16.8069148, "lon": 96.1549522 },
+    { "lat": 16.8073167, "lon": 96.1546829 },
+    { "lat": 16.8074442, "lon": 96.1546279 },
+    { "lat": 16.8075700, "lon": 96.1546017 },
+    { "lat": 16.8077117, "lon": 96.1546010 },
+    { "lat": 16.8078837, "lon": 96.1546238 },
+    { "lat": 16.8080408, "lon": 96.1546913 },
+    { "lat": 16.8082150, "lon": 96.1548016 },
+    { "lat": 16.8083871, "lon": 96.1549436 },
+    { "lat": 16.8087026, "lon": 96.1552325 },
+    { "lat": 16.8091207, "lon": 96.1556392 },
+    { "lat": 16.8091920, "lon": 96.1557131 },
+    { "lat": 16.8092832, "lon": 96.1557980 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "turn:lanes": "slight_left;through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 378255939,
+  "bounds": {
+    "minlat": 16.8027850,
+    "minlon": 96.1868185,
+    "maxlat": 16.8063292,
+    "maxlon": 96.1875377
+  },
+  "geometry": [
+    { "lat": 16.8027850, "lon": 96.1868185 },
+    { "lat": 16.8032669, "lon": 96.1868527 },
+    { "lat": 16.8037682, "lon": 96.1869353 },
+    { "lat": 16.8047607, "lon": 96.1871111 },
+    { "lat": 16.8053815, "lon": 96.1872130 },
+    { "lat": 16.8055901, "lon": 96.1872534 },
+    { "lat": 16.8057869, "lon": 96.1872973 },
+    { "lat": 16.8059568, "lon": 96.1873553 },
+    { "lat": 16.8061570, "lon": 96.1874485 },
+    { "lat": 16.8063292, "lon": 96.1875377 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 383531789,
+  "bounds": {
+    "minlat": 16.7481000,
+    "minlon": 96.2632725,
+    "maxlat": 16.7483512,
+    "maxlon": 96.2634751
+  },
+  "geometry": [
+    { "lat": 16.7481000, "lon": 96.2634751 },
+    { "lat": 16.7483512, "lon": 96.2632725 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ကျိုက်ခေါက်ဘုရားလမ်း",
+    "name:en": "Kyikekhauk Pagoda Road",
+    "name:my": "ကျိုက်ခေါက်ဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 385729697,
+  "bounds": {
+    "minlat": 16.8820489,
+    "minlon": 96.2330753,
+    "maxlat": 16.8822763,
+    "maxlon": 96.2332408
+  },
+  "geometry": [
+    { "lat": 16.8820489, "lon": 96.2330753 },
+    { "lat": 16.8822763, "lon": 96.2332408 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "အမှတ် (၂) လမ်း",
+    "name:en": "No. 2 Main Road",
+    "name:my": "အမှတ် (၂) လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 385729698,
+  "bounds": {
+    "minlat": 16.9477976,
+    "minlon": 96.2842537,
+    "maxlat": 16.9479735,
+    "maxlon": 96.2844142
+  },
+  "geometry": [
+    { "lat": 16.9479735, "lon": 96.2844142 },
+    { "lat": 16.9477976, "lon": 96.2842537 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "အမှတ် (၂) လမ်း",
+    "name:en": "No. 2 Main Road",
+    "name:my": "အမှတ် (၂) လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 389273946,
+  "bounds": {
+    "minlat": 16.9055721,
+    "minlon": 96.2232656,
+    "maxlat": 16.9056198,
+    "maxlon": 96.2233609
+  },
+  "geometry": [
+    { "lat": 16.9055721, "lon": 96.2232656 },
+    { "lat": 16.9056198, "lon": 96.2233609 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "မင်း​ရဲကျော်​စွာ လမ်း",
+    "name:en": "Minyekyawswa Road",
+    "name:my": "မင်း​ရဲကျော်​စွာ လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 389701624,
+  "bounds": {
+    "minlat": 16.9082167,
+    "minlon": 96.2255644,
+    "maxlat": 16.9082483,
+    "maxlon": 96.2256148
+  },
+  "geometry": [
+    { "lat": 16.9082167, "lon": 96.2256148 },
+    { "lat": 16.9082483, "lon": 96.2255644 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "name": "Kanaung Minthar Gyi Street",
+    "name:en": "Kanaung Minthar Gyi Street"
+  }
+},
+{
+  "type": "way",
+  "id": 392565848,
+  "bounds": {
+    "minlat": 16.9340136,
+    "minlon": 96.0767324,
+    "maxlat": 16.9342302,
+    "maxlon": 96.0769132
+  },
+  "geometry": [
+    { "lat": 16.9340136, "lon": 96.0769132 },
+    { "lat": 16.9342302, "lon": 96.0767324 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 392594634,
+  "bounds": {
+    "minlat": 16.9589542,
+    "minlon": 96.0701097,
+    "maxlat": 16.9590942,
+    "maxlon": 96.0703378
+  },
+  "geometry": [
+    { "lat": 16.9590942, "lon": 96.0701097 },
+    { "lat": 16.9589542, "lon": 96.0703378 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Bogyoke AungSan Road"
+  }
+},
+{
+  "type": "way",
+  "id": 393355355,
+  "bounds": {
+    "minlat": 16.9525228,
+    "minlon": 96.0819093,
+    "maxlat": 16.9526154,
+    "maxlon": 96.0819331
+  },
+  "geometry": [
+    { "lat": 16.9526154, "lon": 96.0819093 },
+    { "lat": 16.9525228, "lon": 96.0819331 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ပုလဲလမ်းမကြီး Palae Road",
+    "name:en": "Palae Road",
+    "name:my": "ပုလဲလမ်းမကြီး",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 395047371,
+  "bounds": {
+    "minlat": 16.8119618,
+    "minlon": 96.1849779,
+    "maxlat": 16.8121352,
+    "maxlon": 96.1851269
+  },
+  "geometry": [
+    { "lat": 16.8121352, "lon": 96.1851269 },
+    { "lat": 16.8119618, "lon": 96.1849779 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "အထက်ပုစွန်တောင်လမ်းမကြီး",
+    "name:en": "Upper Pazundaung Road",
+    "name:my": "အထက်ပုစွန်တောင်လမ်းမကြီး",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 395048197,
+  "bounds": {
+    "minlat": 16.8473531,
+    "minlon": 96.1983958,
+    "maxlat": 16.8474659,
+    "maxlon": 96.1986596
+  },
+  "geometry": [
+    { "lat": 16.8474659, "lon": 96.1983958 },
+    { "lat": 16.8473531, "lon": 96.1986596 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "သံသုမာလမ်း",
+    "name:en": "Than Thu Mar Road",
+    "name:my": "သံသုမာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 395890510,
+  "bounds": {
+    "minlat": 16.9350319,
+    "minlon": 96.1918951,
+    "maxlat": 16.9350925,
+    "maxlon": 96.1919658
+  },
+  "geometry": [
+    { "lat": 16.9350925, "lon": 96.1919658 },
+    { "lat": 16.9350319, "lon": 96.1918951 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ပုဂံလမ်း",
+    "name:en": "Bagan Street",
+    "source": "Yahoo hires"
+  }
+},
+{
+  "type": "way",
+  "id": 396270110,
+  "bounds": {
+    "minlat": 16.7746692,
+    "minlon": 96.1819075,
+    "maxlat": 16.7810093,
+    "maxlon": 96.1851687
+  },
+  "geometry": [
+    { "lat": 16.7746692, "lon": 96.1819075 },
+    { "lat": 16.7748406, "lon": 96.1821161 },
+    { "lat": 16.7750723, "lon": 96.1823283 },
+    { "lat": 16.7753574, "lon": 96.1825032 },
+    { "lat": 16.7810093, "lon": 96.1851687 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:structure": "cable-stayed",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "မဟာဗန္ဓုလလမ်း",
+    "name:en": "Maha Bandula Road",
+    "name:my": "မဟာဗန္ဓုလလမ်း",
+    "old_name:en": "Dalhousie Road",
+    "surface": "asphalt",
+    "wikipedia": "en:Maha Bandula Road"
+  }
+},
+{
+  "type": "way",
+  "id": 396270113,
+  "bounds": {
+    "minlat": 16.7809184,
+    "minlon": 96.1674445,
+    "maxlat": 16.7812607,
+    "maxlon": 96.1674588
+  },
+  "geometry": [
+    { "lat": 16.7809184, "lon": 96.1674445 },
+    { "lat": 16.7812607, "lon": 96.1674588 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "သိမ်ဖြူလမ်း",
+    "name:en": "Thein Phyu Road",
+    "name:my": "သိမ်ဖြူလမ်း",
+    "old_name": "Bolane Road",
+    "parking:both": "no",
+    "parking:both:restriction": "no_parking",
+    "sidewalk:both": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 399331886,
+  "bounds": {
+    "minlat": 16.8089099,
+    "minlon": 96.1922276,
+    "maxlat": 16.8101804,
+    "maxlon": 96.1922330
+  },
+  "geometry": [
+    { "lat": 16.8101804, "lon": 96.1922330 },
+    { "lat": 16.8089099, "lon": 96.1922276 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 399339807,
+  "bounds": {
+    "minlat": 16.8839454,
+    "minlon": 96.1547541,
+    "maxlat": 16.8841416,
+    "maxlon": 96.1548143
+  },
+  "geometry": [
+    { "lat": 16.8839454, "lon": 96.1548143 },
+    { "lat": 16.8841416, "lon": 96.1547541 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "သုဓမ္မာ လမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာ လမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 399760247,
+  "bounds": {
+    "minlat": 16.9582117,
+    "minlon": 96.1927439,
+    "maxlat": 16.9583891,
+    "maxlon": 96.1928770
+  },
+  "geometry": [
+    { "lat": 16.9583891, "lon": 96.1928770 },
+    { "lat": 16.9582117, "lon": 96.1927439 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 399767471,
+  "bounds": {
+    "minlat": 16.9077779,
+    "minlon": 96.1740985,
+    "maxlat": 16.9078552,
+    "maxlon": 96.1765943
+  },
+  "geometry": [
+    { "lat": 16.9078552, "lon": 96.1740985 },
+    { "lat": 16.9078212, "lon": 96.1742903 },
+    { "lat": 16.9078051, "lon": 96.1744418 },
+    { "lat": 16.9078026, "lon": 96.1750728 },
+    { "lat": 16.9078026, "lon": 96.1755670 },
+    { "lat": 16.9077820, "lon": 96.1761349 },
+    { "lat": 16.9077779, "lon": 96.1765943 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ကြိုးတံတား",
+    "name:en": "Kyo Daddar Bridge",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 408896050,
+  "bounds": {
+    "minlat": 16.7808326,
+    "minlon": 96.1589904,
+    "maxlat": 16.7812964,
+    "maxlon": 96.1590026
+  },
+  "geometry": [
+    { "lat": 16.7812964, "lon": 96.1590026 },
+    { "lat": 16.7808326, "lon": 96.1589904 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ဆူးလေဘုရားလမ်း",
+    "name:en": "Sule Pagoda Road",
+    "name:my": "ဆူးလေဘုရားလမ်း",
+    "oneway": "yes",
+    "sidewalk:right": "yes",
+    "surface": "asphalt",
+    "wikipedia": "my:ဆူးလေဘုရားလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 417341003,
+  "bounds": {
+    "minlat": 16.8873128,
+    "minlon": 96.1035013,
+    "maxlat": 16.8884182,
+    "maxlon": 96.1069324
+  },
+  "geometry": [
+    { "lat": 16.8884182, "lon": 96.1069324 },
+    { "lat": 16.8883285, "lon": 96.1066113 },
+    { "lat": 16.8873128, "lon": 96.1035013 }
+  ],
+  "tags": {
+    "alt_name:my": "လှိုင်မြစ်လမ်း",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "လမ်းသစ်လမ်း",
+    "name:en": "Lanthit Road",
+    "name:my": "လမ်းသစ်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 417373678,
+  "bounds": {
+    "minlat": 16.8440716,
+    "minlon": 96.1122881,
+    "maxlat": 16.8448812,
+    "maxlon": 96.1122936
+  },
+  "geometry": [
+    { "lat": 16.8440716, "lon": 96.1122936 },
+    { "lat": 16.8448812, "lon": 96.1122881 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 420900073,
+  "bounds": {
+    "minlat": 16.8825116,
+    "minlon": 96.0704961,
+    "maxlat": 16.8827323,
+    "maxlon": 96.0705310
+  },
+  "geometry": [
+    { "lat": 16.8825116, "lon": 96.0705310 },
+    { "lat": 16.8827323, "lon": 96.0704961 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Hlaing River Road",
+    "name:my": "လှိုင်မြစ်လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 420900097,
+  "bounds": {
+    "minlat": 16.8823791,
+    "minlon": 96.0610973,
+    "maxlat": 16.8825646,
+    "maxlon": 96.0611884
+  },
+  "geometry": [
+    { "lat": 16.8823791, "lon": 96.0611884 },
+    { "lat": 16.8825646, "lon": 96.0610973 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ကျန်စစ်သားလမ်း Kyan Sitthar Road",
+    "name:en": "Kyan Sitthar Road",
+    "name:my": "ကျန်စစ်သားလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 425804751,
+  "bounds": {
+    "minlat": 16.7979040,
+    "minlon": 96.1273461,
+    "maxlat": 16.7979064,
+    "maxlon": 96.1276750
+  },
+  "geometry": [
+    { "lat": 16.7979040, "lon": 96.1276750 },
+    { "lat": 16.7979051, "lon": 96.1275264 },
+    { "lat": 16.7979064, "lon": 96.1273461 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "maxspeed": "30",
+    "name": "ပန်းလှိုင်လမ်း",
+    "name:en": "Pan Hlaing Road",
+    "name:my": "ပန်းလှိုင်လမ်း",
+    "name:th": "ถนนปานไลง์",
+    "old_name": "Home Road"
+  }
+},
+{
+  "type": "way",
+  "id": 428046280,
+  "bounds": {
+    "minlat": 16.7867498,
+    "minlon": 96.1340711,
+    "maxlat": 16.7869117,
+    "maxlon": 96.1340938
+  },
+  "geometry": [
+    { "lat": 16.7869117, "lon": 96.1340938 },
+    { "lat": 16.7867938, "lon": 96.1340773 },
+    { "lat": 16.7867498, "lon": 96.1340711 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဗဟိုလမ်း",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 428948500,
+  "bounds": {
+    "minlat": 16.7585152,
+    "minlon": 96.0912266,
+    "maxlat": 16.7600378,
+    "maxlon": 96.0958412
+  },
+  "geometry": [
+    { "lat": 16.7585152, "lon": 96.0958412 },
+    { "lat": 16.7600378, "lon": 96.0912266 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 436600878,
+  "bounds": {
+    "minlat": 16.9392483,
+    "minlon": 96.0869300,
+    "maxlat": 16.9395022,
+    "maxlon": 96.0869407
+  },
+  "geometry": [
+    { "lat": 16.9392483, "lon": 96.0869300 },
+    { "lat": 16.9395022, "lon": 96.0869407 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 436685615,
+  "bounds": {
+    "minlat": 16.9405922,
+    "minlon": 96.1026852,
+    "maxlat": 16.9407628,
+    "maxlon": 96.1026878
+  },
+  "geometry": [
+    { "lat": 16.9405922, "lon": 96.1026852 },
+    { "lat": 16.9407628, "lon": 96.1026878 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 437601529,
+  "bounds": {
+    "minlat": 16.9542772,
+    "minlon": 96.0753345,
+    "maxlat": 16.9543716,
+    "maxlon": 96.0753683
+  },
+  "geometry": [
+    { "lat": 16.9543716, "lon": 96.0753683 },
+    { "lat": 16.9542772, "lon": 96.0753345 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 437607851,
+  "bounds": {
+    "minlat": 16.9511559,
+    "minlon": 96.0599778,
+    "maxlat": 16.9514400,
+    "maxlon": 96.0600382
+  },
+  "geometry": [
+    { "lat": 16.9511559, "lon": 96.0600382 },
+    { "lat": 16.9514400, "lon": 96.0599778 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 439549548,
+  "bounds": {
+    "minlat": 16.9589600,
+    "minlon": 96.0769435,
+    "maxlat": 16.9591652,
+    "maxlon": 96.0770132
+  },
+  "geometry": [
+    { "lat": 16.9591652, "lon": 96.0770132 },
+    { "lat": 16.9589600, "lon": 96.0769435 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Bayintnaung Road"
+  }
+},
+{
+  "type": "way",
+  "id": 444071030,
+  "bounds": {
+    "minlat": 16.8601901,
+    "minlon": 96.1132942,
+    "maxlat": 16.8606845,
+    "maxlon": 96.1160989
+  },
+  "geometry": [
+    { "lat": 16.8606845, "lon": 96.1160989 },
+    { "lat": 16.8601901, "lon": 96.1132942 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "foot": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Thamine Train Station Road",
+    "name:my": "သမိုင်းဘူတာရုံလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 447199284,
+  "bounds": {
+    "minlat": 16.8541358,
+    "minlon": 96.0911932,
+    "maxlat": 16.8584149,
+    "maxlon": 96.1020992
+  },
+  "geometry": [
+    { "lat": 16.8584149, "lon": 96.1020992 },
+    { "lat": 16.8582312, "lon": 96.1008073 },
+    { "lat": 16.8581798, "lon": 96.1005074 },
+    { "lat": 16.8580925, "lon": 96.1002231 },
+    { "lat": 16.8578808, "lon": 96.0997126 },
+    { "lat": 16.8562320, "lon": 96.0960281 },
+    { "lat": 16.8543584, "lon": 96.0917853 },
+    { "lat": 16.8542318, "lon": 96.0914764 },
+    { "lat": 16.8541358, "lon": 96.0911932 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "ဘုရင့်နောင်တံတား ၂",
+    "name:en": "Bayint Naung Bridge 2",
+    "name:my": "ဘုရင့်နောင်တံတား ၂",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 447563548,
+  "bounds": {
+    "minlat": 16.9407542,
+    "minlon": 96.1288457,
+    "maxlat": 16.9412759,
+    "maxlon": 96.1289679
+  },
+  "geometry": [
+    { "lat": 16.9407542, "lon": 96.1289679 },
+    { "lat": 16.9412759, "lon": 96.1288457 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "အမှတ် (၁) ရန်ကုန်-မန္တလေး အဝေးပြေးလမ်းမကြီး",
+    "name:en": "No 1 Yangon - Mandalay Highway",
+    "name:my": "အမှတ် (၁) ရန်ကုန်-မန္တလေး အဝေးပြေးလမ်းမကြီး",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 448038928,
+  "bounds": {
+    "minlat": 16.9342064,
+    "minlon": 96.1482686,
+    "maxlat": 16.9342707,
+    "maxlon": 96.1484472
+  },
+  "geometry": [
+    { "lat": 16.9342064, "lon": 96.1482686 },
+    { "lat": 16.9342707, "lon": 96.1484472 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ခရေပင်လမ်း",
+    "name:en": "Khayae Pin Road"
+  }
+},
+{
+  "type": "way",
+  "id": 449049208,
+  "bounds": {
+    "minlat": 16.7815236,
+    "minlon": 96.1478545,
+    "maxlat": 16.7816771,
+    "maxlon": 96.1478586
+  },
+  "geometry": [
+    { "lat": 16.7816771, "lon": 96.1478586 },
+    { "lat": 16.7815236, "lon": 96.1478545 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "မြို့မကျောင်းလမ်း",
+    "name:en": "Myoma Kyaung Street",
+    "name:my": "မြို့မကျောင်းလမ်း",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 449119149,
+  "bounds": {
+    "minlat": 16.8591734,
+    "minlon": 96.1152011,
+    "maxlat": 16.8595303,
+    "maxlon": 96.1152938
+  },
+  "geometry": [
+    { "lat": 16.8595303, "lon": 96.1152011 },
+    { "lat": 16.8591734, "lon": 96.1152938 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဗဟိုလမ်း",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 449119157,
+  "bounds": {
+    "minlat": 16.8171555,
+    "minlon": 96.1261401,
+    "maxlat": 16.8172518,
+    "maxlon": 96.1263310
+  },
+  "geometry": [
+    { "lat": 16.8172518, "lon": 96.1261401 },
+    { "lat": 16.8171555, "lon": 96.1263310 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ဟံသာဝတီလမ်း",
+    "name:en": "Hanthawaddy Road",
+    "name:my": "ဟံသာဝတီလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 449144623,
+  "bounds": {
+    "minlat": 16.7813517,
+    "minlon": 96.1532935,
+    "maxlat": 16.7814764,
+    "maxlon": 96.1532979
+  },
+  "geometry": [
+    { "lat": 16.7814764, "lon": 96.1532979 },
+    { "lat": 16.7814105, "lon": 96.1532957 },
+    { "lat": 16.7813517, "lon": 96.1532935 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "cycleway:left": "lane",
+    "foot": "yes",
+    "highway": "primary",
+    "horse": "no",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "motor_vehicle": "yes",
+    "name": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "name:en": "Shwedagon Pagoda Road",
+    "name:mm": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 463191685,
+  "bounds": {
+    "minlat": 16.8114878,
+    "minlon": 96.1677589,
+    "maxlat": 16.8162343,
+    "maxlon": 96.1711197
+  },
+  "geometry": [
+    { "lat": 16.8162343, "lon": 96.1677589 },
+    { "lat": 16.8157425, "lon": 96.1681819 },
+    { "lat": 16.8152523, "lon": 96.1685606 },
+    { "lat": 16.8147861, "lon": 96.1689161 },
+    { "lat": 16.8144831, "lon": 96.1691480 },
+    { "lat": 16.8138889, "lon": 96.1696153 },
+    { "lat": 16.8136028, "lon": 96.1698498 },
+    { "lat": 16.8133406, "lon": 96.1700724 },
+    { "lat": 16.8130875, "lon": 96.1702689 },
+    { "lat": 16.8126822, "lon": 96.1705627 },
+    { "lat": 16.8124207, "lon": 96.1707378 },
+    { "lat": 16.8121934, "lon": 96.1708470 },
+    { "lat": 16.8114878, "lon": 96.1711197 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ဦးချစ်မောင်လမ်း(တံတား)",
+    "name:en": "U Chit Maung Road (Bridge)",
+    "name:my": "ဦးချစ်မောင်လမ်း(တံတား)",
+    "oneway": "no",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 463191695,
+  "bounds": {
+    "minlat": 16.8113359,
+    "minlon": 96.1711656,
+    "maxlat": 16.8167944,
+    "maxlon": 96.1726306
+  },
+  "geometry": [
+    { "lat": 16.8113359, "lon": 96.1711656 },
+    { "lat": 16.8116615, "lon": 96.1712775 },
+    { "lat": 16.8118730, "lon": 96.1713480 },
+    { "lat": 16.8124734, "lon": 96.1716585 },
+    { "lat": 16.8128923, "lon": 96.1718693 },
+    { "lat": 16.8133503, "lon": 96.1720589 },
+    { "lat": 16.8138083, "lon": 96.1722448 },
+    { "lat": 16.8142660, "lon": 96.1723571 },
+    { "lat": 16.8145997, "lon": 96.1724308 },
+    { "lat": 16.8149304, "lon": 96.1724825 },
+    { "lat": 16.8153044, "lon": 96.1725287 },
+    { "lat": 16.8156690, "lon": 96.1725680 },
+    { "lat": 16.8158839, "lon": 96.1725872 },
+    { "lat": 16.8161106, "lon": 96.1726018 },
+    { "lat": 16.8163379, "lon": 96.1726145 },
+    { "lat": 16.8165677, "lon": 96.1726253 },
+    { "lat": 16.8167944, "lon": 96.1726306 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "အရှေ့မြင်းပြိုင်ကွင်းလမ်း (တံတား)",
+    "name:en": "East Horse Race Course Road (Bridge)",
+    "name:my": "အရှေ့မြင်းပြိုင်ကွင်းလမ်း (တံတား)",
+    "oneway": "yes",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 463264259,
+  "bounds": {
+    "minlat": 16.7996126,
+    "minlon": 96.1367378,
+    "maxlat": 16.8057002,
+    "maxlon": 96.1384247
+  },
+  "geometry": [
+    { "lat": 16.7996126, "lon": 96.1384247 },
+    { "lat": 16.8011176, "lon": 96.1380553 },
+    { "lat": 16.8017128, "lon": 96.1378951 },
+    { "lat": 16.8024031, "lon": 96.1376923 },
+    { "lat": 16.8032552, "lon": 96.1374542 },
+    { "lat": 16.8039465, "lon": 96.1372505 },
+    { "lat": 16.8048966, "lon": 96.1369683 },
+    { "lat": 16.8057002, "lon": 96.1367378 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "name": "မြေနီကုန်း ဂုံးကျော်",
+    "name:en": "May Ni Gone Overpass",
+    "name:my": "မြေနီကုန်း ဂုံးကျော်",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 463948872,
+  "bounds": {
+    "minlat": 16.7999688,
+    "minlon": 96.1303160,
+    "maxlat": 16.8001407,
+    "maxlon": 96.1303854
+  },
+  "geometry": [
+    { "lat": 16.7999688, "lon": 96.1303854 },
+    { "lat": 16.8001407, "lon": 96.1303160 }
+  ],
+  "tags": {
+    "alt_name": "ရှမ်းလမ်း",
+    "alt_name:en": "Shan (Fytche) Road",
+    "alt_name:my": "ရှမ်းလမ်း",
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဗဟိုလမ်း",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 480269802,
+  "bounds": {
+    "minlat": 16.7814169,
+    "minlon": 96.1478502,
+    "maxlat": 16.7815236,
+    "maxlon": 96.1478545
+  },
+  "geometry": [
+    { "lat": 16.7815236, "lon": 96.1478545 },
+    { "lat": 16.7814169, "lon": 96.1478502 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "မြို့မကျောင်းလမ်း",
+    "name:en": "Myoma Kyaung Street",
+    "name:my": "မြို့မကျောင်းလမ်း",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 481383585,
+  "bounds": {
+    "minlat": 16.7811044,
+    "minlon": 96.1532920,
+    "maxlat": 16.7813517,
+    "maxlon": 96.1532935
+  },
+  "geometry": [
+    { "lat": 16.7813517, "lon": 96.1532935 },
+    { "lat": 16.7812871, "lon": 96.1532931 },
+    { "lat": 16.7811044, "lon": 96.1532920 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "cycleway": "lane",
+    "foot": "yes",
+    "highway": "primary",
+    "horse": "no",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "motor_vehicle": "yes",
+    "name": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "name:en": "Shwedagon Pagoda Road",
+    "name:my": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "name:ဗမာ": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 489476361,
+  "bounds": {
+    "minlat": 16.7862804,
+    "minlon": 96.1781240,
+    "maxlat": 16.7864071,
+    "maxlon": 96.1782499
+  },
+  "geometry": [
+    { "lat": 16.7862804, "lon": 96.1782499 },
+    { "lat": 16.7864071, "lon": 96.1781240 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50 mph",
+    "name": "သာကေတတံတား",
+    "name:en": "Thaketa Bridge",
+    "name:my": "သာကေတတံတား",
+    "oneway": "no",
+    "source:maxspeed": "sign",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 492891711,
+  "bounds": {
+    "minlat": 16.8839068,
+    "minlon": 96.1546659,
+    "maxlat": 16.8841135,
+    "maxlon": 96.1547170
+  },
+  "geometry": [
+    { "lat": 16.8841135, "lon": 96.1546659 },
+    { "lat": 16.8839068, "lon": 96.1547170 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "သုဓမ္မာ လမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာ လမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 497076740,
+  "bounds": {
+    "minlat": 16.8257453,
+    "minlon": 96.1541145,
+    "maxlat": 16.8259707,
+    "maxlon": 96.1541442
+  },
+  "geometry": [
+    { "lat": 16.8259707, "lon": 96.1541442 },
+    { "lat": 16.8257453, "lon": 96.1541145 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 504912944,
+  "bounds": {
+    "minlat": 16.8206776,
+    "minlon": 96.1316753,
+    "maxlat": 16.8232655,
+    "maxlon": 96.1324201
+  },
+  "geometry": [
+    { "lat": 16.8206776, "lon": 96.1324201 },
+    { "lat": 16.8226969, "lon": 96.1318389 },
+    { "lat": 16.8232655, "lon": 96.1316753 }
+  ],
+  "tags": {
+    "access": "yes",
+    "bicycle": "no",
+    "bridge": "yes",
+    "foot": "no",
+    "highway": "trunk",
+    "highway_1": "no",
+    "horse": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ပြည်လမ်း",
+    "name:en": "Pyay Road",
+    "name:my": "ပြည်လမ်း",
+    "name:ဗမာ": "လှိုင်မြစ်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 505434555,
+  "bounds": {
+    "minlat": 16.8221004,
+    "minlon": 96.1538659,
+    "maxlat": 16.8257453,
+    "maxlon": 96.1543655
+  },
+  "geometry": [
+    { "lat": 16.8257453, "lon": 96.1541145 },
+    { "lat": 16.8243735, "lon": 96.1539101 },
+    { "lat": 16.8240176, "lon": 96.1538670 },
+    { "lat": 16.8236075, "lon": 96.1538659 },
+    { "lat": 16.8234010, "lon": 96.1538881 },
+    { "lat": 16.8231849, "lon": 96.1539298 },
+    { "lat": 16.8226481, "lon": 96.1541027 },
+    { "lat": 16.8223253, "lon": 96.1542457 },
+    { "lat": 16.8221004, "lon": 96.1543655 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 505434556,
+  "bounds": {
+    "minlat": 16.8240098,
+    "minlon": 96.1539117,
+    "maxlat": 16.8259692,
+    "maxlon": 96.1541778
+  },
+  "geometry": [
+    { "lat": 16.8240098, "lon": 96.1539117 },
+    { "lat": 16.8242780, "lon": 96.1539470 },
+    { "lat": 16.8259692, "lon": 96.1541778 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 505434557,
+  "bounds": {
+    "minlat": 16.8226689,
+    "minlon": 96.1539097,
+    "maxlat": 16.8240098,
+    "maxlon": 96.1541306
+  },
+  "geometry": [
+    { "lat": 16.8226689, "lon": 96.1541306 },
+    { "lat": 16.8231934, "lon": 96.1539704 },
+    { "lat": 16.8234050, "lon": 96.1539314 },
+    { "lat": 16.8236081, "lon": 96.1539097 },
+    { "lat": 16.8240098, "lon": 96.1539117 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 505434560,
+  "bounds": {
+    "minlat": 16.8221239,
+    "minlon": 96.1541306,
+    "maxlat": 16.8226689,
+    "maxlon": 96.1544058
+  },
+  "geometry": [
+    { "lat": 16.8221239, "lon": 96.1544058 },
+    { "lat": 16.8223852, "lon": 96.1542559 },
+    { "lat": 16.8226689, "lon": 96.1541306 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 505478487,
+  "bounds": {
+    "minlat": 16.8089072,
+    "minlon": 96.1924433,
+    "maxlat": 16.8117328,
+    "maxlon": 96.1924567
+  },
+  "geometry": [
+    { "lat": 16.8089072, "lon": 96.1924567 },
+    { "lat": 16.8117328, "lon": 96.1924433 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 513977823,
+  "bounds": {
+    "minlat": 16.7509334,
+    "minlon": 96.1611626,
+    "maxlat": 16.7509888,
+    "maxlon": 96.1615813
+  },
+  "geometry": [
+    { "lat": 16.7509334, "lon": 96.1615813 },
+    { "lat": 16.7509888, "lon": 96.1611626 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Bo Gyoke Road",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 514101297,
+  "bounds": {
+    "minlat": 16.8232655,
+    "minlon": 96.1308490,
+    "maxlat": 16.8307035,
+    "maxlon": 96.1321507
+  },
+  "geometry": [
+    { "lat": 16.8232655, "lon": 96.1316753 },
+    { "lat": 16.8239427, "lon": 96.1314905 },
+    { "lat": 16.8253126, "lon": 96.1311166 },
+    { "lat": 16.8261484, "lon": 96.1308885 },
+    { "lat": 16.8263231, "lon": 96.1308500 },
+    { "lat": 16.8263754, "lon": 96.1308490 },
+    { "lat": 16.8265871, "lon": 96.1308552 },
+    { "lat": 16.8266806, "lon": 96.1308719 },
+    { "lat": 16.8270873, "lon": 96.1309801 },
+    { "lat": 16.8303048, "lon": 96.1320149 },
+    { "lat": 16.8307035, "lon": 96.1321507 }
+  ],
+  "tags": {
+    "access": "yes",
+    "bicycle": "yes",
+    "bridge": "yes",
+    "fixme": "dual carriageway",
+    "foot": "no",
+    "highway": "trunk",
+    "highway_1": "no",
+    "horse": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ပြည်လမ်း",
+    "name:en": "Pyay Road",
+    "name:my": "ပြည်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 515792848,
+  "bounds": {
+    "minlat": 16.8307035,
+    "minlon": 96.1321507,
+    "maxlat": 16.8310350,
+    "maxlon": 96.1322596
+  },
+  "geometry": [
+    { "lat": 16.8307035, "lon": 96.1321507 },
+    { "lat": 16.8310350, "lon": 96.1322596 }
+  ],
+  "tags": {
+    "FIXME": "dual carriageway",
+    "access": "yes",
+    "bicycle": "no",
+    "bridge": "yes",
+    "foot": "no",
+    "highway": "trunk",
+    "highway_1": "no",
+    "horse": "no",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ပြည်လမ်း",
+    "name:en": "Pyi Road",
+    "name:ဗမာ": "လှိုင်မြစ်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 515801443,
+  "bounds": {
+    "minlat": 16.8440439,
+    "minlon": 96.1121621,
+    "maxlat": 16.8448794,
+    "maxlon": 96.1121653
+  },
+  "geometry": [
+    { "lat": 16.8448794, "lon": 96.1121621 },
+    { "lat": 16.8440439, "lon": 96.1121653 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "name:ဗမာ": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 515812988,
+  "bounds": {
+    "minlat": 16.8307443,
+    "minlon": 96.1320495,
+    "maxlat": 16.8311742,
+    "maxlon": 96.1321830
+  },
+  "geometry": [
+    { "lat": 16.8311742, "lon": 96.1321830 },
+    { "lat": 16.8307443, "lon": 96.1320495 }
+  ],
+  "tags": {
+    "FIXME": "dual carriageway",
+    "access": "yes",
+    "alt_name:en": "Prome Road",
+    "bridge": "yes",
+    "highway": "trunk",
+    "highway_1": "no",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ပြည်လမ်း -Pyi Road",
+    "name:en": "Pyi Road",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 522013402,
+  "bounds": {
+    "minlat": 16.8532095,
+    "minlon": 96.1871233,
+    "maxlat": 16.8560083,
+    "maxlon": 96.1894768
+  },
+  "geometry": [
+    { "lat": 16.8560083, "lon": 96.1894768 },
+    { "lat": 16.8559872, "lon": 96.1894569 },
+    { "lat": 16.8557768, "lon": 96.1892096 },
+    { "lat": 16.8539858, "lon": 96.1880453 },
+    { "lat": 16.8533868, "lon": 96.1873321 },
+    { "lat": 16.8532095, "lon": 96.1871233 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:structure": "beam",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ငမိုးရိပ်တံတား",
+    "name:en": "Nga Moe Yeik Bridge",
+    "name:my": "ငမိုးရိပ်တံတား"
+  }
+},
+{
+  "type": "way",
+  "id": 527686487,
+  "bounds": {
+    "minlat": 16.8233909,
+    "minlon": 96.1246595,
+    "maxlat": 16.8246586,
+    "maxlon": 96.1258899
+  },
+  "geometry": [
+    { "lat": 16.8233909, "lon": 96.1246595 },
+    { "lat": 16.8246586, "lon": 96.1258899 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "လှည်းတန်း ဂုန်းကျော်တံတား",
+    "name:en": "Hledan Pass Over Bridge",
+    "name:my": "လှည်းတန်း ဂုန်းကျော်တံတား",
+    "parking:lane:both": "no_parking",
+    "parking:lane:right": "perpendicular"
+  }
+},
+{
+  "type": "way",
+  "id": 548199954,
+  "bounds": {
+    "minlat": 16.8148396,
+    "minlon": 96.2409022,
+    "maxlat": 16.8148895,
+    "maxlon": 96.2410853
+  },
+  "geometry": [
+    { "lat": 16.8148895, "lon": 96.2409022 },
+    { "lat": 16.8148396, "lon": 96.2410853 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 554492289,
+  "bounds": {
+    "minlat": 16.8614475,
+    "minlon": 96.1303378,
+    "maxlat": 16.8615983,
+    "maxlon": 96.1303402
+  },
+  "geometry": [
+    { "lat": 16.8615983, "lon": 96.1303378 },
+    { "lat": 16.8614475, "lon": 96.1303402 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "မင်းဓမလမ်း",
+    "name:en": "Min Dhama Road",
+    "name:my": "မင်းဓမလမ်း",
+    "name:ဗမာ": "မင်းဓမ္မလမ်း",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 554492295,
+  "bounds": {
+    "minlat": 16.8591202,
+    "minlon": 96.1194982,
+    "maxlat": 16.8592396,
+    "maxlon": 96.1195005
+  },
+  "geometry": [
+    { "lat": 16.8591202, "lon": 96.1195005 },
+    { "lat": 16.8592396, "lon": 96.1194982 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 554492297,
+  "bounds": {
+    "minlat": 16.8601294,
+    "minlon": 96.1225659,
+    "maxlat": 16.8602603,
+    "maxlon": 96.1226416
+  },
+  "geometry": [
+    { "lat": 16.8602603, "lon": 96.1225659 },
+    { "lat": 16.8601294, "lon": 96.1226416 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "အင်းစိန်လမ်း",
+    "name:en": "Insein Road",
+    "name:my": "အင်းစိန်လမ်း",
+    "oneway": "yes",
+    "parking:lane:left": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 554492299,
+  "bounds": {
+    "minlat": 16.8601908,
+    "minlon": 96.1226727,
+    "maxlat": 16.8603184,
+    "maxlon": 96.1227412
+  },
+  "geometry": [
+    { "lat": 16.8601908, "lon": 96.1227412 },
+    { "lat": 16.8603184, "lon": 96.1226727 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "အင်းစိန်လမ်း",
+    "name:en": "Insein Road",
+    "name:my": "အင်းစိန်လမ်း",
+    "oneway": "yes",
+    "parking:lane:right": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 554497905,
+  "bounds": {
+    "minlat": 16.8540640,
+    "minlon": 96.0912120,
+    "maxlat": 16.8583437,
+    "maxlon": 96.1021078
+  },
+  "geometry": [
+    { "lat": 16.8540640, "lon": 96.0912120 },
+    { "lat": 16.8541612, "lon": 96.0915139 },
+    { "lat": 16.8542947, "lon": 96.0918210 },
+    { "lat": 16.8577986, "lon": 96.0997456 },
+    { "lat": 16.8580181, "lon": 96.1002646 },
+    { "lat": 16.8581131, "lon": 96.1005718 },
+    { "lat": 16.8581657, "lon": 96.1008427 },
+    { "lat": 16.8583437, "lon": 96.1021078 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "Bayint Naung Bridge 2",
+    "name:en": "Bayint Naung Bridge 2",
+    "name:my": "ဘုရင့်နောင်တံတား ၂",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 554502842,
+  "bounds": {
+    "minlat": 16.8568087,
+    "minlon": 96.1084174,
+    "maxlat": 16.8572965,
+    "maxlon": 96.1084813
+  },
+  "geometry": [
+    { "lat": 16.8572965, "lon": 96.1084813 },
+    { "lat": 16.8568087, "lon": 96.1084174 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 554502843,
+  "bounds": {
+    "minlat": 16.8568037,
+    "minlon": 96.1085445,
+    "maxlat": 16.8573720,
+    "maxlon": 96.1086115
+  },
+  "geometry": [
+    { "lat": 16.8568037, "lon": 96.1085445 },
+    { "lat": 16.8573720, "lon": 96.1086115 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 574220661,
+  "bounds": {
+    "minlat": 16.9159935,
+    "minlon": 96.1896694,
+    "maxlat": 16.9198380,
+    "maxlon": 96.1906752
+  },
+  "geometry": [
+    { "lat": 16.9159935, "lon": 96.1899938 },
+    { "lat": 16.9161941, "lon": 96.1898142 },
+    { "lat": 16.9163891, "lon": 96.1897173 },
+    { "lat": 16.9165816, "lon": 96.1896694 },
+    { "lat": 16.9167535, "lon": 96.1896797 },
+    { "lat": 16.9169361, "lon": 96.1897177 },
+    { "lat": 16.9198380, "lon": 96.1906752 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ကျန်စစ်သားတံတား",
+    "name:en": "Kyan Sit Thar Bridge",
+    "name:my": "ကျန်စစ်သားတံတား",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 597845014,
+  "bounds": {
+    "minlat": 16.7143971,
+    "minlon": 96.1386605,
+    "maxlat": 16.7145294,
+    "maxlon": 96.1386712
+  },
+  "geometry": [
+    { "lat": 16.7143971, "lon": 96.1386712 },
+    { "lat": 16.7145294, "lon": 96.1386605 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 601860951,
+  "bounds": {
+    "minlat": 16.9150932,
+    "minlon": 96.1562262,
+    "maxlat": 16.9152356,
+    "maxlon": 96.1564864
+  },
+  "geometry": [
+    { "lat": 16.9150932, "lon": 96.1562262 },
+    { "lat": 16.9152356, "lon": 96.1564864 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Waibargi Road",
+    "name:en": "Waibargi Road",
+    "name:my": "ဝေဘာဂီလမ်း",
+    "parking:lane:both": "parallel"
+  }
+},
+{
+  "type": "way",
+  "id": 601930557,
+  "bounds": {
+    "minlat": 16.9062474,
+    "minlon": 96.1557072,
+    "maxlat": 16.9062654,
+    "maxlon": 96.1558521
+  },
+  "geometry": [
+    { "lat": 16.9062474, "lon": 96.1557072 },
+    { "lat": 16.9062654, "lon": 96.1558521 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "သုခမိန်လမ်း",
+    "name:en": "Thukamaine Street",
+    "name:my": "သုခမိန်လမ်း",
+    "oneway": "no",
+    "parking:lane:both": "parallel"
+  }
+},
+{
+  "type": "way",
+  "id": 601930559,
+  "bounds": {
+    "minlat": 16.9068133,
+    "minlon": 96.1625804,
+    "maxlat": 16.9069664,
+    "maxlon": 96.1626092
+  },
+  "geometry": [
+    { "lat": 16.9069664, "lon": 96.1626092 },
+    { "lat": 16.9068133, "lon": 96.1625804 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Maydarwi Road",
+    "name:en": "Maydarwi Road",
+    "name:my": "မေဓါဝီလမ်း",
+    "parking:lane:both": "parallel"
+  }
+},
+{
+  "type": "way",
+  "id": 601930566,
+  "bounds": {
+    "minlat": 16.9042874,
+    "minlon": 96.1647624,
+    "maxlat": 16.9043207,
+    "maxlon": 96.1648663
+  },
+  "geometry": [
+    { "lat": 16.9043207, "lon": 96.1647624 },
+    { "lat": 16.9042874, "lon": 96.1648663 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "သုနၵာလမ္း",
+    "name:en": "Thu Nanda Road",
+    "name:my": "သုနၵာလမ္း",
+    "oneway": "no",
+    "parking:lane:both": "parallel"
+  }
+},
+{
+  "type": "way",
+  "id": 601930601,
+  "bounds": {
+    "minlat": 16.9099321,
+    "minlon": 96.1516960,
+    "maxlat": 16.9100378,
+    "maxlon": 96.1517205
+  },
+  "geometry": [
+    { "lat": 16.9100378, "lon": 96.1516960 },
+    { "lat": 16.9099321, "lon": 96.1517205 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Tu Thi Ta Street",
+    "name:my": "တုဿိတာလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 601976374,
+  "bounds": {
+    "minlat": 16.9054493,
+    "minlon": 96.1704969,
+    "maxlat": 16.9055320,
+    "maxlon": 96.1705818
+  },
+  "geometry": [
+    { "lat": 16.9054493, "lon": 96.1704969 },
+    { "lat": 16.9055320, "lon": 96.1705818 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "သုနန္ဒာလမ်း",
+    "name:en": "Thu Nandar Road",
+    "name:my": "သုနန္ဒာလမ်း",
+    "oneway": "no",
+    "parking:lane:both": "parallel"
+  }
+},
+{
+  "type": "way",
+  "id": 601976395,
+  "bounds": {
+    "minlat": 16.9031458,
+    "minlon": 96.1651070,
+    "maxlat": 16.9033194,
+    "maxlon": 96.1651797
+  },
+  "geometry": [
+    { "lat": 16.9033194, "lon": 96.1651797 },
+    { "lat": 16.9031458, "lon": 96.1651070 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "သုဓမ္မာလမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 601976396,
+  "bounds": {
+    "minlat": 16.9031135,
+    "minlon": 96.1652021,
+    "maxlat": 16.9032743,
+    "maxlon": 96.1652680
+  },
+  "geometry": [
+    { "lat": 16.9031135, "lon": 96.1652021 },
+    { "lat": 16.9032743, "lon": 96.1652680 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "သုဓမ္မာလမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 602012310,
+  "bounds": {
+    "minlat": 16.8879911,
+    "minlon": 96.0974001,
+    "maxlat": 16.8881811,
+    "maxlon": 96.0975199
+  },
+  "geometry": [
+    { "lat": 16.8879911, "lon": 96.0975199 },
+    { "lat": 16.8881811, "lon": 96.0974001 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 602012312,
+  "bounds": {
+    "minlat": 16.8879649,
+    "minlon": 96.0973236,
+    "maxlat": 16.8881528,
+    "maxlon": 96.0974127
+  },
+  "geometry": [
+    { "lat": 16.8881528, "lon": 96.0973236 },
+    { "lat": 16.8879649, "lon": 96.0974127 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 602012323,
+  "bounds": {
+    "minlat": 16.8870570,
+    "minlon": 96.1064236,
+    "maxlat": 16.8882074,
+    "maxlon": 96.1078258
+  },
+  "geometry": [
+    { "lat": 16.8881802, "lon": 96.1064236 },
+    { "lat": 16.8881721, "lon": 96.1066101 },
+    { "lat": 16.8881959, "lon": 96.1067750 },
+    { "lat": 16.8882074, "lon": 96.1069091 },
+    { "lat": 16.8881927, "lon": 96.1070406 },
+    { "lat": 16.8881632, "lon": 96.1071385 },
+    { "lat": 16.8880919, "lon": 96.1072699 },
+    { "lat": 16.8880182, "lon": 96.1073410 },
+    { "lat": 16.8878687, "lon": 96.1074516 },
+    { "lat": 16.8875774, "lon": 96.1075864 },
+    { "lat": 16.8872283, "lon": 96.1077440 },
+    { "lat": 16.8870570, "lon": 96.1078258 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary_link",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "40",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 602012324,
+  "bounds": {
+    "minlat": 16.8883161,
+    "minlon": 96.1068892,
+    "maxlat": 16.8887260,
+    "maxlon": 96.1086427
+  },
+  "geometry": [
+    { "lat": 16.8883161, "lon": 96.1068892 },
+    { "lat": 16.8883623, "lon": 96.1070833 },
+    { "lat": 16.8884112, "lon": 96.1073032 },
+    { "lat": 16.8884328, "lon": 96.1074116 },
+    { "lat": 16.8885600, "lon": 96.1080449 },
+    { "lat": 16.8886241, "lon": 96.1083467 },
+    { "lat": 16.8887260, "lon": 96.1086427 }
+  ],
+  "tags": {
+    "alt_name:my": "လှိုင်မြစ်လမ်း",
+    "bridge": "yes",
+    "covered": "no",
+    "flood_prone": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "လမ်းသစ်လမ်း",
+    "name:en": "Lanthit Road",
+    "name:my": "လမ်းသစ်လမ်း",
+    "oneway": "yes",
+    "oneway:bicycle": "yes",
+    "surface": "asphalt",
+    "toll": "no",
+    "trolley_wire": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 602323720,
+  "bounds": {
+    "minlat": 16.8934681,
+    "minlon": 96.1556388,
+    "maxlat": 16.8935528,
+    "maxlon": 96.1557408
+  },
+  "geometry": [
+    { "lat": 16.8935528, "lon": 96.1557408 },
+    { "lat": 16.8934681, "lon": 96.1556388 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "name": "သုဓမ္မာလမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာလမ်း",
+    "oneway": "yes",
+    "parking:lane:left": "perpendicular",
+    "parking:lane:right": "no_parking",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 602323722,
+  "bounds": {
+    "minlat": 16.8933642,
+    "minlon": 96.1557086,
+    "maxlat": 16.8934553,
+    "maxlon": 96.1558074
+  },
+  "geometry": [
+    { "lat": 16.8933642, "lon": 96.1557086 },
+    { "lat": 16.8934553, "lon": 96.1558074 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "သုဓမ္မာလမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 602323768,
+  "bounds": {
+    "minlat": 16.8887303,
+    "minlon": 96.1608219,
+    "maxlat": 16.8899899,
+    "maxlon": 96.1619354
+  },
+  "geometry": [
+    { "lat": 16.8899899, "lon": 96.1608219 },
+    { "lat": 16.8887303, "lon": 96.1619354 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "30",
+    "name": "စက်မှုလမ်း",
+    "name:en": "Industrial Road",
+    "name:my": "စက်မှုလမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 602330470,
+  "bounds": {
+    "minlat": 16.8941611,
+    "minlon": 96.1807148,
+    "maxlat": 16.8942470,
+    "maxlon": 96.1807604
+  },
+  "geometry": [
+    { "lat": 16.8942470, "lon": 96.1807148 },
+    { "lat": 16.8941611, "lon": 96.1807604 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း Ba Yint Naung Road",
+    "name:en": "Ba Yint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 602358414,
+  "bounds": {
+    "minlat": 16.8831788,
+    "minlon": 96.0935201,
+    "maxlat": 16.8832997,
+    "maxlon": 96.0936284
+  },
+  "geometry": [
+    { "lat": 16.8832997, "lon": 96.0936284 },
+    { "lat": 16.8831788, "lon": 96.0935201 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "လှိုင်မြစ်လမ်း",
+    "name:en": "Hlaing River Road",
+    "name:my": "လှိုင်မြစ်လမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 602358415,
+  "bounds": {
+    "minlat": 16.8831788,
+    "minlon": 96.0935201,
+    "maxlat": 16.8831987,
+    "maxlon": 96.0936815
+  },
+  "geometry": [
+    { "lat": 16.8831788, "lon": 96.0935201 },
+    { "lat": 16.8831987, "lon": 96.0936815 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "လှိုင်မြစ်လမ်း",
+    "name:en": "Hlaing River Road",
+    "name:my": "လှိုင်မြစ်လမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 602806809,
+  "bounds": {
+    "minlat": 16.8748444,
+    "minlon": 96.1589407,
+    "maxlat": 16.8749766,
+    "maxlon": 96.1589799
+  },
+  "geometry": [
+    { "lat": 16.8749766, "lon": 96.1589407 },
+    { "lat": 16.8748444, "lon": 96.1589799 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "သုဇိတာ လမ်း Thuzithar Street",
+    "name:en": "Thuzithar Street",
+    "name:my": "သုဇိတာ လမ်း",
+    "parking:lane:both": "parallel",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 602824339,
+  "bounds": {
+    "minlat": 16.8787591,
+    "minlon": 96.1711594,
+    "maxlat": 16.8788130,
+    "maxlon": 96.1711916
+  },
+  "geometry": [
+    { "lat": 16.8787591, "lon": 96.1711916 },
+    { "lat": 16.8788130, "lon": 96.1711594 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဦးဝိစာရလမ်း",
+    "name:en": "U Wisara Road",
+    "name:my": "ဦးဝိစာရလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 602824340,
+  "bounds": {
+    "minlat": 16.8825514,
+    "minlon": 96.1786240,
+    "maxlat": 16.8826354,
+    "maxlon": 96.1786683
+  },
+  "geometry": [
+    { "lat": 16.8825514, "lon": 96.1786683 },
+    { "lat": 16.8826354, "lon": 96.1786240 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ဗိုလ်မင်းရောင်လမ်း",
+    "name:en": "Bo Min Yaung Road"
+  }
+},
+{
+  "type": "way",
+  "id": 602824342,
+  "bounds": {
+    "minlat": 16.8820560,
+    "minlon": 96.1789083,
+    "maxlat": 16.8821189,
+    "maxlon": 96.1789425
+  },
+  "geometry": [
+    { "lat": 16.8820560, "lon": 96.1789425 },
+    { "lat": 16.8821189, "lon": 96.1789083 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ဗိုလ်မင်းရောင်လမ်း",
+    "name:en": "Bo Min Yaung Road"
+  }
+},
+{
+  "type": "way",
+  "id": 604108482,
+  "bounds": {
+    "minlat": 16.9443850,
+    "minlon": 96.1510938,
+    "maxlat": 16.9445184,
+    "maxlon": 96.1511207
+  },
+  "geometry": [
+    { "lat": 16.9443850, "lon": 96.1511207 },
+    { "lat": 16.9445184, "lon": 96.1510938 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "No 3 Main Road",
+    "name:en": "No 3 Main Road",
+    "name:my": "အမှတ် ၃ လမ်းမ ကြီး",
+    "name:ျမန္မာဘာသာ": "ပင်မလမ်း ( ၃ )",
+    "oneway": "no",
+    "source": "Yahoo hires",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 612498013,
+  "bounds": {
+    "minlat": 16.8872405,
+    "minlon": 96.1035490,
+    "maxlat": 16.8881802,
+    "maxlon": 96.1064236
+  },
+  "geometry": [
+    { "lat": 16.8872405, "lon": 96.1035490 },
+    { "lat": 16.8872867, "lon": 96.1037502 },
+    { "lat": 16.8881802, "lon": 96.1064236 }
+  ],
+  "tags": {
+    "alt_name": "လှိုင်မြစ်လမ်း",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "လမ်းသစ်လမ်း",
+    "name:en": "Lanthit Road",
+    "name:my": "လမ်းသစ်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 612816000,
+  "bounds": {
+    "minlat": 16.9352019,
+    "minlon": 96.1709435,
+    "maxlat": 16.9352172,
+    "maxlon": 96.1710679
+  },
+  "geometry": [
+    { "lat": 16.9352019, "lon": 96.1709435 },
+    { "lat": 16.9352172, "lon": 96.1710679 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "အင်းဝလမ်း",
+    "name:en": "Inn Wa Street",
+    "name:my": "အင်းဝလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 613289500,
+  "bounds": {
+    "minlat": 16.9492113,
+    "minlon": 96.1695351,
+    "maxlat": 16.9492636,
+    "maxlon": 96.1695638
+  },
+  "geometry": [
+    { "lat": 16.9492113, "lon": 96.1695638 },
+    { "lat": 16.9492636, "lon": 96.1695351 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 613289514,
+  "bounds": {
+    "minlat": 16.9546427,
+    "minlon": 96.1750567,
+    "maxlat": 16.9547337,
+    "maxlon": 96.1751130
+  },
+  "geometry": [
+    { "lat": 16.9546427, "lon": 96.1751130 },
+    { "lat": 16.9547337, "lon": 96.1750567 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ညောင်ရမ်းလမ်း Nyaung Yan St",
+    "name:en": "Nyaung Yan St",
+    "name:my": "ညောင်ရမ်းလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 613289528,
+  "bounds": {
+    "minlat": 16.9013752,
+    "minlon": 96.0954689,
+    "maxlat": 16.9013919,
+    "maxlon": 96.0954897
+  },
+  "geometry": [
+    { "lat": 16.9013752, "lon": 96.0954897 },
+    { "lat": 16.9013829, "lon": 96.0954793 },
+    { "lat": 16.9013919, "lon": 96.0954689 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary_link",
+    "layer": "1",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 613289532,
+  "bounds": {
+    "minlat": 16.9013190,
+    "minlon": 96.0954447,
+    "maxlat": 16.9013624,
+    "maxlon": 96.0954472
+  },
+  "geometry": [
+    { "lat": 16.9013624, "lon": 96.0954447 },
+    { "lat": 16.9013190, "lon": 96.0954472 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary_link",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 613289577,
+  "bounds": {
+    "minlat": 16.8927405,
+    "minlon": 96.1034910,
+    "maxlat": 16.8927991,
+    "maxlon": 96.1035278
+  },
+  "geometry": [
+    { "lat": 16.8927405, "lon": 96.1035278 },
+    { "lat": 16.8927991, "lon": 96.1034910 }
+  ],
+  "tags": {
+    "bicycle": "yes",
+    "bridge": "yes",
+    "foot": "yes",
+    "highway": "secondary",
+    "horse": "no",
+    "lanes": "5",
+    "layer": "1",
+    "motor_vehicle": "yes",
+    "name": "အောက်မင်္ဂလာဒုံလမ်း Lower Mingaladon Road",
+    "name:en": "Lower Mingaladon Road",
+    "name:my": "အောက်မင်္ဂလာဒုံလမ်း",
+    "name:ျမန္မာဘာသာ": "ဘုရင့္ေနာင္လမ္း",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 613529377,
+  "bounds": {
+    "minlat": 16.8542868,
+    "minlon": 96.1660069,
+    "maxlat": 16.8544782,
+    "maxlon": 96.1661352
+  },
+  "geometry": [
+    { "lat": 16.8544782, "lon": 96.1660069 },
+    { "lat": 16.8542868, "lon": 96.1661352 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 613529378,
+  "bounds": {
+    "minlat": 16.8543346,
+    "minlon": 96.1660677,
+    "maxlat": 16.8545223,
+    "maxlon": 96.1661985
+  },
+  "geometry": [
+    { "lat": 16.8543346, "lon": 96.1661985 },
+    { "lat": 16.8545223, "lon": 96.1660677 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ဝေဇယန္တာလမ်း",
+    "name:en": "Waizayandar Road",
+    "name:my": "ဝေဇယန္တာလမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 613529380,
+  "bounds": {
+    "minlat": 16.8721945,
+    "minlon": 96.1600848,
+    "maxlat": 16.8723036,
+    "maxlon": 96.1601384
+  },
+  "geometry": [
+    { "lat": 16.8723036, "lon": 96.1600848 },
+    { "lat": 16.8721945, "lon": 96.1601384 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "parking:lane:both": "parallel",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 615675381,
+  "bounds": {
+    "minlat": 16.8479636,
+    "minlon": 96.1182475,
+    "maxlat": 16.8481012,
+    "maxlon": 96.1182888
+  },
+  "geometry": [
+    { "lat": 16.8481012, "lon": 96.1182475 },
+    { "lat": 16.8479636, "lon": 96.1182888 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဗဟိုလမ်း Baho Road",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 616834157,
+  "bounds": {
+    "minlat": 16.7999483,
+    "minlon": 96.1302636,
+    "maxlat": 16.8001254,
+    "maxlon": 96.1303315
+  },
+  "geometry": [
+    { "lat": 16.8001254, "lon": 96.1302636 },
+    { "lat": 16.7999483, "lon": 96.1303315 }
+  ],
+  "tags": {
+    "alt_name": "ရှမ်းလမ်း",
+    "alt_name:en": "Shan (Fytche) Road",
+    "alt_name:my": "ရှမ်းလမ်း",
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ဗဟိုလမ်း",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 616840141,
+  "bounds": {
+    "minlat": 16.8326950,
+    "minlon": 96.1230659,
+    "maxlat": 16.8328285,
+    "maxlon": 96.1230741
+  },
+  "geometry": [
+    { "lat": 16.8328285, "lon": 96.1230659 },
+    { "lat": 16.8326950, "lon": 96.1230741 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဗဟိုလမ်း - Baho Road",
+    "name:en": "Baho Road",
+    "name:my": "ဗဟိုလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 617318723,
+  "bounds": {
+    "minlat": 16.7978921,
+    "minlon": 96.1292513,
+    "maxlat": 16.7978925,
+    "maxlon": 96.1292995
+  },
+  "geometry": [
+    { "lat": 16.7978921, "lon": 96.1292995 },
+    { "lat": 16.7978925, "lon": 96.1292513 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "maxspeed": "30",
+    "name": "ပန်းလှိုင်လမ်း",
+    "name:en": "Pan Hlaing Road",
+    "name:my": "ပန်းလှိုင်လမ်း",
+    "old_name": "Home Road"
+  }
+},
+{
+  "type": "way",
+  "id": 658700642,
+  "bounds": {
+    "minlat": 16.8936829,
+    "minlon": 96.2802641,
+    "maxlat": 16.8937347,
+    "maxlon": 96.2803081
+  },
+  "geometry": [
+    { "lat": 16.8936829, "lon": 96.2802641 },
+    { "lat": 16.8937347, "lon": 96.2803081 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "Hlaw Kar Road"
+  }
+},
+{
+  "type": "way",
+  "id": 670277217,
+  "bounds": {
+    "minlat": 16.8064109,
+    "minlon": 96.1823026,
+    "maxlat": 16.8064753,
+    "maxlon": 96.1825583
+  },
+  "geometry": [
+    { "lat": 16.8064109, "lon": 96.1825583 },
+    { "lat": 16.8064753, "lon": 96.1823026 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "Thamein Ba Yan Street",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 671227017,
+  "bounds": {
+    "minlat": 16.8235683,
+    "minlon": 96.2140293,
+    "maxlat": 16.8244943,
+    "maxlon": 96.2156436
+  },
+  "geometry": [
+    { "lat": 16.8235683, "lon": 96.2140293 },
+    { "lat": 16.8244943, "lon": 96.2156436 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lanes": "2",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 681026657,
+  "bounds": {
+    "minlat": 16.8544870,
+    "minlon": 96.2091238,
+    "maxlat": 16.8548545,
+    "maxlon": 96.2099526
+  },
+  "geometry": [
+    { "lat": 16.8544870, "lon": 96.2099526 },
+    { "lat": 16.8545891, "lon": 96.2097221 },
+    { "lat": 16.8546076, "lon": 96.2096835 },
+    { "lat": 16.8548545, "lon": 96.2091238 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 681166595,
+  "bounds": {
+    "minlat": 16.7740700,
+    "minlon": 96.1810125,
+    "maxlat": 16.7746692,
+    "maxlon": 96.1819075
+  },
+  "geometry": [
+    { "lat": 16.7740700, "lon": 96.1810125 },
+    { "lat": 16.7746692, "lon": 96.1819075 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "bridge:structure": "cable-stayed",
+    "highway": "primary",
+    "lanes": "6",
+    "layer": "1",
+    "name": "မဟာဗန္ဓုလလမ်း",
+    "name:en": "Maha Bandula Road",
+    "name:my": "မဟာဗန္ဓုလလမ်း",
+    "old_name:en": "Dalhousie Road",
+    "surface": "asphalt",
+    "wikipedia": "en:Maha Bandula Road"
+  }
+},
+{
+  "type": "way",
+  "id": 685924213,
+  "bounds": {
+    "minlat": 16.8474394,
+    "minlon": 96.1984312,
+    "maxlat": 16.8475630,
+    "maxlon": 96.1987091
+  },
+  "geometry": [
+    { "lat": 16.8474394, "lon": 96.1987091 },
+    { "lat": 16.8475310, "lon": 96.1985031 },
+    { "lat": 16.8475630, "lon": 96.1984312 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "သံသုမာလမ်း",
+    "name:en": "Than Thu Mar Road",
+    "name:my": "သံသုမာလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 685924221,
+  "bounds": {
+    "minlat": 16.8261284,
+    "minlon": 96.1712340,
+    "maxlat": 16.8262756,
+    "maxlon": 96.1712791
+  },
+  "geometry": [
+    { "lat": 16.8262756, "lon": 96.1712340 },
+    { "lat": 16.8261284, "lon": 96.1712791 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "မိုးကောင်းလမ်း",
+    "name:en": "Moe Kaung Road",
+    "name:my": "မိုးကောင်းလမ်း",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 699989986,
+  "bounds": {
+    "minlat": 16.7866513,
+    "minlon": 96.1766374,
+    "maxlat": 16.7869474,
+    "maxlon": 96.1769986
+  },
+  "geometry": [
+    { "lat": 16.7869474, "lon": 96.1766374 },
+    { "lat": 16.7868933, "lon": 96.1766540 },
+    { "lat": 16.7868439, "lon": 96.1766861 },
+    { "lat": 16.7867103, "lon": 96.1769021 },
+    { "lat": 16.7866513, "lon": 96.1769986 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary_link",
+    "layer": "1",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 750949575,
+  "bounds": {
+    "minlat": 16.8324021,
+    "minlon": 96.1209395,
+    "maxlat": 16.8326018,
+    "maxlon": 96.1209937
+  },
+  "geometry": [
+    { "lat": 16.8326018, "lon": 96.1209395 },
+    { "lat": 16.8324021, "lon": 96.1209937 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "name:ဗမာ": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 750949576,
+  "bounds": {
+    "minlat": 16.8324400,
+    "minlon": 96.1210375,
+    "maxlat": 16.8326237,
+    "maxlon": 96.1210871
+  },
+  "geometry": [
+    { "lat": 16.8324400, "lon": 96.1210871 },
+    { "lat": 16.8326237, "lon": 96.1210375 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "cycleway:right": "no",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ဘုရင့်နောင်လမ်း",
+    "name:en": "Bayint Naung Road",
+    "name:my": "ဘုရင့်နောင်လမ်း",
+    "name:ဗမာ": "ဘုရင့်နောင်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 846314954,
+  "bounds": {
+    "minlat": 16.8621264,
+    "minlon": 96.1412770,
+    "maxlat": 16.8680251,
+    "maxlon": 96.1429761
+  },
+  "geometry": [
+    { "lat": 16.8680251, "lon": 96.1412770 },
+    { "lat": 16.8675634, "lon": 96.1415595 },
+    { "lat": 16.8670928, "lon": 96.1418756 },
+    { "lat": 16.8666351, "lon": 96.1422077 },
+    { "lat": 16.8662559, "lon": 96.1424062 },
+    { "lat": 16.8657396, "lon": 96.1426289 },
+    { "lat": 16.8652343, "lon": 96.1428521 },
+    { "lat": 16.8649808, "lon": 96.1429399 },
+    { "lat": 16.8647151, "lon": 96.1429761 },
+    { "lat": 16.8644828, "lon": 96.1429708 },
+    { "lat": 16.8642345, "lon": 96.1429173 },
+    { "lat": 16.8638154, "lon": 96.1428006 },
+    { "lat": 16.8626539, "lon": 96.1424826 },
+    { "lat": 16.8621264, "lon": 96.1423531 }
+  ],
+  "tags": {
+    "access": "yes",
+    "alt_name:en": "Prome Road",
+    "bridge": "yes",
+    "fixme": "Bus routes to the north need to be added. Please check the bus routes.",
+    "highway": "trunk",
+    "highway_1": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ပြည်လမ်း",
+    "name:en": "Pyay Road",
+    "name:my": "ပြည်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 856335051,
+  "bounds": {
+    "minlat": 16.8621033,
+    "minlon": 96.1413458,
+    "maxlat": 16.8680559,
+    "maxlon": 96.1430223
+  },
+  "geometry": [
+    { "lat": 16.8621033, "lon": 96.1424149 },
+    { "lat": 16.8626438, "lon": 96.1425487 },
+    { "lat": 16.8638142, "lon": 96.1428588 },
+    { "lat": 16.8642364, "lon": 96.1429721 },
+    { "lat": 16.8644844, "lon": 96.1430212 },
+    { "lat": 16.8647123, "lon": 96.1430223 },
+    { "lat": 16.8649954, "lon": 96.1429871 },
+    { "lat": 16.8652357, "lon": 96.1429095 },
+    { "lat": 16.8657501, "lon": 96.1426992 },
+    { "lat": 16.8662841, "lon": 96.1424638 },
+    { "lat": 16.8666749, "lon": 96.1422546 },
+    { "lat": 16.8671209, "lon": 96.1419623 },
+    { "lat": 16.8675906, "lon": 96.1416498 },
+    { "lat": 16.8680559, "lon": 96.1413458 }
+  ],
+  "tags": {
+    "access": "yes",
+    "alt_name:en": "Prome Road",
+    "bridge": "yes",
+    "fixme": "Bus routes to the north need to be added. Please check the bus routes.",
+    "highway": "trunk",
+    "highway_1": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ပြည်လမ်း",
+    "name:en": "Pyay Road",
+    "name:my": "ပြည်လမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 864503537,
+  "bounds": {
+    "minlat": 16.7579208,
+    "minlon": 96.1264037,
+    "maxlat": 16.7579685,
+    "maxlon": 96.1267852
+  },
+  "geometry": [
+    { "lat": 16.7579208, "lon": 96.1264037 },
+    { "lat": 16.7579685, "lon": 96.1267852 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "Dala-Twante Road",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 903782314,
+  "bounds": {
+    "minlat": 16.7812970,
+    "minlon": 96.1533980,
+    "maxlat": 16.7814291,
+    "maxlon": 96.1534041
+  },
+  "geometry": [
+    { "lat": 16.7812970, "lon": 96.1533980 },
+    { "lat": 16.7814291, "lon": 96.1534041 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "name:en": "Shwedagon Pagoda Road",
+    "name:my": "ရွှေတိဂုံ ဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "turn:lanes:forward": "through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 915345286,
+  "bounds": {
+    "minlat": 16.7937835,
+    "minlon": 96.1228670,
+    "maxlat": 16.7938817,
+    "maxlon": 96.1228679
+  },
+  "geometry": [
+    { "lat": 16.7938817, "lon": 96.1228679 },
+    { "lat": 16.7937835, "lon": 96.1228670 }
+  ],
+  "tags": {
+    "alt_name": "Strand Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ကြည့်မြင်တိုင်ကမ်းနားလမ်း",
+    "name:en": "Kyimyindine Kannar Road",
+    "name:my": "ကြည့်မြင်တိုင်ကမ်းနားလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 915345289,
+  "bounds": {
+    "minlat": 16.7937886,
+    "minlon": 96.1229457,
+    "maxlat": 16.7938837,
+    "maxlon": 96.1229466
+  },
+  "geometry": [
+    { "lat": 16.7937886, "lon": 96.1229466 },
+    { "lat": 16.7938837, "lon": 96.1229457 }
+  ],
+  "tags": {
+    "alt_name": "Strand Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "ကြည့်မြင်တိုင်ကမ်းနားလမ်း",
+    "name:en": "Kyimyindine Kannar Road",
+    "name:my": "ကြည့်မြင်တိုင်ကမ်းနားလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "parking:lane:both_1": "perpendicular",
+    "parking:lane:both_2": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 915390251,
+  "bounds": {
+    "minlat": 16.8749212,
+    "minlon": 96.2121426,
+    "maxlat": 16.8749758,
+    "maxlon": 96.2122757
+  },
+  "geometry": [
+    { "lat": 16.8749212, "lon": 96.2122757 },
+    { "lat": 16.8749758, "lon": 96.2121426 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "မောင်းမကန် ကမ်းသာလမ်း",
+    "name:en": "Maungmagan Kantha Road",
+    "name:my": "မောင်းမကန် ကမ်းသာလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 915400534,
+  "bounds": {
+    "minlat": 16.7940337,
+    "minlon": 96.1264353,
+    "maxlat": 16.7941149,
+    "maxlon": 96.1264657
+  },
+  "geometry": [
+    { "lat": 16.7940337, "lon": 96.1264657 },
+    { "lat": 16.7940812, "lon": 96.1264474 },
+    { "lat": 16.7941149, "lon": 96.1264353 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "6",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "အောက်ကြည့်မြင်တိုင်လမ်း",
+    "name:en": "Lower Kyimyindine Road",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 915404619,
+  "bounds": {
+    "minlat": 16.7541353,
+    "minlon": 96.1542204,
+    "maxlat": 16.7541692,
+    "maxlon": 96.1543220
+  },
+  "geometry": [
+    { "lat": 16.7541353, "lon": 96.1543220 },
+    { "lat": 16.7541692, "lon": 96.1542204 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "kanaung Road",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 921599278,
+  "bounds": {
+    "minlat": 16.8371769,
+    "minlon": 96.2323096,
+    "maxlat": 16.8372018,
+    "maxlon": 96.2323903
+  },
+  "geometry": [
+    { "lat": 16.8371769, "lon": 96.2323096 },
+    { "lat": 16.8372018, "lon": 96.2323903 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "Ayer Waddy Street",
+    "name:en": "Ayer Waddy Street",
+    "name:my": "ဧရာဝတီလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 921606304,
+  "bounds": {
+    "minlat": 16.8381798,
+    "minlon": 96.2440141,
+    "maxlat": 16.8382023,
+    "maxlon": 96.2440956
+  },
+  "geometry": [
+    { "lat": 16.8382023, "lon": 96.2440141 },
+    { "lat": 16.8381798, "lon": 96.2440956 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ပဲခူးမြစ်လမ်း",
+    "name:en": "Bago River Road",
+    "name:my": "ပဲခူးမြစ်လမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 923019028,
+  "bounds": {
+    "minlat": 16.8883161,
+    "minlon": 96.1068563,
+    "maxlat": 16.8897800,
+    "maxlon": 96.1072169
+  },
+  "geometry": [
+    { "lat": 16.8883161, "lon": 96.1068892 },
+    { "lat": 16.8885124, "lon": 96.1070744 },
+    { "lat": 16.8886477, "lon": 96.1071617 },
+    { "lat": 16.8887406, "lon": 96.1071968 },
+    { "lat": 16.8888715, "lon": 96.1072169 },
+    { "lat": 16.8890071, "lon": 96.1072097 },
+    { "lat": 16.8891590, "lon": 96.1071526 },
+    { "lat": 16.8892858, "lon": 96.1071021 },
+    { "lat": 16.8893916, "lon": 96.1070550 },
+    { "lat": 16.8897800, "lon": 96.1068563 }
+  ],
+  "tags": {
+    "access": "yes",
+    "bridge": "yes",
+    "covered": "no",
+    "flood_prone": "no",
+    "highway": "primary_link",
+    "incline": "down",
+    "lanes": "1",
+    "layer": "1",
+    "lit": "yes",
+    "maxspeed": "40",
+    "motor_vehicle": "yes",
+    "oneway": "yes",
+    "oneway:bicycle": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 929860409,
+  "bounds": {
+    "minlat": 16.7588903,
+    "minlon": 96.1381139,
+    "maxlat": 16.7590024,
+    "maxlon": 96.1381438
+  },
+  "geometry": [
+    { "lat": 16.7588903, "lon": 96.1381139 },
+    { "lat": 16.7590024, "lon": 96.1381438 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "Bandoola Road",
+    "name:my": "ဗန္ဓုလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 955745054,
+  "bounds": {
+    "minlat": 16.7869474,
+    "minlon": 96.1764883,
+    "maxlat": 16.7870600,
+    "maxlon": 96.1766374
+  },
+  "geometry": [
+    { "lat": 16.7869474, "lon": 96.1766374 },
+    { "lat": 16.7870031, "lon": 96.1765587 },
+    { "lat": 16.7870600, "lon": 96.1764883 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "သာကေတတံတား",
+    "name:en": "Thaketa Bridge",
+    "name:my": "သာကေတတံတား",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 955763147,
+  "bounds": {
+    "minlat": 16.9258647,
+    "minlon": 96.1564429,
+    "maxlat": 16.9259398,
+    "maxlon": 96.1564801
+  },
+  "geometry": [
+    { "lat": 16.9259398, "lon": 96.1564429 },
+    { "lat": 16.9258647, "lon": 96.1564801 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "oneway": "yes",
+    "parking:lane:both": "no_parking",
+    "source": "Yahoo hires",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 955763148,
+  "bounds": {
+    "minlat": 16.9258848,
+    "minlon": 96.1565181,
+    "maxlat": 16.9259498,
+    "maxlon": 96.1565500
+  },
+  "geometry": [
+    { "lat": 16.9258848, "lon": 96.1565500 },
+    { "lat": 16.9259498, "lon": 96.1565181 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "သုဓမ္မာလမ်း",
+    "name:en": "Thu Dhamma Road",
+    "name:my": "သုဓမ္မာလမ်း",
+    "oneway": "yes",
+    "parking:lane:both": "parallel",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1016845900,
+  "bounds": {
+    "minlat": 16.7810044,
+    "minlon": 96.2274899,
+    "maxlat": 16.7972551,
+    "maxlon": 96.2384024
+  },
+  "geometry": [
+    { "lat": 16.7972551, "lon": 96.2274899 },
+    { "lat": 16.7932944, "lon": 96.2299937 },
+    { "lat": 16.7861281, "lon": 96.2343825 },
+    { "lat": 16.7854854, "lon": 96.2348123 },
+    { "lat": 16.7846714, "lon": 96.2353474 },
+    { "lat": 16.7841065, "lon": 96.2357363 },
+    { "lat": 16.7835235, "lon": 96.2361977 },
+    { "lat": 16.7822550, "lon": 96.2372813 },
+    { "lat": 16.7810044, "lon": 96.2384024 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "သန်လျင်တံတား အမှတ် ၃",
+    "name:en": "Thanlyin Bridge No. 3",
+    "name:my": "သန်လျင်တံတား အမှတ် ၃",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "toll": "yes",
+    "turn:lanes:forward": "through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 1023288489,
+  "bounds": {
+    "minlat": 16.8644687,
+    "minlon": 96.2101869,
+    "maxlat": 16.8647459,
+    "maxlon": 96.2104592
+  },
+  "geometry": [
+    { "lat": 16.8647459, "lon": 96.2101869 },
+    { "lat": 16.8644687, "lon": 96.2104592 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "name": "ပြည်ထောင်စုလမ်း",
+    "name:en": "Pyi Htaung Su Road",
+    "name:my": "ပြည်ထောင်စုလမ်း",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1190383446,
+  "bounds": {
+    "minlat": 16.8881802,
+    "minlon": 96.1064236,
+    "maxlat": 16.8883161,
+    "maxlon": 96.1068892
+  },
+  "geometry": [
+    { "lat": 16.8881802, "lon": 96.1064236 },
+    { "lat": 16.8882410, "lon": 96.1066278 },
+    { "lat": 16.8883161, "lon": 96.1068892 }
+  ],
+  "tags": {
+    "alt_name:my": "လှိုင်မြစ်လမ်း",
+    "bridge": "yes",
+    "covered": "no",
+    "flood_prone": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "လမ်းသစ်လမ်း",
+    "name:en": "Lanthit Road",
+    "name:my": "လမ်းသစ်လမ်း",
+    "oneway": "yes",
+    "oneway:bicycle": "yes",
+    "surface": "asphalt",
+    "toll": "no",
+    "trolley_wire": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 1219935185,
+  "bounds": {
+    "minlat": 16.7574311,
+    "minlon": 96.1422954,
+    "maxlat": 16.7792213,
+    "maxlon": 96.1450064
+  },
+  "geometry": [
+    { "lat": 16.7574311, "lon": 96.1422954 },
+    { "lat": 16.7575345, "lon": 96.1423150 },
+    { "lat": 16.7577526, "lon": 96.1423527 },
+    { "lat": 16.7583551, "lon": 96.1424645 },
+    { "lat": 16.7589697, "lon": 96.1425765 },
+    { "lat": 16.7596208, "lon": 96.1427025 },
+    { "lat": 16.7601290, "lon": 96.1427531 },
+    { "lat": 16.7641235, "lon": 96.1425664 },
+    { "lat": 16.7648099, "lon": 96.1427094 },
+    { "lat": 16.7726517, "lon": 96.1447625 },
+    { "lat": 16.7792213, "lon": 96.1450064 }
+  ],
+  "tags": {
+    "alt_name": "မြန်မာ-ကိုရီးယား ချစ်ကြည်ရေးတံတား",
+    "alt_name:en": "Myanmar-Korea Friendship Bridge",
+    "alt_name:my": "မြန်မာ-ကိုရီးယား ချစ်ကြည်ရေးတံတား",
+    "bicycle": "no",
+    "bridge": "yes",
+    "check_date": "2026-02-08",
+    "highway": "primary",
+    "horse": "no",
+    "lanes": "2",
+    "layer": "1",
+    "motor_vehicle": "yes",
+    "name": "ရန်ကုန်-ဒလ တံတား",
+    "name:en": "Yangon-Dala Bridge",
+    "name:my": "ရန်ကုန်-ဒလ တံတား",
+    "oneway": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 1238887718,
+  "bounds": {
+    "minlat": 16.8261735,
+    "minlon": 96.1642996,
+    "maxlat": 16.8262058,
+    "maxlon": 96.1643056
+  },
+  "geometry": [
+    { "lat": 16.8262058, "lon": 96.1642996 },
+    { "lat": 16.8261735, "lon": 96.1643056 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ရန်ကင်းလမ်း",
+    "name:en": "Yankin Road",
+    "name:my": "ရန်ကင်းလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 1241892486,
+  "bounds": {
+    "minlat": 16.8825616,
+    "minlon": 96.2365879,
+    "maxlat": 16.8825809,
+    "maxlon": 96.2367502
+  },
+  "geometry": [
+    { "lat": 16.8825616, "lon": 96.2367502 },
+    { "lat": 16.8825809, "lon": 96.2365879 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "Kyan Sit Thar Road",
+    "name:en": "Kyan Sit Thar Road",
+    "name:my": "ကျန်စစ်သားလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 1290811553,
+  "bounds": {
+    "minlat": 16.7989422,
+    "minlon": 96.2211223,
+    "maxlat": 16.8049647,
+    "maxlon": 96.2265145
+  },
+  "geometry": [
+    { "lat": 16.8049647, "lon": 96.2211223 },
+    { "lat": 16.8019331, "lon": 96.2248720 },
+    { "lat": 16.8017956, "lon": 96.2250190 },
+    { "lat": 16.8015561, "lon": 96.2252435 },
+    { "lat": 16.8011620, "lon": 96.2255117 },
+    { "lat": 16.8007738, "lon": 96.2256827 },
+    { "lat": 16.8004860, "lon": 96.2257806 },
+    { "lat": 16.7997510, "lon": 96.2260549 },
+    { "lat": 16.7989422, "lon": 96.2265145 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "Thanlyin Bridge No. 3",
+    "name:my": "သန်လျင်တံတား အမှတ် ၃",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1293795721,
+  "bounds": {
+    "minlat": 16.7810445,
+    "minlon": 96.2275817,
+    "maxlat": 16.7973020,
+    "maxlon": 96.2384885
+  },
+  "geometry": [
+    { "lat": 16.7810445, "lon": 96.2384885 },
+    { "lat": 16.7822986, "lon": 96.2373751 },
+    { "lat": 16.7829663, "lon": 96.2368011 },
+    { "lat": 16.7834426, "lon": 96.2363827 },
+    { "lat": 16.7837290, "lon": 96.2361467 },
+    { "lat": 16.7840346, "lon": 96.2359147 },
+    { "lat": 16.7842159, "lon": 96.2357877 },
+    { "lat": 16.7843055, "lon": 96.2357283 },
+    { "lat": 16.7847029, "lon": 96.2354498 },
+    { "lat": 16.7851953, "lon": 96.2351248 },
+    { "lat": 16.7857602, "lon": 96.2347560 },
+    { "lat": 16.7860247, "lon": 96.2345970 },
+    { "lat": 16.7973020, "lon": 96.2275817 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "သန်လျင်တံတား အမှတ် ၃",
+    "name:en": "Thanlyin Bridge No. 3",
+    "name:my": "သန်လျင်တံတား အမှတ် ၃",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "toll": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1294728115,
+  "bounds": {
+    "minlat": 16.8471150,
+    "minlon": 96.2813584,
+    "maxlat": 16.8471919,
+    "maxlon": 96.2813863
+  },
+  "geometry": [
+    { "lat": 16.8471150, "lon": 96.2813584 },
+    { "lat": 16.8471919, "lon": 96.2813863 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ကနောင်မင်းသားကြီးလမ်း Kanaung Min Thar Gyi Street",
+    "name:en": "Kanaung Min Thar Gyi Street",
+    "name:my": "ကနောင်မင်းသားကြီးလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 1313001823,
+  "bounds": {
+    "minlat": 16.7810093,
+    "minlon": 96.1851687,
+    "maxlat": 16.7818973,
+    "maxlon": 96.1856602
+  },
+  "geometry": [
+    { "lat": 16.7810093, "lon": 96.1851687 },
+    { "lat": 16.7811507, "lon": 96.1853034 },
+    { "lat": 16.7818973, "lon": 96.1856602 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "name": "Maha Bandula Road",
+    "name:en": "Maha Bandula Road",
+    "name:my": "မဟာဗန္ဓုလလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1313001824,
+  "bounds": {
+    "minlat": 16.7810093,
+    "minlon": 96.1851687,
+    "maxlat": 16.7819350,
+    "maxlon": 96.1855561
+  },
+  "geometry": [
+    { "lat": 16.7819350, "lon": 96.1855561 },
+    { "lat": 16.7812072, "lon": 96.1851981 },
+    { "lat": 16.7810093, "lon": 96.1851687 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "name": "မဟာဗန္ဓုလလမ်း",
+    "name:en": "Maha Bandula Road",
+    "name:my": "မဟာဗန္ဓုလလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1338167184,
+  "bounds": {
+    "minlat": 16.7480686,
+    "minlon": 96.2632279,
+    "maxlat": 16.7483183,
+    "maxlon": 96.2634293
+  },
+  "geometry": [
+    { "lat": 16.7483183, "lon": 96.2632279 },
+    { "lat": 16.7480686, "lon": 96.2634293 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "ကျိုက်ခေါက်ဘုရားလမ်း",
+    "name:en": "Kyikekhauk Pagoda Road",
+    "name:my": "ကျိုက်ခေါက်ဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1355408856,
+  "bounds": {
+    "minlat": 16.8568983,
+    "minlon": 96.0822188,
+    "maxlat": 16.8569522,
+    "maxlon": 96.0822427
+  },
+  "geometry": [
+    { "lat": 16.8569522, "lon": 96.0822427 },
+    { "lat": 16.8568983, "lon": 96.0822188 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "Tabinshwehti",
+    "name:en": "Tabinshwehti",
+    "name:my": "တပင်ရွှေထီး"
+  }
+},
+{
+  "type": "way",
+  "id": 1358513555,
+  "bounds": {
+    "minlat": 16.7940135,
+    "minlon": 96.1263693,
+    "maxlat": 16.7940921,
+    "maxlon": 96.1264024
+  },
+  "geometry": [
+    { "lat": 16.7940921, "lon": 96.1263693 },
+    { "lat": 16.7940507, "lon": 96.1263867 },
+    { "lat": 16.7940135, "lon": 96.1264024 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "lanes": "6",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "အောက်ကြည့်မြင်တိုင်လမ်း",
+    "name:en": "Lower Kyimyindine Road",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1377865406,
+  "bounds": {
+    "minlat": 16.8751784,
+    "minlon": 96.0593192,
+    "maxlat": 16.8751910,
+    "maxlon": 96.0594028
+  },
+  "geometry": [
+    { "lat": 16.8751910, "lon": 96.0594028 },
+    { "lat": 16.8751784, "lon": 96.0593192 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "လှိုင်မြစ်လမ်း",
+    "name:en": "Hlaing River Road",
+    "name:my": "လှိုင်မြစ်လမ်း",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1377865408,
+  "bounds": {
+    "minlat": 16.8751132,
+    "minlon": 96.0593362,
+    "maxlat": 16.8751269,
+    "maxlon": 96.0594196
+  },
+  "geometry": [
+    { "lat": 16.8751132, "lon": 96.0593362 },
+    { "lat": 16.8751269, "lon": 96.0594196 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "3",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "လှိုင်မြစ်လမ်း",
+    "name:en": "Hlaing River Road",
+    "name:my": "လှိုင်မြစ်လမ်း",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1377946328,
+  "bounds": {
+    "minlat": 16.8284918,
+    "minlon": 96.2409557,
+    "maxlat": 16.8285169,
+    "maxlon": 96.2410360
+  },
+  "geometry": [
+    { "lat": 16.8284918, "lon": 96.2410360 },
+    { "lat": 16.8285169, "lon": 96.2409557 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "maxspeed": "70",
+    "name": "Pyidaungsu Main Road"
+  }
+},
+{
+  "type": "way",
+  "id": 1377946330,
+  "bounds": {
+    "minlat": 16.8201670,
+    "minlon": 96.2383465,
+    "maxlat": 16.8201922,
+    "maxlon": 96.2384268
+  },
+  "geometry": [
+    { "lat": 16.8201670, "lon": 96.2384268 },
+    { "lat": 16.8201922, "lon": 96.2383465 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "Industrial Zone Road"
+  }
+},
+{
+  "type": "way",
+  "id": 1377946332,
+  "bounds": {
+    "minlat": 16.8181371,
+    "minlon": 96.2431199,
+    "maxlat": 16.8181625,
+    "maxlon": 96.2432034
+  },
+  "geometry": [
+    { "lat": 16.8181625, "lon": 96.2431199 },
+    { "lat": 16.8181371, "lon": 96.2432034 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 1416082923,
+  "bounds": {
+    "minlat": 16.7720162,
+    "minlon": 96.1447625,
+    "maxlat": 16.7729431,
+    "maxlon": 96.1502677
+  },
+  "geometry": [
+    { "lat": 16.7726517, "lon": 96.1447625 },
+    { "lat": 16.7728209, "lon": 96.1448410 },
+    { "lat": 16.7729033, "lon": 96.1449479 },
+    { "lat": 16.7729431, "lon": 96.1451497 },
+    { "lat": 16.7729317, "lon": 96.1453099 },
+    { "lat": 16.7726618, "lon": 96.1458055 },
+    { "lat": 16.7723208, "lon": 96.1465296 },
+    { "lat": 16.7721759, "lon": 96.1471053 },
+    { "lat": 16.7721304, "lon": 96.1474376 },
+    { "lat": 16.7720907, "lon": 96.1479896 },
+    { "lat": 16.7720452, "lon": 96.1490520 },
+    { "lat": 16.7720162, "lon": 96.1502677 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "1",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1416082924,
+  "bounds": {
+    "minlat": 16.7726517,
+    "minlon": 96.1393547,
+    "maxlat": 16.7749364,
+    "maxlon": 96.1447625
+  },
+  "geometry": [
+    { "lat": 16.7749364, "lon": 96.1393547 },
+    { "lat": 16.7749002, "lon": 96.1396059 },
+    { "lat": 16.7748972, "lon": 96.1399174 },
+    { "lat": 16.7748299, "lon": 96.1412113 },
+    { "lat": 16.7747945, "lon": 96.1415265 },
+    { "lat": 16.7747206, "lon": 96.1417745 },
+    { "lat": 16.7746415, "lon": 96.1419709 },
+    { "lat": 16.7745786, "lon": 96.1421271 },
+    { "lat": 16.7734553, "lon": 96.1442543 },
+    { "lat": 16.7733294, "lon": 96.1444647 },
+    { "lat": 16.7732560, "lon": 96.1445425 },
+    { "lat": 16.7730792, "lon": 96.1446397 },
+    { "lat": 16.7729551, "lon": 96.1446772 },
+    { "lat": 16.7726517, "lon": 96.1447625 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "layer": "2",
+    "motor_vehicle": "yes",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1524875898,
+  "bounds": {
+    "minlat": 16.8452975,
+    "minlon": 96.1568602,
+    "maxlat": 16.8453676,
+    "maxlon": 96.1568700
+  },
+  "geometry": [
+    { "lat": 16.8453676, "lon": 96.1568700 },
+    { "lat": 16.8452975, "lon": 96.1568602 }
+  ],
+  "tags": {
+    "alt_name:en": "Kaba Aye Pagoda Road",
+    "bicycle": "yes",
+    "bridge": "yes",
+    "highway": "primary",
+    "horse": "no",
+    "lanes": "3",
+    "layer": "1",
+    "name": "ကမ္ဘာအေးဘုရားလမ်း",
+    "name:en": "Kabar Aye Pagoda Road",
+    "name:my": "ကမ္ဘာအေးဘုရားလမ်း",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1554043299,
+  "bounds": {
+    "minlat": 16.8105242,
+    "minlon": 96.2565808,
+    "maxlat": 16.8105291,
+    "maxlon": 96.2566377
+  },
+  "geometry": [
+    { "lat": 16.8105291, "lon": 96.2566377 },
+    { "lat": 16.8105242, "lon": 96.2565808 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "layer": "1",
+    "name": "ဆိပ်ကမ်းသာလမ်း Seik Kan Thar Road",
+    "name:en": "Seik Kan Thar Road",
+    "name:my": "ဆိပ်ကမ်းသာလမ်း"
+  }
+},
+{
+  "type": "way",
+  "id": 1557419585,
+  "bounds": {
+    "minlat": 16.7818637,
+    "minlon": 96.1622122,
+    "maxlat": 16.7829934,
+    "maxlon": 96.1623695
+  },
+  "geometry": [
+    { "lat": 16.7829934, "lon": 96.1622122 },
+    { "lat": 16.7825137, "lon": 96.1623244 },
+    { "lat": 16.7823392, "lon": 96.1623544 },
+    { "lat": 16.7821958, "lon": 96.1623695 },
+    { "lat": 16.7818637, "lon": 96.1623687 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "cycleway": "lane",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ပန်းဆိုးတန်း ကုန်းကျော်တံတား",
+    "name:en": "Pansodan Bridge",
+    "name:my": "ပန်းဆိုးတန်း ကုန်းကျော်တံတား",
+    "parking:both": "no",
+    "parking:both:restriction": "no_parking",
+    "sidewalk:both": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1557419586,
+  "bounds": {
+    "minlat": 16.7778835,
+    "minlon": 96.1617997,
+    "maxlat": 16.7793700,
+    "maxlon": 96.1618836
+  },
+  "geometry": [
+    { "lat": 16.7793700, "lon": 96.1618836 },
+    { "lat": 16.7792465, "lon": 96.1618751 },
+    { "lat": 16.7791222, "lon": 96.1618682 },
+    { "lat": 16.7778835, "lon": 96.1617997 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "cycleway": "lane",
+    "highway": "secondary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ပန်းဆိုးတန်း ကုန်းကျော်တံတား",
+    "name:en": "Pansodan Bridge",
+    "name:my": "ပန်းဆိုးတန်း ကုန်းကျော်တံတား",
+    "parking:both": "no",
+    "parking:both:restriction": "no_parking",
+    "sidewalk:both": "yes"
+  }
+}
+
+  ]
+}

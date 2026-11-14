@@ -16,15 +16,19 @@ import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { dedup, prune, quantize, weld } from '@gltf-transform/functions';
+import { dedup, draco, prune, quantize, weld } from '@gltf-transform/functions';
+import draco3d from 'draco3dgltf';
 import { ROOT, RAW, WORK, PUBLIC, rel, formatBytes, sizeOf } from './lib.mjs';
 
 // One entry per landmark. Downloads: `src`, real `height` in metres, triangle `target`, and `drop`
 // for materials whose parts are stray props. Built ones: `built: true` runs landmarks/<id>.py,
 // `built: 'modern'` runs landmarks/modern.py --id <id> (towers, malls, hotels from one table).
 const LANDMARKS = [
-  { id: 'shwedagon', src: 'shwedagon/shwedagon_pagoda_by_kyaw_lin_htet.glb', height: 99, target: 40000, drop: ['material_0'] },
+  { id: 'shwedagon', built: true }, // hill, terrace, stairways and stupa (landmarks/shwedagon.py)
   { id: 'sule', built: true },
+  { id: 'botataung', built: true },
+  { id: 'thanlyin_bridge', built: true },
+  { id: 'flyovers', built: true }, // every OSM road bridge in the city, one model
   { id: 'dala_bridge', built: true },
   { id: 'city_hall', built: true },
   { id: 'karaweik', built: true },
@@ -64,7 +68,10 @@ if (!blender) {
   process.exit(1);
 }
 
-const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({
+  'draco3d.encoder': await draco3d.createEncoderModule(),
+  'draco3d.decoder': await draco3d.createDecoderModule(),
+});
 fs.mkdirSync(OUT, { recursive: true });
 const only = process.argv.slice(2);
 
@@ -85,7 +92,7 @@ for (const lm of LANDMARKS.filter((l) => !only.length || only.includes(l.id))) {
   }
 
   const doc = await io.read(work);
-  await doc.transform(weld(), dedup(), prune(), quantize());
+  await doc.transform(weld(), dedup(), prune(), quantize(), draco()); // Draco: ~5-10x smaller downloads
   const out = path.join(OUT, `${lm.id}.glb`);
   await io.write(out, doc);
   console.log(`ok ${rel(out)} (${formatBytes(sizeOf(out))})`);

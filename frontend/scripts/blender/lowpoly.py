@@ -130,7 +130,7 @@ def dome(cx, cy, z0, radius, material, sides=12, rings=4):
     return lathe(profile, sides, material, cx, cy)
 
 
-def pyatthat(cx, cy, z0, width, tiers, roof_mat, wall_mat, spire_mat, rot=0.0, tier_h=None):
+def pyatthat(cx, cy, z0, width, tiers, roof_mat, wall_mat, spire_mat, rot=0.0, tier_h=None, spire=0.9):
     """Burmese tiered roof: shrinking square roofs stacked with short walls, ending in a spire."""
     tier_h = tier_h or width * 0.32
     z, w = z0, width
@@ -140,8 +140,8 @@ def pyatthat(cx, cy, z0, width, tiers, roof_mat, wall_mat, spire_mat, rot=0.0, t
         hip_roof(cx, cy, z, w * 0.62, w * 0.62, tier_h * 0.65, roof_mat, rot, overhang=w * 0.19)
         z += tier_h * 0.45
         w *= 0.76
-    prism(8, w * 0.35, 0, z, z + width * 0.9, spire_mat, cx, cy)
-    return z + width * 0.9
+    prism(8, w * 0.35, 0, z, z + width * spire, spire_mat, cx, cy)
+    return z + width * spire
 
 
 def ribbon(path, width, thickness, material):
@@ -193,9 +193,146 @@ def footprint_prism(points, z0, z1, material):
     return _object(bm, material)
 
 
-def finish(opts, camera_height_ratio=0.75, view_span=None):
+def revolve(profile, segments, material, x=0.0, y=0.0, z=0.0, smooth=True):
+    """One smooth surface of revolution from a [(z, radius), …] profile, bottom to top (a stupa
+    bell, a dome, an umbrella). Equal heights make flat rings; radius 0 closes the top."""
+    bm = bmesh.new()
+    rings = []
+    for pz, r in profile:
+        if r <= 0.0001:
+            rings.append([bm.verts.new((x, y, z + pz))])
+            continue
+        rings.append([bm.verts.new((x + r * math.cos(2 * math.pi * i / segments),
+                                    y + r * math.sin(2 * math.pi * i / segments), z + pz))
+                      for i in range(segments)])
+    for a, b in zip(rings, rings[1:]):
+        if len(a) == 1 and len(b) == 1:
+            continue
+        if len(b) == 1:
+            for i in range(segments):
+                bm.faces.new((a[i], a[(i + 1) % segments], b[0]))
+        elif len(a) == 1:
+            for i in range(segments):
+                bm.faces.new((a[0], b[(i + 1) % segments], b[i]))
+        else:
+            for i in range(segments):
+                bm.faces.new((a[i], a[(i + 1) % segments], b[(i + 1) % segments], b[i]))
+    if len(rings[0]) > 1:
+        bm.faces.new(tuple(reversed(rings[0])))
+    if len(rings[-1]) > 1:
+        bm.faces.new(tuple(rings[-1]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    obj = _object(bm, material, "revolve")
+    for p in obj.data.polygons:
+        p.use_smooth = smooth
+    return obj
+
+
+def tube(path, radii, material, sides=10, steps=4, smooth=True):
+    """Smooth swept tube through [(x, y, z), …] (Catmull-Rom, `steps` per span) whose radius runs
+    through `radii` (one per point) — necks, tails, trunks, curved horns."""
+    pts = [Vector(p) for p in path]
+    rad = list(radii)
+    dense, dr = [], []
+    for i in range(len(pts) - 1):
+        p0, p1, p2, p3 = pts[max(i - 1, 0)], pts[i], pts[i + 1], pts[min(i + 2, len(pts) - 1)]
+        for k in range(steps):
+            t = k / steps
+            t2, t3 = t * t, t * t * t
+            dense.append(0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 + (-p0 + 3 * p1 - 3 * p2 + p3) * t3))
+            dr.append(rad[i] + (rad[i + 1] - rad[i]) * t)
+    dense.append(pts[-1])
+    dr.append(rad[-1])
+    bm = bmesh.new()
+    rings = []
+    for i, c in enumerate(dense):
+        t = (dense[min(i + 1, len(dense) - 1)] - dense[max(i - 1, 0)]).normalized()
+        ref = Vector((0, 0, 1)) if abs(t.z) < 0.9 else Vector((1, 0, 0))
+        n = t.cross(ref).normalized()
+        b = t.cross(n)
+        r = max(dr[i], 0.001)
+        rings.append([bm.verts.new(c + (n * math.cos(2 * math.pi * j / sides) + b * math.sin(2 * math.pi * j / sides)) * r)
+                      for j in range(sides)])
+    for a, b2 in zip(rings, rings[1:]):
+        for j in range(sides):
+            bm.faces.new((a[j], a[(j + 1) % sides], b2[(j + 1) % sides], b2[j]))
+    bm.faces.new(tuple(reversed(rings[0])))
+    bm.faces.new(tuple(rings[-1]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    obj = _object(bm, material, "tube")
+    for p in obj.data.polygons:
+        p.use_smooth = smooth
+    return obj
+
+
+def terrain(x0, y0, x1, y1, step, height_fn, material):
+    """Height-field grid over a rectangle; height_fn(x, y) → z (0 = street level). Faces that are
+    flat at z 0 are dropped, so only the raised ground is kept."""
+    nx, ny = int((x1 - x0) / step) + 1, int((y1 - y0) / step) + 1
+    bm = bmesh.new()
+    grid = [[bm.verts.new((x0 + i * step, y0 + j * step, height_fn(x0 + i * step, y0 + j * step)))
+             for i in range(nx)] for j in range(ny)]
+    for j in range(ny - 1):
+        for i in range(nx - 1):
+            q = (grid[j][i], grid[j][i + 1], grid[j + 1][i + 1], grid[j + 1][i])
+            if max(v.co.z for v in q) > 0.05:
+                bm.faces.new(q)
+    loose = [v for v in bm.verts if not v.link_faces]
+    bmesh.ops.delete(bm, geom=loose, context="VERTS")
+    obj = _object(bm, material, "terrain")
+    for p in obj.data.polygons:
+        p.use_smooth = True
+    return obj
+
+
+def tree(x, y, z, size, leaf_mat, trunk_mat, seed=0):
+    """Small low-poly tree: a trunk and one or two rounded canopies (about 60 triangles)."""
+    prism(5, size * 0.07, size * 0.05, z, z + size * 0.45, trunk_mat, x, y)
+    bm = bmesh.new()
+    bmesh.ops.create_icosphere(bm, subdivisions=1, radius=size * 0.42)
+    sq = 0.8 + 0.25 * ((seed * 37) % 7) / 6
+    bmesh.ops.transform(bm, verts=bm.verts, matrix=Matrix.Translation((x, y, z + size * 0.72)) @ Matrix.Diagonal((1, 1, sq, 1)))
+    obj = _object(bm, leaf_mat, "tree")
+    for p in obj.data.polygons:
+        p.use_smooth = True
+    return obj
+
+
+def windows(points, rows, spacing, width, height, material, depth=0.3, arch=None, margin=2.5, scale=1.0):
+    """Window panels on every outer wall of a footprint [(x, y), …] (either winding).
+    `rows` = bottom heights of each storey's windows; panels sit just proud of the wall, so they read
+    as deep openings from above. `arch` (a material) adds a rounded head on top of each window.
+    `scale` > 1 pushes them out when the wall itself was scaled up (string courses)."""
+    area = sum(x1 * y2 - x2 * y1 for (x1, y1), (x2, y2) in zip(points, points[1:] + points[:1]))
+    side = 1 if area > 0 else -1  # outward normal = (dy, -dx) for counter-clockwise outlines
+    count = 0
+    for (x1, y1), (x2, y2) in zip(points, points[1:] + points[:1]):
+        dx, dy = x2 - x1, y2 - y1
+        length = math.hypot(dx, dy)
+        if length < width + margin * 2:
+            continue
+        nx, ny = side * dy / length, -side * dx / length
+        rot = math.atan2(dy, dx)
+        n = int((length - margin * 2) / spacing) + 1
+        start = (length - (n - 1) * spacing) / 2
+        for i in range(n):
+            t = (start + i * spacing) / length
+            cx = (x1 + dx * t) * scale + nx * depth * 0.3
+            cy = (y1 + dy * t) * scale + ny * depth * 0.3
+            for z in rows:
+                box(cx, cy, z, width, depth, height, material, rot)
+                if arch is not None:
+                    prism(6, width / 2, width / 2, z + height, z + height + 0.15, arch, cx, cy, rot)
+                    box(cx, cy, z + height, width * 0.7, depth, width * 0.35, material, rot)
+                count += 1
+    return count
+
+
+def finish(opts, camera_height_ratio=0.75, view_span=None, keep_smooth=False, views=None):
     """Join everything, export the GLB and render the preview (framing `view_span` metres
-    around the origin when given, else the whole model)."""
+    around the origin when given, else the whole model). `keep_smooth` keeps the smooth faces of
+    revolve()/terrain(); `views` = [(name, (cam x, y, z), (target x, y, z), lens)] renders extra
+    EEVEE views next to the preview (sun + sky, for checking against photos)."""
     objs = [o for o in bpy.context.scene.objects if o.type == "MESH"]
     bpy.ops.object.select_all(action="DESELECT")
     for o in objs:
@@ -203,7 +340,8 @@ def finish(opts, camera_height_ratio=0.75, view_span=None):
     bpy.context.view_layer.objects.active = objs[0]
     bpy.ops.object.join()
     obj = bpy.context.view_layer.objects.active
-    bpy.ops.object.shade_flat()
+    if not keep_smooth:
+        bpy.ops.object.shade_flat()
     tris = sum(len(p.vertices) - 2 for p in obj.data.polygons)
     corners = [Vector(c) for c in obj.bound_box]
     size = [max(c[i] for c in corners) - min(c[i] for c in corners) for i in range(3)]
@@ -216,6 +354,43 @@ def finish(opts, camera_height_ratio=0.75, view_span=None):
     print(f"OK {out}")
     if opts.get("preview"):
         render_preview(Path(opts["preview"]).resolve(), size, camera_height_ratio, view_span)
+        for name, cam_at, target, lens in views or []:
+            render_view(Path(opts["preview"]).resolve().with_name(f"{Path(opts['preview']).stem}-{name}.png"), cam_at, target, lens)
+
+
+def render_view(path, cam_at, target, lens=35):
+    """EEVEE render with a warm sun and a soft sky, closer to how the model will look."""
+    scene = bpy.context.scene
+    try:
+        scene.render.engine = "BLENDER_EEVEE_NEXT"
+    except TypeError:
+        scene.render.engine = "BLENDER_EEVEE"
+    scene.eevee.taa_render_samples = 16
+    scene.render.resolution_x = 1280
+    scene.render.resolution_y = 800
+    scene.view_settings.view_transform = "AgX"
+    world = scene.world or bpy.data.worlds.new("Sky")
+    scene.world = world
+    world.use_nodes = True
+    bg = world.node_tree.nodes.get("Background")
+    bg.inputs["Color"].default_value = (0.62, 0.74, 0.92, 1)
+    bg.inputs["Strength"].default_value = 0.9
+    if "Sun" not in bpy.data.objects:
+        sun_data = bpy.data.lights.new("Sun", "SUN")
+        sun_data.energy = 4.0
+        sun_data.color = (1.0, 0.9, 0.75)
+        sun_data.angle = math.radians(3)
+        sun = bpy.data.objects.new("Sun", sun_data)
+        scene.collection.objects.link(sun)
+        sun.rotation_euler = (math.radians(50), 0, math.radians(35))
+    cam = scene.camera
+    cam.location = cam_at
+    cam.rotation_euler = (Vector(target) - Vector(cam_at)).to_track_quat("-Z", "Y").to_euler()
+    cam.data.lens = lens
+    cam.data.clip_end = 5000
+    scene.render.filepath = str(path)
+    bpy.ops.render.render(write_still=True)
+    print(f"view {path}")
 
 
 def render_preview(path, size, height_ratio=0.75, view_span=None):

@@ -28,11 +28,14 @@ export const BUILDINGS_3D_MIN_ZOOM = 14;
 // within `grounds` metres. `credit` is shown in the map attribution (CC-BY models must be credited).
 export const LANDMARK_MIN_ZOOM = 13;
 export const LANDMARKS = [
-  {
-    id: 'shwedagon', file: '/models/landmarks/shwedagon.glb', lng: 96.14959, lat: 16.79834, rotation: 0, clear: 45, grounds: 140,
-    credit: '<a href="https://sketchfab.com/3d-models/shwedagon-pagoda-by-kyaw-lin-htet-ffca3e0400144a48aad10cd314364fd5" target="_blank" rel="noopener">Shwedagon model by Kyaw Lin Htet</a> (CC BY, simplified)',
-  },
+  // Our own model of the hill, terrace, stairways and stupa (scripts/blender/landmarks/shwedagon.py).
+  { id: 'shwedagon', file: '/models/landmarks/shwedagon.glb', lng: 96.14959, lat: 16.79834, rotation: 0, clear: 45, grounds: 140 },
   { id: 'sule', file: '/models/landmarks/sule.glb', lng: 96.158764, lat: 16.774401, rotation: 0, clear: 30, grounds: 35 },
+  { id: 'botataung', file: '/models/landmarks/botataung.glb', lng: 96.17184, lat: 16.76783, rotation: 0, clear: 40, grounds: 40 },
+  // Centre of the OSM line (scripts/blender/landmarks/thanlyin_bridge.py prints it).
+  { id: 'thanlyin_bridge', file: '/models/landmarks/thanlyin_bridge.glb', lng: 96.233576, lat: 16.789622, rotation: 0, clear: 0, grounds: 0, noLift: true },
+  // Every other road flyover and bridge in the city, one model placed at the START_VIEW centre.
+  { id: 'flyovers', file: '/models/landmarks/flyovers.glb', lng: 96.1555, lat: 16.7845, rotation: 0, clear: 0, grounds: 0, noLift: true },
   // Origin = middle of the bridge's straight river segment (see scripts/blender/landmarks/dala_bridge.py).
   { id: 'dala_bridge', file: '/models/landmarks/dala_bridge.glb', lng: 96.143736, lat: 16.768731, rotation: 0, clear: 1, grounds: 0 },
   { id: 'city_hall', file: '/models/landmarks/city_hall.glb', lng: 96.159692, lat: 16.775067, rotation: 0, clear: 62, grounds: 66 },

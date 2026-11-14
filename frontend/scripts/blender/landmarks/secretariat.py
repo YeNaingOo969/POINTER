@@ -10,8 +10,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import lowpoly as lp  # noqa: E402
 
-BRICK = "#CF7458"
-CREAM = "#F0DFC0"
+BRICK = "#C8653F"   # photo secretariat-6: orange-red brick
+CREAM = "#EBCB86"   # yellow stucco bands and window surrounds
+WINDOW = "#3E3A3A"
 ROOF = "#9A8F86"
 
 FOOTPRINT = [
@@ -43,10 +44,13 @@ for z in (5.5, 11.5):  # cream string courses between the storeys
     lp.footprint_prism([(x * 1.004, y * 1.004) for x, y in FOOTPRINT], z, z + 0.8, lp.mat(CREAM))
 lp.footprint_prism([(x * 1.006, y * 1.006) for x, y in FOOTPRINT], H, H + 0.9, lp.mat(CREAM))
 lp.footprint_prism(FOOTPRINT, H + 0.9, H + 2.2, lp.mat(ROOF))
+# Tall arched windows on all three storeys (wings face both the streets and the quadrangle).
+lp.windows(FOOTPRINT, [1.4, 6.8], 4.0, 1.6, 3.2, lp.mat(WINDOW), arch=lp.mat(CREAM))
+lp.windows(FOOTPRINT, [12.6], 4.0, 1.5, 3.0, lp.mat(WINDOW))
 
 # Domed turrets on the wing ends and corner bays, a taller tower in the middle of the south front.
 for x, y in ((-70, -63), (69, -70), (-51, 98), (64, 90), (-67, 28), (73, 22), (-48, -38), (46, -44)):
     turret(x, y, 4.2, H + 5, 3.6)
 turret(-1.5, -69, 6.0, H + 11, 5.2)
 
-lp.finish(lp.args(), camera_height_ratio=0.6)
+lp.finish(lp.args(), camera_height_ratio=0.6, views=[("south", (60, -190, 35), (0, -40, 10), 35)])

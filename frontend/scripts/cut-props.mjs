@@ -8,6 +8,7 @@
 // Objects are found as separate islands of opaque pixels and numbered left to right, top to bottom
 // (row by row). --names renames them in that order; without it they are saved as <sheet>-1.webp…
 // --single keeps every island together as one prop (a bottle with pills beside it).
+// --solid fills see-through holes inside each object (landmarks on pale marble, glass).
 // Tiny islands (stray specks of spill) are skipped. Output goes to public/images/landing/props.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,6 +21,7 @@ const { values: opt, positionals } = parseArgs({
   options: {
     names: { type: 'string' },
     single: { type: 'boolean', default: false },
+    solid: { type: 'boolean', default: false },
     width: { type: 'string', default: '320' },
     out: { type: 'string', default: path.join(ROOT, 'public', 'images', 'landing', 'props') },
   },
@@ -32,9 +34,39 @@ if (!sheet || !fs.existsSync(sheet)) {
 const WIDTH = Number(opt.width);
 const names = opt.names ? opt.names.split(',').map((n) => n.trim()) : [];
 
+// Full RGBA pixels. With --solid, see-through holes inside an object (pale marble or glass that
+// caught green light and was partly keyed) are made opaque again: every pixel that the empty
+// background can't reach from the image border is filled; the soft outline is kept.
+const { data: rgba, info } = await sharp(sheet).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+if (opt.solid) fillHoles(rgba, info.width, info.height);
+const source = () => sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } });
+const alpha = new Uint8Array(info.width * info.height);
+for (let i = 0; i < alpha.length; i++) alpha[i] = rgba[i * 4 + 3];
+
+function fillHoles(px, w, h) {
+  const outside = new Uint8Array(w * h);
+  const queue = [];
+  const visit = (i) => { if (!outside[i] && px[i * 4 + 3] < 100) { outside[i] = 1; queue.push(i); } };
+  for (let x = 0; x < w; x++) { visit(x); visit((h - 1) * w + x); }
+  for (let y = 0; y < h; y++) { visit(y * w); visit(y * w + w - 1); }
+  while (queue.length) {
+    const i = queue.pop();
+    const x = i % w;
+    if (x > 0) visit(i - 1);
+    if (x < w - 1) visit(i + 1);
+    if (i >= w) visit(i - w);
+    if (i < w * (h - 1)) visit(i + w);
+  }
+  for (let i = 0; i < w * h; i++) {
+    if (outside[i]) continue;
+    const x = i % w;
+    const edge = (x > 0 && outside[i - 1]) || (x < w - 1 && outside[i + 1]) || outside[i - w] || outside[i + w];
+    if (!edge) px[i * 4 + 3] = 255;
+  }
+}
+
 // Work on a small alpha mask (1/4 size) — enough to separate objects, fast on any machine.
 const STEP = 4;
-const { data: alpha, info } = await sharp(sheet).ensureAlpha().extractChannel(3).raw().toBuffer({ resolveWithObject: true });
 const mw = Math.ceil(info.width / STEP);
 const mh = Math.ceil(info.height / STEP);
 const mask = new Uint8Array(mw * mh);
@@ -91,7 +123,7 @@ for (const [n, b] of ordered.entries()) {
   const height = Math.min(info.height - top, (b.y1 - b.y0 + 1) * STEP + PAD * 2);
   const file = path.join(opt.out, `${names[n] ?? `${base}-${n + 1}`}.webp`);
   // Trim again at full resolution so the edges sit tight on the object.
-  const piece = await sharp(sheet).extract({ left, top, width, height }).png().toBuffer();
+  const piece = await source().extract({ left, top, width, height }).png().toBuffer();
   await sharp(piece).trim({ threshold: 1 })
     .resize({ width: WIDTH, withoutEnlargement: true })
     .webp({ quality: 85, alphaQuality: 90 })

@@ -11,6 +11,7 @@ import { initI18n, t, categoryName } from '../i18n/i18n.js';
 import { getPlaces, getCategories } from '../api/api.js';
 import { createMap, moveCamera } from '../map/map.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
+import { addLandmarkLayer } from '../map/landmarks-3d.js';
 import { createPlaceSearch } from '../components/place-search.js';
 import { createPlaceCard } from '../components/place-card.js';
 import { createRoutePanel } from '../components/route-panel.js';
@@ -66,9 +67,11 @@ async function start() {
     }
 
     const markers = addPlaceMarkers(map, places, { onSelect: openPlace });
+    // 3D landmarks (Blender models); bubbles of places on them float above their tops.
+    addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots) });
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
-    addBusStops(map);
-    const routeLayer = addRouteLayer(map);
+    addBusStops(map); // after the 3D landmarks, so the stops stay visible
+    const routeLayer = addRouteLayer(map); // after the 3D landmarks, so the line draws on top
     createCategoryFilter(document.querySelector('.cat-filter'), categories, (group) => {
       markers.filter(group);
       if (card.place && group && card.place.category?.group !== group) closePlace();

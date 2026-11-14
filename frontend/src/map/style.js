@@ -70,6 +70,43 @@ function road(id, classes, color, casing, widths, casingExtra = 1.6) {
   ];
 }
 
+// Every road bridge in OpenStreetMap (brunnel = bridge): flyovers across the city and the river
+// bridges (Thanlyin, Bago River, Dala…). Each is drawn on top of the flat map as a raised deck:
+// a soft shadow dropped below it, a sandstone edge, the road surface and a white railing on both
+// sides (line-gap-width). Real positions from the tiles, four line layers, no 3D models.
+const BRIDGE_CLASSES = ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor', 'service'];
+const bridgeFilter = ['all', isLine, ['==', ['get', 'brunnel'], 'bridge'], ['match', ['get', 'class'], BRIDGE_CLASSES, true, false]];
+
+/** Deck width per road class at each zoom stop (zoom must be the outer interpolate). */
+const deckWidth = (extra = 0) => ['interpolate', ['exponential', 1.6], ['zoom'],
+  ...[[11, [1.2, 1, 0.8]], [14, [8, 7, 5]], [16, [16, 14, 9]], [18, [34, 30, 18]]].flatMap(([z, [big, mid, small]]) => [z,
+    ['+', extra, ['match', ['get', 'class'], ['motorway', 'trunk'], big, ['primary', 'secondary'], mid, small]]])];
+
+/** Colour of the road surface, matching the road layers below. */
+const deckColor = ['match', ['get', 'class'],
+  'motorway', C.motorway, ['trunk', 'primary'], C.primary, ['secondary', 'tertiary'], C.roadMajor, C.roadMinor];
+
+function bridges() {
+  const base = { type: 'line', source: SOURCE, 'source-layer': 'transportation', filter: bridgeFilter, minzoom: 11 };
+  const round = { 'line-cap': 'butt', 'line-join': 'round' };
+  return [
+    {
+      ...base, id: 'bridge-shadow', layout: round,
+      paint: {
+        'line-color': 'rgba(70, 40, 15, 0.42)', 'line-width': deckWidth(3), 'line-blur': 4,
+        // The shadow falls further from the deck as you zoom in, so the bridge seems to rise.
+        'line-translate': ['interpolate', ['linear'], ['zoom'], 12, ['literal', [1.5, 3]], 16, ['literal', [7, 14]], 18, ['literal', [14, 26]]],
+      },
+    },
+    { ...base, id: 'bridge-edge', layout: round, paint: { 'line-color': '#c98a4b', 'line-width': deckWidth(4) } },
+    { ...base, id: 'bridge-deck', layout: round, paint: { 'line-color': deckColor, 'line-width': deckWidth() } },
+    {
+      ...base, id: 'bridge-rail', minzoom: 14, layout: round,
+      paint: { 'line-color': '#fff3dc', 'line-width': ['interpolate', ['linear'], ['zoom'], 14, 0.8, 18, 2.4], 'line-gap-width': deckWidth(1) },
+    },
+  ];
+}
+
 export function buildMapStyle() {
   return {
     version: 8,
@@ -182,6 +219,9 @@ export function buildMapStyle() {
         id: 'building-flat', type: 'fill', source: SOURCE, 'source-layer': 'building',
         paint: { 'fill-color': buildingTint, 'fill-opacity': 0.85 },
       },
+
+      // ---- Bridges and flyovers: drawn again above the buildings as raised decks ----
+      ...bridges(),
 
       // ---- Labels (English; quiet, so our place bubbles stay the stars) ----
       {

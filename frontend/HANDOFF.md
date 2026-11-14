@@ -193,3 +193,9 @@ OpenFreeMap (free, no key): a flat pastel map, slightly tilted. Street and bus-s
 from OpenStreetMap, like on Google Maps. YBS bus stops come straight from the map tiles
 ([src/map/bus-stops.js](src/map/bus-stops.js)). Correct place coordinates matter — check them on
 https://www.openstreetmap.org.
+
+Landmarks (Shwedagon on its hill, City Hall, Secretariat, Bogyoke Market, Sule, Botataung, Karaweik, the
+Strand, the bridges and every road flyover) are 3D models built in Blender by `npm run build:landmarks`
+(`scripts/blender/landmarks/`) and drawn by [src/map/landmarks-3d.js](src/map/landmarks-3d.js). Static files
+only — nothing for the backend. Place ids 1, 2, 3, 5, 7, 11, 12, 15 sit on landmarks, so their bubbles float
+above the models.

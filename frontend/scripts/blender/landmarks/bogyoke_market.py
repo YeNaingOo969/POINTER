@@ -14,6 +14,7 @@ CREAM = "#F2EBDA"
 ARCH = "#C55A4A"
 ROOF = "#D4845F"
 DOME = "#F7F5F0"
+SHADE = "#5B4436"   # shop openings and windows
 
 H = 10.5  # two tall colonial storeys
 
@@ -26,6 +27,18 @@ def block(cx, cy, sx, sy):
     rot = 0.0 if sx >= sy else 1.5708
     lx, ly = (sx, sy) if sx >= sy else (sy, sx)
     lp.hip_roof(cx, cy, H, lx, ly, 4.2, lp.mat(ROOF), rot=rot, overhang=1.2)
+    rect = [(cx - sx / 2, cy - sy / 2), (cx + sx / 2, cy - sy / 2), (cx + sx / 2, cy + sy / 2), (cx - sx / 2, cy + sy / 2)]
+    # Shop arches at street level, round-headed windows above (photos bogyoke-2/3).
+    lp.windows(rect, [0.4], 4.6, 2.6, 2.4, lp.mat(SHADE), arch=lp.mat(ARCH))
+    lp.windows(rect, [7.6], 4.6, 1.5, 1.9, lp.mat(SHADE), arch=lp.mat(ARCH))
+
+
+def turret(x, y):
+    """Corner turret: cream drum, red band, white dome with a red cap (as on the street fronts)."""
+    lp.prism(8, 3.4, 3.4, 0, H + 3.0, lp.mat(CREAM), x, y)
+    lp.prism(8, 3.6, 3.6, H + 3.0, H + 3.7, lp.mat(ARCH), x, y)
+    lp.dome(x, y, H + 3.7, 3.2, lp.mat(DOME), sides=12, rings=4)
+    lp.prism(8, 1.0, 0.2, H + 6.6, H + 8.0, lp.mat(ARCH), x, y)
 
 
 lp.reset()
@@ -37,6 +50,10 @@ block(-84, 1, 20, 150)
 block(86, 1, 20, 150)
 for x in (-42, 0, 42):
     block(x, 1, 16, 132)
+
+# Domed turrets on the corners of the perimeter rows.
+for x, y in ((-93, -94), (89, -94), (-93, 96), (93, 96), (-50, -94), (46, -94)):
+    turret(x, y)
 
 # Clock tower over the main entrance: square tower, red bands, clock faces, white dome.
 tx, ty = 0, -95
@@ -50,4 +67,4 @@ lp.dome(tx, ty, 23.8, 6.0, lp.mat(DOME))
 lp.prism(6, 0.3, 0.1, 29.8, 33, lp.mat(ARCH), tx, ty)
 lp.gable(tx, ty - 7.2, 10.5, 12, 1.5, 3.2, lp.mat(ROOF))  # entrance gable
 
-lp.finish(lp.args(), camera_height_ratio=0.6)
+lp.finish(lp.args(), camera_height_ratio=0.6, views=[("south", (40, -230, 30), (0, -80, 10), 35)])
