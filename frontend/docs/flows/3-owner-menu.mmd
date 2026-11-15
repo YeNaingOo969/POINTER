@@ -2,7 +2,7 @@
 title: "3 — Shop owner: subscription check and dashboard"
 ---
 flowchart TD
-  S([Start: owner mode]) --> CK{"places.status = approved and<br/>owner_upgrades.expires_at > now?"}
+  S([Start: owner mode]) --> CK{"places.status = active and<br/>owner_upgrades.expires_at > now?"}
   CK -- No --> HID["Place hidden from map,<br/>search and deals"]
   HID --> RN[/"Renew: months, pay, proof"/]
   RN --> RNT[("owner_upgrades: status = pending")]

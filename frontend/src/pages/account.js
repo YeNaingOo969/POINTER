@@ -85,7 +85,7 @@ function renderBusiness() {
   }
   const status = el('span', `account-status account-status--${r.status}`, t(`account.biz${r.status[0].toUpperCase()}${r.status.slice(1)}`));
   box.replaceChildren(el('div', 'account-business__head', el('b', 'account-business__name', r.name), status));
-  if (r.status === 'approved' && r.subscription) {
+  if ((r.status === 'active' || r.status === 'hidden') && r.subscription) {
     // Approved shop: subscription line and the way into Owner mode (flowchart 1b / 3).
     const line = r.subscription.active
       ? t('acct2.ownerActive').replace('{d}', dateInYangon(r.subscription.expiresAt))

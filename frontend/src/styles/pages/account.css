@@ -190,7 +190,8 @@
 .account-business__name { font-size: 1.15rem; }
 .account-status { padding: 0.25em 0.8em; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
 .account-status--pending { background: #fff1d6; color: #8a5a00; }
-.account-status--approved { background: #dff2e6; color: #2f7a4b; }
+.account-status--active { background: #dff2e6; color: #2f7a4b; }
+.account-status--hidden { background: #ece8e2; color: var(--ink-muted); }
 .account-status--rejected { background: #fbe1dc; color: var(--danger); }
 
 .account-reviews {

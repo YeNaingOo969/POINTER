@@ -8,7 +8,7 @@ flowchart TD
   SHQ -- Hide / remove --> SRQ{Confirm?}
   SRQ -- Yes --> SRT[("places.status = hidden")]
   SRT --> N4[Notify the owner]
-  SHQ -- Add public place --> PP[/"Landmark, pagoda, park, hospital:<br/>owner_id = NULL, status = approved"/]
+  SHQ -- Add public place --> PP[/"Landmark, pagoda, park, hospital:<br/>owner_id = NULL, status = active"/]
   SHQ -- Categories --> CA[/"name_en, name_my, group_name"/]
   SV & SE & N4 & PP & CA --> E([Back to 4])
   SRQ -- No --> E

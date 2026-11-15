@@ -140,7 +140,7 @@ payment method, transaction ID, sent date. The detail panel shows:
 - a two-item checklist: ☐ "Shop is real: photo matches the pin" (new shops only) ☐ "Proof matches the
   amount and transaction ID".
 
-Actions: **Approve** (both boxes ticked) → place `approved`, payment `approved`, `startsAt` = now (or the
+Actions: **Approve** (both boxes ticked) → place `active`, payment `approved`, `startsAt` = now (or the
 old end date for a renewal), `expiresAt` = start + months. **Reject** (needs a reason) → a new shop:
 place and payment `rejected` and the note "Refund outside the app"; a renewal: payment `rejected`,
 "Owner asked to send the proof again".
@@ -153,7 +153,7 @@ opening hours, map pin, photos — reuse the form pieces of `business.html`), **
 
 ### 4.5 Public places (flowchart 4b, "Add public place")
 Places **without an owner** (pagodas, parks, landmarks, hospitals): list + **Add public place** form —
-the `business.html` fields without the payment part; saved with `ownerId: null`, status approved.
+the `business.html` fields without the payment part; saved with `ownerId: null`, status `active`.
 
 ### 4.6 Categories (flowchart 4b)
 The 7 groups: English name, Burmese name, group key, colour dot (from the tokens). Admin can edit the

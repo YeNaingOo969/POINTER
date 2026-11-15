@@ -2,7 +2,7 @@
 title: "Flowchart 5 — Automatic checks (POINTER, no person involved)"
 ---
 flowchart TD
-  S([Every request that lists places, posts or deals]) --> VQ{"places.status = approved and<br/>(owner_id IS NULL or the owner's latest<br/>owner_upgrades.expires_at > now)<br/>and the owner is not blocked?"}
+  S([Every request that lists places, posts or deals]) --> VQ{"places.status = active and<br/>(owner_id IS NULL or the owner's latest<br/>owner_upgrades.expires_at > now)<br/>and the owner is not blocked?"}
   VQ -- Yes --> SHOW[Place, its posts and deals are shown]
   VQ -- No --> HIDE[Hidden from map, search, Home and Deals]
 

@@ -15,6 +15,10 @@ use a test user: in your local `include/` code, if there is no session, set
 > and `owner_reply`, opening hours as JSON text in `places.open_hours`, the request photo in
 > `places.storefront_photo`. Please add a unique key on `reviews (user_id, place_id)`.
 >
+> Changed on 2026-11-15: `places.status` = `pending` / `active` / `rejected` / `hidden` (the ER words;
+> "approved" in older notes means `active`). The payment row keeps its own status:
+> `owner_upgrades.status` = `pending` / `approved` / `rejected`.
+>
 > Changed on 2026-11-15 (team flowchart): the owner **pays with the request** — 1, 3 or 12 months,
 > paid by KBZPay / Wave Pay / AYA Pay (demo, no real payment), with the transaction ID and a
 > screenshot. Save it as an `owner_upgrades` row next to the pending `places` row (section 5).
@@ -89,7 +93,7 @@ Fields: `name` (2–100), `categoryId` (1–7), `description` (10–600), `phone
 and the payment: `months` (1, 3 or 12), `amount` (number), `paymentMethod` (`KBZPay`, `Wave Pay`
 or `AYA Pay`), `paymentRef` (the transaction ID, 4–40 characters) and `proof` (a screenshot, image).
 
-`BusinessRequest` = `{ "id", "status": "pending" | "approved" | "rejected", "name", "categoryId",
+`BusinessRequest` = `{ "id", "status": "pending" | "active" | "rejected" | "hidden", "name", "categoryId",
 "description", "phone", "openingHours", "lat", "lng", "photoUrl", "payment": { "months", "amount",
 "method", "status" }, "createdAt" }`.
 
@@ -98,7 +102,7 @@ How to store it with the team schema (no new table): insert a `places` row with
 with `json_decode` first) and the photo path in `storefront_photo`. In the same transaction insert
 an `owner_upgrades` row: the place, `months`, `amount`, payment method / reference, the proof
 screenshot path and `status = 'pending'` (`starts_at` / `expires_at` stay empty until the admin
-approves). `places.php` only lists approved places. The admin checks the shop and then the payment
+approves). `places.php` only lists `active` places. The admin checks the shop and then the payment
 in phase 3; a rejected new shop is refunded outside the app.
 
 **Photo upload, safely:**
@@ -110,7 +114,7 @@ in phase 3; a rejected new shop is refunded outside the app.
   goes in the `owner_upgrades` row. Add `uploads/payments/*` + `!uploads/payments/.gitkeep` to the
   root `.gitignore`, like the existing `uploads/places/` lines.
 
-Rules: one business per user — a user with a pending or approved request gets 409; after a
+Rules: one business per user — a user with a `pending`, `active` or `hidden` place gets 409; after a
 rejection they may send a new one. Ask for no licence or documents (scope doc §4).
 
 ## Done when

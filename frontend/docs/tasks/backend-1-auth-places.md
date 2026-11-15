@@ -9,7 +9,8 @@
 > opening hours are JSON text in `places.open_hours`; photos are in `place_photos` and
 > `places.cover_photo`; YBS lines and facilities are gone; banned users can't log in.
 >
-> Changed on 2026-11-15: please make `places.owner_id` **nullable** — public places the admin adds
+> Changed on 2026-11-15: `places.status` uses the ER words — `pending`, `active`, `rejected`, `hidden`
+> (add `rejected` to the ER if it isn't there). Please also make `places.owner_id` **nullable** — public places the admin adds
 > (pagodas, parks, landmarks) have no owner.
 
 **Database:** the team's dbdiagram schema — tables `users`, `places`, `categories`,
@@ -85,7 +86,7 @@ find out which emails are registered.
 | Function in `api.js` | Endpoint | Success | Errors |
 |---|---|---|---|
 | `getCategories()` | `GET /api/categories.php` | `200 [{ "id", "name", "nameMy", "group" }]` — the 7 groups in HANDOFF.md (`name_en`, `name_my`, `group_name`) | — |
-| `getPlaces()` | `GET /api/places.php` | `200 Place[]` (approved places only, not pending requests) | — |
+| `getPlaces()` | `GET /api/places.php` | `200 Place[]` (`places.status = 'active'` only — not pending, rejected or hidden) | — |
 | `getPlace(id)` | `GET /api/places.php?id=1` | `200 Place` | `404 { "error": "Place not found" }` |
 
 The exact `Place` shape is in `frontend/src/data/places.js` (21 examples you can also use as

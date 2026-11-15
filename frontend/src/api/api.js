@@ -237,7 +237,8 @@ export async function submitBusinessRequest(fields) {
 
 /**
  * The logged-in user's business request, or null.
- * GET /api/my-business-request.php → { id, status: 'pending' | 'approved' | 'rejected', name, …, reason? } | null
+ * GET /api/my-business-request.php → { id, status: 'pending' | 'active' | 'rejected' | 'hidden', name, …, reason? } | null
+ * (= places.status; hidden = hidden by the admin or the plan ended)
  */
 export async function getMyBusinessRequest() {
   if (!USE_MOCK) return request('my-business-request.php');
@@ -246,7 +247,7 @@ export async function getMyBusinessRequest() {
   const owned = places.find((p) => p.ownerId === user.id);
   if (owned) {
     const sub = subscriptionFor(user.id);
-    return mockResponse({ id: owned.id, status: 'approved', name: owned.name, categoryId: owned.category?.id, placeId: owned.id,
+    return mockResponse({ id: owned.id, status: 'active', name: owned.name, categoryId: owned.category?.id, placeId: owned.id,
       subscription: sub && { months: sub.months, expiresAt: sub.expiresAt, active: new Date(sub.expiresAt) > new Date() } });
   }
   const r = readDemo('businessRequest', null);

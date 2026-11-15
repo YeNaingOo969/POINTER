@@ -43,6 +43,8 @@ cookie works. Every POST / PUT / DELETE sends the CSRF token from `session.php` 
 
 ## Database
 
+`places.status` (team ER): `pending` (request waiting for the admin) · `active` (approved, on the map) · `rejected` (request refused; the user may send a new one) · `hidden` (hidden by the admin, or the plan ended). (`owner_upgrades.status` is separate: `pending` / `approved` / `rejected` for the payment.)
+
 The team's schema (dbdiagram, 15 tables, updated 2026-11-14): `users`, `categories`, `places`,
 `place_photos`, `reviews`, `favorites`, `posts`, `tickets`, `owner_upgrades`, `messages`, `blocks`,
 `notifications`, `reports`, `search_history`, `audit_log`. The frontend uses them like this:
@@ -55,7 +57,7 @@ The team's schema (dbdiagram, 15 tables, updated 2026-11-14): `users`, `categori
 | Log in / register / session | `users` (`password_hash`, `role` = `user` or `admin`, `status` = `active` or `banned`) |
 | Reviews | `reviews` (`comment` is the review text, `owner_reply` the shop's answer, `updated_at` set on edit) |
 | Save button, saved places | `favorites` |
-| "Add your business" request | a `places` row with `owner_id` = the user, `status` = `pending` / `approved` / `rejected`, `open_hours` and the photo in `storefront_photo` |
+| "Add your business" request | a `places` row with `owner_id` = the user, `status` = `pending` / `active` / `rejected` / `hidden`, `open_hours` and the photo in `storefront_photo` |
 | Phase 2: posts, deals, tickets | `posts` (`type`, `discount_text`, `ticket_limit`, `expires_at`, `is_pinned`), `tickets` (`ticket_code`, `status`, `used_at`) |
 | Phase 2: owner payment | `owner_upgrades` (`months`, `amount`, payment method / reference / proof, `status`, `starts_at`, `expires_at`, reviewed by an admin) |
 | Phase 3 | `messages`, `blocks`, `notifications`, `reports`, `audit_log` |
@@ -121,7 +123,7 @@ explore filter and the business form.
 
 ### `GET /api/places.php` → `Place[]` · `GET /api/places.php?id=1` → `Place`
 
-Used by the explore map (bubbles, search, card) and the place page. Only approved / active
+Used by the explore map (bubbles, search, card) and the place page. Only `places.status = 'active'`
 places (not pending requests). A missing id returns `404 { "error": "Place not found" }`. Mock
 data: [src/data/places.js](src/data/places.js) + [src/data/categories.js](src/data/categories.js).
 
@@ -176,7 +178,7 @@ logged-in user: return `401 { "error": "Login required" }` otherwise — the pag
 (10–600), `phone`, `openingHours` (JSON text: `[{ "day": "mon", "open": "06:00", "close": "11:00" }]`,
 open days only), `lat`, `lng` (inside Yangon), `photo` (JPEG / PNG / WebP, max 5 MB — check the
 real type with `finfo`, store under a random file name). Response / `BusinessRequest` =
-`{ id, status: 'pending' | 'approved' | 'rejected', name, categoryId, description, phone,
+`{ id, status: 'pending' | 'active' | 'rejected' | 'hidden', name, categoryId, description, phone,
 openingHours, lat, lng, photoUrl, createdAt }` (`photoUrl` = `places.storefront_photo`; the request is
 the `places` row itself, see the Database table). One business per user; a rejected user may send a
 new request. No licence or documents — only the shop-front photo (privacy, scope doc §4).

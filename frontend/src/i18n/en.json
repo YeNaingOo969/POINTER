@@ -177,9 +177,10 @@
     "bizNone": "Have a shop in Yangon? Put it on the map — plans from 1 month.",
     "bizAdd": "Add your business",
     "bizPending": "Waiting for review",
-    "bizApproved": "Approved — your shop is on the map",
     "bizRejected": "Not approved",
-    "bizSent": "Sent"
+    "bizSent": "Sent",
+    "bizActive": "Approved — your shop is on the map",
+    "bizHidden": "Hidden — renew your plan to show it again"
   },
   "filter": {
     "label": "Filter places by group",
