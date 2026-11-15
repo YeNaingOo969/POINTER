@@ -105,6 +105,9 @@
     "go": "Log in or create an account",
     "demoOwner": "Try as a demo shop owner"
   },
+  "map": {
+    "poi": "Place on the map"
+  },
   "bus": {
     "stop": "YBS bus stop"
   },

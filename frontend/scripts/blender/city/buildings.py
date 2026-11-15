@@ -13,6 +13,10 @@ draw calls and a few triangles each. Footprints under our hand-made landmarks ar
 
 Kinds: downtown (shop ground floor + walk-up apartments above, flat roofs), residential (houses and
 low apartments, zinc roofs on small ones), industrial (steel sheds, zinc roofs).
+
+With --poi (assets/raw/osm/city/poi.json): buildings that are, hold or stand inside a mall, hotel,
+hospital, market or supermarket get that look (glass malls, hotel towers, white hospitals, zinc-roofed
+markets), and every surface car park gets painted stalls and parked cars.
 """
 
 import argparse
@@ -35,6 +39,7 @@ ap.add_argument("--kind", default="auto", choices=["auto", "downtown", "resident
 ap.add_argument("--industrial", help="Overpass JSON of landuse=industrial areas (for --kind auto)")
 ap.add_argument("--origin", required=True)
 ap.add_argument("--out", required=True)
+ap.add_argument("--poi", help="Overpass JSON of malls, hotels, hospitals, markets and car parks")
 ap.add_argument("--preview")
 args = ap.parse_args(argv)
 LNG0, LAT0 = (float(v) for v in args.origin.split(","))
@@ -146,6 +151,31 @@ def polygon(name, pts, z, color, tile):
         loop[col] = (*color, 1.0)
 
 
+def polygon_rot(name, pts, z, color, ang, su, sv):
+    """Flat polygon whose texture runs along angle `ang` (u = metres / su, v = metres / sv)."""
+    bm, uv, col = bm_for(name)
+    try:
+        face = bm.faces.new([bm.verts.new((x, y, z)) for x, y in pts])
+    except ValueError:
+        return
+    c, s_ = math.cos(ang), math.sin(ang)
+    for loop in face.loops:
+        x, y = loop.vert.co.x, loop.vert.co.y
+        loop[uv].uv = ((x * c + y * s_) / su, (-x * s_ + y * c) / sv)
+        loop[col] = (*color, 1.0)
+
+
+def box(name, cx, cy, ang, length, width, z0, z1, color):
+    """Axis box turned by `ang` (length along the angle), without a bottom face."""
+    c, s_ = math.cos(ang), math.sin(ang)
+    hl, hw = length / 2, width / 2
+    ring = [(cx + c * a - s_ * b, cy + s_ * a + c * b) for a, b in ((-hl, -hw), (hl, -hw), (hl, hw), (-hl, hw))]
+    zero = [(0, 0)] * 4
+    for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1]):
+        quad(name, [(x1, y1, z0), (x2, y2, z0), (x2, y2, z1), (x1, y1, z1)], zero, color)
+    quad(name, [(x, y, z1) for x, y in ring], zero, color)
+
+
 def walls(name, pts, z0, z1, color, storey):
     d = 0.0
     for (x1, y1), (x2, y2) in zip(pts, pts[1:] + pts[:1]):
@@ -184,6 +214,69 @@ def inside(x, y, poly):
 
 industrial = load_industrial()
 
+# ---- points of interest (malls, hotels, hospitals, markets, supermarkets, car parks) ----
+POI_KIND = (("shop", "mall", "mall"), ("shop", "department_store", "mall"), ("shop", "supermarket", "supermarket"),
+            ("tourism", "hotel", "hotel"), ("amenity", "hospital", "hospital"), ("amenity", "marketplace", "market"),
+            ("amenity", "parking", "parking"))
+HALF_LNG = HALF_LAT = 0.02          # a city tile is 0.04 deg; build-city puts the origin at its centre
+
+
+def poi_kind(tags):
+    for key, value, kind in POI_KIND:
+        if tags.get(key) == value:
+            return kind
+    return None
+
+
+def rings_of(el):
+    if "geometry" in el and el.get("type") == "way":
+        return [el["geometry"]]
+    if el.get("type") == "relation":
+        return [m["geometry"] for m in el.get("members", []) if m.get("role") == "outer" and len(m.get("geometry", [])) > 3
+                and m["geometry"][0] == m["geometry"][-1]]
+    return []
+
+
+poi_points, poi_polys, parkings = [], [], []
+if args.poi:
+    for el in json.loads(Path(args.poi).read_text(encoding="utf8"))["elements"]:
+        kind = poi_kind(el.get("tags", {}))
+        if not kind:
+            continue
+        if el.get("type") == "node":
+            x, y = (el["lon"] - LNG0) * KX, (el["lat"] - LAT0) * KY
+            if abs(x) < 2600 and abs(y) < 2600 and kind != "parking":
+                poi_points.append((x, y, kind))
+            continue
+        for ring in rings_of(el):
+            pts = [((q["lon"] - LNG0) * KX, (q["lat"] - LAT0) * KY) for q in ring][:-1]
+            if len(pts) < 3 or not any(abs(x) < 2600 and abs(y) < 2600 for x, y in pts):
+                continue
+            xs, ys = [q[0] for q in pts], [q[1] for q in pts]
+            bbox = (min(xs), min(ys), max(xs), max(ys))
+            if kind == "parking":
+                if el["tags"].get("parking", "surface") in ("surface", "lane"):
+                    parkings.append((el["id"], pts))
+            else:
+                poi_polys.append((pts, bbox, kind))
+
+
+def poi_at(pts, tags):
+    """The look a building takes: its own tags, a POI node inside it, or a POI area around it."""
+    kind = poi_kind(tags)
+    if kind and kind != "parking":
+        return kind
+    xs, ys = [q[0] for q in pts], [q[1] for q in pts]
+    x0, y0, x1, y1 = min(xs), min(ys), max(xs), max(ys)
+    for x, y, k in poi_points:
+        if x0 <= x <= x1 and y0 <= y <= y1 and inside(x, y, pts):
+            return k
+    cx, cy = sum(xs) / len(xs), sum(ys) / len(ys)
+    for poly, (a, b, c, d), k in poi_polys:
+        if a <= cx <= c and b <= cy <= d and inside(cx, cy, poly):
+            return k
+    return None
+
 
 def area_kind(cx, cy):
     if args.kind != "auto":
@@ -220,6 +313,44 @@ for w in data["elements"]:
     palette = PALETTES[akind]
     color = palette[int(hash01(w["id"], 1) * len(palette)) % len(palette)]
     kind = wall_kind(tags, a, akind)
+    poi = poi_at(pts, tags) if a > 60 else None
+    if poi:
+        tagged = "height" in tags or "building:levels" in tags
+        r = hash01(w["id"], 2)
+        if poi == "mall" and a > 300:
+            h = h if tagged else 4.5 * (3 + int(r * 3))
+            walls("glass", pts, 0, h, (0.93, 0.97, 1.0), 4.5)
+            polygon("roof_flat", pts, h, (0.95, 0.95, 0.95), 24.0)
+            count += 1
+            continue
+        if poi == "supermarket":
+            h = max(h, 7.0)
+            walls("shop", pts, 0, 3.8, (0.95, 0.97, 0.93), 3.8)
+            walls("glass", pts, 3.8, h, (0.90, 0.97, 0.92), 3.2)
+            polygon("roof_flat", pts, h, (0.95, 0.95, 0.95), 24.0)
+            count += 1
+            continue
+        if poi == "hotel" and a > 150:
+            h = h if tagged else STOREY * ((8 + int(r * 10)) if a > 450 else (4 + int(r * 4)))
+            if a > 800:
+                walls("glass", pts, 0, h, (0.88, 0.93, 0.98), STOREY)
+            else:
+                walls("apartment", pts, 0, h, (0.98, 0.97, 0.95), STOREY)
+            polygon("roof_flat", pts, h, (0.95, 0.95, 0.95), 24.0)
+            count += 1
+            continue
+        if poi == "hospital":
+            h = h if tagged else STOREY * (3 + int(r * 4))
+            walls("apartment", pts, 0, h, (0.96, 0.98, 1.0), STOREY)
+            polygon("roof_flat", pts, h, (0.97, 0.97, 0.97), 24.0)
+            count += 1
+            continue
+        if poi == "market":
+            h = h if tagged else 6 + r * 3
+            walls("shop", pts, 0, h, color, h)
+            polygon("roof_zinc", pts, h, color, 24.0)
+            count += 1
+            continue
     shop_floor = akind == "downtown" or tags.get("building") in ("commercial", "retail")
     if kind == "apartment" and shop_floor and h > SHOP + 1:
         walls("shop", pts, 0, SHOP, color, SHOP)
@@ -230,6 +361,49 @@ for w in data["elements"]:
     polygon(roof, pts, h, (0.95, 0.95, 0.95) if roof == "roof_flat" else color, 24.0)
     count += 1
 
+# ---- car parks: painted stalls and parked cars ----
+CAR_COLOURS = [(0.95, 0.95, 0.95)] * 7 + [(0.72, 0.74, 0.76)] * 4 + [(0.16, 0.17, 0.19)] * 3 + \
+              [(0.45, 0.47, 0.50), (0.70, 0.16, 0.14), (0.16, 0.30, 0.60), (0.85, 0.75, 0.55), (0.30, 0.45, 0.35)]
+parked = 0
+for pid, pts in parkings:
+    cx, cy = sum(q[0] for q in pts) / len(pts), sum(q[1] for q in pts) / len(pts)
+    # (landmark clear radii don't apply: a car park is flat and belongs next to its mall or stadium)
+    if abs(cx) > HALF_LNG * KX or abs(cy) > HALF_LAT * KY:
+        continue
+    if area(pts) < 0:
+        pts = pts[::-1]
+    pa = area(pts)
+    if pa < 150 or pa > 80000:
+        continue
+    # stalls run along the longest edge
+    edge = max(zip(pts, pts[1:] + pts[:1]), key=lambda e: math.hypot(e[1][0] - e[0][0], e[1][1] - e[0][1]))
+    ang = math.atan2(edge[1][1] - edge[0][1], edge[1][0] - edge[0][0])
+    polygon_rot("parking", pts, 0.12, (1.0, 1.0, 1.0), ang, 5.0, 16.0)
+    c, s_ = math.cos(ang), math.sin(ang)
+    us = [x * c + y * s_ for x, y in pts]
+    vs = [-x * s_ + y * c for x, y in pts]
+    k = 0
+    for band in range(math.floor(min(vs) / 16), math.ceil(max(vs) / 16) + 1):
+        for row_v in (band * 16 + 2.5, band * 16 + 7.5):
+            u = math.floor(min(us) / 2.5) * 2.5 + 1.25
+            while u < max(us) and k < 400:
+                k += 1
+                u += 2.5
+                if hash01(pid * 1000 + k, 3) > 0.62:
+                    continue
+                # car centre back in map space; long axis across the row
+                x, y = u * c - row_v * s_, u * s_ + row_v * c
+                corners = [(x + c * a - s_ * b, y + s_ * a + c * b) for a, b in ((-0.9, -2.1), (0.9, -2.1), (0.9, 2.1), (-0.9, 2.1))]
+                if not all(inside(px, py, pts) for px, py in corners):
+                    continue
+                col = CAR_COLOURS[int(hash01(pid * 1000 + k, 4) * len(CAR_COLOURS)) % len(CAR_COLOURS)]
+                car_ang = ang + math.pi / 2
+                box("car", x, y, car_ang, 4.2, 1.75, 0.25, 0.95, col)
+                ox, oy = math.cos(car_ang) * -0.3, math.sin(car_ang) * -0.3
+                box("car", x + ox, y + oy, car_ang, 2.2, 1.55, 0.95, 1.5, tuple(v * 0.8 for v in col))
+                parked += 1
+print(f"car parks: {len(parkings)} near, cars: {parked:,}")
+
 # ---- materials: texture × vertex colour, then objects ----
 
 
@@ -238,6 +412,12 @@ def material(name):
     m.use_nodes = True
     nt = m.node_tree
     bsdf = nt.nodes["Principled BSDF"]
+    if not (TEX / f"{name}.jpg").exists():          # cars: vertex colour only
+        vc = nt.nodes.new("ShaderNodeVertexColor")
+        vc.layer_name = "Color"
+        nt.links.new(vc.outputs["Color"], bsdf.inputs["Base Color"])
+        bsdf.inputs["Roughness"].default_value = 0.45
+        return m
     img = nt.nodes.new("ShaderNodeTexImage")
     img.image = bpy.data.images.load(str(TEX / f"{name}.jpg"))
     vc = nt.nodes.new("ShaderNodeVertexColor")

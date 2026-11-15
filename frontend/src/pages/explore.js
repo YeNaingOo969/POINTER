@@ -22,6 +22,7 @@ import { createPlaceCard } from '../components/place-card.js';
 import { createRoutePanel } from '../components/route-panel.js';
 import { addRouteLayer } from '../map/route-layer.js';
 import { addBusStops, clickedBusStop } from '../map/bus-stops.js';
+import { addPoiLabels, clickedPoi } from '../map/poi-labels.js';
 
 initI18n();
 mountAppNav('map', { bottom: true });
@@ -76,6 +77,7 @@ async function start() {
     // 3D landmarks (Blender models); bubbles of places on them float above their tops.
     addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots), extras: [cityTiles, busShelters] });
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
+    addPoiLabels(map); // names of the city's shops, malls, hotels… (under the bus stops)
     addBusStops(map); // after the 3D landmarks, so the stops stay visible
     const routeLayer = addRouteLayer(map); // after the 3D landmarks, so the line draws on top
     createCategoryFilter(document.querySelector('.cat-filter'), categories, (group) => {
@@ -89,7 +91,7 @@ async function start() {
       onRoute: (route) => routeLayer.show(route, cardPadding()),
       onClear: () => routeLayer.clear(),
     });
-    map.on('click', (e) => { if (card.place && !clickedBusStop(map, e.point)) closePlace(); });
+    map.on('click', (e) => { if (card.place && !clickedBusStop(map, e.point) && !clickedPoi(map, e.point)) closePlace(); });
 
     // explore.html?place=<id> (from the detail page's "View on the map") opens that place.
     const linked = places.find((p) => String(p.id) === new URLSearchParams(location.search).get('place'));

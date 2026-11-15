@@ -135,6 +135,16 @@ export function fillTile(id) {
       for (const r of ringsOf) if (r.length > 3) addPoly(clear, r);
     }
   }
+  // Car parks, malls, markets and hospitals (poi.json) stay clear too.
+  const poiFile = path.join(RAW, 'osm', 'city', 'poi.json');
+  if (fs.existsSync(poiFile)) {
+    for (const el of JSON.parse(fs.readFileSync(poiFile, 'utf8')).elements) {
+      const t = el.tags ?? {};
+      if (!(t.amenity === 'parking' || t.amenity === 'marketplace' || t.amenity === 'hospital' || t.shop === 'mall')) continue;
+      const ringsOf = el.type === 'relation' ? rings(el.members ?? [], 'outer') : el.geometry ? [el.geometry.map((p) => [p.lon, p.lat])] : [];
+      for (const r of ringsOf) if (r.length > 3) addPoly(clear, r);
+    }
+  }
   if (!zones.length) return [];
   for (const [lng, lat, r] of landmarkGrounds()) {
     const [x, y] = toXY([lng, lat]);

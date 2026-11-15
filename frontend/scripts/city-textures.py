@@ -7,7 +7,8 @@ high, so the Blender generator can repeat it along a wall (u = metres / bay widt
 They are greyscale-ish on purpose: each building's own colour is a vertex colour multiplied on top.
 Kinds: apartment (Yangon walk-up: window with grille, AC box, balcony slab), shop (ground floor with a
 rolling shutter and a sign band), house (shuttered window), factory (corrugated steel with a high
-window strip), roof_flat (stained concrete), roof_zinc (corrugated metal).
+window strip), roof_flat (stained concrete), roof_zinc (corrugated metal), glass (mall / hotel curtain
+wall), parking (car park stalls and aisle).
 """
 
 import random
@@ -120,8 +121,35 @@ def roof_zinc():
     return noise(img, 8, 0.8)
 
 
+def glass():
+    """Mall / hotel curtain wall: one bay, one storey — tinted panes, thin mullions, a spandrel band."""
+    img = Image.new("RGB", (S, S), (120, 150, 172))
+    d = ImageDraw.Draw(img)
+    for y in range(S):                                                # sky reflection, lighter at the top
+        t = y / S
+        d.line([(0, y), (S, y)], fill=(int(176 - 60 * t), int(200 - 56 * t), int(220 - 48 * t)))
+    d.rectangle([0, 0, S, 46], fill=(200, 204, 208))                  # spandrel at the floor slab
+    for x in (0, 254):                                                # mullions (two panes per bay)
+        d.rectangle([x, 0, x + 10, S], fill=(214, 218, 222))
+    d.rectangle([0, 46, S, 52], fill=(170, 176, 182))
+    return noise(img, 4, 0.8)
+
+
+def parking():
+    """Car park surface, 5 m along the row × 16 m across: two back-to-back rows of 2.5 m stalls (10 m)
+    and a 6 m driving aisle. u = metres / 5, v = metres / 16."""
+    img = Image.new("RGB", (S, S), (92, 96, 100))
+    d = ImageDraw.Draw(img)
+    row = int(S * 10 / 16)
+    for x in (0, S // 2):                                             # stall dividers
+        d.rectangle([x, 8, x + 7, row - 8], fill=(236, 236, 230))
+    d.rectangle([0, row // 2 - 3, S, row // 2 + 3], fill=(236, 236, 230))   # line between the two rows
+    d.rectangle([0, row - 4, S, row + 2], fill=(214, 200, 120))       # aisle edge (yellow)
+    return noise(img, 10, 0.7)
+
+
 for name, fn in (("apartment", apartment), ("shop", shop), ("house", house), ("factory", factory),
-                 ("roof_flat", roof_flat), ("roof_zinc", roof_zinc)):
+                 ("roof_flat", roof_flat), ("roof_zinc", roof_zinc), ("glass", glass), ("parking", parking)):
     path = OUT / f"{name}.jpg"
     fn().save(path, quality=82)
     print("wrote", path.relative_to(OUT.parents[3]))

@@ -52,7 +52,8 @@ for (const file of fs.readdirSync(TILES).filter((f) => f.endsWith('.json')).sort
   const src = path.join(TILES, file);
   const context = path.join(RAW, 'osm', 'city', 'context', file);
   // Inputs that change this tile: the footprints, the land use/roads (filler) and both generators.
-  const inputsTime = Math.max(mtime(src), mtime(context), mtime(fillerScript), mtime(generator));
+  const inputsTime = Math.max(mtime(src), mtime(context), mtime(fillerScript), mtime(generator), mtime(path.join(RAW, 'osm', 'city', 'poi.json')),
+    mtime(path.join(ROOT, 'src', 'map', 'config.js'))); // landmark clear radii
   const out = path.join(OUT, `${id}.glb`);
   const wanted = (!only.length || only.includes(id)) && (force || mtime(out) <= inputsTime);
   const mapped = JSON.parse(fs.readFileSync(src, 'utf8')).elements;
@@ -71,6 +72,7 @@ for (const file of fs.readdirSync(TILES).filter((f) => f.endsWith('.json')).sort
     fs.writeFileSync(input, JSON.stringify({ elements: mapped.concat(fill ?? []) }));
     await run(['--python', generator, '--',
       '--data', input, '--kind', 'auto', '--industrial', path.join(RAW, 'osm', 'city', 'industrial.json'),
+      '--poi', path.join(RAW, 'osm', 'city', 'poi.json'),
       '--origin', `${tile.lng},${tile.lat}`, '--out', work]);
   }
   const doc = await io.read(work);

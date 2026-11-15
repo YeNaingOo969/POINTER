@@ -56,6 +56,23 @@ export const LANDMARKS = [
   { id: 'chatrium', file: '/models/landmarks/chatrium.glb', lng: 96.168799, lat: 16.800450, rotation: 0, clear: 30, grounds: 54 },
   { id: 'sule_shangri_la', file: '/models/landmarks/sule_shangri_la.glb', lng: 96.158472, lat: 16.778676, rotation: 0, clear: 15, grounds: 64 },
   { id: 'airport', file: '/models/landmarks/airport.glb', lng: 96.133754, lat: 16.900692, rotation: 0, clear: 60, grounds: 130 },
+  // Famous places on their OSM footprints (scripts/blender/landmarks/places.py prints lng/lat and
+  // the reach; clear = 0.85 × reach so long buildings don't wipe out their neighbours).
+  { id: 'ocean_hlaingtharyar', file: '/models/landmarks/ocean_hlaingtharyar.glb', lng: 96.077575, lat: 16.856881, rotation: 0, clear: 90, grounds: 106 }, // Ocean Supercenter, Hlaing Tharyar
+  { id: 'sedona', file: '/models/landmarks/sedona.glb', lng: 96.155411, lat: 16.829887, rotation: 0, clear: 105, grounds: 123 }, // Sedona Hotel
+  { id: 'times_city', file: '/models/landmarks/times_city.glb', lng: 96.128688, lat: 16.815992, rotation: 0, clear: 114, grounds: 134 }, // Times City towers and mall
+  { id: 'thuwunna_stadium', file: '/models/landmarks/thuwunna_stadium.glb', lng: 96.186783, lat: 16.821363, rotation: 0, clear: 110, grounds: 130 }, // Thuwunna Stadium
+  { id: 'junction_8', file: '/models/landmarks/junction_8.glb', lng: 96.140857, lat: 16.865039, rotation: 0, clear: 35, grounds: 41 }, // Junction 8
+  { id: 'dagon_center', file: '/models/landmarks/dagon_center.glb', lng: 96.137774, lat: 16.804305, rotation: 0, clear: 67, grounds: 79 }, // Dagon Center I and II
+  { id: 'hledan_center', file: '/models/landmarks/hledan_center.glb', lng: 96.130176, lat: 16.826241, rotation: 0, clear: 42, grounds: 49 }, // Hledan Center
+  { id: 'taw_win_centre', file: '/models/landmarks/taw_win_centre.glb', lng: 96.142001, lat: 16.784945, rotation: 0, clear: 75, grounds: 88 }, // Taw Win Centre
+  { id: 'junction_mawtin', file: '/models/landmarks/junction_mawtin.glb', lng: 96.141696, lat: 16.777835, rotation: 0, clear: 40, grounds: 47 }, // Junction Centre Maw Tin
+  { id: 'kandawgyi_palace', file: '/models/landmarks/kandawgyi_palace.glb', lng: 96.162280, lat: 16.793846, rotation: 0, clear: 38, grounds: 45 }, // Kandawgyi Palace Hotel
+  { id: 'yangon_central_station', file: '/models/landmarks/yangon_central_station.glb', lng: 96.161398, lat: 16.781694, rotation: 0, clear: 98, grounds: 115 }, // Yangon Central Railway Station
+  { id: 'inya_lake_hotel', file: '/models/landmarks/inya_lake_hotel.glb', lng: 96.149852, lat: 16.845028, rotation: 0, clear: 72, grounds: 85 }, // Inya Lake Hotel
+  { id: 'yangon_general_hospital', file: '/models/landmarks/yangon_general_hospital.glb', lng: 96.149609, lat: 16.779035, rotation: 0, clear: 98, grounds: 115 }, // Yangon General Hospital
+  { id: 'aung_san_stadium', file: '/models/landmarks/aung_san_stadium.glb', lng: 96.160547, lat: 16.783809, rotation: 0, clear: 110, grounds: 130 }, // Bogyoke Aung San Stadium
+  { id: 'capital_hypermarket', file: '/models/landmarks/capital_hypermarket.glb', lng: 96.195655, lat: 16.802733, rotation: 0, clear: 72, grounds: 85 }, // Capital Hypermarket, Dawbon
 ];
 
 // Radeon 610M budget: cap the pixel ratio so a 4K / retina screen doesn't quadruple the work.

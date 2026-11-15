@@ -32,6 +32,10 @@ Two self-contained tasks, one per backend developer, with every endpoint, valida
 - [docs/tasks/backend-2-passport.md](docs/tasks/backend-2-passport.md) — saves, reviews (write,
   edit, delete), My account and the "Add your business" request.
 
+Frontend: [docs/tasks/frontend-admin.md](docs/tasks/frontend-admin.md) — the admin dashboard
+(`admin.html`, phase 3) on mock data; its `src/api/admin.js` lists the admin endpoints for later
+(Burmese version: [frontend-admin.my.md](docs/tasks/frontend-admin.my.md)).
+
 Local setup: run PHP from the repo root with `php -S localhost:8000`; `npm run dev` forwards every
 `/api/...` request to it (see `vite.config.js`), so page and API share one origin and the session
 cookie works. Every POST / PUT / DELETE sends the CSRF token from `session.php` in an

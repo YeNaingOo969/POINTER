@@ -22,7 +22,8 @@ import { ROOT, RAW, WORK, PUBLIC, rel, formatBytes, sizeOf } from './lib.mjs';
 
 // One entry per landmark. Downloads: `src`, real `height` in metres, triangle `target`, and `drop`
 // for materials whose parts are stray props. Built ones: `built: true` runs landmarks/<id>.py,
-// `built: 'modern'` runs landmarks/modern.py --id <id> (towers, malls, hotels from one table).
+// `built: 'modern'` runs landmarks/modern.py --id <id> (towers, malls, hotels from one table),
+// `built: 'places'` runs landmarks/places.py --id <id> (malls, stadiums, station… on OSM footprints).
 const LANDMARKS = [
   { id: 'shwedagon', built: true }, // hill, terrace, stairways and stupa (landmarks/shwedagon.py)
   { id: 'sule', built: true },
@@ -37,6 +38,11 @@ const LANDMARKS = [
   { id: 'secretariat', built: true },
   ...['m_tower', 'sakura_tower', 'junction_city', 'junction_square', 'myanmar_plaza', 'melia', 'lotte',
     'diamond_inya', 'novotel_max', 'chatrium', 'sule_shangri_la', 'airport'].map((id) => ({ id, built: 'modern' })),
+  // Famous places on their OSM footprints (landmarks/places.py; node scripts/extract-places.mjs first).
+  ...['ocean_hlaingtharyar', 'sedona', 'times_city', 'thuwunna_stadium', 'junction_8', 'dagon_center',
+    'hledan_center', 'taw_win_centre', 'junction_mawtin', 'kandawgyi_palace', 'yangon_central_station',
+    'inya_lake_hotel', 'yangon_general_hospital', 'aung_san_stadium', 'capital_hypermarket']
+    .map((id) => ({ id, built: 'places' })),
 ];
 
 const WORK_DIR = path.join(WORK, 'landmarks');
@@ -78,7 +84,9 @@ const only = process.argv.slice(2);
 for (const lm of LANDMARKS.filter((l) => !only.length || only.includes(l.id))) {
   const work = path.join(WORK_DIR, `${lm.id}.glb`);
   const outputs = ['--out', work, '--preview', path.join(WORK_DIR, `${lm.id}.png`)];
-  if (lm.built === 'modern') {
+  if (lm.built === 'places') {
+    await runBlender(blender, ['--python', path.join(ROOT, 'scripts', 'blender', 'landmarks', 'places.py'), '--', '--id', lm.id, ...outputs]);
+  } else if (lm.built === 'modern') {
     await runBlender(blender, ['--python', path.join(ROOT, 'scripts', 'blender', 'landmarks', 'modern.py'), '--', '--id', lm.id, ...outputs]);
   } else if (lm.built) {
     await runBlender(blender, ['--python', path.join(ROOT, 'scripts', 'blender', 'landmarks', `${lm.id}.py`), '--', ...outputs]);

@@ -46,6 +46,21 @@ if (!fs.existsSync(industrial)) {
   await sleep(5000);
 }
 
+// Malls, hotels, hospitals, markets, supermarkets and car parks for the whole city in one request:
+// buildings that match get their own look, car parks get stripes and cars (scripts/blender/city).
+const poiFile = path.join(RAW, 'osm', 'city', 'poi.json');
+if (!fs.existsSync(poiFile)) {
+  const B = `${LAT0},${LNG0},${LAT1},${LNG1}`;
+  const data = await overpass(`[out:json][timeout:180];(
+    nwr["shop"~"^(mall|department_store|supermarket)$"](${B});
+    nwr["tourism"="hotel"](${B});
+    nwr["amenity"~"^(hospital|marketplace|parking)$"](${B});
+  );out tags geom;`);
+  fs.writeFileSync(poiFile, JSON.stringify(data));
+  console.log('points of interest:', data.elements.length);
+  await sleep(5000);
+}
+
 // OVERPASS_URL picks another public server; REVERSE=1 walks the tiles backwards, so two runs on two
 // servers can share the work (a tile that already exists is skipped).
 const cells = [];

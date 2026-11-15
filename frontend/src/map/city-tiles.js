@@ -1,7 +1,7 @@
 // The generated city (npm run build:city): ordinary buildings from OpenStreetMap, one Draco model per
 // ~4 km tile (public/models/city/tiles.json). Only tiles near the view are loaded; far ones are
 // removed and their geometry freed, so memory stays flat while you pan (610M shares system RAM).
-// The six facade/roof textures are loaded once and shared by every tile (the models carry none).
+// The facade/roof/car park textures are loaded once and shared by every tile (the models carry none).
 // Used as an "extra" of the 3D landmark layer (landmarks-3d.js).
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -10,7 +10,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 const LOAD_KM = 4.5;      // load tiles whose centre is this close to the view centre…
 const DROP_KM = 7;        // …and drop them again past this
 const MIN_ZOOM = 13.5;
-const TEXTURES = ['apartment', 'shop', 'house', 'factory', 'roof_flat', 'roof_zinc'];
+const TEXTURES = ['apartment', 'shop', 'house', 'factory', 'roof_flat', 'roof_zinc', 'glass', 'parking'];
 
 /** @param {{ map: maplibregl.Map, toLocal: (lng, lat) => [number, number] }} ctx */
 export function cityTiles({ map, toLocal }) {
@@ -25,8 +25,9 @@ export function cityTiles({ map, toLocal }) {
     map_.wrapS = THREE.RepeatWrapping;
     map_.wrapT = THREE.RepeatWrapping;
     map_.anisotropy = 4;
-    return [name, new THREE.MeshStandardMaterial({ map: map_, vertexColors: true, roughness: 0.92 })];
+    return [name, new THREE.MeshStandardMaterial({ map: map_, vertexColors: true, roughness: name === 'glass' ? 0.35 : 0.92 })];
   }));
+  materials.car = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.45 }); // parked cars: colour only
 
   const draco = new DRACOLoader().setWorkerLimit(1);
   const loader = new GLTFLoader().setDRACOLoader(draco);
