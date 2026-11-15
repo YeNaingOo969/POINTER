@@ -10,6 +10,9 @@ assets/generated/
 # intermediate files from Blender scripts
 assets/work/
 
+# OpenStreetMap buildings for the whole city (~38 MB) — re-download with node scripts/fetch-city.mjs
+assets/raw/osm/city/tiles/
+
 # OS / editor
 Thumbs.db
 Desktop.ini
@@ -35,3 +38,6 @@ __pycache__/
 assets/raw/video/landing/
 assets/raw/images/landing/
 docs/previews/
+
+# land use / roads per tile for the filler buildings — re-download with node scripts/fetch-city.mjs
+assets/raw/osm/city/context/

@@ -14,7 +14,9 @@
     "build:landmarks": "node scripts/build-landmarks.mjs",
     "build:landing-art": "node scripts/build-landing-art.mjs",
     "key:green": "node scripts/key-green.mjs",
-    "cut:props": "node scripts/cut-props.mjs"
+    "cut:props": "node scripts/cut-props.mjs",
+    "build:city": "node scripts/build-city.mjs",
+    "build:city-textures": "python scripts/city-textures.py"
   },
   "devDependencies": {
     "@gltf-transform/cli": "^4.5.1",

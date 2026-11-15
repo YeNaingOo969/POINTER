@@ -1,5 +1,6 @@
 // Entry script for explore.html: the pastel map with place bubbles, a category filter, search,
-// place card and routes. Landmarks are illustrated markers (no 3D city since 2026-11-12).
+// place card and routes. 3D layer: Blender landmarks, the generated city (OSM footprints, loaded
+// by tile near the view) and bus stop shelters.
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components/brand.css';
@@ -14,6 +15,8 @@ import { getPlaces, getCategories } from '../api/api.js';
 import { createMap, moveCamera } from '../map/map.js';
 import { addPlaceMarkers } from '../map/place-markers.js';
 import { addLandmarkLayer } from '../map/landmarks-3d.js';
+import { busShelters } from '../map/bus-shelters.js';
+import { cityTiles } from '../map/city-tiles.js';
 import { createPlaceSearch } from '../components/place-search.js';
 import { createPlaceCard } from '../components/place-card.js';
 import { createRoutePanel } from '../components/route-panel.js';
@@ -71,7 +74,7 @@ async function start() {
 
     const markers = addPlaceMarkers(map, places, { onSelect: openPlace });
     // 3D landmarks (Blender models); bubbles of places on them float above their tops.
-    addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots) });
+    addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots), extras: [cityTiles, busShelters] });
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
     addBusStops(map); // after the 3D landmarks, so the stops stay visible
     const routeLayer = addRouteLayer(map); // after the 3D landmarks, so the line draws on top

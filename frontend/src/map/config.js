@@ -30,7 +30,7 @@ export const LANDMARK_MIN_ZOOM = 13;
 export const LANDMARKS = [
   // Our own model of the hill, terrace, stairways and stupa (scripts/blender/landmarks/shwedagon.py).
   { id: 'shwedagon', file: '/models/landmarks/shwedagon.glb', lng: 96.14959, lat: 16.79834, rotation: 0, clear: 45, grounds: 140 },
-  { id: 'sule', file: '/models/landmarks/sule.glb', lng: 96.158764, lat: 16.774401, rotation: 0, clear: 30, grounds: 35 },
+  { id: 'sule', file: '/models/landmarks/sule.glb', lng: 96.158764, lat: 16.774401, rotation: 0, clear: 42, grounds: 42 },
   { id: 'botataung', file: '/models/landmarks/botataung.glb', lng: 96.17184, lat: 16.76783, rotation: 0, clear: 40, grounds: 40 },
   // Centre of the OSM line (scripts/blender/landmarks/thanlyin_bridge.py prints it).
   { id: 'thanlyin_bridge', file: '/models/landmarks/thanlyin_bridge.glb', lng: 96.233576, lat: 16.789622, rotation: 0, clear: 0, grounds: 0, noLift: true },
