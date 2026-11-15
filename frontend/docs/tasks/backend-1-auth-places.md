@@ -8,6 +8,9 @@
 > Changed on 2026-11-14 (team ER, 15 tables): categories have `name_en` / `name_my` / `group_name`;
 > opening hours are JSON text in `places.open_hours`; photos are in `place_photos` and
 > `places.cover_photo`; YBS lines and facilities are gone; banned users can't log in.
+>
+> Changed on 2026-11-15: please make `places.owner_id` **nullable** — public places the admin adds
+> (pagodas, parks, landmarks) have no owner.
 
 **Database:** the team's dbdiagram schema — tables `users`, `places`, `categories`,
 `place_photos`, `reviews`
@@ -110,7 +113,7 @@ as strings.
       registered" message; a `banned` user gets 403.
 - [ ] Log out works; POST without the right `X-CSRF-Token` gets 403.
 - [ ] Passwords in the database are `password_hash` strings, never plain text.
-- [ ] With `USE_MOCK = false` the Explore map shows all places from MariaDB, and
+- [ ] With `USE_MOCK = false` the Explore map shows all places from MySQL, and
       `place.html?id=1` shows category, about, hours, address and rating, and `place.html?id=20` a Call button;
       `place.html?id=999` shows "We couldn't find this place."
 - [ ] Every query uses prepared statements.

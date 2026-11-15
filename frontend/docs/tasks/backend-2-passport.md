@@ -1,8 +1,8 @@
 # Backend task 2 — My account, saves, reviews and "Add your business"
 
 **Owner:** backend developer 2 · **Frontend pages:** `account.html`, `place.html`, `business.html`
-**Database:** the team's dbdiagram schema — tables `favorites`, `reviews`, `places`, plus `users`
-and `categories` from task 1
+**Database:** the team's dbdiagram schema — tables `favorites`, `reviews`, `places`,
+`owner_upgrades`, plus `users` and `categories` from task 1
 
 Everything here needs a logged-in user. The login comes from **task 1**; until it is merged,
 use a test user: in your local `include/` code, if there is no session, set
@@ -14,6 +14,10 @@ use a test user: in your local `include/` code, if there is no session, set
 > Changed on 2026-11-14 (team ER, 15 tables): `favorites` (was `favourites`), `reviews.updated_at`
 > and `owner_reply`, opening hours as JSON text in `places.open_hours`, the request photo in
 > `places.storefront_photo`. Please add a unique key on `reviews (user_id, place_id)`.
+>
+> Changed on 2026-11-15 (team flowchart): the owner **pays with the request** — 1, 3 or 12 months,
+> paid by KBZPay / Wave Pay / AYA Pay (demo, no real payment), with the transaction ID and a
+> screenshot. Save it as an `owner_upgrades` row next to the pending `places` row (section 5).
 
 ## 1. Run the frontend
 
@@ -32,7 +36,7 @@ browser now (`USE_MOCK = true`); your job is to make it real.
 
 - JSON endpoints in the `api/` folder at the repo root (task 1 creates it; add your files next
   to theirs). Shared helpers in `include/`, DB settings in `config/db.php`, uploads in
-  `assets/upload/` (git-ignored).
+  `uploads/places/` (shop photos) and `uploads/payments/` (payment screenshots) — both git-ignored like the repo's `uploads/` rules.
 - Run PHP from the repo root: `php -S localhost:8000`. The frontend dev server forwards
   `/api/...` to it.
 - To test, set `USE_MOCK = false` in `frontend/src/api/config.js` **on your own machine**.
@@ -81,21 +85,30 @@ calculated from `reviews`, so nothing extra to store.
 
 Fields: `name` (2–100), `categoryId` (1–7), `description` (10–600), `phone` (6–20 of `0-9 + ( ) -`),
 `openingHours` (JSON text, open days only: `[{ "day": "mon", "open": "06:00", "close": "11:00" }]`),
-`lat`, `lng` (numbers inside Yangon: lat 16.65–17.05, lng 95.95–96.35), `photo` (one image).
+`lat`, `lng` (numbers inside Yangon: lat 16.65–17.05, lng 95.95–96.35), `photo` (one image),
+and the payment: `months` (1, 3 or 12), `amount` (number), `paymentMethod` (`KBZPay`, `Wave Pay`
+or `AYA Pay`), `paymentRef` (the transaction ID, 4–40 characters) and `proof` (a screenshot, image).
 
 `BusinessRequest` = `{ "id", "status": "pending" | "approved" | "rejected", "name", "categoryId",
-"description", "phone", "openingHours", "lat", "lng", "photoUrl", "createdAt" }`.
+"description", "phone", "openingHours", "lat", "lng", "photoUrl", "payment": { "months", "amount",
+"method", "status" }, "createdAt" }`.
 
 How to store it with the team schema (no new table): insert a `places` row with
 `owner_id` = the user, `status` = `'pending'`, `open_hours` = the `openingHours` JSON text (check it
-with `json_decode` first) and the photo path in `storefront_photo`. `places.php` only lists approved places. The admin approves or rejects it in
-phase 3.
+with `json_decode` first) and the photo path in `storefront_photo`. In the same transaction insert
+an `owner_upgrades` row: the place, `months`, `amount`, payment method / reference, the proof
+screenshot path and `status = 'pending'` (`starts_at` / `expires_at` stay empty until the admin
+approves). `places.php` only lists approved places. The admin checks the shop and then the payment
+in phase 3; a rejected new shop is refunded outside the app.
 
 **Photo upload, safely:**
 - Check `$_FILES['photo']['error'] === UPLOAD_ERR_OK` and size ≤ 5 MB.
 - Check the real type with `finfo_file()` — only `image/jpeg`, `image/png`, `image/webp`.
 - Save it under a random name (`bin2hex(random_bytes(16))` + the right extension) in
-  `assets/upload/`, never the user's file name. Store the path in `places.storefront_photo`.
+  `uploads/places/`, never the user's file name. Store the path in `places.storefront_photo`.
+- The payment screenshot (`proof`) gets the same checks, is saved in `uploads/payments/` and its path
+  goes in the `owner_upgrades` row. Add `uploads/payments/*` + `!uploads/payments/.gitkeep` to the
+  root `.gitignore`, like the existing `uploads/places/` lines.
 
 Rules: one business per user — a user with a pending or approved request gets 409; after a
 rejection they may send a new one. Ask for no licence or documents (scope doc §4).
@@ -107,8 +120,10 @@ rejection they may send a new one. Ask for no licence or documents (scope doc §
       the same place gets 409; editing someone else's gets 403; an owner gets 403 on their own shop.
 - [ ] `account.html` shows the real saved places and reviews, newest first, and Unsave / Delete
       work there; "My business" shows the request status.
-- [ ] `business.html` sends a request with a photo; the photo is stored under a random name; a
-      second request gets 409; a `.txt` renamed to `.jpg` is refused.
+- [ ] `business.html` sends a request with a photo and a payment (months, method, transaction ID,
+      screenshot); both images are stored under random names; a `places` row (pending) and an
+      `owner_upgrades` row (pending) are saved together; a second request gets 409; a `.txt`
+      renamed to `.jpg` is refused.
 - [ ] A visitor (logged out) gets 401 from the `my-*` endpoints and `account.html` shows
       "Your account is waiting".
 - [ ] Every query uses prepared statements; no test-user code left in the commit.

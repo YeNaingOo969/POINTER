@@ -2,9 +2,10 @@
 
 For the two backend developers. This file says what the frontend expects from the PHP backend.
 It is updated after every frontend milestone. The scope document of 2026-11-12 is the source of
-truth for features. **Status: phase 1 (find, view, save) is done on mock data — landing, explore map
-with category filter, place page, login, My account and "Add your business". Next: phase 2 (shop
-owners, posts, deals and tickets, home page), then phase 3 (admin, reports, messages, notifications).**
+truth for features. **Status (2026-11-15): phase 1 (find, view, save) and phase 2 (customer Home, Deals and tickets,
+Messages, reports and blocking; shop-owner mode) are done on mock data. The map shows the whole
+city in 3D (frontend only). Next: phase 3 (admin).** Backend tasks 1 and 2 (phase 1) can start now;
+phase 2 endpoints are listed below and get their own task files after the team's flowchart fixes.
 
 ## How the frontend talks to the backend
 
@@ -12,7 +13,7 @@ owners, posts, deals and tickets, home page), then phase 3 (admin, reports, mess
 - While `USE_MOCK = true` in [src/api/config.js](src/api/config.js), functions return mock data from
   [src/data/](src/data/). When your endpoints are ready, set `USE_MOCK = false` (on your own machine
   to test) and keep `API_BASE` as `/api`.
-- Requests and responses are **JSON**, UTF-8 (MariaDB: `utf8mb4` tables and connection). File
+- Requests and responses are **JSON**, UTF-8 (MySQL: `utf8mb4` tables and connection). File
   uploads (the shop-front photo) are `multipart/form-data`.
 - Dates are ISO 8601 strings with the Yangon offset, e.g. `2026-11-10T17:20:00+06:30`.
 - Errors: return a non-2xx status with `{ "error": "message" }`. The page shows its own text for
