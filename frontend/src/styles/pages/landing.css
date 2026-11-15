@@ -833,39 +833,14 @@
   font-size: 0.85rem;
 }
 
-/* ---------- 8. Free & Premium ---------- */
+/* ---------- 8. Plans for shop owners (1 / 3 / 12 months) ---------- */
 @property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .plans { background: #f4ead8; color: var(--ink); padding: clamp(6rem, 14vh, 9rem) clamp(1.25rem, 5vw, 4rem) clamp(4rem, 10vh, 6rem); overflow: hidden; }
 .plans__inner { max-width: 1120px; margin-inline: auto; text-align: center; }
 .plans .eyebrow { color: var(--gold-deep); }
 .plans .section-title em { color: var(--gold-deep); }
 .plans__lede { margin: 0 auto 2.2rem; max-width: 40ch; color: var(--ink-muted); line-height: 1.55; }
-.plans__toggle {
-  position: relative;
-  display: inline-flex;
-  margin-bottom: 2.5rem;
-  padding: 0.3rem;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 0.6rem 1.6rem -0.6rem rgb(70 40 30 / 0.3);
-}
-.plans__toggle button {
-  position: relative;
-  z-index: 1;
-  padding: 0.7rem 1.2rem;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  font: inherit;
-  font-weight: 600;
-  color: var(--ink-muted);
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.plans__toggle button small { display: block; font-size: 0.68rem; font-weight: 500; opacity: 0.75; }
-.plans__toggle button.is-on { color: #2b1a10; }
-.plans__thumb { position: absolute; top: 0.3rem; bottom: 0.3rem; left: 0; width: 0; border-radius: 999px; background: var(--gold); transition: translate 0.45s var(--ease-out), width 0.45s var(--ease-out); }
-.plans__cards { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem); text-align: left; }
+.plans__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.4vw, 1.75rem); align-items: center; text-align: left; }
 .plan {
   position: relative;
   padding: clamp(1.5rem, 3vw, 2.4rem);
@@ -874,7 +849,7 @@
   box-shadow: 0 1.5rem 3rem -1.5rem rgb(70 40 30 / 0.25);
 }
 .plan h3 { margin: 0 0 0.4rem; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
-.plan__price { margin: 0 0 1.5rem; font-family: var(--font-display); font-variation-settings: 'SOFT' 100; font-weight: 600; font-size: clamp(2rem, 3.6vw, 3rem); }
+.plan__price { margin: 0 0 0.4rem; font-family: var(--font-display); font-variation-settings: 'SOFT' 100; font-weight: 600; font-size: clamp(2rem, 3.6vw, 3rem); }
 .plan__price small { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; color: var(--ink-muted); }
 .plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
 .plan li { position: relative; padding-left: 1.8rem; line-height: 1.45; }
@@ -903,8 +878,21 @@
 .plan--premium li::before { color: var(--gold); }
 .plan--premium li small { color: rgb(244 234 216 / 0.55); }
 .plan__badge { position: absolute; top: 1.4rem; right: 1.4rem; padding: 0.3em 0.8em; border-radius: 999px; background: var(--gold); color: #2b1a10; font-size: 0.75rem; font-weight: 800; }
-.plan__pay { margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid rgb(244 234 216 / 0.15); font-size: 0.85rem; color: rgb(244 234 216 / 0.8); }
-.plan__pay small { opacity: 0.6; }
+.plan--premium { padding-block: clamp(2rem, 4vw, 3.2rem); }            /* the middle card stands a little taller */
+.plan__per { margin: 0; color: var(--ink-muted); font-size: 0.95rem; }
+.plan__save { margin-left: 0.4rem; padding: 0.15em 0.6em; border-radius: 999px; background: rgb(59 143 90 / 0.14); color: var(--status-open); font-size: 0.8rem; font-weight: 700; }
+.plan__fit { margin: 1.2rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); line-height: 1.45; }
+.plan--premium .plan__per { color: rgb(244 234 216 / 0.7); }
+.plan--premium .plan__save { background: rgb(232 176 74 / 0.2); color: #ffd79a; }
+.plan--premium .plan__fit { border-top-color: rgb(244 234 216 / 0.15); }
+.plan__badge--light { background: var(--land); color: var(--gold-deep); }
+.plans__features { margin-top: clamp(1.5rem, 4vh, 2.5rem); padding: clamp(1.5rem, 3vw, 2.2rem); border-radius: 1.75rem; background: #fff; box-shadow: 0 1.5rem 3rem -1.5rem rgb(70 40 30 / 0.25); text-align: left; }
+.plans__features-title { margin: 0 0 1rem; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); font-weight: 700; }
+.plans__features ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem 2rem; }
+.plans__features li { position: relative; padding-left: 1.8rem; line-height: 1.45; }
+.plans__features li::before { content: '✓'; position: absolute; left: 0; color: var(--gold-deep); font-weight: 800; }
+.plans__features li small { color: var(--ink-muted); }
+.plans__note { max-width: 62ch; margin: 1.5rem auto 0; color: var(--ink-muted); font-size: 0.9rem; line-height: 1.55; }
 .fair { margin-top: clamp(3rem, 8vh, 5rem); overflow: hidden; mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
 .fair__track { display: flex; gap: 3rem; width: max-content; animation: marquee 28s linear infinite; }
 .fair__track span { font-family: var(--font-display); font-variation-settings: 'SOFT' 100; font-size: clamp(1.4rem, 2.6vw, 2.2rem); font-weight: 500; white-space: nowrap; }
@@ -1003,7 +991,7 @@
   .owners__steps li:not(.is-on) { display: none; }
   .owners__title { font-size: 2.6rem; margin-bottom: 1rem; }
   .plans__cards, .why__inner { grid-template-columns: 1fr; }
-  .plans__toggle button small { display: none; }
+  .plans__features ul { grid-template-columns: 1fr; }
   .wheel__node { width: 8.5rem; font-size: 0.72rem; }
 }
 
@@ -1047,7 +1035,7 @@
 
 /* ---- Burmese: same fonts for the Latin headlines, roomier lines for the translated text ---- */
 :lang(my) :is(.dive__lede, .pillar__text, .mapstory__step p, .cat__text, .rules li, .deals__step p,
-  .owners__steps li, .why__copy p, .wheel__node, .finale__foot) {
+  .owners__steps li, .why__copy p, .wheel__node, .finale__foot, .plans__lede, .plan__fit, .plans__features li, .plans__note) {
   line-height: 1.8;
   letter-spacing: 0;
 }

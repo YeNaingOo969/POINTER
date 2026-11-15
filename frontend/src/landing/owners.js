@@ -1,34 +1,15 @@
 // Sections 7–10: for shop owners (the request form fills itself in, gets approved, tools
-// unlock), Free vs Premium (plan toggle + turning gold rim), why it's free (the flywheel
-// draws itself) and the finale (dusk Shwedagon + giant photo-filled wordmark).
+// unlock), owner plans (1 / 3 / 12 months, turning gold rim on the favourite), why it's free
+// for users (the flywheel draws itself) and the finale (dusk Shwedagon + photo-filled wordmark).
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(DrawSVGPlugin, SplitText);
 
-/** Always on (also with reduced motion): form text filled in, plan toggle works. */
+/** Always on (also with reduced motion): the request form's text is filled in. */
 export function ownersStatic() {
   document.querySelectorAll('.bform__field').forEach((f) => { f.textContent = f.dataset.type; });
-
-  const toggle = document.querySelector('.plans__toggle');
-  const thumb = toggle.querySelector('.plans__thumb');
-  const len = document.querySelector('.plan__len');
-  const place = (btn) => {
-    thumb.style.width = `${btn.offsetWidth}px`;
-    thumb.style.translate = `${btn.offsetLeft}px 0`;
-  };
-  toggle.addEventListener('click', (e) => {
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    toggle.querySelectorAll('button').forEach((b) => b.classList.toggle('is-on', b === btn));
-    len.textContent = btn.firstChild.textContent.trim();
-    place(btn);
-  });
-  const fit = () => place(toggle.querySelector('.is-on'));
-  fit();
-  addEventListener('resize', fit);
-  document.fonts.ready.then(fit);
 }
 
 function ownersStory() {
@@ -80,7 +61,7 @@ function ownersStory() {
 function plansStory() {
   const tl = gsap.timeline({ scrollTrigger: { trigger: '.plans__cards', start: 'top 80%', toggleActions: 'play none none reverse' } })
     .from('.plan', { y: 80, autoAlpha: 0, stagger: 0.12, duration: 0.9, ease: 'expo.out' })
-    .from('.plan li', { x: -14, autoAlpha: 0, stagger: 0.04, duration: 0.4, ease: 'power2.out' }, 0.3);
+    .from('.plans__features li', { x: -14, autoAlpha: 0, stagger: 0.04, duration: 0.4, ease: 'power2.out' }, 0.3);
   const spin = gsap.to('.plan--premium', { '--spin': '360deg', duration: 8, ease: 'none', repeat: -1, paused: true });
   const io = new IntersectionObserver(([e]) => (e.isIntersecting ? spin.play() : spin.pause()));
   io.observe(document.querySelector('.plans'));

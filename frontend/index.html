@@ -395,8 +395,8 @@
             <p class="eyebrow" id="owners-title">For shop owners</p>
             <h2 class="owners__title">Own a shop<br />in <em>Yangon?</em></h2>
             <ol class="owners__steps">
-              <li data-step="0" data-i18n-html="landing.own1"><b>Send a request.</b> Name, group, phone, opening hours, a pin on the map and one photo of your shop front. No licence needed.</li>
-              <li data-step="1" data-i18n-html="landing.own2"><b>We check it.</b> An admin compares your photo with the map pin, then approves it.</li>
+              <li data-step="0" data-i18n-html="landing.own1"><b>Send a request.</b> Name, group, phone, opening hours, a pin on the map and one photo of your shop front, then pick 1, 3 or 12 months and pay. No licence needed.</li>
+              <li data-step="1" data-i18n-html="landing.own2"><b>We check it.</b> An admin compares your photo with the map pin and checks your payment, then approves it.</li>
               <li data-step="2" data-i18n-html="landing.own3"><b>You're on the map.</b> Post news and deals, reply to reviews and keep your hours up to date.</li>
             </ol>
           </div>
@@ -428,48 +428,53 @@
       <!-- 8. Free vs Premium (for shop owners only) -->
       <section class="plans" data-nav="light" aria-labelledby="plans-title">
         <div class="plans__inner">
-          <p class="eyebrow" id="plans-title">Free &amp; Premium</p>
-          <h2 class="section-title">Start free. <em>Grow with Premium.</em></h2>
-          <p class="plans__lede">Only shop owners can pay — everyone else uses every feature for free.</p>
-
-          <div class="plans__toggle" role="group" aria-label="Premium plan length">
-            <button type="button" class="is-on" data-plan="1">Monthly</button>
-            <button type="button" data-plan="3">3 months <small>save more</small></button>
-            <button type="button" data-plan="12">12 months <small>best value</small></button>
-            <span class="plans__thumb" aria-hidden="true"></span>
-          </div>
+          <p class="eyebrow" id="plans-title">Plans for shop owners</p>
+          <h2 class="section-title">One small fee. <em>Every tool.</em></h2>
+          <p class="plans__lede" data-i18n="landing.plansLede">Users never pay. Shops pay for the time they are on the map, and get every owner tool from day one.</p>
 
           <div class="plans__cards">
             <article class="plan">
-              <h3>Free owner</h3>
-              <p class="plan__price">Free <small>forever</small></p>
-              <ul>
-                <li>1 post a day, including discounts</li>
-                <li>1 main photo</li>
-                <li>Call button</li>
-                <li>Reply to every review</li>
-                <li>Edit phone, hours and description any time</li>
-              </ul>
+              <h3 data-i18n="landing.plan1">1 month</h3>
+              <p class="plan__price">15,000 <small>Ks</small></p>
+              <p class="plan__per" data-i18n="landing.plan1Per">15,000 Ks a month</p>
+              <p class="plan__fit" data-i18n="landing.plan1Fit">Try it out, or for a pop-up shop.</p>
             </article>
             <article class="plan plan--premium">
-              <span class="plan__badge">Premium</span>
-              <h3>Premium owner</h3>
-              <p class="plan__price"><span class="plan__len">Monthly</span> <small>prices coming soon</small></p>
-              <ul>
-                <li>No daily post limit <small>(a short wait between posts)</small></li>
-                <li>A photo gallery</li>
-                <li>Pin your best posts to the top</li>
-                <li>Menu or services list with prices</li>
-                <li>Call, Viber, Messenger and Telegram buttons</li>
-              </ul>
-              <p class="plan__pay">Pay with KBZPay, Wave Pay or AYA Pay <small>(demo only in this project)</small></p>
+              <span class="plan__badge" data-i18n="landing.planPopular">Most chosen</span>
+              <h3 data-i18n="landing.plan3">3 months</h3>
+              <p class="plan__price">40,000 <small>Ks</small></p>
+              <p class="plan__per"><span data-i18n="landing.plan3Per">13,333 Ks a month</span> <b class="plan__save" data-i18n="landing.plan3Save">save 11%</b></p>
+              <p class="plan__fit" data-i18n="landing.plan3Fit">A season of deals for most shops.</p>
+            </article>
+            <article class="plan">
+              <span class="plan__badge plan__badge--light" data-i18n="landing.planBest">Best value</span>
+              <h3 data-i18n="landing.plan12">12 months</h3>
+              <p class="plan__price">150,000 <small>Ks</small></p>
+              <p class="plan__per"><span data-i18n="landing.plan12Per">12,500 Ks a month</span> <b class="plan__save" data-i18n="landing.plan12Save">save 17%</b></p>
+              <p class="plan__fit" data-i18n="landing.plan12Fit">Set it once and forget it for a year.</p>
             </article>
           </div>
 
+          <div class="plans__features">
+            <p class="plans__features-title" data-i18n="landing.planIncludes">Every plan includes</p>
+            <ul>
+              <li data-i18n="landing.planF1">Your shop on the map and in search</li>
+              <li data-i18n-html="landing.planF2">News and discount posts <small>(a short wait between posts)</small></li>
+              <li data-i18n="landing.planF3">A photo gallery</li>
+              <li data-i18n="landing.planF4">Pin your best posts to the top</li>
+              <li data-i18n="landing.planF5">Menu or services list with prices</li>
+              <li data-i18n="landing.planF6">Call, Viber, Messenger and Telegram buttons</li>
+              <li data-i18n="landing.planF7">Reply to every review</li>
+              <li data-i18n="landing.planF8">Check customer tickets at the counter</li>
+            </ul>
+          </div>
+
+          <p class="plans__note" data-i18n="landing.plansNote">Pay with KBZPay, Wave Pay or AYA Pay when you send your request (demo only in this project). We remind you 7 days before your plan ends; if it ends, your shop is hidden until you renew.</p>
+
           <div class="fair" aria-label="Our promises">
             <div class="fair__track">
-              <span>No ads</span><span>No paid boosts in search</span><span>Every shop gets the same chance</span><span>No Premium for users — it's free</span>
-              <span aria-hidden="true">No ads</span><span aria-hidden="true">No paid boosts in search</span><span aria-hidden="true">Every shop gets the same chance</span><span aria-hidden="true">No Premium for users — it's free</span>
+              <span>No ads</span><span>No paid boosts in search</span><span>Every shop gets the same tools</span><span>Free for every user</span>
+              <span aria-hidden="true">No ads</span><span aria-hidden="true">No paid boosts in search</span><span aria-hidden="true">Every shop gets the same tools</span><span aria-hidden="true">Free for every user</span>
             </div>
           </div>
         </div>
@@ -492,8 +497,8 @@
             </svg>
             <p class="wheel__node" style="--x: 50; --y: 12.5" data-i18n-html="landing.wheel1"><b>1</b>More people find places on POINTER</p>
             <p class="wheel__node" style="--x: 82.5; --y: 68.75" data-i18n-html="landing.wheel2"><b>2</b>Shops get more customers</p>
-            <p class="wheel__node" style="--x: 17.5; --y: 68.75" data-i18n-html="landing.wheel3"><b>3</b>Some shops go Premium and the app keeps growing</p>
-            <p class="wheel__center">Free for<br />everyone</p>
+            <p class="wheel__node" style="--x: 17.5; --y: 68.75" data-i18n-html="landing.wheel3"><b>3</b>Shops pay a small fee to be on the map, and the app keeps growing</p>
+            <p class="wheel__center">Free for<br />every user</p>
           </div>
         </div>
       </section>
