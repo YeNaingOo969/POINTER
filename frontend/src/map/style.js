@@ -214,10 +214,12 @@ export function buildMapStyle() {
         paint: { 'line-color': C.rail, 'line-width': width([[12, 0.8], [16, 2.5]]), 'line-dasharray': [3, 2] },
       },
 
-      // ---- Buildings: flat pastel blocks (no 3D since 2026-11-12; landmarks are illustrated markers) ----
+      // ---- Buildings: flat pastel blocks when zoomed out. From zoom 13.5 the 3D city
+      // (city-tiles.js) takes over, so they fade out: left under the 3D blocks they showed as
+      // pink patches around landmarks and the edges of buildings. ----
       {
         id: 'building-flat', type: 'fill', source: SOURCE, 'source-layer': 'building',
-        paint: { 'fill-color': buildingTint, 'fill-opacity': 0.85 },
+        paint: { 'fill-color': buildingTint, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 13, 0.85, 14, 0] },
       },
 
       // ---- Bridges and flyovers: drawn again above the buildings as raised decks ----

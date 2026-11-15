@@ -43,6 +43,16 @@ export function createMap(container) {
 
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
 
+  // Phones: start with the map credits folded into the (i) button. Open, they cover the zoom
+  // buttons and the bottom of the map; one tap on (i) shows them.
+  if (window.matchMedia('(max-width: 640px)').matches) {
+    map.once('load', () => {
+      const credits = container.querySelector('.maplibregl-ctrl-attrib');
+      credits?.classList.remove('maplibregl-compact-show');
+      credits?.removeAttribute('open');
+    });
+  }
+
   // If the GPU drops the context (sleep, driver reset), tell the user instead of freezing.
   const canvas = map.getCanvas();
   canvas.addEventListener('webglcontextlost', (event) => {

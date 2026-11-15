@@ -19,7 +19,8 @@ export function addBusStops(map) {
     id: 'bus-stop', type: 'circle', source: 'omt', 'source-layer': 'poi', filter, minzoom: MIN_ZOOM,
     paint: {
       'circle-color': BUS_BLUE,
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 15, 4, 17, 7, 18.5, 10],
+      // Kept small up close: the 3D shelter already marks the stop (bus-shelters.js).
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 15, 3.5, 17, 5, 18.5, 6.5],
       'circle-stroke-color': '#ffffff',
       'circle-stroke-width': ['interpolate', ['linear'], ['zoom'], 15, 1.5, 18, 3],
       'circle-pitch-alignment': 'viewport', // stays round on a tilted map

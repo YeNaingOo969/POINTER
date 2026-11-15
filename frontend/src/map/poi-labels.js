@@ -7,6 +7,13 @@ import { maplibregl } from './map.js';
 import { t } from '../i18n/i18n.js';
 
 const MIN_ZOOM = 15;
+// Below zoom 17 only the more important points (OpenMapTiles `rank`, 1 = most important) show, so
+// a street isn't buried in dots. Two sets of layers, split by rank: the minor set fades in at 17.
+// (One layer with a rank-and-zoom rule doesn't work here: the tiles stop at z14, and a rule that
+// mixes data and zoom is worked out at the tile's zoom, so it hid every minor point at all zooms.
+// For the same reason no layer may start above zoom 15.)
+const MAJOR_RANK = 12;
+const isMajor = ['<=', ['coalesce', ['get', 'rank'], 99], MAJOR_RANK];
 const englishName = ['coalesce', ['get', 'name:en'], ['get', 'name_en'], ['get', 'name:latin'], ''];
 // Bus stops have their own layer (bus-stops.js); unnamed points are skipped.
 const filter = ['all', ['!=', ['get', 'class'], 'bus'], ['!=', englishName, '']];
@@ -19,34 +26,44 @@ const colour = ['match', ['get', 'class'],
   ['school', 'college', 'library', 'kindergarten', 'university'], '#7d63b8',
   '#6f7480'];
 
+const DOT_LAYERS = ['poi-dot', 'poi-dot-minor'];
+
 export function addPoiLabels(map) {
   const firstLabel = map.getStyle().layers.find((l) => l.type === 'symbol')?.id;
-  map.addLayer({
-    id: 'poi-dot', type: 'circle', source: 'omt', 'source-layer': 'poi', filter, minzoom: MIN_ZOOM,
-    paint: {
-      'circle-color': colour,
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 15, 2.5, 18, 5],
-      'circle-stroke-color': '#ffffff',
-      'circle-stroke-width': 1.2,
-      'circle-pitch-alignment': 'viewport',
-    },
-  }, firstLabel);
-  map.addLayer({
-    id: 'poi-label', type: 'symbol', source: 'omt', 'source-layer': 'poi', filter, minzoom: MIN_ZOOM,
-    layout: {
-      'text-field': englishName,
-      'text-font': ['Noto Sans Regular'],
-      'text-size': ['interpolate', ['linear'], ['zoom'], 15, 10, 18, 12.5],
-      'text-max-width': 8,
-      'text-offset': [0, 0.7],
-      'text-anchor': 'top',
-      'symbol-sort-key': ['coalesce', ['get', 'rank'], 99],
-    },
-    paint: { 'text-color': colour, 'text-halo-color': '#ffffff', 'text-halo-width': 1.4 },
-  }, firstLabel);
+  const sets = [
+    { suffix: '', filter: ['all', filter, isMajor], opacity: 1 },
+    { suffix: '-minor', filter: ['all', filter, ['!', isMajor]], opacity: ['step', ['zoom'], 0, 17, 1] },
+  ];
+  for (const { suffix, filter: f, opacity } of sets) {
+    map.addLayer({
+      id: `poi-dot${suffix}`, type: 'circle', source: 'omt', 'source-layer': 'poi', filter: f, minzoom: MIN_ZOOM,
+      paint: {
+        'circle-color': colour,
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 15, 2.5, 18, 4.5],
+        'circle-opacity': opacity,
+        'circle-stroke-opacity': opacity,
+        'circle-stroke-color': '#ffffff',
+        'circle-stroke-width': 1.2,
+        'circle-pitch-alignment': 'viewport',
+      },
+    }, firstLabel);
+    map.addLayer({
+      id: `poi-label${suffix}`, type: 'symbol', source: 'omt', 'source-layer': 'poi', filter: f, minzoom: MIN_ZOOM,
+      layout: {
+        'text-field': englishName,
+        'text-font': ['Noto Sans Regular'],
+        'text-size': ['interpolate', ['linear'], ['zoom'], 15, 10, 18, 12.5],
+        'text-max-width': 8,
+        'text-offset': [0, 0.7],
+        'text-anchor': 'top',
+        'symbol-sort-key': ['coalesce', ['get', 'rank'], 99],
+      },
+      paint: { 'text-color': colour, 'text-halo-color': '#ffffff', 'text-halo-width': 1.4, 'text-opacity': opacity },
+    }, firstLabel);
+  }
 
   const popup = new maplibregl.Popup({ closeButton: true, offset: 8, className: 'bus-popup', maxWidth: '260px' });
-  map.on('click', 'poi-dot', (e) => {
+  map.on('click', DOT_LAYERS, (e) => {
     const f = e.features[0];
     const my = f.properties.name || '';
     const en = f.properties['name:en'] || f.properties.name_en || f.properties['name:latin'] || '';
@@ -57,9 +74,9 @@ export function addPoiLabels(map) {
     el.querySelector('.bus-popup__alt').textContent = my !== (en || my) ? my : '';
     popup.setLngLat(f.geometry.coordinates).setDOMContent(el).addTo(map);
   });
-  map.on('mouseenter', 'poi-dot', () => { map.getCanvas().style.cursor = 'pointer'; });
-  map.on('mouseleave', 'poi-dot', () => { map.getCanvas().style.cursor = ''; });
+  map.on('mouseenter', DOT_LAYERS, () => { map.getCanvas().style.cursor = 'pointer'; });
+  map.on('mouseleave', DOT_LAYERS, () => { map.getCanvas().style.cursor = ''; });
 }
 
 /** True when a map click landed on a point of interest (pages use it to keep their own UI open). */
-export const clickedPoi = (map, point) => map.queryRenderedFeatures(point, { layers: ['poi-dot'] }).length > 0;
+export const clickedPoi = (map, point) => map.queryRenderedFeatures(point, { layers: DOT_LAYERS }).length > 0;

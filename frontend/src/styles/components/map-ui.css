@@ -127,6 +127,11 @@
   }
 }
 
+/* Bubbles with a name sit above the plain dots of nearby places (a dot used to land on a name). */
+/* (the pin button is itself the MapLibre marker element) */
+.place-pin.is-featured { z-index: 2; }
+.place-pin.is-selected { z-index: 3; }
+
 /* Zoomed out: names only for featured and selected places. */
 .is-zoomed-out .place-pin:not(.is-featured):not(.is-selected) .place-pin__text {
   display: none;
