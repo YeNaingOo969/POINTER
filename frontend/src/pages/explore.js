@@ -41,7 +41,7 @@ container.addEventListener('map:contextrestored', () => showStatus(''));
 
 /** Keep the picked place clear of the card: beside it on desktop, above it on phones. */
 const cardPadding = () => (phone.matches
-  ? { top: 80, bottom: Math.round(window.innerHeight * 0.62) + 24, left: 24, right: 24 }
+  ? { top: 220, bottom: Math.round(window.innerHeight * 0.62) + 24, left: 24, right: 24 } // top: room for the search bar, chips and a lifted bubble
   : { top: 80, bottom: 40, left: 380, right: 80 });
 
 async function start() {

@@ -1,6 +1,6 @@
 /* Owner mode: stats in the dusk header, cards for tickets, posts, reviews and the place. */
 
-.owner-back { color: var(--gold); text-decoration: underline; }
+.owner-back { display: inline-block; padding-block: 0.5rem; color: var(--gold); text-decoration: underline; }   /* bigger tap area */
 .owner-sub { margin: var(--space-2) 0 0; color: rgb(244 234 216 / 0.8); }
 .owner-sub--sub { color: #f1d6a3; font-weight: 500; }
 

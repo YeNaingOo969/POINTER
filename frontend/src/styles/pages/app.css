@@ -156,7 +156,7 @@
   color: var(--ink-muted);
   font-size: var(--text-sm);
 }
-.deal-card__shop a, .post-card__shop a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.deal-card__shop a, .post-card__shop a { display: inline-block; padding-block: 0.45rem; color: var(--ink); font-weight: 700; text-decoration: none; }   /* ≥ 32 px to tap */
 .deal-card__shop::before, .post-card__shop::before { content: ''; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--cat-tone, var(--gold)); }
 
 .deal-card__offer {

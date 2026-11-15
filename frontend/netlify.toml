@@ -1,0 +1,22 @@
+# Netlify: build the site on every push to main and put it online.
+# In the Netlify site settings set the base directory to `frontend` (this file sits there).
+# Data is mock data in the browser, so no server or database is needed online.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Vite gives the built JS and CSS a content hash in the name, so browsers may keep them a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 3D models and data change rarely; keep them a day.
+[[headers]]
+  for = "/models/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

@@ -45,7 +45,8 @@ function dive() {
 
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
-    scrollTrigger: { trigger: '.dive', start: 'top top', end: 'bottom bottom', scrub: 0.9 },
+    // invalidateOnRefresh: the island's exit distance is measured from the screen height (below)
+    scrollTrigger: { trigger: '.dive', start: 'top top', end: 'bottom bottom', scrub: 0.9, invalidateOnRefresh: true },
   });
 
   tl.to('.dive__intro', { autoAlpha: 0, y: 24, duration: 0.06 }, 0)
@@ -53,9 +54,11 @@ function dive() {
     .to(word.chars, { yPercent: -60, autoAlpha: 0, stagger: { each: 0.012, from: 'center' }, duration: 0.16, ease: 'power2.in' }, 0.04)
     .to('.dive__sky', { scale: 1.3, yPercent: -10, duration: 0.55 }, 0)
     .to('.dive__sky', { autoAlpha: 0, duration: 0.1 }, 0.48)
-    // The island drifts up, then shoots out of the top of the frame.
+    // The island drifts up, then shoots out of the top of the frame. The exit is measured from the
+    // screen height, not the island's own size: on a phone the island is small, and -150% of its
+    // height left it hanging in the middle of the city shot.
     .to('.dive__island', { yPercent: -18, scale: 1.12, duration: 0.24, ease: 'sine.in' }, 0)
-    .to('.dive__island', { yPercent: -150, scale: 1.35, duration: 0.24, ease: 'power2.in' }, 0.24)
+    .to('.dive__island', { y: () => -innerHeight * 1.25, scale: 1.35, duration: 0.24, ease: 'power2.in' }, 0.24)
     // Clouds rise past the camera and cover the cut to the city.
     .to('.dive__clouds--back', { yPercent: -15, scale: 1.9, duration: 0.36, ease: 'sine.inOut' }, 0.14)
     .to('.dive__clouds--front', { yPercent: -25, scaleX: -2.7, scaleY: 2.7, duration: 0.36, ease: 'sine.inOut' }, 0.16)
