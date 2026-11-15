@@ -218,6 +218,9 @@
 .ticket__label { margin: 0; font-size: var(--text-xs); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
 .ticket__shop { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; }
 .ticket__offer { margin: 0; }
+.ticket__qr { justify-self: center; padding: var(--space-3); border-radius: var(--radius-md); background: #fff; line-height: 0; }
+.ticket__qr canvas { width: 176px; height: 176px; image-rendering: pixelated; }
+.ticket__qr canvas.is-void { opacity: 0.25; }
 .ticket__code {
   margin: 0;
   padding: var(--space-4);

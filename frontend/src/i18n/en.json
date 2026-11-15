@@ -337,11 +337,12 @@
     "used": "Used",
     "expired": "Expired",
     "active": "Active",
-    "note": "Show this code at the counter. The shop checks it on POINTER.",
+    "note": "Show this at the counter. The shop scans the QR code or types the code on POINTER.",
     "close": "Close",
     "taken": "Ticket ready — it works for two hours.",
     "already": "You already have a ticket for this deal.",
-    "endedErr": "This deal has ended."
+    "endedErr": "This deal has ended.",
+    "qr": "QR code of ticket"
   },
   "home": {
     "eyebrow": "Home",
@@ -492,6 +493,15 @@
     "demo": "Demo shop: changes are kept in this browser only.",
     "accept": "Accept request",
     "accepted": "Request accepted",
-    "add": "Add your business"
+    "add": "Add your business",
+    "ticketScan": "Scan QR",
+    "ticketHintScan": "Scan the QR code on the customer's phone, or type the code."
+  },
+  "qr": {
+    "title": "Scan the ticket",
+    "starting": "Starting the camera…",
+    "hint": "Point the camera at the QR code on the customer's phone.",
+    "noCamera": "The camera isn't available. Type the code instead.",
+    "cancel": "Cancel"
   }
 }

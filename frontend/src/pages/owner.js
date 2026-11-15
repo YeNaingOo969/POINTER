@@ -18,6 +18,7 @@ import {
 import { USE_MOCK } from '../api/config.js';
 import { mountAppNav } from '../components/app-nav.js';
 import { askToLogin } from '../components/login-dialog.js';
+import { canScanQr, scanQr } from '../components/qr-scanner.js';
 import { el, toast, ago, timeLeft } from '../lib/dom.js';
 import { dateInYangon, number, stars, timeInYangon } from '../lib/format.js';
 
@@ -98,6 +99,19 @@ function wireTicket() {
       card.append(use);
     }
     box.replaceChildren(card);
+  });
+
+  // Scan the QR on the customer's ticket (only where the browser can read QR codes).
+  const scan = $('.owner-ticket__scan');
+  canScanQr().then((ok) => {
+    scan.hidden = !ok;
+    if (ok) $('#ticket-hint').textContent = t('owner.ticketHintScan');
+  });
+  scan.addEventListener('click', async () => {
+    const code = await scanQr();
+    if (!code) return;
+    form.code.value = code.toUpperCase();
+    form.requestSubmit();
   });
 }
 

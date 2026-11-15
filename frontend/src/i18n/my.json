@@ -337,11 +337,12 @@
     "used": "သုံးပြီး",
     "expired": "သက်တမ်းကုန်",
     "active": "သုံးလို့ရ",
-    "note": "ဒီကုဒ်ကို ကောင်တာမှာ ပြပါ။ ဆိုင်က POINTER မှာ စစ်ပါမယ်။",
+    "note": "ကောင်တာမှာ ပြပါ။ ဆိုင်က POINTER မှာ QR ကို scan ဖတ် (သို့) code ကို ရိုက်ထည့်ပြီး စစ်ပါမယ်။",
     "close": "ပိတ်မယ်",
     "taken": "Ticket ရပါပြီ — နှစ်နာရီ သုံးလို့ ရပါတယ်။",
     "already": "ဒီ deal အတွက် ticket ရှိပြီးသားပါ။",
-    "endedErr": "ဒီ deal ပြီးသွားပါပြီ။"
+    "endedErr": "ဒီ deal ပြီးသွားပါပြီ။",
+    "qr": "Ticket QR code"
   },
   "home": {
     "eyebrow": "ပင်မ",
@@ -492,6 +493,15 @@
     "demo": "နမူနာ ဆိုင်: ပြင်ဆင်ချက်တွေ ဒီ browser ထဲမှာပဲ ရှိပါတယ်။",
     "accept": "Request လက်ခံမယ်",
     "accepted": "Request လက်ခံပြီးပါပြီ",
-    "add": "ဆိုင် ထည့်မယ်"
+    "add": "ဆိုင် ထည့်မယ်",
+    "ticketScan": "QR scan",
+    "ticketHintScan": "Customer ဖုန်းပေါ်က QR code ကို scan ဖတ်ပါ (သို့) code ကို ရိုက်ထည့်ပါ။"
+  },
+  "qr": {
+    "title": "Ticket ကို scan ဖတ်ပါ",
+    "starting": "Camera ဖွင့်နေတယ်…",
+    "hint": "Customer ဖုန်းပေါ်က QR code ကို camera နဲ့ ချိန်ပါ။",
+    "noCamera": "Camera သုံးလို့ မရပါ။ Code ကို ရိုက်ထည့်ပါ။",
+    "cancel": "မလုပ်တော့ပါ"
   }
 }

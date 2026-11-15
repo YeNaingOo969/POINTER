@@ -34,7 +34,17 @@
 .owner-error { min-height: 1em; margin: 0; color: var(--danger); font-size: var(--text-sm); }
 
 /* Ticket check: big code field, coloured result card. */
-.owner-ticket__form { display: flex; gap: var(--space-2); }
+.owner-ticket__form { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.owner-ticket__scan[hidden] { display: none; }
+
+/* Camera dialog for scanning a ticket QR (src/components/qr-scanner.js). */
+.qr-scan { width: min(92vw, 420px); padding: var(--space-6); border: 0; border-radius: var(--radius-lg); background: var(--glass-solid); color: var(--cream); text-align: center; }
+.qr-scan::backdrop { background: rgb(26 20 16 / 0.7); }
+.qr-scan__title { margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: var(--text-lg); }
+.qr-scan__frame { position: relative; overflow: hidden; aspect-ratio: 1; border-radius: var(--radius-md); background: #000; }
+.qr-scan__video { width: 100%; height: 100%; object-fit: cover; }
+.qr-scan__aim { position: absolute; inset: 18%; border: 3px solid var(--gold); border-radius: var(--radius-md); box-shadow: 0 0 0 999px rgb(0 0 0 / 0.35); }
+.qr-scan__status { margin: var(--space-4) 0; font-size: var(--text-sm); opacity: 0.85; }
 .owner-ticket__form input { flex: 1; min-width: 0; font-family: var(--font-mono); font-size: var(--text-lg); letter-spacing: 0.1em; text-transform: uppercase; }
 .owner-ticket__result { margin-top: var(--space-4); }
 .owner-ticket__card { display: grid; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-md); background: var(--land); }
@@ -65,3 +75,11 @@
 }
 .owner-post .account-chip-button:hover { background: var(--land); }
 .owner-post .owner-danger { color: var(--danger); }
+
+/* Ticket check row: code field, Check and Scan QR. On phones the code field gets its own row and
+   the two buttons share the next one. (Kept last so it wins over the input rule above.) */
+.owner-ticket__form .app-button { flex: 0 0 auto; }
+@media (max-width: 480px) {
+  .owner-ticket__form input { flex: 1 1 100%; }
+  .owner-ticket__form .app-button { flex: 1 1 0; }
+}

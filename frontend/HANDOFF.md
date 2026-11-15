@@ -242,7 +242,7 @@ Way in: My account → My business → **Owner mode** (shown when the request is
 | `createPost(fields)` | `POST /api/owner/posts.php` (multipart) | `type`, `content`, `image?`; discount: `discountText`, `ticketLimit` (1–500), `expiresAt` (future) → `201 Post` · 403 subscription not active · 422 | posts |
 | `updatePost(id, fields)` / `setPostPinned(id, on)` | `PUT /api/owner/posts.php?id=101` | `{ content?, discountText?, ticketLimit?, expiresAt?, isPinned? }` → `Post` · 403 not yours | posts |
 | `deletePost(id)` | `DELETE /api/owner/posts.php?id=101` | → `{ deleted: true }` (tickets already taken stay valid until they expire) | posts |
-| `checkTicket(code)` | `GET /api/owner/ticket.php?code=GB-7Q4K` | → `{ result: ok\|not_found\|other_shop\|used\|expired, ticket?: Ticket & { userName }, post? }` (does not use it) | tickets, posts |
+| `checkTicket(code)` | `GET /api/owner/ticket.php?code=GB-7Q4K` | → `{ result: ok\|not_found\|other_shop\|used\|expired, ticket?: Ticket & { userName }, post? }` (does not use it). The ticket shows its code as a QR code too; scanning it (phone camera) just types the same code here, so no backend change | tickets, posts |
 | `confirmTicket(code)` | `POST /api/owner/ticket.php { code }` | → `{ result: 'used', ticket }` (`status = used`, `used_at = now`) · 404 · 403 other shop · 409 used / expired | tickets |
 | `replyToReview(id, reply)` | `PUT /api/owner/review-reply.php?id=12 { reply }` | → `{ id, ownerReply }` · 403 not my place · 422 empty / > 600 | reviews.owner_reply |
 | `updateMyPlace(fields)` | `PUT /api/owner/place.php { description, phone }` | → `Place` (name, group and pin stay with the admin) · 422 | places |
