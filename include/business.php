@@ -4,14 +4,12 @@
 //   - owner_upgrades has user_id (there is no place_id); one request per user, so the row is
 //     found by the owner, not by the place.
 //   - the payment screenshot column is payment_proof.
-//   - places.address is NOT NULL, but the request form has no address field yet: it is saved
-//     empty and the admin fills it in when approving the shop.
 declare(strict_types=1);
 
 function business_request_for_user(int $userId): ?array
 {
     $st = db()->prepare(
-        'SELECT p.id, p.status, p.name, p.category_id, p.description, p.phone, p.open_hours,
+        'SELECT p.id, p.status, p.name, p.category_id, p.description, p.phone, p.address, p.open_hours,
                 p.lat, p.lng, p.storefront_photo, p.created_at,
                 o.months, o.amount, o.payment_method, o.status AS payment_status
          FROM places p
@@ -35,6 +33,7 @@ function business_request_for_user(int $userId): ?array
         'categoryId'   => (int) $r['category_id'],
         'description'  => $r['description'],
         'phone'        => $r['phone'],
+        'address'      => $r['address'],
         'openingHours' => is_array($hours) ? array_values($hours) : [],
         'lat'          => (float) $r['lat'],
         'lng'          => (float) $r['lng'],

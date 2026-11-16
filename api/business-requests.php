@@ -72,6 +72,7 @@ if ($st->fetchColumn()) {
 $name        = field('name');
 $description = field('description');
 $phone       = field('phone');
+$address     = field('address');
 $hoursRaw    = (string) ($_POST['openingHours'] ?? '');
 $paymentRef  = field('paymentRef');
 $method      = field('paymentMethod');
@@ -99,6 +100,11 @@ if ($descriptionLength < 10 || $descriptionLength > 600) {
 
 if (mb_strlen($phone) < 6 || mb_strlen($phone) > 20 || !preg_match('/^[0-9 +()-]+$/', $phone)) {
     fail(422, 'Phone number is not valid');
+}
+
+$addressLength = mb_strlen($address);
+if ($addressLength < 5 || $addressLength > 200) {
+    fail(422, 'Address must be 5 to 200 characters');
 }
 
 // Opening hours: JSON text, open days only, [{ "day": "mon", "open": "06:00", "close": "11:00" }]
@@ -156,14 +162,13 @@ $pdo = db();
 try {
     $pdo->beginTransaction();
 
-    // The form has no address field yet; the admin adds it when approving the shop.
     $st = $pdo->prepare(
         "INSERT INTO places (owner_id, category_id, name, address, description, phone, open_hours,
                              lat, lng, storefront_photo, status)
-         VALUES (?, ?, ?, '', ?, ?, ?, ?, ?, ?, 'pending')"
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')"
     );
     $st->execute([
-        $userId, $categoryId, $name, $description, $phone,
+        $userId, $categoryId, $name, $address, $description, $phone,
         json_encode($cleanHours, JSON_UNESCAPED_UNICODE), (float) $lat, (float) $lng, $shopPath,
     ]);
     $placeId = (int) $pdo->lastInsertId();
