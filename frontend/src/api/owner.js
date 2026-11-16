@@ -194,7 +194,7 @@ export async function replyToReview(reviewId, reply) {
 }
 
 /**
- * Edit my place. PUT /api/owner/place.php { description, phone, openingHours } → Place
+ * Edit my place. PUT /api/owner/place.php { description, phone, address, openingHours } → Place
  * (name, group and map pin changes go through the admin — not editable here.)
  */
 export async function updateMyPlace(fields) {
@@ -202,8 +202,10 @@ export async function updateMyPlace(fields) {
   const place = myPlaceRow();
   if (!fields.description?.trim() || fields.description.trim().length < 10) return mockError('Describe your shop (10 characters or more)', 422);
   if (fields.phone && !/^[0-9+ ()-]{6,20}$/.test(fields.phone)) return mockError('Check the phone number', 422);
+  const address = fields.address?.trim() ?? place.address;
+  if (address.length < 5 || address.length > 200) return mockError('Enter the street address (5–200 characters)', 422);
   const edits = readDemo('placeEdits', {});
-  writeDemo('placeEdits', { ...edits, [place.id]: { description: fields.description.trim(), phone: fields.phone || null } });
+  writeDemo('placeEdits', { ...edits, [place.id]: { description: fields.description.trim(), phone: fields.phone || null, address } });
   return mockResponse({ ...place, ...fields });
 }
 

@@ -127,6 +127,14 @@ function renderActions() {
   write.textContent = t(mine.reviewId ? 'place.editReview' : 'place.writeReview');
 }
 
+/** After a review changes, fetch the place again for its new average and count. */
+async function refreshRating() {
+  try {
+    place = { ...place, rating: (await getPlace(place.id)).rating };
+  } catch { /* keep the old numbers */ }
+  renderReviews();
+}
+
 function renderReviews() {
   $('.place-reviews__average').textContent = place.rating ? place.rating.average.toFixed(1) : '–';
   $('.place-reviews__stars').textContent = place.rating ? stars(place.rating.average) : '';
@@ -234,7 +242,7 @@ function wireActions() {
     mine.reviewId = null;
     closeForm();
     renderActions();
-    renderReviews();
+    refreshRating();
     toast(t('account.deleted'));
   });
   form.addEventListener('submit', async (e) => {
@@ -259,7 +267,7 @@ function wireActions() {
     }
     closeForm();
     renderActions();
-    renderReviews();
+    refreshRating();
   });
 }
 

@@ -99,7 +99,7 @@
 .biz-hours__rows { display: grid; gap: 0.4rem; }
 .biz-hours__row {
   display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr) auto minmax(0, 1fr) auto;   /* minmax: time boxes may shrink */
+  grid-template-columns: 6.5rem minmax(8.5rem, 1fr) auto minmax(8.5rem, 1fr) auto;   /* wide enough for "09:00 AM" */
   align-items: center;
   gap: 0.5rem;
 }
@@ -188,7 +188,8 @@
 .biz-panel p { margin: 0; max-width: 52ch; line-height: 1.6; color: var(--ink-muted); }
 .biz-status__badge { padding: 0.3em 0.9em; border-radius: var(--radius-pill); font-weight: 800; font-size: var(--text-sm); color: var(--ink) !important; }
 .biz-status__badge.is-pending { background: #fff1d6; }
-.biz-status__badge.is-approved { background: #dff2e6; }
+.biz-status__badge.is-active { background: #dff2e6; }
+.biz-status__badge.is-hidden { background: #ece8e2; }
 .biz-status__badge.is-rejected { background: #fbe1dc; }
 
 .biz-toast {
@@ -207,7 +208,7 @@
 
 @media (max-width: 820px) {
   .biz-form { grid-template-columns: 1fr; }
-  .biz-hours__row { grid-template-columns: 4.5rem minmax(0, 1fr) auto minmax(0, 1fr) auto; gap: 0.3rem; }
+  .biz-hours__row { grid-template-columns: 4.5rem minmax(8rem, 1fr) auto minmax(8rem, 1fr) auto; gap: 0.3rem; }
 }
 /* Phones: day and "Closed" on top, opening and closing time underneath. */
 @media (max-width: 480px) {

@@ -128,6 +128,8 @@ function validate() {
   const description = f.description.value.trim();
   if (description.length < 10) errors.description = t('business.errDescription');
   if (!/^[0-9+ ()-]{6,20}$/.test(f.phone.value.trim())) errors.phone = t('business.errPhone');
+  const address = f.address.value.trim();
+  if (address.length < 5 || address.length > 200) errors.address = t('business.errAddress');
   const hours = readHours();
   if (!hours.length || hours.some((h) => !h.open || !h.close)) errors.hours = t('business.errHours');
   if (!pin) errors.location = t('business.errPin');
@@ -138,10 +140,10 @@ function validate() {
   const proof = f.proof.files[0];
   if (!proof) errors.proof = t('biz2.errProof');
   else if (!PHOTO_TYPES.includes(proof.type) || proof.size > MAX_PHOTO_BYTES) errors.proof = t('business.errPhotoType');
-  for (const key of ['name', 'categoryId', 'description', 'phone', 'hours', 'location', 'photo', 'paymentRef', 'proof']) showError(key, errors[key] ?? '');
+  for (const key of ['name', 'categoryId', 'description', 'phone', 'address', 'hours', 'location', 'photo', 'paymentRef', 'proof']) showError(key, errors[key] ?? '');
   const plan = form.querySelector('input[name="months"]:checked');
   return Object.keys(errors).length ? null : {
-    name, categoryId: Number(f.categoryId.value), description, phone: f.phone.value.trim(), openingHours: hours,
+    name, categoryId: Number(f.categoryId.value), description, phone: f.phone.value.trim(), address, openingHours: hours,
     months: Number(plan.value), amount: Number(plan.dataset.amount), paymentMethod: f.paymentMethod.value, paymentRef, proof,
   };
 }

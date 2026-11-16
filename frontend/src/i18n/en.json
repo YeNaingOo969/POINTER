@@ -225,11 +225,16 @@
     "errPhotoSize": "The photo must be 5 MB or smaller.",
     "errExists": "You already have a business request.",
     "status_pending": "Waiting for review",
-    "status_approved": "Approved",
     "status_rejected": "Not approved",
     "statusText_pending": "Thanks! An admin will compare your photo with the map pin. You will get a notification when it is checked.",
-    "statusText_approved": "Your shop is on the map. Owner tools open in your account.",
-    "statusText_rejected": "Your request was not approved. You can send a new one."
+    "statusText_rejected": "Your request was not approved. You can send a new one.",
+    "address": "Address",
+    "addressHint": "No. 12, 19th Street, Latha",
+    "errAddress": "Enter the street address (5–200 characters).",
+    "status_active": "On the map",
+    "status_hidden": "Hidden",
+    "statusText_active": "Your shop is on the map. Owner tools open in your account.",
+    "statusText_hidden": "Your shop is hidden until you renew your plan."
   },
   "landing": {
     "navExplore": "Explore",

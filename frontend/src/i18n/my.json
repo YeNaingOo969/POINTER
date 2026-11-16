@@ -225,11 +225,16 @@
     "errPhotoSize": "ဓာတ်ပုံက 5 MB ဒါမှမဟုတ် အောက် ဖြစ်ရပါမယ်။",
     "errExists": "ဆိုင် request ပို့ပြီးသား ရှိပါတယ်။",
     "status_pending": "စစ်ဆေးဖို့ စောင့်နေသည်",
-    "status_approved": "အတည်ပြုပြီး",
     "status_rejected": "အတည်မပြုပါ",
     "statusText_pending": "ကျေးဇူးပါ! Admin က သင့်ဓာတ်ပုံကို မြေပုံ pin နဲ့ တိုက်စစ်ပါမယ်။ စစ်ပြီးရင် notification ရပါမယ်။",
-    "statusText_approved": "သင့်ဆိုင် မြေပုံပေါ် ရောက်ပါပြီ။ ဆိုင်ရှင် tool တွေ account ထဲမှာ ပွင့်ပါပြီ။",
-    "statusText_rejected": "သင့် request ကို အတည်မပြုပါ။ အသစ် ပြန်ပို့လို့ ရပါတယ်။"
+    "statusText_rejected": "သင့် request ကို အတည်မပြုပါ။ အသစ် ပြန်ပို့လို့ ရပါတယ်။",
+    "address": "လိပ်စာ",
+    "addressHint": "အမှတ် ၁၂၊ ၁၉ လမ်း၊ လသာ",
+    "errAddress": "လမ်းလိပ်စာ ထည့်ပါ (စာလုံး ၅–၂၀၀)။",
+    "status_active": "မြေပုံပေါ် ရောက်ပြီ",
+    "status_hidden": "ဖျောက်ထားသည်",
+    "statusText_active": "သင့်ဆိုင် မြေပုံပေါ် ရောက်ပါပြီ။ ဆိုင်ရှင် tool တွေ account ထဲမှာ ပွင့်ပါပြီ။",
+    "statusText_hidden": "Plan သက်တမ်းပြန်တိုးတဲ့အထိ သင့်ဆိုင်ကို ဖျောက်ထားပါတယ်။"
   },
   "landing": {
     "navExplore": "မြေပုံ",

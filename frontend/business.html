@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Add your business — POINTER</title>
-    <meta name="description" content="Put your Yangon shop on the POINTER map for free: one request, one shop-front photo, checked by an admin." />
+    <meta name="description" content="Put your Yangon shop on the POINTER map: one request with a shop-front photo and a 1, 3 or 12-month plan, checked by an admin." />
     <meta name="theme-color" content="#2a1d2e" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
@@ -85,6 +85,12 @@
             <span data-i18n="business.phone">Phone</span>
             <input name="phone" type="tel" inputmode="tel" maxlength="20" autocomplete="tel" placeholder="09 …" required />
             <small class="biz-error" data-for="phone"></small>
+          </label>
+
+          <label class="biz-field">
+            <span data-i18n="business.address">Address</span>
+            <input name="address" type="text" maxlength="200" autocomplete="street-address" data-i18n-attr="placeholder:business.addressHint" placeholder="No. 12, 19th Street, Latha" required />
+            <small class="biz-error" data-for="address"></small>
           </label>
 
           <fieldset class="biz-field biz-hours">
