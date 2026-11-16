@@ -8,6 +8,8 @@ db.php
 # User Uploads (Ignore uploaded images/files but keep the folder structure via .gitkeep)
 uploads/places/*
 !uploads/places/.gitkeep
+uploads/payments/*
+!uploads/payments/.gitkeep
 uploads/posts/*
 !uploads/posts/.gitkeep
 
