@@ -26,9 +26,10 @@ STEP = 25.0       # deck segment length
 PIER_EVERY = 40.0
 
 lp.reset()
-CONCRETE = lp.mat("#D3CDC2", 0.85)
-ASPHALT = lp.mat("#6A6661", 0.9)
-PARAPET = lp.mat("#F1EEE7", 0.7)
+CONCRETE = lp.mat("#E2DCD1", 0.85)   # light concrete, close to the map's pastel roads
+ASPHALT = lp.mat("#9A958E", 0.9)
+PARAPET = lp.mat("#F6F3ED", 0.7)
+PIER = lp.mat("#D6D0C5", 0.85)
 
 kx = 111320 * math.cos(math.radians(ORIGIN[1]))
 to_local = lambda lon, lat: ((lon - ORIGIN[0]) * kx, (lat - ORIGIN[1]) * 110574)
@@ -100,8 +101,10 @@ for pts, width in chains:
     top, ramp = (10.0, 160.0) if river else (7.5, min(90.0, length / 3))
     height = lambda s: max(0.6, top * min(1.0, s / ramp, (length - s) / ramp))
     path = [(x, y, height(s)) for x, y, s in line]
-    lp.ribbon(path, width, 1.3, CONCRETE)
-    lp.ribbon([(x, y, z + 0.06) for x, y, z in path], width - 1.0, 0.06, ASPHALT)
+    # Layers are ≥ 0.3 m apart: the model is quantized for the web (≈ 0.4 m steps over the city's
+    # 6 km), and thinner gaps flickered into stripes.
+    lp.ribbon(path, width, 1.0, CONCRETE)
+    lp.ribbon([(x, y, z + 0.35) for x, y, z in path], width - 1.2, 0.4, ASPHALT)
     # Parapets on both edges.
     for k in (-1, 1):
         edge = []
@@ -110,8 +113,8 @@ for pts, width in chains:
             b = path[min(i + 1, len(path) - 1)]
             dx, dy = b[0] - a[0], b[1] - a[1]
             n = math.hypot(dx, dy) or 1.0
-            edge.append((x - dy / n * k * width / 2, y + dx / n * k * width / 2, z + 0.9))
-        lp.ribbon(edge, 0.35, 0.9, PARAPET)
+            edge.append((x - dy / n * k * (width / 2 - 0.25), y + dx / n * k * (width / 2 - 0.25), z + 1.2))
+        lp.ribbon(edge, 0.5, 1.2, PARAPET)
     # Piers under the raised part.
     s = PIER_EVERY / 2
     while s < length:
@@ -119,7 +122,11 @@ for pts, width in chains:
         if z > 3.0:
             i = min(range(len(line)), key=lambda k: abs(line[k][2] - s))
             x, y, _ = line[i]
-            lp.prism(6, 0.9, 0.8, 0, z - 1.3, CONCRETE, x, y)
+            # T-shaped pier: a round column and a cap under the deck
+            lp.prism(8, 0.85, 0.85, 0, z - 1.8, PIER, x, y)
+            a = line[max(i - 1, 0)]
+            b = line[min(i + 1, len(line) - 1)]
+            lp.box(x, y, z - 1.8, width * 0.8, 1.6, 0.8, PIER, math.atan2(b[1] - a[1], b[0] - a[0]) + math.pi / 2)
         s += PIER_EVERY
 
 print(f"chains: {len(chains)}  deck length: {total / 1000:.1f} km")

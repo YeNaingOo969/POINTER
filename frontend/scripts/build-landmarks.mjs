@@ -29,7 +29,7 @@ const LANDMARKS = [
   { id: 'sule', built: true },
   { id: 'botataung', built: true },
   { id: 'thanlyin_bridge', built: true },
-  { id: 'flyovers', built: true }, // every OSM road bridge in the city, one model
+  { id: 'flyovers', built: true, bits: 18 }, // every OSM road bridge in the city, one model (25 km wide)
   { id: 'dala_bridge', built: true },
   { id: 'city_hall', built: true },
   { id: 'karaweik', built: true },
@@ -100,7 +100,12 @@ for (const lm of LANDMARKS.filter((l) => !only.length || only.includes(l.id))) {
   }
 
   const doc = await io.read(work);
-  await doc.transform(weld(), dedup(), prune(), quantize(), draco()); // Draco: ~5-10x smaller downloads
+  // Positions are stored in 14 bits by default: ~1 cm on a building, but ~1.5 m on the 25 km wide
+  // flyover model, which made its deck layers flicker. Wide models ask for more (`bits`).
+  // (gltf-transform's quantize stops at 16 bits; Draco alone can go higher, so wide models skip it.)
+  const bits = lm.bits ?? 14;
+  const steps = bits > 16 ? [weld(), dedup(), prune()] : [weld(), dedup(), prune(), quantize({ quantizePosition: bits })];
+  await doc.transform(...steps, draco({ quantizePosition: bits })); // Draco: ~5-10x smaller downloads
   const out = path.join(OUT, `${lm.id}.glb`);
   await io.write(out, doc);
   console.log(`ok ${rel(out)} (${formatBytes(sizeOf(out))})`);
