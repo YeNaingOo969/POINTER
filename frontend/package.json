@@ -17,6 +17,7 @@
     "cut:props": "node scripts/cut-props.mjs",
     "build:city": "node scripts/build-city.mjs",
     "build:bus-stops": "node scripts/build-bus-stops.mjs",
+    "build:flyin": "node scripts/build-flyin.mjs",
     "build:city-textures": "python scripts/city-textures.py"
   },
   "devDependencies": {

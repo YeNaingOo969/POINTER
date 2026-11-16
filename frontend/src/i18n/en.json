@@ -293,7 +293,9 @@
     "planF6": "Call, Viber, Messenger and Telegram buttons",
     "planF7": "Reply to every review",
     "planF8": "Check customer tickets at the counter",
-    "plansNote": "Pay with KBZPay, Wave Pay or AYA Pay when you send your request (demo only in this project). We remind you 7 days before your plan ends; if it ends, your shop is hidden until you renew."
+    "plansNote": "Pay with KBZPay, Wave Pay or AYA Pay when you send your request (demo only in this project). We remind you 7 days before your plan ends; if it ends, your shop is hidden until you renew.",
+    "flyEyebrow": "From above",
+    "flyLede": "Every street and building of the city, with its landmarks modelled one by one — the same map you explore in the app."
   },
   "time": {
     "minutes": "{n} min ago",

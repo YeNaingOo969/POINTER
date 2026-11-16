@@ -1,0 +1,11 @@
+{
+  "frames": 72,
+  "width": 1024,
+  "height": 640,
+  "sizes": [
+    1024,
+    640
+  ],
+  "pattern": "{size}/{frame}.webp",
+  "pad": 4
+}

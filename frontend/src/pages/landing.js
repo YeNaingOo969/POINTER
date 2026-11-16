@@ -10,6 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { heroDive } from '../landing/hero.js';
 import { aboutReveal } from '../landing/about.js';
 import { mapStory } from '../landing/mapstory.js';
+import { flyinFrames, flyinStory } from '../landing/flyin.js';
 import { categories } from '../landing/categories.js';
 import { reviewStory } from '../landing/reviews.js';
 import { dealStory } from '../landing/deals.js';
@@ -25,11 +26,12 @@ document.querySelectorAll('[data-nav="light"]').forEach((section) => {
 });
 
 ownersStatic();
+flyinFrames(); // section 3a frame player (shows a still by itself with reduced motion)
 
 const mm = gsap.matchMedia();
 document.fonts.ready.then(() => {
   mm.add('(prefers-reduced-motion: no-preference)', () => {
-    const cleanups = [heroDive(), aboutReveal(), mapStory(), categories(), reviewStory(), dealStory(), ownersAndEnding(), floatProps()];
+    const cleanups = [heroDive(), aboutReveal(), flyinStory(), mapStory(), categories(), reviewStory(), dealStory(), ownersAndEnding(), floatProps()];
     return () => cleanups.forEach((fn) => fn());
   });
   ScrollTrigger.refresh();
