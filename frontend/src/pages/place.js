@@ -358,8 +358,18 @@ async function start() {
     $('.place-missing').hidden = false;
     return;
   }
-  let posts;
-  [reviews, mine, { user }, posts] = await Promise.all([getReviews(place.id), getMyPlace(place.id), getSession(), getPlacePosts(place.id)]);
+  // The place itself is enough to show the page: if reviews, the user's save state or the posts
+  // can't be loaded (an endpoint not built yet, a network hiccup), show the page without them.
+  const [r, m, s, p] = await Promise.allSettled([getReviews(place.id), getMyPlace(place.id), getSession(), getPlacePosts(place.id)]);
+  const or = (res, fallback, what) => {
+    if (res.status === 'fulfilled') return res.value;
+    console.warn(`Place page: ${what} not loaded`, res.reason);
+    return fallback;
+  };
+  reviews = or(r, [], 'reviews');
+  mine = or(m, { saved: false, reviewId: null }, 'save state');
+  ({ user } = or(s, { user: null }, 'session'));
+  const posts = or(p, [], 'posts');
   $('.place-posts').hidden = posts.length === 0;
   $('.place-posts__list').replaceChildren(...posts.map((p) => postCard(p, { showShop: false })));
   $('.place-main').hidden = false;
