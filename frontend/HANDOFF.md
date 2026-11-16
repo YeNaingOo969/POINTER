@@ -178,7 +178,7 @@ logged-in user: return `401 { "error": "Login required" }` otherwise — the pag
 (10–600), `phone`, `openingHours` (JSON text: `[{ "day": "mon", "open": "06:00", "close": "11:00" }]`,
 open days only), `lat`, `lng` (inside Yangon), `photo` (JPEG / PNG / WebP, max 5 MB — check the
 real type with `finfo`, store under a random file name). Response / `BusinessRequest` =
-`{ id, status: 'pending' | 'active' | 'rejected' | 'hidden', name, categoryId, description, phone,
+`{ id, status: 'pending' | 'active' | 'rejected' | 'hidden', name, categoryId, description, phone, address,
 openingHours, lat, lng, photoUrl, createdAt }` (`photoUrl` = `places.storefront_photo`; the request is
 the `places` row itself, see the Database table). One business per user; a rejected user may send a
 new request. No licence or documents — only the shop-front photo (privacy, scope doc §4).
@@ -247,7 +247,7 @@ Way in: My account → My business → **Owner mode** (shown when the request is
 | `checkTicket(code)` | `GET /api/owner/ticket.php?code=GB-7Q4K` | → `{ result: ok\|not_found\|other_shop\|used\|expired, ticket?: Ticket & { userName }, post? }` (does not use it). The ticket shows its code as a QR code too; scanning it (phone camera) just types the same code here, so no backend change | tickets, posts |
 | `confirmTicket(code)` | `POST /api/owner/ticket.php { code }` | → `{ result: 'used', ticket }` (`status = used`, `used_at = now`) · 404 · 403 other shop · 409 used / expired | tickets |
 | `replyToReview(id, reply)` | `PUT /api/owner/review-reply.php?id=12 { reply }` | → `{ id, ownerReply }` · 403 not my place · 422 empty / > 600 | reviews.owner_reply |
-| `updateMyPlace(fields)` | `PUT /api/owner/place.php { description, phone }` | → `Place` (name, group and pin stay with the admin) · 422 | places |
+| `updateMyPlace(fields)` | `PUT /api/owner/place.php { description, phone, address }` (address 5–200) | → `Place` (name, group and pin stay with the admin) · 422 | places |
 | `renewSubscription(fields)` | `POST /api/owner/renew.php` (multipart) | `months, amount, paymentMethod, paymentRef, proof` → `201 { id, status: 'pending', … }` (admin approves in 4a) | owner_upgrades |
 | `acceptMessageRequest(userId)` | `POST /api/messages.php { accept: userId }` | → `{ status: 'accepted' }` (both sides of that chat) | messages |
 

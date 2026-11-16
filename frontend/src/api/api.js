@@ -211,7 +211,7 @@ export async function updateReview(id, { rating, text }) {
 /**
  * Send an "Add your business" request (logged-in users, one business per user).
  * POST /api/business-requests.php  multipart/form-data:
- *   name, categoryId, description, phone, openingHours (JSON text), lat, lng, photo (shop front, image),
+ *   name, categoryId, description, phone, address, openingHours (JSON text), lat, lng, photo (shop front, image),
  *   months (1 | 3 | 12), amount, paymentMethod (KBZPay | Wave Pay | AYA Pay), paymentRef, proof (image)
  * Saves a places row (status 'pending', owner_id = user, storefront_photo) and an owner_upgrades row
  * (months, amount, payment_method, payment_ref, payment_proof, status 'pending').

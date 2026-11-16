@@ -140,12 +140,36 @@ def quad(name, corners, uvs, color):
         loop[col] = (*color, 1.0)
 
 
+def clean_ring(pts, tol=0.05):
+    """Drop repeated points (OSM outlines sometimes list a corner twice), so the roof face builds."""
+    out = []
+    for p in pts:
+        if not out or math.hypot(p[0] - out[-1][0], p[1] - out[-1][1]) > tol:
+            out.append(p)
+    if len(out) > 1 and math.hypot(out[0][0] - out[-1][0], out[0][1] - out[-1][1]) <= tol:
+        out.pop()
+    # a point visited twice further apart (a pinched outline) would still break the face: keep the first
+    seen, ring = set(), []
+    for p in out:
+        k = (round(p[0], 1), round(p[1], 1))
+        if k not in seen:
+            seen.add(k)
+            ring.append(p)
+    return ring
+
+
 def polygon(name, pts, z, color, tile):
     bm, uv, col = bm_for(name)
+    pts = clean_ring(pts)
+    if len(pts) < 3:
+        return
     try:
         face = bm.faces.new([bm.verts.new((x, y, z)) for x, y in pts])
     except ValueError:
         return
+    face.normal_update()
+    if face.normal.z < 0:          # roofs face up, whatever way the outline was drawn
+        face.normal_flip()
     for loop in face.loops:
         loop[uv].uv = (loop.vert.co.x / tile, loop.vert.co.y / tile)
         loop[col] = (*color, 1.0)
@@ -308,8 +332,28 @@ for w in data["elements"]:
     if any(math.hypot(cx - sx, cy - sy) < r for sx, sy, r in spots):
         continue
     tags = w.get("tags", {})
+    btype = tags.get("building", "yes")
+    # Not every OSM "building" is a building. Bridges are drawn by flyovers.py; platform roofs,
+    # carports and canopies (and long thin shapes up on layer 1+, like covered walkways over the
+    # rail yard) become a thin roof on posts instead of a tall block.
+    if btype == "bridge" or tags.get("bridge") or tags.get("man_made") == "bridge":
+        continue
+    perim = sum(math.hypot(x2 - x1, y2 - y1) for (x1, y1), (x2, y2) in zip(pts, pts[1:] + pts[:1]))
+    thin = perim * perim / a > 40                       # thinner than about 1 : 8
+    try:
+        raised = int(tags.get("layer", "0")) >= 1
+    except ValueError:
+        raised = False
+    if btype in ("roof", "carport", "canopy", "train_station") or (raised and thin):
+        z = 4.5 if btype != "carport" else 2.6
+        polygon("roof_zinc", pts, z + 0.35, (0.86, 0.88, 0.90), 24.0)
+        walls("factory", pts, z, z + 0.35, (0.86, 0.88, 0.90), 0.35)
+        count += 1
+        continue
     akind = area_kind(cx, cy)
     h = height_of(tags, w["id"], a, akind)
+    if thin and "height" not in tags and "building:levels" not in tags:
+        h = min(h, STOREY * 2)                          # sheds and rows of shops, not towers
     palette = PALETTES[akind]
     color = palette[int(hash01(w["id"], 1) * len(palette)) % len(palette)]
     kind = wall_kind(tags, a, akind)
@@ -435,7 +479,8 @@ def material(name):
 
 tris = 0
 for name, (bm, _, _) in meshes.items():
-    bmesh.ops.recalc_face_normals(bm, faces=[f for f in bm.faces if len(f.verts) > 4])
+    # (no normal recalculation here: on a lone flat roof it could pick "down" and hide the roof
+    # from above; polygon() already turns every roof up and walls follow the outline direction)
     bmesh.ops.triangulate(bm, faces=bm.faces)
     mesh = bpy.data.meshes.new(name)
     bm.to_mesh(mesh)

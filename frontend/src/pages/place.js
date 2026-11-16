@@ -127,6 +127,14 @@ function renderActions() {
   write.textContent = t(mine.reviewId ? 'place.editReview' : 'place.writeReview');
 }
 
+/** After a review changes, fetch the place again for its new average and count. */
+async function refreshRating() {
+  try {
+    place = { ...place, rating: (await getPlace(place.id)).rating };
+  } catch { /* keep the old numbers */ }
+  renderReviews();
+}
+
 function renderReviews() {
   $('.place-reviews__average').textContent = place.rating ? place.rating.average.toFixed(1) : '–';
   $('.place-reviews__stars').textContent = place.rating ? stars(place.rating.average) : '';
@@ -234,7 +242,7 @@ function wireActions() {
     mine.reviewId = null;
     closeForm();
     renderActions();
-    renderReviews();
+    refreshRating();
     toast(t('account.deleted'));
   });
   form.addEventListener('submit', async (e) => {
@@ -259,7 +267,7 @@ function wireActions() {
     }
     closeForm();
     renderActions();
-    renderReviews();
+    refreshRating();
   });
 }
 
@@ -358,8 +366,18 @@ async function start() {
     $('.place-missing').hidden = false;
     return;
   }
-  let posts;
-  [reviews, mine, { user }, posts] = await Promise.all([getReviews(place.id), getMyPlace(place.id), getSession(), getPlacePosts(place.id)]);
+  // The place itself is enough to show the page: if reviews, the user's save state or the posts
+  // can't be loaded (an endpoint not built yet, a network hiccup), show the page without them.
+  const [r, m, s, p] = await Promise.allSettled([getReviews(place.id), getMyPlace(place.id), getSession(), getPlacePosts(place.id)]);
+  const or = (res, fallback, what) => {
+    if (res.status === 'fulfilled') return res.value;
+    console.warn(`Place page: ${what} not loaded`, res.reason);
+    return fallback;
+  };
+  reviews = or(r, [], 'reviews');
+  mine = or(m, { saved: false, reviewId: null }, 'save state');
+  ({ user } = or(s, { user: null }, 'session'));
+  const posts = or(p, [], 'posts');
   $('.place-posts').hidden = posts.length === 0;
   $('.place-posts__list').replaceChildren(...posts.map((p) => postCard(p, { showShop: false })));
   $('.place-main').hidden = false;

@@ -88,13 +88,14 @@ calculated from `reviews`, so nothing extra to store.
 | `getMyBusinessRequest()` | `GET /api/my-business-request.php` | — | `BusinessRequest` or `null` | — |
 
 Fields: `name` (2–100), `categoryId` (1–7), `description` (10–600), `phone` (6–20 of `0-9 + ( ) -`),
+`address` (5–200, stored in `places.address` — added 2026-11-16),
 `openingHours` (JSON text, open days only: `[{ "day": "mon", "open": "06:00", "close": "11:00" }]`),
 `lat`, `lng` (numbers inside Yangon: lat 16.65–17.05, lng 95.95–96.35), `photo` (one image),
 and the payment: `months` (1, 3 or 12), `amount` (number), `paymentMethod` (`KBZPay`, `Wave Pay`
 or `AYA Pay`), `paymentRef` (the transaction ID, 4–40 characters) and `proof` (a screenshot, image).
 
 `BusinessRequest` = `{ "id", "status": "pending" | "active" | "rejected" | "hidden", "name", "categoryId",
-"description", "phone", "openingHours", "lat", "lng", "photoUrl", "payment": { "months", "amount",
+"description", "phone", "address", "openingHours", "lat", "lng", "photoUrl", "payment": { "months", "amount",
 "method", "status" }, "createdAt" }`.
 
 How to store it with the team schema (no new table): insert a `places` row with

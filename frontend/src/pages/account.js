@@ -177,7 +177,12 @@ async function start() {
       return;
     }
     $('.account-hero__name').textContent = user.name;
-    [data.saves, data.reviews, data.business, data.tickets, data.blocks] = await Promise.all([getMySaves(), getMyReviews(), getMyBusinessRequest(), getMyTickets(), getMyBlocks()]);
+    [data.saves, data.reviews, data.business] = await Promise.all([getMySaves(), getMyReviews(), getMyBusinessRequest()]);
+    // Tickets and blocks (phase 2) are extras: if they can't load, show the rest of the account.
+    const [tickets, blocks] = await Promise.allSettled([getMyTickets(), getMyBlocks()]);
+    data.tickets = tickets.status === 'fulfilled' ? tickets.value : [];
+    data.blocks = blocks.status === 'fulfilled' ? blocks.value : [];
+    if (tickets.status === 'rejected' || blocks.status === 'rejected') console.warn('Account: tickets or blocks not loaded', tickets.reason ?? blocks.reason);
     $('.account-stats').hidden = false;
     $('.account-hero__logout').hidden = false;
     $('.account-main').hidden = false;

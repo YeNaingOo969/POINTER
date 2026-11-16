@@ -218,6 +218,7 @@ function renderPlaceForm() {
   const form = $('.owner-place-form');
   form.description.value = dash.place.description ?? '';
   form.phone.value = dash.place.phone ?? '';
+  form.address.value = dash.place.address ?? '';
   $('.owner-view').href = `/place.html?id=${dash.place.id}`;
 }
 
@@ -228,7 +229,7 @@ function wirePlaceForm() {
     const err = form.querySelector('.owner-error');
     err.textContent = '';
     try {
-      await updateMyPlace({ description: form.description.value, phone: form.phone.value.trim() });
+      await updateMyPlace({ description: form.description.value, phone: form.phone.value.trim(), address: form.address.value.trim() });
       toast(t('owner.placeSaved'));
     } catch (error) {
       err.textContent = error.message;
