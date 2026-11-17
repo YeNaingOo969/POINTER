@@ -304,11 +304,9 @@ WHERE @spam_review IS NOT NULL
 --
 -- DELETE FROM tickets         WHERE user_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
 -- DELETE FROM notifications   WHERE user_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
--- DELETE FROM blocks          WHERE blocker_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'))
---                                OR blocked_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
+-- DELETE FROM blocks          WHERE blocker_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app')) OR blocked_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
 -- DELETE FROM reports         WHERE reporter_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
--- DELETE FROM messages        WHERE sender_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'))
---                                OR receiver_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
+-- DELETE FROM messages        WHERE sender_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app')) OR receiver_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
 -- DELETE FROM favorites       WHERE user_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
 -- DELETE FROM reviews         WHERE user_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
 -- DELETE FROM owner_upgrades  WHERE user_id IN (SELECT id FROM users WHERE email IN ('demo@pointer.app','owner@pointer.app','pending@pointer.app'));
