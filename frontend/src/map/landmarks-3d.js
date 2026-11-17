@@ -1,7 +1,11 @@
 // 3D landmarks on the map: detailed Blender models (scripts/blender/landmarks/*.py, built by
-// `npm run build:landmarks`) drawn by Three.js inside MapLibre as one custom layer. Only the
-// landmarks and bridges — no filler city (the blocky city was dropped on 2026-11-12).
-// 610M budget: ~20 models, one shared renderer, models load lazily, everything is disposed.
+// `npm run build:landmarks`) drawn by Three.js inside MapLibre as one custom layer, plus the
+// "extras" (generated city, bus shelters, clouds, birds, people in parks).
+// 610M budget: one shared renderer, models load lazily, everything is disposed.
+//
+// Animation: an extra may set `userData.tick(seconds)` and `userData.isActive()`. While one of
+// them is active the layer asks MapLibre for a new frame at most 30 times a second; otherwise the
+// map only redraws when it moves, as before. Nothing animates with reduced motion or in a hidden tab.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
@@ -29,6 +33,17 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
 
   let renderer, scene, camera;
   const group = new THREE.Group();
+  const animated = [];             // extras with userData.tick
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let raf = 0;
+  let lastFrame = 0;
+  const loop = (now) => {
+    raf = requestAnimationFrame(loop);
+    if (document.hidden || now - lastFrame < 33) return;       // ~30 fps is plenty for drifting things
+    if (!group.visible || !animated.some((o) => o.visible && (o.userData.isActive?.() ?? true))) return;
+    lastFrame = now;
+    map.triggerRepaint();
+  };
 
   const updateVisibility = () => {
     group.visible = map.getZoom() >= LANDMARK_MIN_ZOOM;
@@ -71,8 +86,11 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
       scene.add(sun, group);
       for (const build of extras) {
         const obj = build({ map, toLocal });
-        if (obj) group.add(obj);
+        if (!obj) continue;
+        group.add(obj);
+        if (obj.userData.tick) animated.push(obj);
       }
+      if (animated.length && !reduceMotion) raf = requestAnimationFrame(loop);
       updateVisibility();
       renderer = new THREE.WebGLRenderer({ canvas: map.getCanvas(), context: gl, antialias: false });
       renderer.autoClear = false;
@@ -84,11 +102,14 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
     render(_gl, options) {
       if (!group.visible) return;
       camera.projectionMatrix.fromArray(options.defaultProjectionData.mainMatrix).multiply(sceneToMercator);
+      const t = reduceMotion ? 0 : performance.now() / 1000;
+      for (const obj of animated) obj.userData.tick(t);
       renderer.resetState();
       renderer.render(scene, camera);
     },
 
     onRemove() {
+      cancelAnimationFrame(raf);
       map.off('zoom', updateVisibility);
       group.traverse((obj) => {
         if (!obj.isMesh) return;
