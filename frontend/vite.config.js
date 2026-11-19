@@ -21,7 +21,10 @@ export default defineConfig({
     watch: { ignored: ['**/assets/**'] },
     // With USE_MOCK = false, /api/*.php goes to the PHP dev server (php -S localhost:8000 from the
     // repo root), so the page and the API share one origin and the login session cookie works.
-    proxy: { '/api': 'http://localhost:8000' },
+    proxy: {
+      '/api':     'http://localhost:8000',
+      '/uploads': 'http://localhost:8000',
+    },
   },
   optimizeDeps: {
     // MapLibre 6 loads its tile worker as a separate file; serving the library unbundled keeps

@@ -56,7 +56,7 @@ function store_image(array $checked, string $dir): string
     if (!move_uploaded_file($tmp, $target)) {
         fail(500, 'Server error');
     }
-    return "uploads/$dir/$name";
+    return "/uploads/$dir/$name";
 }
 
 // ---------- One business per user ----------
