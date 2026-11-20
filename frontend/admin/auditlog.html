@@ -1,0 +1,1507 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary": "#442c00", "tertiary-fixed-dim": "#f9bc5c", "secondary-container": "#836b00", "background": "#131313", "on-surface-variant": "#d0c5af", "surface-bright": "#3a3939", "surface-dim": "#131313", "surface-container-low": "#1c1b1b", "tertiary": "#ffc469", "secondary-fixed-dim": "#e3c45c", "surface-variant": "#353534", "on-error": "#690005", "surface-container-highest": "#353534", "surface": "#131313", "inverse-on-surface": "#313030", "secondary-fixed": "#ffe17b", "tertiary-container": "#e3a84b", "secondary": "#e3c45c", "primary-fixed-dim": "#e9c349", "on-tertiary-fixed": "#281800", "on-secondary-fixed": "#231b00", "surface-container": "#201f1f", "on-primary": "#3c2f00", "on-tertiary-container": "#5f3e00", "on-primary-fixed": "#241a00", "on-background": "#e5e2e1", "inverse-surface": "#e5e2e1", "primary-fixed": "#ffe088", "on-surface": "#e5e2e1", "on-primary-fixed-variant": "#574500", "surface-tint": "#e9c349", "outline": "#99907c", "tertiary-fixed": "#ffddb0", "surface-container-high": "#2a2a2a", "on-secondary": "#3b2f00", "on-secondary-container": "#ffefc5", "primary-container": "#d4af37", "on-tertiary-fixed-variant": "#614000", "primary": "#f2ca50", "inverse-primary": "#735c00", "on-error-container": "#ffdad6", "on-primary-container": "#554300", "surface-container-lowest": "#0e0e0e", "error": "#ffb4ab", "outline-variant": "#4d4635", "on-secondary-fixed-variant": "#564500", "error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "2rem", "space-md": "1rem", "gutter-mobile": "1rem", "space-xl": "2.5rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "display-lg-mobile": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "display-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "headline-md": [ "Plus Jakarta Sans" ], "label-sm": [ "JetBrains Mono" ], "label-md": [ "JetBrains Mono" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "body-sm": [ "Inter" ], "body-md": [ "Inter" ], "mono-metric": [ "JetBrains Mono" ] }, "fontSize": { "display-lg-mobile": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "display-lg": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "500" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "mono-metric": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" } ] } } } };</script>  <script type="module" src="/admin/admin-auth.js"></script>
+</head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-2xl z-50 flex flex-col justify-between shadow-[0_4px_30px_rgba(0,0,0,0.8)]"><div class="flex flex-col"><div class="h-20 flex items-center px-space-lg gap-space-md bg-surface-container-lowest/40"><img alt="POINTER Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrANV9Eg0PJNMIGhOp-LfKx2AedJOQGy36pI4mWwdlnGwBjD95UoWJU1DUHgGboR72VO1Btmpxw52N6jthgWR3ycyHBWSm6rZA3LDE_tkzvnizzyb3YjGQSrbyuV7BSEBOqV-RlP977JCfw55UtzEeoNMrLmtkzI--kOnQVfEpm3QTB2dcQ7GysSgKd1y3UVdDIblBpjrsstTyZgWKIVV06zCwGI8sB23xN9YiWViKA"><div class="flex flex-col"><span class="font-headline-md text-headline-md font-semibold text-primary tracking-wide leading-none">POINTER</span><span class="font-label-sm text-label-sm text-outline tracking-widest mt-1">EXECUTIVE CORE</span></div></div><div class="px-space-lg py-space-md"><div class="p-space-sm rounded-lg bg-surface-container-low/60 flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">SECURE NODE</span></div><span class="font-label-sm text-label-sm text-primary font-mono">ST-0924</span></div></div><nav class="flex-1 px-space-md space-y-1 overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="dashboard" href="/admin/dashboard.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">dashboard</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဒက်ရှ်ဘုတ်</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="application" href="/admin/application.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">app_registration</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">လျှောက်ထားချက်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="shop" href="/admin/shop.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">storefront</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဆိုင်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="public-place" href="/admin/publicplaces.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">location_city</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အများပြည်သူနေရာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="categories" href="/admin/category.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">category</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ကဏ္ဍများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="report" href="/admin/reports.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">analytics</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အစီရင်ခံစာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="users" href="/admin/user.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">group</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အသုံးပြုသူများ</span>
+</a>
+<a aria-current="page" class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-300 bg-primary/20 text-primary font-semibold backdrop-blur-xl shadow-[0_0_15px_rgba(212,175,55,0.3)] ring-1 ring-primary/40" data-path="audit-log" href="/admin/auditlog.html">
+  <span class="material-symbols-outlined text-title-sm text-primary drop-shadow-[0_0_8px_currentColor] transition-transform group-hover:scale-110">history</span>
+  <span class="font-title-sm text-body-md text-on-surface group-hover:text-primary transition-colors">စစ်ဆေးမှုမှတ်တမ်း</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30 mt-3 border-t border-surface-variant/30 pt-3" href="/home.html">
+  <span class="material-symbols-outlined text-title-sm text-outline transition-colors group-hover:text-primary group-hover:scale-110">home</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ပင်မဝက်ဘ်ဆိုက်</span>
+</a>
+</nav></div><div class="p-space-md bg-surface-container-lowest/60"></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/75 backdrop-blur-2xl z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="flex items-center gap-space-lg"><div class="flex flex-col"><span class="font-headline-md text-headline-md font-semibold text-primary tracking-wide">POINTER EXECUTIVE SUITE</span><div class="flex items-center gap-space-sm mt-0.5"><div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/80"><span class="material-symbols-outlined text-[13px] text-primary">lock</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">VAULT: ENCRYPTED (AES-256-GCM)</span></div><span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm tracking-wider uppercase font-semibold">SUPER ADMIN / AUDIT OFFICER</span></div></div></div><div class="flex items-center gap-space-md"><div class="flex items-center p-1 rounded-full bg-surface-container-lowest/90"><button class="px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-primary text-on-primary transition-all" type="button">Live Production Admin</button><button class="px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" type="button">Unauthorized User</button><button class="px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" type="button">Try as Demo Admin</button></div><div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest/60 text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-primary">schedule</span><span class="font-label-md text-label-md font-mono">14:28:49 UTC</span></div><button class="relative p-2 rounded-lg bg-surface-container-lowest/60 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(242,202,80,0.8)]"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right hidden lg:flex"><span class="font-body-md text-body-md font-semibold text-on-surface">Admin U Min Thant</span><span class="font-label-sm text-label-sm text-outline">Chief Administrator • admin@pointer.app</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-20 bg-surface w-full min-h-screen"><div class="flex flex-col w-full">
+<!-- SECURITY STATE WRAPPER -->
+<div class="hidden w-full px-margin py-space-xl flex-col items-center justify-center min-h-[70vh]" id="unauthorized-view">
+<div class="relative w-full max-w-xl rounded-xl bg-surface-container-low/95 p-space-xl backdrop-blur-3xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] overflow-hidden text-center flex flex-col items-center">
+<!-- Golden Caustic Light Bleed -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-primary/10 blur-[80px] pointer-events-none"></div>
+<div class="relative z-10 w-20 h-20 rounded-full bg-surface-container-highest/80 flex items-center justify-center mb-space-lg shadow-[0_0_35px_rgba(242,202,80,0.25)]">
+<span class="material-symbols-outlined text-[44px] text-primary" style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+</div>
+<div class="relative z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm uppercase tracking-widest mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+        HTTP 403 FORBIDDEN
+      </div>
+<h2 class="relative z-10 font-headline-xl text-headline-xl text-primary font-bold tracking-tight mb-space-xs">Admin Privilege Required</h2>
+<p class="relative z-10 font-body-md text-body-md text-on-surface-variant max-w-md mb-space-lg">
+        You do not possess the cryptographic authority to access the Pointer Executive Audit Ledger. Backend token validation rejected session signature.
+      </p>
+<div class="relative z-10 p-space-md rounded-lg bg-surface-container-lowest/80 w-full mb-space-lg text-left">
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mb-1">
+<span>ENCLAVE DISPATCH</span>
+<span class="font-mono text-error">ERR_AUTH_UNVERIFIED_KEY</span>
+</div>
+<div class="font-mono text-[11px] text-on-surface-variant truncate">
+          CLAIM: urn:pointer:auditor:apex_rw | CHALLENGE: SHA256-FAIL-0x892BA71
+        </div>
+</div>
+<div class="relative z-10 flex flex-wrap gap-space-md justify-center">
+<button class="px-space-lg py-space-sm rounded-lg bg-gradient-to-r from-[#ffe088] via-[#e9c349] to-[#836b00] text-on-primary font-body-md text-body-md font-semibold hover:shadow-[0_0_25px_rgba(242,202,80,0.45)] transition-all flex items-center gap-2" onclick="setSecurityMode('demo')" type="button">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+          Grant Demo Admin Clearance
+        </button>
+<button class="px-space-lg py-space-sm rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md hover:bg-surface-bright transition-all" onclick="setSecurityMode('live')" type="button">
+          Return to Live Portal
+        </button>
+</div>
+</div>
+</div>
+<!-- MAIN AUTHORIZED AUDIT DASHBOARD -->
+<div class="flex flex-col w-full px-margin pb-space-xl space-y-space-lg" id="authorized-view">
+<!-- TOP SECURITY CONTEXT & DEMO MODE SELECTOR BANNER -->
+<div class="w-full rounded-xl bg-surface-container-low/80 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_0_rgba(0,0,0,0.65)] relative overflow-hidden">
+<!-- Ambient amber light spill -->
+<div class="absolute -right-20 -top-20 w-72 h-72 rounded-full bg-primary/10 blur-[90px] pointer-events-none"></div>
+<div class="relative z-10 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-md">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md">
+<!-- Active Mode Beacon -->
+<div class="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary shadow-[0_0_15px_rgba(242,202,80,0.2)]" id="mode-badge-wrapper">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-widest uppercase" id="mode-badge-text">PRODUCTION IMMUTABLE VAULT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">lock</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="mode-explanation">
+              Hardware Security Module (HSM) Level 4 enforced. Every administrator transaction is non-repudiable and SHA-256 chained.
+            </p>
+</div>
+</div>
+<!-- Security Persona Toggles -->
+<div class="flex items-center flex-wrap gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider hidden sm:inline">SECURITY LEVEL TESTER:</span>
+<div class="inline-flex p-1 rounded-lg bg-surface-container-lowest/90">
+<button class="px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all font-semibold bg-primary text-on-primary shadow-sm" id="btn-mode-live" onclick="setSecurityMode('live')" type="button">
+              Production Admin
+            </button>
+<button class="px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all text-on-surface-variant hover:text-on-surface" id="btn-mode-demo" onclick="setSecurityMode('demo')" type="button">
+              Demo Admin Sandbox
+            </button>
+<button class="px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all text-error hover:bg-error-container/20" id="btn-mode-denied" onclick="setSecurityMode('unauthorized')" type="button">
+              Simulate 403 Denied
+            </button>
+</div>
+</div>
+</div>
+<!-- Demo Sandbox Notice Bar (Shown when demo active) -->
+<div class="hidden mt-space-md p-space-sm rounded-lg bg-tertiary-container/20 text-tertiary-fixed flex items-center justify-between" id="demo-banner">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-tertiary">science</span>
+<span class="font-body-sm text-body-sm">
+<strong class="font-semibold text-tertiary-fixed">DEMO SANDBOX ACTIVE:</strong> You are safely browsing simulated admin activity. Modifications here will not persist to the immutable Ethereum ledger anchoring.
+          </span>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline uppercase tracking-wider" onclick="setSecurityMode('live')" type="button">
+          Restore Live Node
+        </button>
+</div>
+</div>
+<!-- METRICS OVERVIEW: 6 LUXURY LIQUID GLASS CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-space-md">
+<!-- Card 1: Total Activities -->
+<div class="group relative rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(242,202,80,0.18)] hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">TOTAL LOGS</span>
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono-metric text-mono-metric font-semibold text-on-surface" id="metric-total">14,892</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5">+12.4%</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-4/5"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1.5 text-xs truncate">Verified SHA-256 blocks</span>
+</div>
+<!-- Card 2: Today's Actions -->
+<div class="group relative rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(242,202,80,0.18)] hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">TODAY ACTIONS</span>
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono-metric text-mono-metric font-semibold text-on-surface" id="metric-today">248</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5">+8.2%</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/5"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1.5 text-xs truncate">Avg 17.7 actions / hr</span>
+</div>
+<!-- Card 3: Approvals -->
+<div class="group relative rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(242,202,80,0.18)] hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">APPROVALS</span>
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono-metric text-mono-metric font-semibold text-on-surface">118</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5">86.1%</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-11/12"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1.5 text-xs truncate">Applications &amp; Renewals</span>
+</div>
+<!-- Card 4: Rejections -->
+<div class="group relative rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(242,202,80,0.18)] hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">REJECTIONS</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-outline group-hover:text-on-surface transition-all">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono-metric text-mono-metric font-semibold text-on-surface">19</span>
+<span class="font-label-sm text-label-sm text-outline-variant flex items-center gap-0.5">-3.1%</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-outline w-1/4"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1.5 text-xs truncate">KYC/AML discrepancies</span>
+</div>
+<!-- Card 5: Visibility Hidden Actions -->
+<div class="group relative rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(242,202,80,0.18)] hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">HIDDEN ASSETS</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-outline group-hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">visibility_off</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono-metric text-mono-metric font-semibold text-on-surface">7</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5">Resolved 5</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary/70 w-2/5"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1.5 text-xs truncate">Shops &amp; Places suppressed</span>
+</div>
+<!-- Card 6: Banned Users -->
+<div class="group relative rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(242,202,80,0.18)] hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">SUSPENSIONS</span>
+<div class="w-8 h-8 rounded-lg bg-error-container/30 flex items-center justify-center text-error group-hover:bg-error-container group-hover:text-on-error transition-all">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono-metric text-mono-metric font-semibold text-error">4</span>
+<span class="font-label-sm text-label-sm text-error flex items-center gap-0.5">Strict Enforce</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error w-1/6"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1.5 text-xs truncate">Violations of Code</span>
+</div>
+</div>
+<!-- COMMAND CONTROLS & AUTOMATED ACTION SIMULATOR -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md p-space-md rounded-xl bg-surface-container-low/60 backdrop-blur-xl relative z-30">
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Quick Log Action Simulator -->
+<div class="relative inline-block text-left">
+<button class="px-space-md py-space-sm rounded-lg bg-gradient-to-r from-[#ffe088] via-[#e9c349] to-[#836b00] text-on-primary font-body-md text-body-md font-semibold hover:shadow-[0_0_24px_rgba(242,202,80,0.4)] transition-all flex items-center gap-2" id="btn-quick-log" onclick="toggleSimulateMenu()" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Simulate Admin Action</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<!-- Dropdown of quick simulation options -->
+<div class="hidden absolute left-0 mt-2 w-72 rounded-xl bg-surface-container-high/95 backdrop-blur-2xl p-2 shadow-[0_16px_40px_rgba(0,0,0,0.85)] space-y-1 z-50" id="simulate-dropdown">
+<div class="px-3 py-1 text-[11px] font-label-sm uppercase tracking-wider text-outline">Simulate by Category</div>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container-highest text-body-sm flex items-center justify-between" onclick="simulateAction('app-approved')" type="button">
+<span>Approve Merchant License</span>
+<span class="font-label-sm text-primary text-[10px]">APPLICATION</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container-highest text-body-sm flex items-center justify-between" onclick="simulateAction('shop-hidden')" type="button">
+<span>Hide High-Risk Shop</span>
+<span class="font-label-sm text-primary text-[10px]">SHOP</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container-highest text-body-sm flex items-center justify-between" onclick="simulateAction('user-banned')" type="button">
+<span>Enforce User Blacklist</span>
+<span class="font-label-sm text-error text-[10px]">USER</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container-highest text-body-sm flex items-center justify-between" onclick="simulateAction('place-updated')" type="button">
+<span>Update Plaza Geo-Polygon</span>
+<span class="font-label-sm text-primary text-[10px]">PUBLIC PLACE</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container-highest text-body-sm flex items-center justify-between" onclick="simulateAction('appeal-resolved')" type="button">
+<span>Dismiss Penalty Appeal</span>
+<span class="font-label-sm text-primary text-[10px]">APPEAL</span>
+</button>
+</div>
+</div>
+<!-- Verify Cryptographic Integrity -->
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-high text-primary font-body-md text-body-md hover:bg-surface-bright transition-all flex items-center gap-2" onclick="verifyLedgerIntegrity()" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span id="btn-verify-text">Verify Cryptographic Hashes</span>
+</button>
+</div>
+<!-- Export Suite -->
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase mr-2 hidden sm:inline">EXPORT IMMUTABLE LEDGER:</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all font-label-sm text-label-sm" onclick="exportData('CSV')" type="button">
+          .CSV
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all font-label-sm text-label-sm" onclick="exportData('JSON')" type="button">
+          .JSON-LD
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all font-label-sm text-label-sm flex items-center gap-1" onclick="exportData('PDF')" type="button">
+<span class="material-symbols-outlined text-[14px]">picture_as_pdf</span>
+          Signed PDF
+        </button>
+</div>
+</div>
+<!-- ADVANCED FILTER & SEARCH GLASS DECK -->
+<div class="w-full rounded-xl bg-surface-container-low/70 backdrop-blur-2xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex flex-col gap-space-md relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm">
+<!-- Search Input -->
+<div class="lg:col-span-4 relative flex items-center">
+<span class="material-symbols-outlined text-primary absolute left-3 text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-surface-container-lowest/80 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="audit-search-input" oninput="handleSearch()" placeholder="Search by Admin, Action, Target ID..." type="text">
+<button class="hidden absolute right-3 text-outline hover:text-on-surface" id="clear-search-btn" onclick="clearSearch()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Category Dropdown -->
+<div class="lg:col-span-3">
+<select class="w-full px-3 py-2.5 rounded-lg bg-surface-container-lowest/80 text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer" id="filter-category" onchange="applyFilters()">
+<option value="ALL">All Categories (6 Managed Modules)</option>
+<option value="APPLICATION">Application Management</option>
+<option value="SHOP">Shop Management</option>
+<option value="USER">User Management</option>
+<option value="PUBLIC_PLACE">Public Place Management</option>
+<option value="REPORT_APPEAL">Report &amp; Appeal Management</option>
+<option value="CATEGORY">Category Management</option>
+</select>
+</div>
+<!-- Action Type Dropdown -->
+<div class="lg:col-span-3">
+<select class="w-full px-3 py-2.5 rounded-lg bg-surface-container-lowest/80 text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer" id="filter-action-type" onchange="applyFilters()">
+<option value="ALL">All Action Types</option>
+<option value="APPROVAL">Approvals &amp; Grants</option>
+<option value="REJECTION">Rejections &amp; Dismissals</option>
+<option value="BAN">Bans &amp; Suspensions</option>
+<option value="VISIBILITY">Hide / Unhide Toggles</option>
+<option value="MUTATION">Entity Add &amp; Update</option>
+</select>
+</div>
+<!-- Sort Order Dropdown -->
+<div class="lg:col-span-2">
+<select class="w-full px-3 py-2.5 rounded-lg bg-surface-container-lowest/80 text-primary font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer" id="filter-sort" onchange="applyFilters()">
+<option value="LATEST">Sort: Latest Activity</option>
+<option value="OLDEST">Sort: Oldest Activity</option>
+</select>
+</div>
+</div>
+<!-- Active Filter Pill Tags & Summary -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-2" id="filter-pills">
+<span class="font-label-sm text-label-sm text-outline">ACTIVE FILTERS:</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span>Range: All Recorded Cycles</span>
+</span>
+<span class="hidden items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm" id="active-category-pill">
+<span id="active-category-pill-text">Category</span>
+<button class="hover:text-primary" onclick="resetCategoryFilter()" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+          Showing <span class="text-primary font-mono font-semibold" id="visible-count">10</span> of <span class="font-mono text-on-surface" id="total-count">10</span> Ledger Commitments
+        </div>
+</div>
+</div>
+<!-- AUDIT LOG ACTIVITY TABLE -->
+<div class="w-full rounded-xl bg-surface-container-low/80 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest/90 text-outline font-label-sm text-label-sm tracking-wider uppercase select-none">
+<th class="py-space-md px-space-md">No. / Hash</th>
+<th class="py-space-md px-space-md">Administrator</th>
+<th class="py-space-md px-space-md">Action Classification</th>
+<th class="py-space-md px-space-md">Operational Description</th>
+<th class="py-space-md px-space-md">Target Entity</th>
+<th class="py-space-md px-space-md">Committed Time (UTC)</th>
+<th class="py-space-md px-space-md">State</th>
+<th class="py-space-md px-space-md text-right">Details</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface" id="audit-table-body">
+<!-- Sample Record 1: Application Management -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="APPROVAL" data-category="APPLICATION" data-id="PL-8492" data-timestamp="1747665128000" onclick="openDetailsModal('PL-8492')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8492
+                <span class="block text-[10px] text-outline font-mono">0x4a9f..c2</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs ring-1 ring-primary/40">
+                    SV
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Sarah Vance</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">SUPER ADMIN</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  Application Approved
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Approved Merchant Tier 2 High-Volume License
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Crown Jewelers Ltd
+                <span class="block text-[10px] text-outline">ID: #APP-8910</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 14:32:08
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Committed
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8492')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 2: Shop Management -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="VISIBILITY" data-category="SHOP" data-id="PL-8491" data-timestamp="1747661200000" onclick="openDetailsModal('PL-8491')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8491
+                <span class="block text-[10px] text-outline font-mono">0x91da..41</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center font-bold text-xs ring-1 ring-secondary/30">
+                    MS
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Marcus Sterling</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">LEAD MODERATOR</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">visibility_off</span>
+                  Shop Hidden
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Hidden Shop pending physical address KYC re-inspection
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Aureus Vault Outlet
+                <span class="block text-[10px] text-outline">SHOP_ID: #9921</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 13:26:40
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Enforced
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8491')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 3: User Management (Ban) -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="BAN" data-category="USER" data-id="PL-8490" data-timestamp="1747658000000" onclick="openDetailsModal('PL-8490')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8490
+                <span class="block text-[10px] text-outline font-mono">0xbc22..7e</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container/40 text-error flex items-center justify-center font-bold text-xs ring-1 ring-error/40">
+                    ER
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Elena Rostova</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">COMPLIANCE OFFICER</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">block</span>
+                  User Banned
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Permanent revocation triggered by predatory spoofing activity
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                user_id:@alex99
+                <span class="block text-[10px] text-outline">UID: #USR-7014</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 12:33:19
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-error text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                  Blacklisted
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8490')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 4: Public Place Management -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="MUTATION" data-category="PUBLIC_PLACE" data-id="PL-8489" data-timestamp="1747654000000" onclick="openDetailsModal('PL-8489')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8489
+                <span class="block text-[10px] text-outline font-mono">0x11fa..a0</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs ring-1 ring-primary/40">
+                    SV
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Sarah Vance</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">SUPER ADMIN</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">domain_add</span>
+                  Public Place Added
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Registered sovereign commercial boundary for The Grand Atrium
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                The Grand Atrium
+                <span class="block text-[10px] text-outline">LOC: 40.7128N, 74.0060W</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 11:27:01
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Committed
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8489')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 5: Report & Appeal Management -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="REJECTION" data-category="REPORT_APPEAL" data-id="PL-8488" data-timestamp="1747650000000" onclick="openDetailsModal('PL-8488')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8488
+                <span class="block text-[10px] text-outline font-mono">0xee43..19</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center font-bold text-xs ring-1 ring-secondary/30">
+                    MS
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Marcus Sterling</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">LEAD MODERATOR</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/30 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                  Appeal Rejected
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Rejected penalty dismissal; confirmed forged verification credentials
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Appeals #AP-412
+                <span class="block text-[10px] text-outline">PETITIONER: Merchant #044</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 10:20:15
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Upheld
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8488')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 6: Category Management -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="MUTATION" data-category="CATEGORY" data-id="PL-8487" data-timestamp="1747646000000" onclick="openDetailsModal('PL-8487')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8487
+                <span class="block text-[10px] text-outline font-mono">0x7701..8d</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs ring-1 ring-primary/40">
+                    SV
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Sarah Vance</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">SUPER ADMIN</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">category</span>
+                  Category Added
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Created apex taxonomy segment: Haute Horlogerie &amp; Chronographs
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Luxury Watches
+                <span class="block text-[10px] text-outline">CAT_CODE: #CAT-HORO</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 09:12:44
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Active
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8487')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 7: Application Management (Renewal Approved) -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="APPROVAL" data-category="APPLICATION" data-id="PL-8486" data-timestamp="1747640000000" onclick="openDetailsModal('PL-8486')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8486
+                <span class="block text-[10px] text-outline font-mono">0xaa90..b4</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container/40 text-error flex items-center justify-center font-bold text-xs ring-1 ring-error/40">
+                    ER
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Elena Rostova</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">COMPLIANCE OFFICER</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+                  Renewal Approved
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Extended sovereign vendor charter for fiscal year 2025/2026
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Solomon Private Bank
+                <span class="block text-[10px] text-outline">TENANT: #VND-104</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 07:45:11
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Renewed
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8486')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 8: Shop Management (Shop Updated) -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="MUTATION" data-category="SHOP" data-id="PL-8485" data-timestamp="1747635000000" onclick="openDetailsModal('PL-8485')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8485
+                <span class="block text-[10px] text-outline font-mono">0x22c5..ff</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs ring-1 ring-primary/40">
+                    SV
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Sarah Vance</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">SUPER ADMIN</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+                  Shop Updated
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Modified settlement escrow cut rate from 12% to 9%
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Geneva Horology Gallery
+                <span class="block text-[10px] text-outline">SHOP_ID: #8110</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 06:14:52
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Committed
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8485')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 9: Report & Appeal Management (Content Deleted) -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="BAN" data-category="REPORT_APPEAL" data-id="PL-8484" data-timestamp="1747630000000" onclick="openDetailsModal('PL-8484')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8484
+                <span class="block text-[10px] text-outline font-mono">0xdd4b..90</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center font-bold text-xs ring-1 ring-secondary/30">
+                    MS
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Marcus Sterling</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">LEAD MODERATOR</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/30 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">delete_sweep</span>
+                  Content Deleted
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Purged unverified marketing broadcast containing fraudulent warranty claims
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                Post #BC-9902
+                <span class="block text-[10px] text-outline">CHANNEL: #PUBLIC_FEED</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 04:55:03
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Purged
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8484')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+<!-- Sample Record 10: User Management (Unbanned) -->
+<tr class="audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer" data-action="BAN" data-category="USER" data-id="PL-8483" data-timestamp="1747625000000" onclick="openDetailsModal('PL-8483')">
+<td class="py-space-md px-space-md font-mono text-primary text-xs">
+                #PL-8483
+                <span class="block text-[10px] text-outline font-mono">0x4509..ef</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container/40 text-error flex items-center justify-center font-bold text-xs ring-1 ring-error/40">
+                    ER
+                  </div>
+<div>
+<div class="font-semibold text-on-surface group-hover:text-primary transition-colors">Elena Rostova</div>
+<span class="font-label-sm text-[10px] text-outline uppercase">COMPLIANCE OFFICER</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">lock_open</span>
+                  User Unbanned
+                </span>
+</td>
+<td class="py-space-md px-space-md font-medium text-on-surface-variant max-w-xs truncate">
+                Restored VIP buying rights after sovereign biometric notary cleared
+              </td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+                user_id:@lucas_v
+                <span class="block text-[10px] text-outline">UID: #USR-9041</span>
+</td>
+<td class="py-space-md px-space-md font-mono text-xs text-on-surface-variant">
+                2025-05-18 03:09:41
+              </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Restored
+                </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-sm text-label-sm inline-flex items-center gap-1" onclick="event.stopPropagation(); openDetailsModal('PL-8483')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Audit
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- LUXURY PAGINATION -->
+<div class="p-space-md bg-surface-container-lowest/80 flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+          Displaying ledger range <span class="text-primary font-semibold font-mono">1 – 10</span> of <span class="font-mono text-on-surface">1,248</span> recorded entries
+        </div>
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-outline hover:text-on-surface flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-mono font-semibold text-xs shadow-[0_0_12px_rgba(242,202,80,0.5)]" type="button">1</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface hover:text-primary font-mono text-xs transition-colors" type="button">2</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface hover:text-primary font-mono text-xs transition-colors" type="button">3</button>
+<span class="text-outline font-mono px-1">...</span>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface hover:text-primary font-mono text-xs transition-colors" type="button">125</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-outline hover:text-on-surface flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION STACK -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" id="toast-container"></div>
+<!-- LIQUID GLASS AUDIT DETAILS MODAL -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-space-md bg-surface-container-lowest/85 backdrop-blur-md" id="audit-modal">
+<div class="relative w-full max-w-3xl rounded-2xl bg-surface-container-low/95 p-space-lg backdrop-blur-3xl shadow-[0_24px_80px_rgba(0,0,0,0.9)] max-h-[90vh] overflow-y-auto">
+<!-- Golden caustic gradient accent -->
+<div class="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-primary/10 blur-[80px] pointer-events-none"></div>
+<!-- Modal Header -->
+<div class="relative z-10 flex items-start justify-between pb-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shadow-[0_0_20px_rgba(242,202,80,0.2)]">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-mono-metric text-mono-metric font-bold text-primary" id="modal-record-id">#PL-8492</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase">Committed</span>
+</div>
+<div class="font-label-sm text-label-sm text-outline tracking-wider uppercase mt-0.5">POINTER AUDIT LEDGER TRANSACTION RECORD</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright flex items-center justify-center transition-all" onclick="closeDetailsModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="relative z-10 space-y-space-md mt-space-md">
+<!-- Metadata 3-Column Strip -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm p-space-md rounded-xl bg-surface-container-lowest/80">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block mb-1">AUDITOR IDENTITY</span>
+<div class="font-semibold text-on-surface text-body-md" id="modal-admin-name">Sarah Vance</div>
+<span class="font-label-sm text-[11px] text-primary" id="modal-admin-role">SUPER ADMIN (SEC-LVL 5)</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block mb-1">TARGET CLASSIFICATION</span>
+<div class="font-semibold text-on-surface text-body-md" id="modal-target">Crown Jewelers Ltd</div>
+<span class="font-label-sm text-[11px] text-outline font-mono" id="modal-target-id">APP-8910</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block mb-1">PRECISE TIMESTAMP</span>
+<div class="font-mono text-body-sm text-on-surface" id="modal-time">2025-05-18 14:32:08.412 UTC</div>
+<span class="font-label-sm text-[11px] text-primary">EPOCH 1747665128</span>
+</div>
+</div>
+<!-- Description Box -->
+<div class="p-space-md rounded-xl bg-surface-container-high/60">
+<span class="font-label-sm text-label-sm text-outline uppercase block mb-1">ACTION SUMMARY</span>
+<p class="text-on-surface font-body-md text-body-md" id="modal-description">
+            Approved Merchant Tier 2 High-Volume License after verifying multi-jurisdiction AML filings and establishing collateral reserve guarantee.
+          </p>
+</div>
+<!-- BEFORE & AFTER DATA DIFF COMPARISON -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">DELTA INSPECTOR (STATE TRANSITION DIFF)</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">OBJECT_DIFF_V2</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- Previous State -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/90">
+<div class="flex items-center justify-between pb-2 mb-2">
+<span class="font-label-sm text-label-sm text-error uppercase font-semibold">PREVIOUS STATE (OLD)</span>
+<span class="material-symbols-outlined text-error text-[16px]">remove_circle</span>
+</div>
+<pre class="font-mono text-xs text-error/90 whitespace-pre-wrap leading-relaxed" id="modal-diff-prev">{
+  "application_state": "PENDING_REVIEW",
+  "tier_permission": "TIER_1_STANDARD",
+  "cleared_deposit": "$0.00",
+  "payout_lock_days": 14,
+  "daily_ceiling": "$50,000"
+}</pre>
+</div>
+<!-- Committed State -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/90">
+<div class="flex items-center justify-between pb-2 mb-2">
+<span class="font-label-sm text-label-sm text-primary uppercase font-semibold">NEW COMMITTED STATE</span>
+<span class="material-symbols-outlined text-primary text-[16px]">add_circle</span>
+</div>
+<pre class="font-mono text-xs text-primary/95 whitespace-pre-wrap leading-relaxed" id="modal-diff-next">{
+  "application_state": "APPROVED_ACTIVE",
+  "tier_permission": "TIER_2_SOVEREIGN",
+  "cleared_deposit": "$250,000.00",
+  "payout_lock_days": 1,
+  "daily_ceiling": "$5,000,000"
+}</pre>
+</div>
+</div>
+</div>
+<!-- Cryptographic Proof Footer -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/70 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">CRYPTOGRAPHIC SEAL (SHA-256)</span>
+<span class="font-label-sm text-label-sm text-primary font-mono">VERIFIED BY ENCLAVE</span>
+</div>
+<div class="font-mono text-[11px] text-on-surface-variant break-all bg-surface-container-high/40 p-2 rounded-lg">
+            9f82c478a23d4bb9819ffc22b10098fca201e76b5d928374a38210992384a3c1
+          </div>
+<div class="flex items-center justify-between text-outline text-[11px] font-label-sm">
+<span>CLIENT IP: 192.168.10.84 [VPN MESH]</span>
+<span>NONCE: 0x984920</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-high text-outline text-xs text-center">
+<span class="text-primary font-semibold">IMMUTABLE PROTOCOL GUARANTEE:</span> Audit entries are write-once read-many. Alteration or retroactive deletion is cryptographically impossible.
+        </div>
+</div>
+<!-- Modal Footer -->
+<div class="relative z-10 flex items-center justify-end gap-space-sm pt-space-md">
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all font-body-sm text-body-sm" onclick="closeDetailsModal()" type="button">
+          Close Ledger View
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-primary text-on-primary font-body-md text-body-md font-semibold hover:shadow-[0_0_20px_rgba(242,202,80,0.4)] transition-all flex items-center gap-1.5" onclick="showToast('Verification Certificate Downloaded')" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+          Export Cryptographic Receipt
+        </button>
+</div>
+</div>
+</div>
+<!-- CLIENT-SIDE LOGIC -->
+<script>
+    // State storage
+    const state = {
+      mode: 'live', // 'live', 'demo', 'unauthorized'
+      searchQuery: '',
+      filterCategory: 'ALL',
+      filterActionType: 'ALL',
+      filterSort: 'LATEST',
+      simulatedCounter: 8493
+    };
+
+    // Modal data dictionary
+    const recordDetails = {
+      'PL-8492': {
+        id: '#PL-8492',
+        adminName: 'Sarah Vance',
+        adminRole: 'SUPER ADMIN (SEC-LVL 5)',
+        target: 'Crown Jewelers Ltd',
+        targetId: 'APP-8910',
+        time: '2025-05-18 14:32:08.412 UTC',
+        description: 'Approved Merchant Tier 2 High-Volume License after verifying multi-jurisdiction AML filings and establishing collateral reserve guarantee.',
+        prev: `{\n  "application_state": "PENDING_REVIEW",\n  "tier_permission": "TIER_1_STANDARD",\n  "cleared_deposit": "$0.00",\n  "payout_lock_days": 14,\n  "daily_ceiling": "$50,000"\n}`,
+        next: `{\n  "application_state": "APPROVED_ACTIVE",\n  "tier_permission": "TIER_2_SOVEREIGN",\n  "cleared_deposit": "$250,000.00",\n  "payout_lock_days": 1,\n  "daily_ceiling": "$5,000,000"\n}`
+      },
+      'PL-8491': {
+        id: '#PL-8491',
+        adminName: 'Marcus Sterling',
+        adminRole: 'LEAD MODERATOR (SEC-LVL 4)',
+        target: 'Aureus Vault Outlet',
+        targetId: 'SHOP-9921',
+        time: '2025-05-18 13:26:40.108 UTC',
+        description: 'Shop visibility set to Hidden. Suspicious geo-location disparity detected during random automated telemetry check.',
+        prev: `{\n  "visibility": "PUBLIC_LISTED",\n  "escrow_hold": false,\n  "compliance_flag": "NONE"\n}`,
+        next: `{\n  "visibility": "HIDDEN_QUARANTINE",\n  "escrow_hold": true,\n  "compliance_flag": "FLAG_GEO_SPOOF"\n}`
+      },
+      'PL-8490': {
+        id: '#PL-8490',
+        adminName: 'Elena Rostova',
+        adminRole: 'COMPLIANCE OFFICER (SEC-LVL 4)',
+        target: 'user_id:@alex99',
+        targetId: 'USR-7014',
+        time: '2025-05-18 12:33:19.892 UTC',
+        description: 'Enforced permanent account suspension and blocked cryptographic wallet address across global node routing.',
+        prev: `{\n  "user_status": "ACTIVE_VERIFIED",\n  "reputation_score": 78,\n  "blacklisted_wallets": 0\n}`,
+        next: `{\n  "user_status": "PERMANENT_BANNED",\n  "reputation_score": 0,\n  "blacklisted_wallets": 3\n}`
+      },
+      'PL-8489': {
+        id: '#PL-8489',
+        adminName: 'Sarah Vance',
+        adminRole: 'SUPER ADMIN (SEC-LVL 5)',
+        target: 'The Grand Atrium',
+        targetId: 'LOC-NYC-01',
+        time: '2025-05-18 11:27:01.004 UTC',
+        description: 'Added sovereign public commercial place with associated BLE beacons and multi-polygon geofence boundary.',
+        prev: `{\n  "place_exists": false\n}`,
+        next: `{\n  "place_name": "The Grand Atrium",\n  "category": "COMMERCIAL_PLAZA",\n  "geo_nodes": 12,\n  "status": "APPROVED"\n}`
+      },
+      'PL-8488': {
+        id: '#PL-8488',
+        adminName: 'Marcus Sterling',
+        adminRole: 'LEAD MODERATOR (SEC-LVL 4)',
+        target: 'Appeals #AP-412',
+        targetId: 'PETITION-044',
+        time: '2025-05-18 10:20:15.541 UTC',
+        description: 'Rejected appeal challenging merchant penalty fine. Forensics confirmed fraudulent customer review submissions.',
+        prev: `{\n  "appeal_status": "UNDER_EXAMINATION",\n  "penalty_fine": "$2,500.00"\n}`,
+        next: `{\n  "appeal_status": "REJECTED_FINAL",\n  "penalty_fine": "$2,500.00",\n  "right_of_appeal_exhausted": true\n}`
+      },
+      'PL-8487': {
+        id: '#PL-8487',
+        adminName: 'Sarah Vance',
+        adminRole: 'SUPER ADMIN (SEC-LVL 5)',
+        target: 'Luxury Watches',
+        targetId: 'CAT-HORO',
+        time: '2025-05-18 09:12:44.221 UTC',
+        description: 'Added high-tier category taxonomy node with mandatory provenance certificate upload requirements.',
+        prev: `{\n  "category_exists": false\n}`,
+        next: `{\n  "slug": "haute-horlogerie",\n  "require_provenance": true,\n  "min_item_reserve": "$5,000"\n}`
+      },
+      'PL-8486': {
+        id: '#PL-8486',
+        adminName: 'Elena Rostova',
+        adminRole: 'COMPLIANCE OFFICER (SEC-LVL 4)',
+        target: 'Solomon Private Bank',
+        targetId: 'VND-104',
+        time: '2025-05-18 07:45:11.902 UTC',
+        description: 'Approved vendor charter renewal following audit pass by Ernst & Young sovereign division.',
+        prev: `{\n  "charter_expiry": "2025-05-31",\n  "renewal_status": "PENDING"\n}`,
+        next: `{\n  "charter_expiry": "2026-05-31",\n  "renewal_status": "RENEWED_VALID"\n}`
+      },
+      'PL-8485': {
+        id: '#PL-8485',
+        adminName: 'Sarah Vance',
+        adminRole: 'SUPER ADMIN (SEC-LVL 5)',
+        target: 'Geneva Horology Gallery',
+        targetId: 'SHOP-8110',
+        time: '2025-05-18 06:14:52.330 UTC',
+        description: 'Decreased shop escrow settlement cut rate to 9% following $10M total volume threshold achievement.',
+        prev: `{\n  "escrow_commission": "12.0%",\n  "vip_tier": "TIER_A"\n}`,
+        next: `{\n  "escrow_commission": "9.0%",\n  "vip_tier": "TIER_SOVEREIGN"\n}`
+      },
+      'PL-8484': {
+        id: '#PL-8484',
+        adminName: 'Marcus Sterling',
+        adminRole: 'LEAD MODERATOR (SEC-LVL 4)',
+        target: 'Post #BC-9902',
+        targetId: 'FEED-9902',
+        time: '2025-05-18 04:55:03.119 UTC',
+        description: 'Deleted promotional feed announcement violating community transparency and anti-shill policy.',
+        prev: `{\n  "post_state": "PUBLISHED",\n  "impressions": 1420\n}`,
+        next: `{\n  "post_state": "PURGED_BY_ADMIN",\n  "immutable_evidence_snapshot": "ipfs://Qm..."\n}`
+      },
+      'PL-8483': {
+        id: '#PL-8483',
+        adminName: 'Elena Rostova',
+        adminRole: 'COMPLIANCE OFFICER (SEC-LVL 4)',
+        target: 'user_id:@lucas_v',
+        targetId: 'USR-9041',
+        time: '2025-05-18 03:09:41.884 UTC',
+        description: 'Restored VIP account following false-positive AML lock after notarized biometric clearance.',
+        prev: `{\n  "account_status": "SUSPENDED_REVIEW"\n}`,
+        next: `{\n  "account_status": "ACTIVE_AUTHENTICATED",\n  "risk_score": 2\n}`
+      }
+    };
+
+    // Mode Switcher function
+    function setSecurityMode(mode) {
+      state.mode = mode;
+      const authView = document.getElementById('authorized-view');
+      const unauthView = document.getElementById('unauthorized-view');
+      const demoBanner = document.getElementById('demo-banner');
+      const modeText = document.getElementById('mode-badge-text');
+      const modeExpl = document.getElementById('mode-explanation');
+
+      // Update button styling
+      const btnLive = document.getElementById('btn-mode-live');
+      const btnDemo = document.getElementById('btn-mode-demo');
+      const btnDenied = document.getElementById('btn-mode-denied');
+
+      [btnLive, btnDemo, btnDenied].forEach(b => {
+        b.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all text-on-surface-variant hover:text-on-surface';
+      });
+
+      if (mode === 'unauthorized') {
+        authView.classList.add('hidden');
+        unauthView.classList.remove('hidden');
+        unauthView.classList.add('flex');
+        btnDenied.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all font-semibold bg-error text-on-error shadow-sm';
+        showToast('Access Denied: Simulated HTTP 403 Forbidden State');
+        return;
+      }
+
+      authView.classList.remove('hidden');
+      unauthView.classList.add('hidden');
+      unauthView.classList.remove('flex');
+
+      if (mode === 'demo') {
+        demoBanner.classList.remove('hidden');
+        modeText.innerText = 'DEMO SANDBOX MODE';
+        modeExpl.innerText = 'You are interacting with sample audit log data in an isolated sandbox. Real production records are protected by backend AES-256 token verification.';
+        btnDemo.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all font-semibold bg-primary text-on-primary shadow-sm';
+        showToast('Switched to Demo Admin Sandbox');
+      } else {
+        demoBanner.classList.add('hidden');
+        modeText.innerText = 'PRODUCTION IMMUTABLE VAULT';
+        modeExpl.innerText = 'Hardware Security Module (HSM) Level 4 enforced. Every administrator transaction is non-repudiable and SHA-256 chained.';
+        btnLive.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm transition-all font-semibold bg-primary text-on-primary shadow-sm';
+        showToast('Restored Live Production Admin Mode');
+      }
+    }
+
+    // Toggle Simulation Menu
+    function toggleSimulateMenu() {
+      const dd = document.getElementById('simulate-dropdown');
+      dd.classList.toggle('hidden');
+    }
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+      const btn = document.getElementById('btn-quick-log');
+      const dd = document.getElementById('simulate-dropdown');
+      if (btn && dd && !btn.contains(e.target) && !dd.contains(e.target)) {
+        dd.classList.add('hidden');
+      }
+    });
+
+    // Simulate Admin Action
+    function simulateAction(type) {
+      document.getElementById('simulate-dropdown').classList.add('hidden');
+      state.simulatedCounter++;
+      const recId = `PL-${state.simulatedCounter}`;
+      
+      let actionName = 'Action Executed';
+      let cat = 'APPLICATION';
+      let actionType = 'APPROVAL';
+      let desc = 'Automated system commit completed.';
+      let target = 'Entity #' + Math.floor(Math.random() * 9000 + 1000);
+      let targetId = 'ENT-' + Math.floor(Math.random() * 900 + 100);
+      let badgeHtml = '';
+
+      if (type === 'app-approved') {
+        cat = 'APPLICATION';
+        actionType = 'APPROVAL';
+        actionName = 'Application Approved';
+        desc = 'Fast-tracked sovereign merchant application via algorithmic pre-clearing';
+        target = 'Apex Dynasty Ltd';
+        targetId = 'APP-9988';
+        badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">check_circle</span>Application Approved</span>`;
+      } else if (type === 'shop-hidden') {
+        cat = 'SHOP';
+        actionType = 'VISIBILITY';
+        actionName = 'Shop Hidden';
+        desc = 'Automated risk quarantine triggered: customer complaints threshold reached';
+        target = 'Valence Goods Shop';
+        targetId = 'SHOP-4402';
+        badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-secondary-fixed font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">visibility_off</span>Shop Hidden</span>`;
+      } else if (type === 'user-banned') {
+        cat = 'USER';
+        actionType = 'BAN';
+        actionName = 'User Banned';
+        desc = 'Account suspended for repeated failed authentication challenges';
+        target = 'user_id:@crypto_wolf';
+        targetId = 'USR-6621';
+        badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">block</span>User Banned</span>`;
+      } else if (type === 'place-updated') {
+        cat = 'PUBLIC_PLACE';
+        actionType = 'MUTATION';
+        actionName = 'Place Updated';
+        desc = 'Recalibrated physical geofence coordinates for pedestrian plaza';
+        target = 'Sovereign Piazza East';
+        targetId = 'LOC-5510';
+        badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">domain</span>Public Place Updated</span>`;
+      } else if (type === 'appeal-resolved') {
+        cat = 'REPORT_APPEAL';
+        actionType = 'APPROVAL';
+        actionName = 'Appeal Approved';
+        desc = 'Sanction withdrawn after merchant submitted verified proof of dispatch';
+        target = 'Appeal #AP-882';
+        targetId = 'APPEAL-882';
+        badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]">task_alt</span>Appeal Approved</span>`;
+      }
+
+      // Add to modal data
+      recordDetails[recId] = {
+        id: '#' + recId,
+        adminName: 'Lord High Auditor (You)',
+        adminRole: 'SUPER ADMIN (SEC-LVL 5)',
+        target: target,
+        targetId: targetId,
+        time: new Date().toISOString().replace('T', ' ').substring(0, 23) + ' UTC',
+        description: desc,
+        prev: `{\n  "status": "INITIAL_CHALLENGE",\n  "audit_lock": true\n}`,
+        next: `{\n  "status": "COMMITTED_LIVE",\n  "audit_lock": false,\n  "block_hash": "0x${Math.random().toString(16).substring(2, 10)}..."\n}`
+      };
+
+      // Create new table row
+      const tbody = document.getElementById('audit-table-body');
+      const tr = document.createElement('tr');
+      tr.className = 'audit-row group hover:bg-surface-container-high/60 transition-colors cursor-pointer bg-primary/10';
+      tr.setAttribute('data-id', recId);
+      tr.setAttribute('data-category', cat);
+      tr.setAttribute('data-action', actionType);
+      tr.setAttribute('data-timestamp', Date.now().toString());
+      tr.onclick = () => openDetailsModal(recId);
+
+      const nowTime = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+      tr.innerHTML = `
+        <td class="py-space-md px-space-md font-mono text-primary text-xs">
+          #${recId}
+          <span class="block text-[10px] text-outline font-mono">0x${Math.random().toString(16).substring(2, 6)}..${Math.random().toString(16).substring(2, 4)}</span>
+        </td>
+        <td class="py-space-md px-space-md">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shadow-[0_0_8px_rgba(242,202,80,0.8)]">
+              YOU
+            </div>
+            <div>
+              <div class="font-semibold text-primary">Live Auditor</div>
+              <span class="font-label-sm text-[10px] text-primary uppercase">APEX COMMAND</span>
+            </div>
+          </div>
+        </td>
+        <td class="py-space-md px-space-md">${badgeHtml}</td>
+        <td class="py-space-md px-space-md font-medium text-on-surface max-w-xs truncate">${desc}</td>
+        <td class="py-space-md px-space-md font-mono text-xs text-on-surface">
+          ${target}
+          <span class="block text-[10px] text-outline">${targetId}</span>
+        </td>
+        <td class="py-space-md px-space-md font-mono text-xs text-primary font-semibold">${nowTime}</td>
+        <td class="py-space-md px-space-md">
+          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[11px] font-label-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+            Committed
+          </span>
+        </td>
+        <td class="py-space-md px-space-md text-right">
+          <button type="button" onclick="event.stopPropagation(); openDetailsModal('${recId}')" class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm inline-flex items-center gap-1 font-semibold">
+            <span class="material-symbols-outlined text-[16px]">visibility</span>
+            Audit
+          </button>
+        </td>
+      `;
+
+      tbody.insertBefore(tr, tbody.firstChild);
+
+      // Flash highlight fade
+      setTimeout(() => {
+        tr.classList.remove('bg-primary/10');
+      }, 1500);
+
+      // Increment counters
+      const totEl = document.getElementById('metric-total');
+      const todayEl = document.getElementById('metric-today');
+      totEl.innerText = (parseInt(totEl.innerText.replace(',', '')) + 1).toLocaleString();
+      todayEl.innerText = (parseInt(todayEl.innerText) + 1).toString();
+
+      applyFilters();
+      showToast(`Audit Record #${recId} Committed to Immutable Ledger`);
+    }
+
+    // Verify Hashes
+    function verifyLedgerIntegrity() {
+      const btnText = document.getElementById('btn-verify-text');
+      btnText.innerText = 'Validating 14,892 Cryptographic Checksums...';
+      setTimeout(() => {
+        btnText.innerText = 'All SHA-256 Checksums Validated';
+        showToast('Cryptographic Enclave: 100% Zero Tamper Blocks Validated');
+        setTimeout(() => {
+          btnText.innerText = 'Verify Cryptographic Hashes';
+        }, 3500);
+      }, 900);
+    }
+
+    // Export Data Mock
+    function exportData(format) {
+      showToast(`Generating Tamper-Proof ${format} Ledger Archive...`);
+      setTimeout(() => {
+        showToast(`Downloaded POINTER_AUDIT_LEDGER_${new Date().toISOString().substring(0, 10)}.${format.toLowerCase()}`);
+      }, 1200);
+    }
+
+    // Search & Filter Handling
+    function handleSearch() {
+      const q = document.getElementById('audit-search-input').value.toLowerCase().trim();
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (q.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      state.searchQuery = q;
+      applyFilters();
+    }
+
+    function clearSearch() {
+      document.getElementById('audit-search-input').value = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      state.searchQuery = '';
+      applyFilters();
+    }
+
+    function resetCategoryFilter() {
+      document.getElementById('filter-category').value = 'ALL';
+      applyFilters();
+    }
+
+    function applyFilters() {
+      state.filterCategory = document.getElementById('filter-category').value;
+      state.filterActionType = document.getElementById('filter-action-type').value;
+      state.filterSort = document.getElementById('filter-sort').value;
+
+      // Update Pill Tag
+      const catPill = document.getElementById('active-category-pill');
+      const catPillText = document.getElementById('active-category-pill-text');
+      if (state.filterCategory !== 'ALL') {
+        catPill.classList.remove('hidden');
+        catPill.classList.add('inline-flex');
+        catPillText.innerText = 'Category: ' + state.filterCategory;
+      } else {
+        catPill.classList.add('hidden');
+        catPill.classList.remove('inline-flex');
+      }
+
+      const rows = Array.from(document.querySelectorAll('.audit-row'));
+      let visible = 0;
+
+      rows.forEach(row => {
+        const rowCategory = row.getAttribute('data-category');
+        const rowAction = row.getAttribute('data-action');
+        const textContent = row.innerText.toLowerCase();
+
+        let matchesSearch = true;
+        if (state.searchQuery) {
+          matchesSearch = textContent.includes(state.searchQuery);
+        }
+
+        let matchesCategory = (state.filterCategory === 'ALL' || rowCategory === state.filterCategory);
+        let matchesAction = (state.filterActionType === 'ALL' || rowAction === state.filterActionType);
+
+        if (matchesSearch && matchesCategory && matchesAction) {
+          row.style.display = '';
+          visible++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // Sorting
+      const tbody = document.getElementById('audit-table-body');
+      const visibleRows = rows.filter(r => r.style.display !== 'none');
+      visibleRows.sort((a, b) => {
+        const timeA = parseInt(a.getAttribute('data-timestamp') || '0');
+        const timeB = parseInt(b.getAttribute('data-timestamp') || '0');
+        return state.filterSort === 'LATEST' ? timeB - timeA : timeA - timeB;
+      });
+
+      visibleRows.forEach(r => tbody.appendChild(r));
+
+      document.getElementById('visible-count').innerText = visible.toString();
+      document.getElementById('total-count').innerText = rows.length.toString();
+    }
+
+    // Modal Details functions
+    function openDetailsModal(id) {
+      const data = recordDetails[id];
+      if (!data) return;
+
+      document.getElementById('modal-record-id').innerText = data.id;
+      document.getElementById('modal-admin-name').innerText = data.adminName;
+      document.getElementById('modal-admin-role').innerText = data.adminRole;
+      document.getElementById('modal-target').innerText = data.target;
+      document.getElementById('modal-target-id').innerText = data.targetId;
+      document.getElementById('modal-time').innerText = data.time;
+      document.getElementById('modal-description').innerText = data.description;
+      document.getElementById('modal-diff-prev').innerText = data.prev;
+      document.getElementById('modal-diff-next').innerText = data.next;
+
+      document.getElementById('audit-modal').classList.remove('hidden');
+    }
+
+    function closeDetailsModal() {
+      document.getElementById('audit-modal').classList.add('hidden');
+    }
+
+    // Toast Notification Maker
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'px-space-md py-space-sm rounded-xl bg-surface-container-high/95 backdrop-blur-2xl text-on-surface shadow-[0_10px_30px_rgba(0,0,0,0.85)] flex items-center gap-space-sm transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-auto border-l-2 border-primary';
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+        <span class="font-body-sm text-body-sm text-on-surface">${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 350);
+      }, 3500);
+    }
+
+    // Real Backend Synchronization for Audit Log
+    async function loadBackendAuditLog() {
+      if (!window.AdminAPI) return;
+      try {
+        const logs = await window.AdminAPI.getAuditLog({ limit: 50 });
+        if (Array.isArray(logs) && logs.length > 0) {
+          const tbody = document.getElementById('audit-table-body');
+          if (!tbody) return;
+
+          tbody.innerHTML = '';
+          logs.forEach(log => {
+            const tr = document.createElement('tr');
+            tr.className = 'audit-row hover:bg-surface-container-high/40 transition-colors border-b border-primary/10 cursor-pointer';
+            tr.setAttribute('data-category', log.targetType || 'SYSTEM');
+            tr.setAttribute('data-action', log.action || 'MODIFY');
+            tr.setAttribute('data-timestamp', new Date(log.createdAt).getTime());
+
+            const isBan = (log.action || '').includes('ban') || (log.action || '').includes('reject');
+            const isApprove = (log.action || '').includes('approve') || (log.action || '').includes('active');
+            const badgeColor = isBan ? 'bg-error/15 text-error border-error/30' :
+                               (isApprove ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' : 'bg-primary/15 text-primary border-primary/30');
+
+            tr.innerHTML = `
+              <td class="px-space-md py-3 font-mono text-label-sm text-primary">#LOG-${String(log.id).padStart(4, '0')}</td>
+              <td class="px-space-md py-3 text-body-sm text-on-surface">
+                <div class="font-medium">${log.adminName || 'Admin'}</div>
+                <div class="text-xs text-outline">${log.adminEmail || 'admin@pointer.app'}</div>
+              </td>
+              <td class="px-space-md py-3">
+                <span class="px-2 py-0.5 rounded-full text-xs font-semibold border ${badgeColor}">
+                  ${log.action.toUpperCase()}
+                </span>
+              </td>
+              <td class="px-space-md py-3 text-body-sm text-on-surface">
+                <div class="font-semibold text-secondary">${log.targetName || log.targetType}</div>
+                <div class="text-xs text-outline uppercase">${log.targetType} • ID: ${log.targetId}</div>
+              </td>
+              <td class="px-space-md py-3 text-body-sm text-outline font-mono">
+                ${log.createdAt ? log.createdAt.replace('T', ' ').substring(0, 19) : ''}
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          const vEl = document.getElementById('visible-count');
+          const tEl = document.getElementById('total-count');
+          if (vEl) vEl.innerText = logs.length.toString();
+          if (tEl) tEl.innerText = logs.length.toString();
+        }
+      } catch (err) {
+        console.warn('Failed to load backend audit logs:', err);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadBackendAuditLog);
+    } else {
+      loadBackendAuditLog();
+    }
+
+    window.addEventListener('adminLanguageChanged', (e) => {
+      const isMy = (e.detail.lang === 'my');
+      const actionPills = document.querySelectorAll('.action-pill');
+      if (actionPills.length >= 4) {
+        actionPills[0].textContent = isMy ? 'လုပ်ဆောင်ချက် အားလုံး' : 'All Actions';
+        actionPills[1].textContent = isMy ? 'လုံခြုံရေးနှင့် ပိတ်ပင်မှု' : 'Security & Ban';
+        actionPills[2].textContent = isMy ? 'ဆိုင်များ စီမံမှု' : 'Shop Governance';
+        actionPills[3].textContent = isMy ? 'အသုံးပြုသူ စီမံမှု' : 'User Lifecycle';
+      }
+    });
+  </script>
+</div></main></div>
+
+</body></html>

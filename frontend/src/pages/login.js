@@ -131,7 +131,11 @@ async function submit(form, action) {
   button.disabled = true;
   button.textContent = t('auth.working');
   try {
-    await action(Object.fromEntries(new FormData(form)));
+    const res = await action(Object.fromEntries(new FormData(form)));
+    if (res?.user?.role === 'admin') {
+      location.assign('/admin/dashboard.html');
+      return;
+    }
     location.assign(next);
   } catch (error) {
     // 422 carries the server's own validation message; other codes have a translated one.
@@ -160,6 +164,11 @@ async function renderSession() {
   if (user) {
     $('.auth__signed-name').textContent = user.name;
     setGreeting('Login');
+    if (user.role === 'admin') {
+      const cont = $('.auth__continue');
+      cont.href = '/admin/dashboard.html';
+      cont.textContent = 'Go to Admin Dashboard →';
+    }
   }
 }
 

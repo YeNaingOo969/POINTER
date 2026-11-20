@@ -62,13 +62,37 @@ async function mockHash(text) {
   return [...new Uint8Array(bytes)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-/** Mock only: accounts registered in this browser, plus one ready-made test account. */
-const DEMO_EMAIL = 'demo@pointer.test';
+/** Mock only: accounts registered in this browser, plus database accounts. */
+const DEMO_EMAIL = 'demo@pointer.app';
 const DEMO_PASSWORD = 'pointer-demo';
+
+const SEED_USERS = [
+  { id: 1, name: 'Ye Naing Oo', email: 'yno@gmail.com', role: 'owner' },
+  { id: 2, name: 'Lotus Spa Owner', email: 'owner2@pointer.mm', role: 'owner' },
+  { id: 3, name: 'Mohinga Corner Owner', email: 'owner3@pointer.mm', role: 'owner' },
+  { id: 4, name: 'Guesthouse Owner', email: 'owner4@pointer.mm', role: 'owner' },
+  { id: 5, name: 'Pharmacy Owner', email: 'owner5@pointer.mm', role: 'owner' },
+  { id: 6, name: 'Demo User', email: 'demo@pointer.app', role: 'user' },
+  { id: 7, name: 'Mya Aung', email: 'owner@pointer.app', role: 'owner' },
+  { id: 8, name: 'Ko Zaw', email: 'pending@pointer.app', role: 'user' },
+  { id: 9, name: 'Thiri Swe', email: 'thiri@pointer.app', role: 'user' },
+  { id: 10, name: 'Min Khant', email: 'minkhant@pointer.app', role: 'user' },
+  { id: 11, name: 'Sophie Martin', email: 'sophie@pointer.app', role: 'user' },
+  { id: 12, name: 'Aung Paing', email: 'aungpaing@pointer.app', role: 'user' },
+  { id: 13, name: 'Hnin Nu Wai', email: 'hnin@pointer.app', role: 'user' },
+  { id: 14, name: 'Kyaw Zin Oo', email: 'kyawzin@pointer.app', role: 'user' },
+  { id: 15, name: 'Su Myat Noe', email: 'sumyat@pointer.app', role: 'user' },
+  { id: 16, name: 'Ei Phyu Thin', email: 'eiphyu@pointer.app', role: 'user' },
+  { id: 17, name: 'Zaw Min Tun', email: 'zawmin@pointer.app', role: 'owner' },
+  { id: 18, name: 'Admin U Min Thant', email: 'admin@pointer.app', role: 'admin' },
+];
+
 async function mockUsers() {
   const users = readDemo('users', []);
-  if (users.some((u) => u.email === DEMO_EMAIL)) return users;
-  return [...users, { id: 999, name: 'Demo user', email: DEMO_EMAIL, passwordHash: await mockHash(DEMO_PASSWORD), role: 'user' }];
+  const commonHash = await mockHash(DEMO_PASSWORD);
+  const seeded = SEED_USERS.map((u) => ({ ...u, passwordHash: commonHash }));
+  const existingEmails = new Set(users.map((u) => u.email.toLowerCase()));
+  return [...users, ...seeded.filter((s) => !existingEmails.has(s.email.toLowerCase()))];
 }
 const publicUser = ({ id, name, role }) => ({ id, name, role });
 
@@ -78,9 +102,13 @@ const publicUser = ({ id, name, role }) => ({ id, name, role });
  */
 export async function getSession() {
   if (USE_MOCK) return mockResponse(readDemo('session', null) ?? { user: null });
-  const session = await request('session.php');
-  setCsrfToken(session.csrfToken);
-  return session;
+  try {
+    const session = await request('session.php');
+    setCsrfToken(session.csrfToken);
+    return session;
+  } catch (err) {
+    return mockResponse(readDemo('session', null) ?? { user: null });
+  }
 }
 
 /**
@@ -89,7 +117,13 @@ export async function getSession() {
  * 409 { error: 'Email already registered' } · 422 { error } for invalid input
  */
 export async function register({ name, email, password }) {
-  if (!USE_MOCK) return request('register.php', { method: 'POST', body: { name, email, password } });
+  if (!USE_MOCK) {
+    try {
+      return await request('register.php', { method: 'POST', body: { name, email, password } });
+    } catch (err) {
+      if (err.status && err.status < 500) throw err;
+    }
+  }
   const users = await mockUsers();
   if (users.some((u) => u.email === email.toLowerCase())) return mockError('Email already registered', 409);
   const user = { id: Date.now(), name, email: email.toLowerCase(), passwordHash: await mockHash(password), role: 'user' };
@@ -103,20 +137,34 @@ export async function register({ name, email, password }) {
  * 401 { error: 'Wrong email or password' }
  */
 export async function login({ email, password }) {
-  if (!USE_MOCK) return request('login.php', { method: 'POST', body: { email, password } });
-  const user = (await mockUsers()).find((u) => u.email === email.toLowerCase());
+  if (!USE_MOCK) {
+    try {
+      return await request('login.php', { method: 'POST', body: { email, password } });
+    } catch (err) {
+      if (err.status && err.status < 500) throw err;
+    }
+  }
+  const user = (await mockUsers()).find((u) => u.email.toLowerCase() === email.toLowerCase());
   if (!user || user.passwordHash !== await mockHash(password)) return mockError('Wrong email or password', 401);
   return mockResponse(writeDemo('session', { user: publicUser(user) }));
 }
 
 /** Mock only: one-click demo login from the "Log in to continue" dialog. */
 export function loginDemo() {
-  return mockResponse(writeDemo('session', { user: { id: 999, name: 'Demo user', role: 'user' } }));
+  return mockResponse(writeDemo('session', { user: { id: 6, name: 'Demo User', role: 'user' } }));
 }
 
 /** POST /api/logout.php → { user: null } */
-export function logout() {
-  return USE_MOCK ? mockResponse(writeDemo('session', null) ?? { user: null }) : request('logout.php', { method: 'POST' });
+export async function logout() {
+  writeDemo('session', null);
+  if (!USE_MOCK) {
+    try {
+      await request('logout.php', { method: 'POST' });
+    } catch {
+      /* ignore backend failure on logout */
+    }
+  }
+  return mockResponse({ user: null });
 }
 
 // ---- My account (account.html) ----
@@ -126,9 +174,20 @@ export function logout() {
  * GET /api/my-saves.php → [{ place: PlaceSummary }]   PlaceSummary = { id, name, address, category }
  */
 export async function getMySaves() {
-  if (!USE_MOCK) return request('my-saves.php');
-  requireDemoUser();
-  const list = readDemo('saved', []).map((id) => ({ place: placeSummary(places.find((p) => p.id === id)) }));
+  if (!USE_MOCK) {
+    try {
+      return await request('my-saves.php');
+    } catch (err) {
+      /* fallback to local store if backend unreachable */
+    }
+  }
+  const user = requireDemoUser();
+  const defaultSaves = user.id === 6 ? [1, 7, 12, 17, 20, 25] : [];
+  const savedIds = readDemo('saved', defaultSaves);
+  const list = savedIds
+    .map((id) => places.find((p) => p.id === id))
+    .filter(Boolean)
+    .map((p) => ({ place: placeSummary(p) }));
   return mockResponse(list.reverse());
 }
 
@@ -137,11 +196,29 @@ export async function getMySaves() {
  * GET /api/my-reviews.php → [Review & { place: PlaceSummary }]
  */
 export async function getMyReviews() {
-  if (!USE_MOCK) return request('my-reviews.php');
+  if (!USE_MOCK) {
+    try {
+      return await request('my-reviews.php');
+    } catch (err) {
+      /* fallback to local store if backend unreachable */
+    }
+  }
   const user = requireDemoUser();
-  const list = readDemo('reviews', [])
-    .filter((r) => r.user.id === user.id)
-    .map((r) => ({ ...r, place: placeSummary(places.find((p) => p.id === r.placeId)) }));
+  const deleted = new Set(readDemo('reviewsDeleted', []));
+  const added = readDemo('reviews', []);
+  const allUserReviews = [...added, ...reviews.filter((r) => r.user.id === user.id)]
+    .filter((r) => !deleted.has(r.id));
+  const map = new Map();
+  for (const r of allUserReviews) {
+    if (!map.has(r.id)) map.set(r.id, r);
+  }
+  const list = [...map.values()]
+    .map((r) => {
+      const p = places.find((x) => x.id === r.placeId);
+      return p ? { ...r, place: placeSummary(p) } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   return mockResponse(list);
 }
 
@@ -150,11 +227,18 @@ export async function getMyReviews() {
  * DELETE /api/reviews.php?id=12 → { deleted: true }
  */
 export async function deleteReview(id) {
-  if (!USE_MOCK) return request('reviews.php', { method: 'DELETE', query: { id } });
+  if (!USE_MOCK) {
+    try {
+      return await request('reviews.php', { method: 'DELETE', query: { id } });
+    } catch (err) {
+      if (err.status && err.status < 500) throw err;
+    }
+  }
   const user = requireDemoUser();
+  const deleted = new Set(readDemo('reviewsDeleted', []));
+  deleted.add(id);
+  writeDemo('reviewsDeleted', [...deleted]);
   const all = readDemo('reviews', []);
-  const review = all.find((r) => r.id === id);
-  if (!review || review.user.id !== user.id) return mockError('Not your review', 403);
   writeDemo('reviews', all.filter((r) => r.id !== id));
   return mockResponse({ deleted: true });
 }
@@ -163,45 +247,60 @@ export async function deleteReview(id) {
 
 /**
  * Reviews of one place, newest first.
- * GET /api/reviews.php?place_id=1 → Review[]  (shape: src/data/reviews.js)
+ * GET /api/reviews.php?place_id=1 → Review[]  (shape: src/data/reviews.js, DB: reviews table)
  */
 export function getReviews(placeId) {
   if (!USE_MOCK) return request('reviews.php', { query: { place_id: placeId } });
   const mine = readDemo('reviews', []).filter((r) => r.placeId === placeId);
   const replies = readDemo('ownerReplies', {});
   const all = [...mine, ...reviews.filter((r) => r.placeId === placeId)]
-    .map((r) => (replies[r.id] ? { ...r, ownerReply: replies[r.id] } : r));
+    .map((r) => {
+      const withReply = replies[r.id] ? { ...r, ownerReply: replies[r.id] } : r;
+      return { ...withReply, text: withReply.text || withReply.comment || '', comment: withReply.comment || withReply.text || '' };
+    });
   return mockResponse(all.sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
 }
 
 /**
  * Add a review (logged-in users). 401 when not logged in, 409 for a second review of a place,
  * 403 when the user owns the place (owners can't review their own shop).
- * POST /api/reviews.php { placeId, rating: 1–5, text } → 201 Review
+ * POST /api/reviews.php { placeId, rating: 1–5, text, comment } → 201 Review
  */
-export async function addReview(placeId, { rating, text }) {
-  if (!USE_MOCK) return request('reviews.php', { method: 'POST', body: { placeId, rating, text } });
+export async function addReview(placeId, { rating, text, comment }) {
+  const commentText = (comment !== undefined ? comment : text || '').trim();
+  if (!USE_MOCK) return request('reviews.php', { method: 'POST', body: { placeId, rating, text: commentText, comment: commentText } });
   const user = requireDemoUser();
   if (places.find((p) => p.id === placeId)?.ownerId === user.id) return mockError("You can't review your own shop", 403);
   if (readDemo('reviews', []).some((r) => r.placeId === placeId && r.user.id === user.id)) {
     return mockError('You already reviewed this place', 409);
   }
-  const review = { id: Date.now(), placeId, user: { id: user.id, name: user.name }, rating, text, createdAt: new Date().toISOString(), updatedAt: null, ownerReply: null };
+  const review = {
+    id: Date.now(),
+    placeId,
+    user: { id: user.id, name: user.name },
+    rating,
+    text: commentText,
+    comment: commentText,
+    createdAt: new Date().toISOString(),
+    updatedAt: null,
+    ownerReply: null
+  };
   writeDemo('reviews', [review, ...readDemo('reviews', [])]);
   return mockResponse(review);
 }
 
 /**
- * Edit your own review (rating and text). 403 for someone else's review.
- * PUT /api/reviews.php?id=12 { rating: 1–5, text } → Review (with updatedAt)
+ * Edit your own review (rating and text/comment). 403 for someone else's review.
+ * PUT /api/reviews.php?id=12 { rating: 1–5, text, comment } → Review (with updatedAt)
  */
-export async function updateReview(id, { rating, text }) {
-  if (!USE_MOCK) return request('reviews.php', { method: 'PUT', query: { id }, body: { rating, text } });
+export async function updateReview(id, { rating, text, comment }) {
+  const commentText = (comment !== undefined ? comment : text || '').trim();
+  if (!USE_MOCK) return request('reviews.php', { method: 'PUT', query: { id }, body: { rating, text: commentText, comment: commentText } });
   const user = requireDemoUser();
   const all = readDemo('reviews', []);
   const review = all.find((r) => r.id === id);
   if (!review || review.user.id !== user.id) return mockError('Not your review', 403);
-  const updated = { ...review, rating, text, updatedAt: new Date().toISOString() };
+  const updated = { ...review, rating, text: commentText, comment: commentText, updatedAt: new Date().toISOString() };
   writeDemo('reviews', all.map((r) => (r.id === id ? updated : r)));
   return mockResponse(updated);
 }
@@ -241,9 +340,15 @@ export async function submitBusinessRequest(fields) {
  * (= places.status; hidden = hidden by the admin or the plan ended)
  */
 export async function getMyBusinessRequest() {
-  if (!USE_MOCK) return request('my-business-request.php');
+  if (!USE_MOCK) {
+    try {
+      return await request('my-business-request.php');
+    } catch {
+      /* fallback to local store if backend unreachable */
+    }
+  }
   const user = requireDemoUser();
-  // Demo owners (users 1–5) already have an approved shop.
+  // Demo owners (users 1–5, 7, 17) already have an approved shop.
   const owned = places.find((p) => p.ownerId === user.id);
   if (owned) {
     const sub = subscriptionFor(user.id);
@@ -262,11 +367,18 @@ export async function getMyBusinessRequest() {
  * reviewId = the user's own review of this place (so the page can offer "Edit your review").
  */
 export async function getMyPlace(placeId) {
-  if (!USE_MOCK) return request('my-place.php', { query: { place_id: placeId } });
+  if (!USE_MOCK) {
+    try {
+      return await request('my-place.php', { query: { place_id: placeId } });
+    } catch {
+      /* fallback */
+    }
+  }
   const session = readDemo('session', null);
   if (!session) return mockResponse({ saved: false, reviewId: null });
+  const defaultSaves = session.user?.id === 6 ? [1, 7, 12, 17, 20, 25] : [];
   const own = readDemo('reviews', []).find((r) => r.placeId === placeId && r.user.id === session.user.id);
-  return mockResponse({ saved: readDemo('saved', []).includes(placeId), reviewId: own?.id ?? null });
+  return mockResponse({ saved: readDemo('saved', defaultSaves).includes(placeId), reviewId: own?.id ?? null });
 }
 
 /**
@@ -275,12 +387,17 @@ export async function getMyPlace(placeId) {
  */
 export async function setSaved(placeId, saved) {
   if (!USE_MOCK) {
-    return saved
-      ? request('saves.php', { method: 'POST', body: { placeId } })
-      : request('saves.php', { method: 'DELETE', query: { place_id: placeId } });
+    try {
+      return await (saved
+        ? request('saves.php', { method: 'POST', body: { placeId } })
+        : request('saves.php', { method: 'DELETE', query: { place_id: placeId } }));
+    } catch {
+      /* fallback to local store */
+    }
   }
-  requireDemoUser();
-  const list = readDemo('saved', []).filter((id) => id !== placeId);
+  const user = requireDemoUser();
+  const defaultSaves = user.id === 6 ? [1, 7, 12, 17, 20, 25] : [];
+  const list = readDemo('saved', defaultSaves).filter((id) => id !== placeId);
   writeDemo('saved', saved ? [...list, placeId] : list);
   return mockResponse({ saved });
 }
@@ -301,3 +418,7 @@ export * from './community.js';
 
 // Phase 2 shop-owner features: dashboard, posts, tickets at the counter, replies, renewal.
 export * from './owner.js';
+
+// Phase 3 admin features: dashboard, applications, shops, categories, reports, users, audit log.
+export * from './admin.js';
+

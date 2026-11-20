@@ -177,6 +177,16 @@ async function start() {
       return;
     }
     $('.account-hero__name').textContent = user.name;
+    if (user.role === 'admin') {
+      const hero = $('.account-hero__inner');
+      if (hero && !$('.account-admin-btn')) {
+        const adminBtn = el('a', 'app-button app-button--gold account-admin-btn', 'Admin Dashboard →');
+        adminBtn.href = '/admin/dashboard.html';
+        adminBtn.style.marginTop = '1rem';
+        adminBtn.style.display = 'inline-flex';
+        hero.append(adminBtn);
+      }
+    }
     [data.saves, data.reviews, data.business] = await Promise.all([getMySaves(), getMyReviews(), getMyBusinessRequest()]);
     // Tickets and blocks (phase 2) are extras: if they can't load, show the rest of the account.
     const [tickets, blocks] = await Promise.allSettled([getMyTickets(), getMyBlocks()]);

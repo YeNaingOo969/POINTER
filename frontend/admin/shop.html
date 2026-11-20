@@ -1,0 +1,1367 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"tertiary-fixed-dim":"#f4be53","surface-container-highest":"#353534","error-container":"#93000a","inverse-surface":"#e5e2e1","on-surface-variant":"#d0c5af","primary-fixed-dim":"#e9c349","surface-bright":"#3a3939","on-background":"#e5e2e1","secondary-fixed-dim":"#d4c78f","surface":"#131313","on-primary":"#3c2f00","primary-fixed":"#ffe088","surface-variant":"#353534","secondary-fixed":"#f1e3a9","surface-container-low":"#1c1b1b","surface-tint":"#e9c349","surface-container-high":"#2a2a2a","secondary-container":"#4f471b","on-secondary":"#383006","inverse-on-surface":"#313030","on-tertiary-fixed-variant":"#5e4200","on-secondary-fixed":"#211b00","inverse-primary":"#735c00","on-primary-container":"#554300","outline-variant":"#4d4635","tertiary":"#fdc659","on-tertiary-container":"#5b4000","secondary":"#d4c78f","error":"#ffb4ab","outline":"#99907c","on-primary-fixed-variant":"#574500","primary":"#f2ca50","on-secondary-fixed-variant":"#4f471b","background":"#131313","on-tertiary":"#412d00","surface-container":"#201f1f","on-secondary-container":"#c2b57f","on-surface":"#e5e2e1","on-primary-fixed":"#241a00","surface-container-lowest":"#0e0e0e","surface-dim":"#131313","tertiary-container":"#deaa41","primary-container":"#d4af37","on-error":"#690005","tertiary-fixed":"#ffdea6","on-error-container":"#ffdad6","on-tertiary-fixed":"#271900"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1.5rem","space-lg":"1.5rem","space-xl":"2.5rem","margin-mobile":"1.25rem","space-md":"1rem","space-sm":"0.5rem","gutter-mobile":"1rem","margin":"2.5rem","space-xs":"0.25rem"},"fontFamily":{"body-lg":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"display":["Playfair Display"],"body-md":["Plus Jakarta Sans"],"display-mobile":["Playfair Display"],"headline-lg":["Playfair Display"],"headline-md":["Playfair Display"],"headline-sm":["Playfair Display"],"label-sm":["Plus Jakarta Sans"],"title-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Playfair Display"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"0em","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","letterSpacing":"0.01em","fontWeight":"600"}],"label-lg":["13px",{"lineHeight":"18px","letterSpacing":"0.06em","fontWeight":"600"}],"display":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0.01em","fontWeight":"400"}],"display-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"0em","fontWeight":"500"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"600"}],"title-lg":["18px",{"lineHeight":"26px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"0em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"400"}]}}}};</script>  <script type="module" src="/admin/admin-auth.js"></script>
+</head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/90 backdrop-blur-2xl z-50 flex flex-col justify-between shadow-[0_4px_30px_rgba(0,0,0,0.5)]"><div class="flex flex-col"><div class="h-20 flex items-center px-space-lg gap-space-sm"><img alt="POINTER Luxury Gold Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrDDhvUSfekvjuZatnunKN4Nh12nHDoO7mQXorHyhZdnvNLc7vKirWkm8SdHeXfUAq1u_FY-HNqiLndX2DcS2Vdw7QWSQKNEnsd2DAbiiBxGFfRJfEBbhAk-4WYA_3I7sRlaH0-osGM6BZ9sIQIFr73H18X4wLmnMcPsTJiH-AGqkirBaDOgQu_Ntgc_uR4LbvyoGUL53c088Baw-aC6ITooRDSaStyrzte8yabRNVdY"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-wide leading-none">POINTER</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant font-medium mt-space-xs">LUXURY ADMIN CONSOLE</span></div></div><div class="h-px w-full bg-gradient-to-r from-primary-container/40 via-primary-container/10 to-transparent"></div><nav class="flex-1 px-space-md space-y-1 overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="dashboard" href="/admin/dashboard.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">dashboard</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဒက်ရှ်ဘုတ်</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="application" href="/admin/application.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">app_registration</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">လျှောက်ထားချက်များ</span>
+</a>
+<a aria-current="page" class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-300 bg-primary/20 text-primary font-semibold backdrop-blur-xl shadow-[0_0_15px_rgba(212,175,55,0.3)] ring-1 ring-primary/40" data-path="shop" href="/admin/shop.html">
+  <span class="material-symbols-outlined text-title-sm text-primary drop-shadow-[0_0_8px_currentColor] transition-transform group-hover:scale-110">storefront</span>
+  <span class="font-title-sm text-body-md text-on-surface group-hover:text-primary transition-colors">ဆိုင်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="public-place" href="/admin/publicplaces.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">location_city</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အများပြည်သူနေရာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="categories" href="/admin/category.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">category</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ကဏ္ဍများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="report" href="/admin/reports.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">analytics</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အစီရင်ခံစာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="users" href="/admin/user.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">group</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အသုံးပြုသူများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="audit-log" href="/admin/auditlog.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">history</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">စစ်ဆေးမှုမှတ်တမ်း</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30 mt-3 border-t border-surface-variant/30 pt-3" href="/home.html">
+  <span class="material-symbols-outlined text-title-sm text-outline transition-colors group-hover:text-primary group-hover:scale-110">home</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ပင်မဝက်ဘ်ဆိုက်</span>
+</a>
+</nav></div><div class="p-space-lg flex flex-col gap-space-md"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="logout" href="#"><span class="material-symbols-outlined text-error">logout</span><span class="font-title-md text-title-md">Logout</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/80 backdrop-blur-2xl z-40 shadow-[0_1px_12px_rgba(0,0,0,0.4)]"><div class="w-full h-full px-space-xl flex items-center justify-between gap-space-lg"><div class="flex items-center flex-1 max-w-lg"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span><input class="w-full bg-surface-container/70 text-on-surface placeholder-on-surface-variant font-body-sm text-body-sm pl-10 pr-4 py-2 rounded-full focus:outline-none transition-all duration-200" placeholder="Search shops, owners, sovereign assets..." type="text"></div></div><div class="flex items-center gap-space-lg"><button class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" type="button"><span class="material-symbols-outlined text-primary">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span></button><div class="h-8 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-md pl-space-xs"><div class="flex flex-col text-right"><span class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Admin U Min Thant</span><span class="font-label-sm text-label-sm text-primary font-medium tracking-wide uppercase">Chief Administrator • admin@pointer.app</span></div><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCMnE-JukkU6qixopvrGRqiZlmoL6aKxD7hgbasi07yVTypDRMIcmwtzTIakBH6tLxAXwTgAVurGjnZ65jasihyGMeWp77d7MkIQRpHzYTrQFBmo0AdGGvbp5tnqFfWFvK5dISD_RffScTKKUpT2Ovu4lixuIW9MbHlB5vEahombBt4KozzYC0r2QjM3JMrfgZG47bZzZqeAQ7yuhObdqypSYMLaKGacYXG8P5eZE"><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-surface"></span></div></div></div></div></header><main class="relative pt-20 w-full min-h-screen bg-surface px-space-xl py-space-lg flex-1"><div class="flex flex-col w-full text-on-surface">
+<!-- TOP HEADER & CONTROLS SECTION -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg mb-space-xl">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-base">storefront</span>
+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold" data-i18n="tagline">Sovereign Registry Control</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-baseline gap-space-sm">
+<span class="bg-gradient-to-r from-on-surface via-primary to-primary-container bg-clip-text text-transparent" data-i18n="pageTitle">Shop Management</span>
+
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1" data-i18n="pageSubtitle">Monitor, verify, and govern registered luxury boutique stores, high-jewelry ateliers, and sovereign owners across the union.</p>
+</div>
+<!-- Right Header Actions -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Language Pill Switcher -->
+<div class="flex items-center p-1 rounded-full bg-surface-container-low shadow-inner">
+<button class="px-space-md py-1 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-primary text-on-primary shadow-sm" id="langEnBtn" onclick="setLanguage('en')">
+          EN
+        </button>
+<button class="px-space-md py-1 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 text-on-surface-variant hover:text-on-surface" id="langMmBtn" onclick="setLanguage('mm')">
+          မြန်မာ
+        </button>
+</div>
+<!-- Export Report Button -->
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-surface-container-high/80 hover:bg-surface-container-highest text-primary font-title-md text-title-md transition-all duration-300 shadow-md hover:scale-[1.02]" onclick="triggerExportToast()">
+<span class="material-symbols-outlined text-lg">download</span>
+<span data-i18n="exportBtn">Export Ledger</span>
+</button>
+<!-- Register New Shop CTA -->
+<button class="flex items-center gap-space-xs px-space-lg py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-title-md text-title-md font-semibold transition-all duration-300 shadow-[0_0_24px_rgba(212,175,55,0.25)] hover:shadow-[0_0_32px_rgba(212,175,55,0.45)] hover:scale-[1.02]" onclick="openRegisterShopModal()">
+<span class="material-symbols-outlined text-lg">add_business</span>
+<span data-i18n="registerBtn">+ Register Boutique</span>
+</button>
+</div>
+</div>
+<!-- OVERVIEW METRICS: 4 LIQUID GLASS METRIC PANELS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-lg mb-space-xl">
+<!-- Card 1: Total Shops -->
+<div class="relative overflow-hidden p-space-lg rounded-xl bg-surface-container-low/70 backdrop-blur-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group" style="background: radial-gradient(at left top, rgba(212, 175, 55, 0.22) 0%, rgba(24, 22, 18, 0.92) 50%, rgba(12, 12, 14, 0.98) 100%); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: rgba(0, 0, 0, 0.6) 0px 10px 30px, rgba(243, 229, 171, 0.15) 0px 1px 1px inset;">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-primary/10 blur-2xl pointer-events-none group-hover:bg-primary/20 transition-all"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" data-i18n="totalShopsLabel">Total Boutiques</span>
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-xl">storefront</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-display text-display text-on-surface font-semibold tracking-tight" id="metricTotalShops">9</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">store</span> 9 Registered
+        </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="totalDesc">Pan-regional sovereign network</span>
+</div>
+</div>
+<!-- Card 2: Active Boutiques -->
+<div class="relative overflow-hidden p-space-lg rounded-xl bg-surface-container-low/70 backdrop-blur-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group" style="background: radial-gradient(at left top, rgba(233, 195, 73, 0.22) 0%, rgba(26, 23, 16, 0.92) 50%, rgba(12, 12, 14, 0.98) 100%); border: 1px solid rgba(233, 195, 73, 0.35); box-shadow: rgba(0, 0, 0, 0.6) 0px 10px 30px, rgba(243, 229, 171, 0.15) 0px 1px 1px inset;">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-primary-fixed-dim/10 blur-2xl pointer-events-none group-hover:bg-primary-fixed-dim/20 transition-all"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" data-i18n="activeShopsLabel">Active Boutiques</span>
+<div class="w-10 h-10 rounded-xl bg-primary-fixed-dim/15 flex items-center justify-center text-primary-fixed-dim group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-display text-display text-primary font-semibold tracking-tight" id="metricActiveShops">8</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">
+          88.9% Uptime
+        </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="activeDesc">Publicly discoverable on luxury map</span>
+</div>
+</div>
+<!-- Card 3: Hidden Boutiques -->
+<div class="relative overflow-hidden p-space-lg rounded-xl bg-surface-container-low/70 backdrop-blur-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group" style="background: radial-gradient(at left top, rgba(212, 199, 143, 0.2) 0%, rgba(24, 22, 18, 0.92) 50%, rgba(12, 12, 14, 0.98) 100%); border: 1px solid rgba(212, 199, 143, 0.3); box-shadow: rgba(0, 0, 0, 0.6) 0px 10px 30px, rgba(243, 229, 171, 0.12) 0px 1px 1px inset;">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-secondary/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" data-i18n="hiddenShopsLabel">Private / Hidden</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-xl">visibility_off</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-display text-display text-secondary font-semibold tracking-tight" id="metricHiddenShops">0</span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-2 py-0.5 rounded-full">
+          Vault Mode
+        </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="hiddenDesc">Preserved data; unlisted from search</span>
+</div>
+</div>
+<!-- Card 4: Pending Verification -->
+<div class="relative overflow-hidden p-space-lg rounded-xl bg-surface-container-low/70 backdrop-blur-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group" style="background: radial-gradient(at left top, rgba(253, 198, 89, 0.22) 0%, rgba(28, 23, 15, 0.92) 50%, rgba(12, 12, 14, 0.98) 100%); border: 1px solid rgba(253, 198, 89, 0.35); box-shadow: rgba(0, 0, 0, 0.6) 0px 10px 30px, rgba(243, 229, 171, 0.15) 0px 1px 1px inset;">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-tertiary/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" data-i18n="pendingShopsLabel">Pending Audits</span>
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-xl">hourglass_top</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-display text-display text-tertiary font-semibold tracking-tight" id="metricPendingShops">1</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-tertiary-container/20 px-2 py-0.5 rounded-full">
+          1 Action Required
+        </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="pendingDesc">Awaiting compliance &amp; vault credentials</span>
+</div>
+</div>
+</div>
+<!-- MULTI-FILTER & SEARCH CONTROL CONSOLE -->
+<div class="p-space-md sm:p-space-lg rounded-xl bg-surface-container-low/80 backdrop-blur-2xl shadow-xl mb-space-xl">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-xl pointer-events-none">search</span>
+<input class="w-full bg-surface-container-high/90 text-on-surface placeholder:text-on-surface-variant/60 font-body-sm text-body-sm pl-11 pr-10 py-3 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary shadow-inner transition-all duration-200" id="shopSearchInput" oninput="applyFilters()" placeholder="Search by boutique name, sovereign owner, or address..." type="text">
+<button class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" id="clearSearchBtn" onclick="clearSearch()">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<!-- Filters & Sorting Group -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Category Filter -->
+<div class="relative min-w-[220px] flex flex-col justify-center"><div class="relative"><label for="categoryFilter" class="absolute -top-2 left-2.5 px-1 bg-surface-container-low text-[10px] uppercase font-semibold text-primary tracking-wider z-10">Category</label><select class="w-full appearance-none text-on-surface font-body-sm text-body-sm pl-3.5 pr-8 py-3 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer transition-all duration-200" id="categoryFilter" onchange="applyFilters()" style="background-color: rgb(30, 30, 30); border: 1px solid rgba(212, 175, 55, 0.4); color: rgb(229, 226, 225); outline: none;"><option value="all" selected="" style="background-color: rgb(30, 30, 30); color: rgb(242, 202, 80); font-weight: 600;">All Categories</option><option value="Food & Drink" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Food &amp; Drink</option><option value="Stay" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Stay</option><option value="Shopping" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Shopping</option><option value="Health" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Health</option><option value="Beauty & Wellness" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Beauty &amp; Wellness</option><option value="Other" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Other</option></select><span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-primary pointer-events-none text-lg">expand_more</span></div></div>
+<!-- Sort By -->
+<div class="relative min-w-[170px]">
+<select class="w-full appearance-none bg-surface-container-high/90 text-on-surface font-body-sm text-body-sm pl-3.5 pr-8 py-3 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer transition-all duration-200" id="sortFilter" onchange="applyFilters()">
+<option data-i18n="sortLatest" value="latest">Latest Registration</option>
+<option data-i18n="sortRating" value="rating">Highest Rating</option>
+<option data-i18n="sortName" value="name">Shop Name (A-Z)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-primary pointer-events-none text-lg">sort</span>
+</div>
+<!-- Reset Button -->
+<button class="p-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center" onclick="resetAllFilters()" title="Reset Filters">
+<span class="material-symbols-outlined text-lg">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Status Tabs & Live Result Counter Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-md border-t border-surface-container-highest/60">
+<!-- Status Filter Tabs -->
+<div class="flex flex-wrap items-center gap-space-xs" id="statusFilterTabs">
+<button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-primary text-on-primary" data-status="all" onclick="setStatusFilter('all')">
+<span data-i18n="tabAll">All</span> <span class="opacity-80 text-xs" id="countAll">9</span>
+</button>
+<button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Active" onclick="setStatusFilter('Active')">
+<span data-i18n="tabActive">Active</span> <span class="opacity-80 text-xs" id="countActive">8</span>
+</button>
+<button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Hidden" onclick="setStatusFilter('Hidden')">
+<span data-i18n="tabHidden">Hidden</span> <span class="opacity-80 text-xs" id="countHidden">0</span>
+</button>
+<button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Pending" onclick="setStatusFilter('Pending')">
+<span data-i18n="tabPending">Pending</span> <span class="opacity-80 text-xs" id="countPending">1</span>
+</button>
+<button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Expired" onclick="setStatusFilter('Expired')">
+<span data-i18n="tabExpired">Expired</span> <span class="opacity-80 text-xs" id="countExpired">0</span>
+</button>
+</div>
+<!-- Result Counter -->
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary">data_thresholding</span>
+<span data-i18n="showing">Showing</span>
+<strong class="text-on-surface font-semibold" id="visibleShopCount">0</strong>
+<span data-i18n="ofShops">of</span>
+<strong class="text-on-surface font-semibold" id="totalShopCount">9</strong>
+<span data-i18n="boutiquesLabel">luxury boutiques</span>
+</div>
+</div>
+</div>
+<!-- SHOP CARDS 3-COLUMN RESPONSIVE BENTO GRID -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg mb-space-xl" id="shopGrid"></div>
+<!-- EMPTY STATE CONTAINER (Hidden by default) -->
+<div class="flex-col items-center justify-center py-20 px-space-md text-center bg-surface-container-low/50 backdrop-blur-xl rounded-xl flex" id="emptyState">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-3xl">store_mall_directory</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs" data-i18n="emptyTitle">No Luxury Boutiques Match</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-space-lg" data-i18n="emptyDesc">Adjust your search inquiry, tier selection, or status filters to discover registered establishments.</p>
+<button class="px-space-lg py-2 rounded-full bg-primary text-on-primary font-title-md text-title-md font-semibold" onclick="resetAllFilters()">
+      Reset All Filters
+    </button>
+</div>
+<!-- ========================================================================= -->
+<!-- MODAL 1: VIEW DETAILS MODAL -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-surface-container-lowest/85 backdrop-blur-xl p-space-md overflow-y-auto" id="viewModal">
+<div class="relative w-full max-w-3xl rounded-2xl bg-surface-container-low/95 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden my-auto max-h-[92vh] flex flex-col">
+<!-- Modal Header Cover with Scrim -->
+<div class="relative h-60 w-full overflow-hidden shrink-0">
+<div class="w-full h-full bg-cover bg-center transition-all duration-500 scale-105" id="viewModalCover"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-black/60"></div>
+<!-- Top Right Close Button -->
+<button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container-lowest/80 text-on-surface hover:text-primary flex items-center justify-center backdrop-blur-md transition-colors" onclick="closeModal('viewModal')">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+<!-- Status & Monogram on Cover Header -->
+<div class="absolute bottom-4 left-6 right-6 flex items-end justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-16 h-16 rounded-xl bg-surface-container-highest shadow-2xl flex items-center justify-center p-2 shrink-0" id="viewModalLogo">
+<!-- Monogram / Icon -->
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold" id="viewModalCategory"></span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold leading-tight drop-shadow-md" id="viewModalTitle"></h2>
+</div>
+</div>
+<div id="viewModalStatusBadge"></div>
+</div>
+</div>
+<!-- Scrollable Modal Body -->
+<div class="p-space-lg overflow-y-auto space-y-space-lg flex-1">
+<!-- Overview Narrative -->
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="modalNarrative">Curated Narrative</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" id="viewModalDescription"></p>
+</div>
+<!-- Key Ledger Information Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Owner & Contact Card -->
+<div class="p-space-md rounded-xl bg-surface-container-high/60 space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold block" data-i18n="modalOwnerInfo">Sovereign Credentials</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-base">person</span>
+<span class="font-body-md text-body-md font-medium" id="viewModalOwner"></span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-base">mail</span>
+<span class="font-body-sm text-body-sm truncate" id="viewModalEmail"></span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-base">call</span>
+<span class="font-body-sm text-body-sm" id="viewModalPhone"></span>
+</div>
+</div>
+<!-- Tier & Audit Card -->
+<div class="p-space-md rounded-xl bg-surface-container-high/60 space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold block" data-i18n="modalMembership">Membership &amp; Audit</span>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="tierLabel">Tier Classification:</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary px-2 py-0.5 rounded-full bg-primary/10" id="viewModalTier"></span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="ratingLabel">Verified Rating:</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface" id="viewModalRating"></span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="regDateLabel">Registered On:</span>
+<span class="font-body-sm text-body-sm text-on-surface" id="viewModalDate"></span>
+</div>
+</div>
+</div>
+<!-- Location & Map Action -->
+<div class="p-space-md rounded-xl bg-surface-container-high/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">location_on</span>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold block" data-i18n="physicalAddress">Sanctuary Address</span>
+<p class="font-body-md text-body-md text-on-surface" id="viewModalAddress"></p>
+</div>
+</div>
+<a class="shrink-0 flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary font-label-sm text-label-sm font-semibold transition-all duration-200" href="#" id="viewModalMapLink" target="_blank">
+<span class="material-symbols-outlined text-sm">explore</span>
+<span data-i18n="openMap">Open Coordinates</span>
+</a>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-space-md px-space-lg bg-surface-container-lowest flex items-center justify-between border-t border-surface-container-highest">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono" id="viewModalShopId">ID: PTR-BOUTIQUE-000</span>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant font-title-md text-title-md" onclick="closeModal('viewModal')">
+            Close
+          </button>
+<button class="px-space-lg py-1.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md font-semibold transition-all" id="viewModalEditBtn">
+            Edit Sanctuary
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODAL 2: EDIT BOUTIQUE INFORMATION MODAL -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-surface-container-lowest/85 backdrop-blur-xl p-space-md overflow-y-auto" id="editModal">
+<div class="relative w-full max-w-2xl rounded-2xl bg-surface-container-low/95 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden my-auto max-h-[92vh] flex flex-col">
+<!-- Header -->
+<div class="p-space-lg bg-surface-container-lowest border-b border-surface-container-highest flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold" data-i18n="editModalTag">Executive Modification</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold" data-i18n="editModalTitle">Edit Boutique Profile</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center" onclick="closeModal('editModal')">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Form Body -->
+<form class="p-space-lg overflow-y-auto space-y-space-md flex-1" id="editShopForm" onsubmit="handleEditFormSubmit(event)">
+<input id="editFormShopId" type="hidden">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Shop Name -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formShopName">Boutique Name *</label>
+<input class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormName" required="" type="text">
+</div>
+<!-- Category -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formCategory">Classification (DB: category_id) *</label>
+<select class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormCategory" required="" style="background-color: rgb(30, 30, 30); border: 1px solid rgba(212, 175, 55, 0.25); color: rgb(229, 226, 225);">
+<option value="1" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Food &amp; Drink (Category ID: 1)</option>
+<option value="2" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Stay (Category ID: 2)</option>
+<option value="3" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Places to Visit (Category ID: 3)</option>
+<option value="4" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Shopping (Category ID: 4)</option>
+<option value="5" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Health (Category ID: 5)</option>
+<option value="6" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Beauty &amp; Wellness (Category ID: 6)</option>
+<option value="7" style="background-color: rgb(30, 30, 30); color: rgb(229, 226, 225);">Other (Category ID: 7)</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Owner Name -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formOwner">Sovereign Custodian *</label>
+<input class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormOwner" required="" type="text">
+</div>
+<!-- Membership Tier -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formTier">Membership Tier *</label>
+<select class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormTier" required="">
+<option value="Diamond Tier (Active)">Diamond Tier (Active)</option>
+<option value="Platinum Tier (Active)">Platinum Tier (Active)</option>
+<option value="Gold Tier (Active)">Gold Tier (Active)</option>
+<option value="VIP Tier (Pending Review)">VIP Tier (Pending Review)</option>
+<option value="Platinum Tier (Expired Grace Period)">Platinum Tier (Expired)</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Email -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formEmail">Concierge Email *</label>
+<input class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormEmail" required="" type="email">
+</div>
+<!-- Phone -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formPhone">Private Phone *</label>
+<input class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormPhone" required="" type="text">
+</div>
+</div>
+<!-- Address -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formAddress">Sanctuary Address *</label>
+<input class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormAddress" required="" type="text">
+</div>
+<!-- Description Narrative -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold mb-1" data-i18n="formDesc">Curated Overview Description</label>
+<textarea class="w-full bg-surface-container-high text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary font-body-sm text-body-sm" id="editFormDesc" rows="3"></textarea>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-md border-t border-surface-container-highest">
+<button class="px-space-md py-2 rounded-full bg-surface-container-high text-on-surface-variant font-title-md text-title-md hover:text-on-surface" onclick="closeModal('editModal')" type="button">
+            Cancel
+          </button>
+<button class="px-space-lg py-2 rounded-full bg-primary text-on-primary font-title-md text-title-md font-semibold hover:bg-primary-container shadow-md" type="submit">
+            Save Sovereign Records
+          </button>
+</div>
+</form>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODAL 3: HIDE / UNHIDE CONFIRMATION MODAL -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-surface-container-lowest/85 backdrop-blur-xl p-space-md" id="hideConfirmModal">
+<div class="relative w-full max-w-lg rounded-2xl bg-surface-container-low/95 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden p-space-lg flex flex-col">
+<div class="flex items-center gap-space-md mb-space-md">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" id="hideConfirmIcon">
+<!-- Injected via JS -->
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold" data-i18n="visibilityGovernance">Visibility Governance</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="hideConfirmTitle"></h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed" id="hideConfirmMessage"></p>
+<!-- Crucial Administrative Preservation Note -->
+<div class="p-space-md rounded-xl bg-surface-container-high/80 mb-space-lg flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">shield</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-normal" data-i18n="preservationNote">Data Preservation Assurance: Modifying public visibility only toggles client application presentation. All registered catalog assets, ledger invoices, and sovereign owner identity documents remain immutable in the cold database.</p>
+</div>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-title-md text-title-md" onclick="closeModal('hideConfirmModal')">
+          Cancel
+        </button>
+<button class="px-space-lg py-2 rounded-full font-title-md text-title-md font-semibold transition-all" id="hideConfirmActionBtn">
+          Confirm Action
+        </button>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed bottom-8 right-8 z-50 flex flex-col gap-2 pointer-events-none" id="toastContainer"></div>
+</div>
+<!-- INLINE JAVASCRIPT: DATA & INTERACTION LOGIC -->
+<script>
+  // Initial Rich Database of Boutique Establishments
+  const initialShops = [
+    {
+      id: "PTR-020",
+      name: "Golden Bean Café",
+      nameMm: "ရွှေပဲ ကော်ဖီဆိုင်",
+      category: "Food & Drink",
+      categoryMm: "အစားအသောက်နှင့် အဖျော်ယမကာ",
+      owner: "Ye Naing Oo",
+      ownerMm: "ကိုရဲနိုင်ဦး",
+      email: "yno@gmail.com",
+      phone: "+95 9 5123 4567",
+      address: "No. 45, Kandawgyi Ring Road, Bahan, Yangon",
+      addressMm: "အမှတ် ၄၅၊ ကန်တော်ကြီးပတ်လမ်း၊ ဗဟန်းမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Active)",
+      rating: 4.7,
+      reviewsCount: 3,
+      regDate: "15 Nov 2026",
+      status: "Active",
+      description: "Demo shop: a cosy café near Kandawgyi with iced coffee and snacks.",
+      coverAlt: "Cozy modern cafe interior with espresso machines and wooden tables near the lake",
+      icon: "local_cafe"
+    },
+    {
+      id: "PTR-021",
+      name: "Lotus Nail Spa",
+      nameMm: "ကြာပန်း ခြေသည်းလက်သည်းနှင့် စပါ",
+      category: "Beauty & Wellness",
+      categoryMm: "အလှအပနှင့် ကျန်းမာရေး",
+      owner: "Lotus Spa Owner",
+      ownerMm: "ကြာပန်း စပါ ပိုင်ရှင်",
+      email: "owner2@pointer.mm",
+      phone: "+95 9 7788 1234",
+      address: "No. 12, Inya Road, Kamayut, Yangon",
+      addressMm: "အမှတ် ၁၂၊ အင်းယားလမ်း၊ ကမာရွတ်မြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Active)",
+      rating: 5.0,
+      reviewsCount: 2,
+      regDate: "15 Nov 2026",
+      status: "Active",
+      description: "Demo shop: nails, massage and thanaka treatments.",
+      coverAlt: "Luxurious beauty nail spa and wellness treatment interior with calming lights",
+      icon: "spa"
+    },
+    {
+      id: "PTR-022",
+      name: "Shwe Mohinga Corner",
+      nameMm: "ရွှေမုန့်ဟင်းခါး ထောင့်",
+      category: "Food & Drink",
+      categoryMm: "အစားအသောက်နှင့် အဖျော်ယမကာ",
+      owner: "Mohinga Corner Owner",
+      ownerMm: "ရွှေမုန့်ဟင်းခါး ပိုင်ရှင်",
+      email: "owner3@pointer.mm",
+      phone: "+95 9 7981 1234",
+      address: "Corner of 19th & Mahabandoola Road, Latha, Yangon",
+      addressMm: "၁၉ လမ်းနှင့် မဟာဗန္ဓုလလမ်းထောင့်၊ လသာမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Active)",
+      rating: 4.5,
+      reviewsCount: 2,
+      regDate: "15 Nov 2026",
+      status: "Active",
+      description: "Traditional Yangon breakfast spot: crispy fritters, duck egg mohinga, and fresh shan noodles.",
+      coverAlt: "Popular morning mohinga stall with steaming hot soup cauldrons and fresh fritters",
+      icon: "restaurant"
+    },
+    {
+      id: "PTR-023",
+      name: "Kandaw Lake Guesthouse",
+      nameMm: "ကန်တော်ရိပ် ဧည့်ရိပ်သာ",
+      category: "Stay",
+      categoryMm: "တည်းခိုရန်နေရာများ",
+      owner: "Guesthouse Owner",
+      ownerMm: "ကန်တော်ရိပ် ဧည့်ရိပ်သာ ပိုင်ရှင်",
+      email: "owner4@pointer.mm",
+      phone: "+95 9 4500 7712",
+      address: "No. 8, Natmauk Road, Bahan, Yangon",
+      addressMm: "အမှတ် ၈၊ နတ်မောက်လမ်း၊ ဗဟန်းမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Active)",
+      rating: 4.5,
+      reviewsCount: 2,
+      regDate: "15 Nov 2026",
+      status: "Active",
+      description: "Boutique guesthouse overlooking Kandawgyi Lake with rooftop views of Shwedagon.",
+      coverAlt: "Charming boutique guesthouse overlooking tranquil lake garden at sunset",
+      icon: "hotel"
+    },
+    {
+      id: "PTR-024",
+      name: "Pyay Road Pharmacy",
+      nameMm: "ပြည်လမ်း ဆေးဆိုင်",
+      category: "Health",
+      categoryMm: "ကျန်းမာရေးနှင့် ဆေးဝါး",
+      owner: "Pharmacy Owner",
+      ownerMm: "ပြည်လမ်း ဆေးဆိုင် ပိုင်ရှင်",
+      email: "owner5@pointer.mm",
+      phone: "+95 9 2500 4455",
+      address: "No. 104, Pyay Road, Kamayut, Yangon",
+      addressMm: "အမှတ် ၁၀၄၊ ပြည်လမ်း၊ ကမာရွတ်မြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Active)",
+      rating: 5.0,
+      reviewsCount: 1,
+      regDate: "15 Nov 2026",
+      status: "Active",
+      description: "24-hour community pharmacy offering licensed prescription drugs, emergency medicine, and personal care supplies.",
+      coverAlt: "Well-stocked modern pharmacy interior with clean shelving and medicine counters",
+      icon: "local_pharmacy"
+    },
+    {
+      id: "PTR-025",
+      name: "Mya Tea House",
+      nameMm: "မြလက်ဖက်ရည်ဆိုင်",
+      category: "Food & Drink",
+      categoryMm: "အစားအသောက်နှင့် အဖျော်ယမကာ",
+      owner: "Mya Aung",
+      ownerMm: "ဦးမြအောင်",
+      email: "owner@pointer.app",
+      phone: "+95 9 450 123 456",
+      address: "No. 12, 31st Street, Kyauktada, Yangon",
+      addressMm: "အမှတ် ၁၂၊ ၃၁ လမ်း၊ ကျောက်တံတားမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Platinum Tier (Active - 12 Months)",
+      rating: 5.0,
+      reviewsCount: 2,
+      regDate: "07 Nov 2026",
+      status: "Active",
+      description: "Family tea shop: mohinga, samosas and steamed buns, a short walk from Sule Pagoda.",
+      coverAlt: "Classic downtown Yangon tea house with artisanal milk tea and fresh samosas",
+      icon: "emoji_food_beverage"
+    },
+    {
+      id: "PTR-026",
+      name: "Mya Grocery",
+      nameMm: "မြကုန်စုံဆိုင်",
+      category: "Shopping",
+      categoryMm: "စျေးဝယ်ရန်နေရာများ",
+      owner: "Mya Aung",
+      ownerMm: "ဦးမြအောင်",
+      email: "owner@pointer.app",
+      phone: "+95 9 450 123 456",
+      address: "No. 88, 19th Street (Middle Block), Latha, Yangon",
+      addressMm: "အမှတ် ၈၈၊ ၁၉ လမ်း (အလယ်ဘလောက်)၊ လသာမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Active)",
+      rating: 4.5,
+      reviewsCount: 2,
+      regDate: "07 Nov 2026",
+      status: "Active",
+      description: "Fresh local vegetables, dry goods, snacks and household essentials in Chinatown.",
+      coverAlt: "Vibrant neighborhood grocery store packed with fresh produce and consumer goods",
+      icon: "local_grocery_store"
+    },
+    {
+      id: "PTR-027",
+      name: "Pending Noodle Shop",
+      nameMm: "လျှောက်ထားဆဲ ခေါက်ဆွဲဆိုင်",
+      category: "Food & Drink",
+      categoryMm: "အစားအသောက်နှင့် အဖျော်ယမကာ",
+      owner: "Ko Zaw",
+      ownerMm: "ကိုဇော်",
+      email: "pending@pointer.app",
+      phone: "+95 9 770 123 456",
+      address: "No. 5, Anawrahta Road, Latha, Yangon",
+      addressMm: "အမှတ် ၅၊ အနော်ရထာလမ်း၊ လသာမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Gold Tier (Pending Approval)",
+      rating: 0.0,
+      reviewsCount: 0,
+      regDate: "17 Nov 2026",
+      status: "Pending",
+      description: "Shan noodles and sticky rice, opening soon near the market.",
+      coverAlt: "New artisan Shan noodle shop storefront preparing for grand opening",
+      icon: "ramen_dining"
+    },
+    {
+      id: "PTR-028",
+      name: "Yangon Heritage Books & Crafts",
+      nameMm: "ရန်ကုန် အမွေအနှစ် စာအုပ်နှင့် လက်မှုပစ္စည်း",
+      category: "Other",
+      categoryMm: "အခြား / လက်မှုပစ္စည်း",
+      owner: "Zaw Min Tun",
+      ownerMm: "ဦးဇော်မင်းထွန်း",
+      email: "zawmin@pointer.app",
+      phone: "+95 9 780 112 233",
+      address: "No. 114, Pansodan Street (Middle Block), Kyauktada, Yangon",
+      addressMm: "အမှတ် ၁၁၄၊ ပန်းဆိုးတန်းလမ်း (အလယ်ဘလောက်)၊ ကျောက်တံတားမြို့နယ်၊ ရန်ကုန်",
+      membershipTier: "Silver Tier (Active - 1 Month)",
+      rating: 5.0,
+      reviewsCount: 2,
+      regDate: "10 Nov 2026",
+      status: "Active",
+      description: "Vintage books, Yangon historic maps, antique postcards, and local artisanal handicraft souvenirs.",
+      coverAlt: "Atmospheric heritage bookstore on Pansodan street with antique maps and rare books",
+      icon: "menu_book"
+    }
+  ];
+
+  // Global State
+  let shopsData = [...initialShops];
+  let currentLanguage = 'en';
+  let activeStatusFilter = 'all';
+  let pendingActionShopId = null;
+
+  // Myanmar Translations Map
+  const translations = {
+    en: {
+      tagline: "Sovereign Registry Control",
+      pageTitle: "Shop Management",
+      pageTitleMm: "| ဆိုင်များ စီမံခန့်ခွဲမှု",
+      pageSubtitle: "Monitor, verify, and govern registered luxury boutique stores, high-jewelry ateliers, and sovereign owners across the union.",
+      exportBtn: "Export Ledger",
+      registerBtn: "+ Register Boutique",
+      totalShopsLabel: "Total Boutiques",
+      totalDesc: "Pan-regional sovereign network",
+      activeShopsLabel: "Active Boutiques",
+      activeDesc: "Publicly discoverable on luxury map",
+      hiddenShopsLabel: "Private / Hidden",
+      hiddenDesc: "Preserved data; unlisted from search",
+      pendingShopsLabel: "Pending Audits",
+      pendingDesc: "Awaiting compliance & vault credentials",
+      catAll: "All Categories",
+      catJewelry: "Luxury Jewelry & Watches",
+      catFashion: "Haute Couture & Fashion",
+      catDining: "Fine Dining & Wines",
+      catAntiques: "Art & Antiques",
+      catSupercars: "Supercar Consignment",
+      sortLatest: "Latest Registration",
+      sortRating: "Highest Rating",
+      sortName: "Shop Name (A-Z)",
+      tabAll: "All",
+      tabActive: "Active",
+      tabHidden: "Hidden",
+      tabPending: "Pending",
+      tabExpired: "Expired",
+      showing: "Showing",
+      ofShops: "of",
+      boutiquesLabel: "luxury boutiques",
+      viewBtn: "View Details",
+      editBtn: "Edit Profile",
+      hideBtn: "Hide Shop",
+      unhideBtn: "Unhide Shop",
+      emptyTitle: "No Luxury Boutiques Match",
+      emptyDesc: "Adjust your search inquiry, tier selection, or status filters to discover registered establishments.",
+      modalNarrative: "Curated Narrative",
+      modalOwnerInfo: "Sovereign Credentials",
+      modalMembership: "Membership & Audit",
+      tierLabel: "Tier Classification:",
+      ratingLabel: "Verified Rating:",
+      regDateLabel: "Registered On:",
+      physicalAddress: "Sanctuary Address",
+      openMap: "Open Coordinates",
+      editModalTag: "Executive Modification",
+      editModalTitle: "Edit Boutique Profile",
+      formShopName: "Boutique Name *",
+      formCategory: "Classification *",
+      formOwner: "Sovereign Custodian *",
+      formTier: "Membership Tier *",
+      formEmail: "Concierge Email *",
+      formPhone: "Private Phone *",
+      formAddress: "Sanctuary Address *",
+      formDesc: "Curated Overview Description",
+      visibilityGovernance: "Visibility Governance",
+      preservationNote: "Data Preservation Assurance: Modifying public visibility only toggles client application presentation. All registered catalog assets, ledger invoices, and sovereign owner identity documents remain immutable in the cold database."
+    },
+    mm: {
+      tagline: "ဗဟို မှတ်ပုံတင် ထိန်းချုပ်ရေးစနစ်",
+      pageTitle: "ဆိုင်များ စီမံခန့်ခွဲမှု",
+      pageTitleMm: "| Luxury Shop Registry",
+      pageSubtitle: "မှတ်ပုံတင်ထားသော အဆင့်မြင့် ကျောက်မျက်၊ ဖက်ရှင်၊ စားသောက်ဆိုင်နှင့် ပိုင်ရှင်များ၏ အချက်အလက်များကို စစ်ဆေးကြီးကြပ်ပါ။",
+      exportBtn: "အစီရင်ခံစာ ထုတ်ယူရန်",
+      registerBtn: "+ ဆိုင်အသစ် မှတ်ပုံတင်ရန်",
+      totalShopsLabel: "ဆိုင်စုစုပေါင်း",
+      totalDesc: "နိုင်ငံတစ်ဝှမ်း ချိတ်ဆက်ထားသော ဆိုင်များ",
+      activeShopsLabel: "လည်ပတ်နေသော ဆိုင်များ",
+      activeDesc: "ဧည့်သည်များ တိုက်ရိုက် ရှာဖွေနိုင်သည်",
+      hiddenShopsLabel: "ခေတ္တ ဝှက်ထားသော ဆိုင်များ",
+      hiddenDesc: "အချက်အလက် မပျက်စီးဘဲ စာရင်းမှ ဖျောက်ထားသည်",
+      pendingShopsLabel: "စိစစ်ဆဲ ဆိုင်များ",
+      pendingDesc: "အတည်ပြုချက် စောင့်ဆိုင်းနေသော ဆိုင်များ",
+      catAll: "ကဏ္ဍအားလုံး",
+      catJewelry: "ကျောက်မျက်နှင့် နာရီများ",
+      catFashion: "ဖက်ရှင်နှင့် လက်ချုပ်ဝတ်စုံ",
+      catDining: "စားသောက်ဖွယ်နှင့် ဝိုင်",
+      catAntiques: "အနုပညာနှင့် ရှေးဟောင်းပစ္စည်း",
+      catSupercars: "စူပါကား အရောင်းစင်တာ",
+      sortLatest: "နောက်ဆုံး မှတ်ပုံတင်မှု",
+      sortRating: "အမြင့်ဆုံး အဆင့်သတ်မှတ်ချက်",
+      sortName: "ဆိုင်အမည် (က မှ အ)",
+      tabAll: "အားလုံး",
+      tabActive: "လည်ပတ်ဆဲ",
+      tabHidden: "ဝှက်ထားဆဲ",
+      tabPending: "စိစစ်ဆဲ",
+      tabExpired: "သက်တမ်းကုန်",
+      showing: "ပြသနေသည်",
+      ofShops: "စုစုပေါင်း",
+      boutiquesLabel: "ဆိုင်",
+      viewBtn: "အသေးစိတ်ကြည့်ရန်",
+      editBtn: "ပြင်ဆင်ရန်",
+      hideBtn: "ဆိုင်ဖျောက်ထားရန်",
+      unhideBtn: "ပြန်လည်ဖော်ပြရန်",
+      emptyTitle: "ရှာဖွေမှုနှင့် ကိုက်ညီသော ဆိုင်မရှိပါ",
+      emptyDesc: "ကျေးဇူးပြု၍ စကားလုံး သို့မဟုတ် အမျိုးအစား ရွေးချယ်မှုကို ပြင်ဆင်ပြီး ထပ်မံရှာဖွေပါ။",
+      modalNarrative: "ဆိုင်အကြောင်း မိတ်ဆက်",
+      modalOwnerInfo: "ပိုင်ရှင်အချက်အလက်",
+      modalMembership: "အသင်းဝင်အဆင့်နှင့် စစ်ဆေးမှု",
+      tierLabel: "အဆင့်ခွဲခြားမှု -",
+      ratingLabel: "စစ်ဆေးပြီး အဆင့်သတ်မှတ်ချက် -",
+      regDateLabel: "မှတ်ပုံတင်သည့်နေ့ -",
+      physicalAddress: "ဆိုင်တည်နေရာ လိပ်စာ",
+      openMap: "မြေပုံတွင် ကြည့်ရန်",
+      editModalTag: "အချက်အလက် ပြင်ဆင်ခြင်း",
+      editModalTitle: "ဆိုင်အချက်အလက်များ ပြင်ဆင်ရန်",
+      formShopName: "ဆိုင်အမည် *",
+      formCategory: "အမျိုးအစား *",
+      formOwner: "ပိုင်ရှင်အမည် *",
+      formTier: "အသင်းဝင်အဆင့် *",
+      formEmail: "အီးမေးလ် *",
+      formPhone: "ဖုန်းနံပါတ် *",
+      formAddress: "တည်နေရာ လိပ်စာ *",
+      formDesc: "ဆိုင်အကြောင်း အကျဉ်းချုပ်",
+      visibilityGovernance: "ဖော်ပြမှု အခြေအနေ ထိန်းချုပ်ခြင်း",
+      preservationNote: "ဒေတာ ထိန်းသိမ်းမှု အာမခံချက် - ဆိုင်အား ဖျောက်ထားခြင်းသည် အများပြည်သူ ရှာဖွေမှုမှသာ ဖယ်ရှားမည်ဖြစ်ပြီး ပိုင်ရှင်အချက်အလက်၊ ကုန်ပစ္စည်းစာရင်းနှင့် ငွေပေးချေမှုမှတ်တမ်းအားလုံးကို လုံခြုံစွာ ဆက်လက်သိမ်းဆည်းထားမည် ဖြစ်ပါသည်။"
+    }
+  };
+
+  // Switch Language
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    const enBtn = document.getElementById('langEnBtn');
+    const mmBtn = document.getElementById('langMmBtn');
+    
+    if (lang === 'en') {
+      enBtn.className = "px-space-md py-1 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-primary text-on-primary shadow-sm";
+      mmBtn.className = "px-space-md py-1 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 text-on-surface-variant hover:text-on-surface";
+    } else {
+      mmBtn.className = "px-space-md py-1 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-primary text-on-primary shadow-sm";
+      enBtn.className = "px-space-md py-1 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 text-on-surface-variant hover:text-on-surface";
+    }
+
+    // Apply translations to all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+
+    // Re-render shop cards to update bilingual content
+    renderShops();
+  }
+
+  // Render Status Badge HTML
+  function getStatusBadgeHtml(status) {
+    if (status === 'Active') {
+      return `
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-primary/10 text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          ${currentLanguage === 'mm' ? 'လည်ပတ်ဆဲ' : 'Active'}
+        </span>
+      `;
+    } else if (status === 'Hidden') {
+      return `
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-secondary/15 text-secondary">
+          <span class="material-symbols-outlined text-xs">visibility_off</span>
+          ${currentLanguage === 'mm' ? 'ဝှက်ထားသည်' : 'Hidden'}
+        </span>
+      `;
+    } else if (status === 'Pending') {
+      return `
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-tertiary-container/20 text-tertiary">
+          <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          ${currentLanguage === 'mm' ? 'စိစစ်ဆဲ' : 'Pending Review'}
+        </span>
+      `;
+    } else {
+      return `
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-surface-container-highest text-on-surface-variant">
+          <span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+          ${currentLanguage === 'mm' ? 'သက်တမ်းကုန်' : 'Expired'}
+        </span>
+      `;
+    }
+  }
+
+  // Render Shop Cards Grid
+  function renderShops() {
+    const grid = document.getElementById('shopGrid');
+    const emptyState = document.getElementById('emptyState');
+    const filtered = getFilteredShops();
+
+    // Update Counts
+    document.getElementById('visibleShopCount').textContent = filtered.length;
+    document.getElementById('totalShopCount').textContent = shopsData.length;
+    updateTabCounts();
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      emptyState.classList.add('flex');
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+    emptyState.classList.remove('flex');
+
+    grid.innerHTML = filtered.map(shop => {
+      const displayName = currentLanguage === 'mm' ? shop.nameMm : shop.name;
+      const displayCategory = currentLanguage === 'mm' ? shop.categoryMm : shop.category;
+      const displayOwner = currentLanguage === 'mm' ? shop.ownerMm : shop.owner;
+      const displayAddress = currentLanguage === 'mm' ? shop.addressMm : shop.address;
+      const isHidden = shop.status === 'Hidden';
+
+      return `
+        <div class="group relative flex flex-col rounded-xl overflow-hidden bg-surface-container-low/70 backdrop-blur-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.18)] ${isHidden ? 'opacity-85' : ''}">
+          
+          <!-- Card Cover Image with Refraction Gradient -->
+          <div class="relative h-48 w-full overflow-hidden bg-surface-container-highest">
+            <div style="background-image: url('placeholder')" data-alt="${shop.coverAlt}" class="bg-cover bg-center w-full h-full transition-transform duration-700 group-hover:scale-105"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/30 to-black/50"></div>
+            
+            <!-- Top Badges Row -->
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+              <span class="font-label-sm text-label-sm font-semibold px-2.5 py-1 rounded-full bg-surface-container-lowest/80 text-primary backdrop-blur-md">
+                ${displayCategory}
+              </span>
+              ${getStatusBadgeHtml(shop.status)}
+            </div>
+
+            <!-- Monogram Avatar Floating on Lower Left of Cover -->
+            <div class="absolute -bottom-4 left-5 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-surface-container-lowest shadow-2xl flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">${shop.icon}</span>
+              </div>
+            </div>
+
+            <!-- Rating Chip on Lower Right -->
+            <div class="absolute bottom-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest/85 backdrop-blur-md">
+              <span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="font-label-sm text-label-sm font-semibold text-on-surface">${shop.rating.toFixed(2)}</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">(${shop.reviewsCount})</span>
+            </div>
+          </div>
+
+          <!-- Card Content Body -->
+          <div class="pt-6 p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+            <div>
+              <!-- Title and Sovereign Tier -->
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors leading-snug">
+                    ${displayName}
+                  </h3>
+                  <span class="font-body-sm text-body-sm text-primary font-medium tracking-wide">
+                    ${shop.membershipTier}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Metadata Specs -->
+              <div class="mt-space-md space-y-space-xs">
+                <!-- Owner -->
+                <div class="flex items-center gap-2 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-sm text-primary shrink-0">badge</span>
+                  <span class="font-body-sm text-body-sm truncate">${displayOwner}</span>
+                </div>
+                <!-- Email -->
+                <div class="flex items-center gap-2 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-sm text-primary shrink-0">mail</span>
+                  <span class="font-body-sm text-body-sm truncate">${shop.email}</span>
+                </div>
+                <!-- Address -->
+                <div class="flex items-start gap-2 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-sm text-primary shrink-0 mt-0.5">place</span>
+                  <span class="font-body-sm text-body-sm line-clamp-1">${displayAddress}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Interactive Action Buttons -->
+            <div class="pt-space-md border-t border-surface-container-highest/60 flex items-center justify-between gap-1.5">
+              <!-- View Details Button -->
+              <button onclick="openViewModal('${shop.id}')" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold transition-all duration-200">
+                <span class="material-symbols-outlined text-base">visibility</span>
+                <span class="hidden sm:inline">${translations[currentLanguage].viewBtn}</span>
+              </button>
+
+              <!-- Edit Button -->
+              <button onclick="openEditModal('${shop.id}')" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold transition-all duration-200">
+                <span class="material-symbols-outlined text-base">edit</span>
+                <span class="hidden sm:inline">${translations[currentLanguage].editBtn}</span>
+              </button>
+
+              <!-- Hide / Unhide Toggle Button -->
+              <button onclick="promptVisibilityToggle('${shop.id}')" title="${isHidden ? 'Unhide Shop' : 'Hide Shop'}" class="p-2 rounded-lg ${isHidden ? 'bg-secondary/15 text-secondary hover:bg-secondary/25' : 'bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary'} transition-all duration-200 flex items-center justify-center">
+                <span class="material-symbols-outlined text-base">${isHidden ? 'visibility' : 'visibility_off'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Filter Computation
+  function getFilteredShops() {
+    const searchVal = document.getElementById('shopSearchInput').value.trim().toLowerCase();
+    const categoryVal = document.getElementById('categoryFilter').value;
+    const sortVal = document.getElementById('sortFilter').value;
+
+    return shopsData.filter(shop => {
+      // Status Filter
+      if (activeStatusFilter !== 'all' && shop.status !== activeStatusFilter) {
+        return false;
+      }
+
+      // Category Filter
+      if (categoryVal !== 'all' && shop.category !== categoryVal) {
+        return false;
+      }
+
+      // Search Query
+      if (searchVal) {
+        const matchesName = shop.name.toLowerCase().includes(searchVal) || shop.nameMm.toLowerCase().includes(searchVal);
+        const matchesOwner = shop.owner.toLowerCase().includes(searchVal) || shop.ownerMm.toLowerCase().includes(searchVal);
+        const matchesAddress = shop.address.toLowerCase().includes(searchVal) || shop.addressMm.toLowerCase().includes(searchVal);
+        const matchesEmail = shop.email.toLowerCase().includes(searchVal);
+        if (!matchesName && !matchesOwner && !matchesAddress && !matchesEmail) {
+          return false;
+        }
+      }
+
+      return true;
+    }).sort((a, b) => {
+      if (sortVal === 'rating') return b.rating - a.rating;
+      if (sortVal === 'name') return a.name.localeCompare(b.name);
+      return b.id.localeCompare(a.id); // Default latest
+    });
+  }
+
+  // Apply Filters on Input
+  function applyFilters() {
+    const searchVal = document.getElementById('shopSearchInput').value;
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (searchVal) {
+      clearBtn.classList.remove('hidden');
+    } else {
+      clearBtn.classList.add('hidden');
+    }
+    renderShops();
+  }
+
+  function clearSearch() {
+    document.getElementById('shopSearchInput').value = '';
+    applyFilters();
+  }
+
+  function setStatusFilter(status) {
+    activeStatusFilter = status;
+    document.querySelectorAll('.status-tab').forEach(tab => {
+      if (tab.getAttribute('data-status') === status) {
+        tab.className = "status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-primary text-on-primary";
+      } else {
+        tab.className = "status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface";
+      }
+    });
+    renderShops();
+  }
+
+  function resetAllFilters() {
+    document.getElementById('shopSearchInput').value = '';
+    document.getElementById('categoryFilter').value = 'all';
+    document.getElementById('sortFilter').value = 'latest';
+    setStatusFilter('all');
+    applyFilters();
+    showToast("Filters reset to default configuration");
+  }
+
+  function updateTabCounts() {
+    const total = shopsData.length;
+    const active = shopsData.filter(s => s.status === 'Active').length;
+    const hidden = shopsData.filter(s => s.status === 'Hidden').length;
+    const pending = shopsData.filter(s => s.status === 'Pending').length;
+    const expired = shopsData.filter(s => s.status === 'Expired').length;
+
+    document.getElementById('countAll').textContent = total;
+    document.getElementById('countActive').textContent = active;
+    document.getElementById('countHidden').textContent = hidden;
+    document.getElementById('countPending').textContent = pending;
+    document.getElementById('countExpired').textContent = expired;
+
+    if (document.getElementById('metricTotalShops')) document.getElementById('metricTotalShops').textContent = total;
+    if (document.getElementById('metricActiveShops')) document.getElementById('metricActiveShops').textContent = active;
+    if (document.getElementById('metricHiddenShops')) document.getElementById('metricHiddenShops').textContent = hidden;
+    if (document.getElementById('metricPendingShops')) document.getElementById('metricPendingShops').textContent = pending;
+    if (document.getElementById('totalShopCount')) document.getElementById('totalShopCount').textContent = total;
+  }
+
+  // ==========================================
+  // MODAL INTERACTIONS
+  // ==========================================
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Open Details Modal
+  function openViewModal(shopId) {
+    const shop = shopsData.find(s => s.id === shopId);
+    if (!shop) return;
+
+    const coverDiv = document.getElementById('viewModalCover');
+    coverDiv.style.backgroundImage = "url('placeholder')";
+    coverDiv.setAttribute('data-alt', shop.coverAlt);
+
+    document.getElementById('viewModalTitle').textContent = currentLanguage === 'mm' ? shop.nameMm : shop.name;
+    document.getElementById('viewModalCategory').textContent = currentLanguage === 'mm' ? shop.categoryMm : shop.category;
+    document.getElementById('viewModalDescription').textContent = shop.description;
+    document.getElementById('viewModalOwner').textContent = currentLanguage === 'mm' ? shop.ownerMm : shop.owner;
+    document.getElementById('viewModalEmail').textContent = shop.email;
+    document.getElementById('viewModalPhone').textContent = shop.phone;
+    document.getElementById('viewModalAddress').textContent = currentLanguage === 'mm' ? shop.addressMm : shop.address;
+    document.getElementById('viewModalTier').textContent = shop.membershipTier;
+    document.getElementById('viewModalRating').textContent = `${shop.rating.toFixed(2)} (${shop.reviewsCount} reviews)`;
+    document.getElementById('viewModalDate').textContent = shop.regDate;
+    document.getElementById('viewModalShopId').textContent = `REGISTRY SERIAL: ${shop.id}`;
+    
+    document.getElementById('viewModalStatusBadge').innerHTML = getStatusBadgeHtml(shop.status);
+    document.getElementById('viewModalLogo').innerHTML = `
+      <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">${shop.icon}</span>
+    `;
+
+    document.getElementById('viewModalEditBtn').onclick = () => {
+      closeModal('viewModal');
+      openEditModal(shop.id);
+    };
+
+    openModal('viewModal');
+  }
+
+  // Open Edit Modal
+  function openEditModal(shopId) {
+    const shop = shopsData.find(s => s.id === shopId);
+    if (!shop) return;
+
+    const categoryNameToId = {
+      'Food & Drink': 1,
+      'Food & Beverage': 1,
+      'Stay': 2,
+      'Places to Visit': 3,
+      'Shopping': 4,
+      'Health': 5,
+      'Beauty & Wellness': 6,
+      'Other': 7
+    };
+    document.getElementById('editFormShopId').value = shop.id;
+    document.getElementById('editFormName').value = shop.name;
+    document.getElementById('editFormCategory').value = String(shop.categoryId || categoryNameToId[shop.category] || 1);
+    document.getElementById('editFormOwner').value = shop.owner;
+    document.getElementById('editFormTier').value = shop.membershipTier;
+    document.getElementById('editFormEmail').value = shop.email;
+    document.getElementById('editFormPhone').value = shop.phone;
+    document.getElementById('editFormAddress').value = shop.address;
+    document.getElementById('editFormDesc').value = shop.description;
+
+    openModal('editModal');
+  }
+
+  // Handle Edit Submit
+  async function handleEditFormSubmit(event) {
+    event.preventDefault();
+    const id = document.getElementById('editFormShopId').value;
+    const shopIndex = shopsData.findIndex(s => s.id === id);
+
+    if (shopIndex !== -1) {
+      const categoryIdMap = {
+        1: 'Food & Drink',
+        2: 'Stay',
+        3: 'Places to Visit',
+        4: 'Shopping',
+        5: 'Health',
+        6: 'Beauty & Wellness',
+        7: 'Other'
+      };
+      const catId = Number(document.getElementById('editFormCategory').value) || 1;
+      const newName = document.getElementById('editFormName').value;
+      const newAddress = document.getElementById('editFormAddress').value;
+      const newPhone = document.getElementById('editFormPhone').value;
+      const newDesc = document.getElementById('editFormDesc').value;
+
+      shopsData[shopIndex].name = newName;
+      shopsData[shopIndex].categoryId = catId;
+      shopsData[shopIndex].category = categoryIdMap[catId] || 'Other';
+      shopsData[shopIndex].owner = document.getElementById('editFormOwner').value;
+      shopsData[shopIndex].membershipTier = document.getElementById('editFormTier').value;
+      shopsData[shopIndex].email = document.getElementById('editFormEmail').value;
+      shopsData[shopIndex].phone = newPhone;
+      shopsData[shopIndex].address = newAddress;
+      shopsData[shopIndex].description = newDesc;
+
+      // Real Backend API Call
+      if (window.AdminAPI) {
+        try {
+          const numId = shopsData[shopIndex].numericId || id.replace(/\D/g, '') || id;
+          await window.AdminAPI.updatePlace(numId, {
+            name: newName,
+            categoryId: catId,
+            address: newAddress,
+            phone: newPhone,
+            description: newDesc
+          });
+        } catch (e) {
+          console.warn('Backend shop update failed:', e);
+        }
+      }
+
+      closeModal('editModal');
+      renderShops();
+      showToast(`Boutique records for "${shopsData[shopIndex].name}" securely updated.`);
+    }
+  }
+
+  // Hide / Unhide Visibility Toggle Prompt
+  function promptVisibilityToggle(shopId) {
+    const shop = shopsData.find(s => s.id === shopId);
+    if (!shop) return;
+
+    pendingActionShopId = shopId;
+    const isCurrentlyHidden = shop.status === 'Hidden';
+
+    const iconDiv = document.getElementById('hideConfirmIcon');
+    const titleEl = document.getElementById('hideConfirmTitle');
+    const msgEl = document.getElementById('hideConfirmMessage');
+    const actionBtn = document.getElementById('hideConfirmActionBtn');
+
+    if (isCurrentlyHidden) {
+      iconDiv.className = "w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0";
+      iconDiv.innerHTML = '<span class="material-symbols-outlined text-2xl">visibility</span>';
+      titleEl.textContent = `Restore Visibility for ${shop.name}?`;
+      msgEl.textContent = `This action will reinstate this boutique into the public high-luxury discovery map and mobile sovereign catalog immediately.`;
+      actionBtn.className = "px-space-lg py-2 rounded-full font-title-md text-title-md font-semibold bg-primary hover:bg-primary-container text-on-primary transition-all";
+      actionBtn.textContent = "Restore Visibility";
+    } else {
+      iconDiv.className = "w-12 h-12 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center shrink-0";
+      iconDiv.innerHTML = '<span class="material-symbols-outlined text-2xl">visibility_off</span>';
+      titleEl.textContent = `Hide ${shop.name} from Public Search?`;
+      msgEl.textContent = `This boutique will be hidden from public app discovery. It can be unhidden at any moment without loss of transaction or client records.`;
+      actionBtn.className = "px-space-lg py-2 rounded-full font-title-md text-title-md font-semibold bg-secondary/20 hover:bg-secondary/30 text-secondary transition-all";
+      actionBtn.textContent = "Confirm Hide";
+    }
+
+    actionBtn.onclick = executeVisibilityToggle;
+    openModal('hideConfirmModal');
+  }
+
+  async function executeVisibilityToggle() {
+    if (!pendingActionShopId) return;
+    const shop = shopsData.find(s => s.id === pendingActionShopId);
+    if (shop) {
+      const wasHidden = shop.status === 'Hidden';
+      shop.status = wasHidden ? 'Active' : 'Hidden';
+
+      // Real Backend API Call
+      if (window.AdminAPI) {
+        try {
+          const numId = shop.numericId || shop.id.replace(/\D/g, '') || shop.id;
+          await window.AdminAPI.updatePlace(numId, {
+            isHidden: !wasHidden
+          });
+        } catch (e) {
+          console.warn('Backend toggle failed:', e);
+        }
+      }
+
+      closeModal('hideConfirmModal');
+      renderShops();
+      
+      // Update Top Metrics
+      const activeCount = shopsData.filter(s => s.status === 'Active').length;
+      const hiddenCount = shopsData.filter(s => s.status === 'Hidden').length;
+      document.getElementById('metricActiveShops').textContent = activeCount;
+      document.getElementById('metricHiddenShops').textContent = hiddenCount;
+
+      showToast(wasHidden 
+        ? `Boutique "${shop.name}" is now live on the public luxury network.` 
+        : `Boutique "${shop.name}" has been placed in private vault mode.`
+      );
+    }
+  }
+
+  // Real Backend Synchronization for Shops
+  async function loadBackendShops() {
+    if (!window.AdminAPI) return;
+    try {
+      const data = await window.AdminAPI.getPlaces({ owned: 1 });
+      if (Array.isArray(data) && data.length > 0) {
+        shopsData = data.map(p => ({
+          id: String(p.id),
+          numericId: p.id,
+          name: p.name,
+          nameMm: p.name,
+          categoryId: p.categoryId,
+          category: p.categoryName || 'Other',
+          categoryMm: p.categoryNameMy || 'အခြား',
+          owner: p.ownerName || 'Verified Merchant',
+          ownerMm: p.ownerName || 'ကုန်သည်',
+          email: p.ownerEmail || 'shop@pointer.mm',
+          phone: p.phone || '+95 9 1234 5678',
+          address: p.address || 'Yangon, Myanmar',
+          addressMm: p.address || 'ရန်ကုန်မြို့',
+          membershipTier: 'Gold Tier (Active)',
+          rating: (p.rating && p.rating.average) ? p.rating.average : 4.8,
+          reviewsCount: (p.rating && p.rating.count) ? p.rating.count : 0,
+          regDate: p.createdAt ? p.createdAt.substring(0, 10) : '15 Nov 2026',
+          status: p.status === 'hidden' ? 'Hidden' : (p.status === 'pending' ? 'Pending' : 'Active'),
+          description: p.description || '',
+          coverAlt: p.name,
+          coverPhoto: p.coverPhoto,
+          icon: 'storefront'
+        }));
+
+        // Update Top Metrics
+        const total = shopsData.length;
+        const active = shopsData.filter(s => s.status === 'Active').length;
+        const hidden = shopsData.filter(s => s.status === 'Hidden').length;
+        const pending = shopsData.filter(s => s.status === 'Pending').length;
+
+        const elTotal = document.getElementById('metricTotalShops');
+        const elActive = document.getElementById('metricActiveShops');
+        const elHidden = document.getElementById('metricHiddenShops');
+        const elPending = document.getElementById('metricPendingShops');
+        if (elTotal) elTotal.textContent = total;
+        if (elActive) elActive.textContent = active;
+        if (elHidden) elHidden.textContent = hidden;
+        if (elPending) elPending.textContent = pending;
+
+        renderShops();
+      }
+    } catch (err) {
+      console.warn('Failed to load backend shops:', err);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBackendShops);
+  } else {
+    loadBackendShops();
+  }
+
+  // Register New Shop Demo Modal
+  function openRegisterShopModal() {
+    document.getElementById('editShopForm').reset();
+    document.getElementById('editFormShopId').value = `PTR-00${shopsData.length + 1}`;
+    document.getElementById('editFormName').value = "";
+    document.getElementById('editFormDesc').value = "";
+    openModal('editModal');
+  }
+
+  // Toast Notification System
+  function showToast(message) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = "pointer-events-auto flex items-center gap-3 px-space-md py-3 rounded-xl bg-surface-container-high/95 text-on-surface shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-xl border border-primary/30 transition-all duration-300 transform translate-y-4 opacity-0";
+    toast.innerHTML = `
+      <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+      <span class="font-body-sm text-body-sm font-medium">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    // Animate In
+    requestAnimationFrame(() => {
+      toast.classList.remove('translate-y-4', 'opacity-0');
+    });
+
+    // Animate Out
+    setTimeout(() => {
+      toast.classList.add('translate-y-4', 'opacity-0');
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+  }
+
+  function triggerExportToast() {
+    showToast("Generating verified cryptographic CSV ledger of all 148 sovereign boutiques...");
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('pointer_admin_lang');
+    if (saved) {
+      currentLanguage = (saved === 'my' ? 'mm' : 'en');
+    }
+    setLanguage(currentLanguage);
+    renderShops();
+  });
+
+  window.addEventListener('adminLanguageChanged', (e) => {
+    const lang = (e.detail.lang === 'my' ? 'mm' : 'en');
+    setLanguage(lang);
+  });
+</script></main></div>
+
+</body></html>

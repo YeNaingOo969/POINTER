@@ -13,6 +13,17 @@ const pages = {
   home: 'home.html',
   messages: 'messages.html',
   owner: 'owner.html',
+  admin: 'admin.html',
+  adminIndex: 'admin/index.html',
+  adminDashboard: 'admin/dashboard.html',
+  adminApplication: 'admin/application.html',
+  adminShop: 'admin/shop.html',
+  adminPublicPlaces: 'admin/publicplaces.html',
+  adminCategory: 'admin/category.html',
+  adminReports: 'admin/reports.html',
+  adminUser: 'admin/user.html',
+  adminAuditLog: 'admin/auditlog.html',
+  adminMenu: 'admin/menu.html',
 };
 
 export default defineConfig({

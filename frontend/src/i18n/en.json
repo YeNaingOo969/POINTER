@@ -146,7 +146,7 @@
     "loggedInAs": "You're logged in as",
     "continue": "Continue",
     "logout": "Log out",
-    "demoHint": "Demo account: demo@pointer.test / pointer-demo (accounts are kept in this browser only)",
+    "demoHint": "Demo account: demo@pointer.app / pointer-demo (accounts are kept in this browser only)",
     "back": "Back to the map",
     "titleLogin": "Welcome back.",
     "titleRegister": "Join POINTER.",

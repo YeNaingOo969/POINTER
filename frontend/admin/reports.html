@@ -1,0 +1,1491 @@
+<!DOCTYPE html><html class="dark" lang="en" style="width: 100vw; height: 100vh; overflow: hidden;"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Syne:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#e9c349","primary-container":"#d4af37","primary-fixed-dim":"#e9c349","on-error-container":"#ffdad6","outline":"#99907c","on-secondary-fixed-variant":"#4f471b","error-container":"#93000a","tertiary-fixed-dim":"#f4be53","outline-variant":"#4d4635","on-secondary-fixed":"#211b00","inverse-primary":"#735c00","surface-container-high":"#292a2e","on-background":"#e3e2e7","surface-dim":"#121317","tertiary-fixed":"#ffdea6","surface":"#121317","on-tertiary":"#412d00","secondary-fixed":"#f1e3a9","inverse-on-surface":"#2f3035","secondary-fixed-dim":"#d4c78f","surface-variant":"#343439","on-tertiary-fixed-variant":"#5e4200","on-primary-fixed-variant":"#574500","surface-container-highest":"#343439","on-error":"#690005","surface-container":"#1f1f24","surface-bright":"#38393d","surface-container-low":"#1a1b20","on-surface":"#e3e2e7","background":"#121317","secondary-container":"#4f471b","primary-fixed":"#ffe088","on-surface-variant":"#d0c5af","on-primary-fixed":"#241a00","on-primary":"#3c2f00","tertiary-container":"#deaa41","primary":"#f2ca50","on-primary-container":"#554300","surface-container-lowest":"#0d0e12","on-tertiary-fixed":"#271900","secondary":"#d4c78f","tertiary":"#fdc659","on-secondary-container":"#c2b57f","error":"#ffb4ab","on-secondary":"#383006","inverse-surface":"#e3e2e7","on-tertiary-container":"#5b4000"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{margin:"2rem","space-xs":"0.25rem","space-md":"1rem","space-sm":"0.5rem","space-lg":"1.5rem","space-xl":"2.5rem",gutter:"1.5rem"},fontFamily:{"code-sm":["JetBrains Mono"],"headline-lg-mobile":["Syne"],display:["Syne"],"headline-lg":["Syne"],"headline-sm":["Syne"],"body-sm":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-md":["Syne"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"]},fontSize:{"code-sm":["12px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"500"}],"headline-lg-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"700"}],display:["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-lg":["36px",{lineHeight:"44px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"0em",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0.01em",fontWeight:"400"}],"title-md":["16px",{lineHeight:"24px",letterSpacing:"0.005em",fontWeight:"600"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"0em",fontWeight:"400"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.06em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"0.04em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"400"}]}}}};</script>  <script type="module" src="/admin/admin-auth.js"></script>
+</head><body class="bg-surface-container-lowest text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen relative overflow-x-hidden" style="width: 100vw; height: 100vh; overflow: hidden; display: flex; flex-direction: row;"><div class="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(ellipse_at_80%_0%,rgba(212,175,55,0.08)_0%,transparent_60%)]"><div class="absolute -top-32 -left-20 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.12)_0%,transparent_70%)] blur-3xl aurum-orb-1"></div><div class="absolute top-1/3 -right-28 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(242,202,80,0.09)_0%,transparent_70%)] blur-3xl aurum-orb-2"></div><div class="absolute -bottom-32 left-1/4 w-[550px] h-[550px] rounded-full bg-[radial-gradient(circle,rgba(222,170,65,0.08)_0%,transparent_70%)] blur-3xl aurum-orb-3"></div></div><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low/75 backdrop-blur-2xl z-50 flex flex-col justify-between shadow-[0_8px_32px_0_rgba(0,0,0,0.55)] overflow-y-auto"><div class="flex flex-col"><div class="h-20 px-space-lg flex items-center gap-space-sm"><img alt="POINTER Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCLAnL1_t8B1FHzoSr3w2IhktZy4BV8quNiHmzP5-3fDRJSR_zhMRvoi4H3RJTArwwp3d51jbDIHRRB1cMzhCeB8_IaObF3dcOrWXtNiXGSnt5qRW6gUbyt57lxPLy9y7e9pY8HqSlYtdfgLoaW8lvkg3cN8dc6jmF2BHmqHr1me7adME1CsxCQ_Y6gozg4MlFMtTgY_nFr3tWans18CKnwrxPBSuqRXs1Z9TZHxRZ5"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold">POINTER</span><span class="font-code-sm text-code-sm text-secondary tracking-widest uppercase opacity-80">GOVERNANCE</span></div></div><div class="px-space-md py-space-sm"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline">Core Architecture</span></div><nav class="flex-1 px-space-md space-y-1 overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="dashboard" href="/admin/dashboard.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">dashboard</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဒက်ရှ်ဘုတ်</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="application" href="/admin/application.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">app_registration</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">လျှောက်ထားချက်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="shop" href="/admin/shop.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">storefront</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဆိုင်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="public-place" href="/admin/publicplaces.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">location_city</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အများပြည်သူနေရာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="categories" href="/admin/category.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">category</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ကဏ္ဍများ</span>
+</a>
+<a aria-current="page" class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-300 bg-primary/20 text-primary font-semibold backdrop-blur-xl shadow-[0_0_15px_rgba(212,175,55,0.3)] ring-1 ring-primary/40" data-path="report" href="/admin/reports.html">
+  <span class="material-symbols-outlined text-title-sm text-primary drop-shadow-[0_0_8px_currentColor] transition-transform group-hover:scale-110">analytics</span>
+  <span class="font-title-sm text-body-md text-on-surface group-hover:text-primary transition-colors">အစီရင်ခံစာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="users" href="/admin/user.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">group</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အသုံးပြုသူများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="audit-log" href="/admin/auditlog.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">history</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">စစ်ဆေးမှုမှတ်တမ်း</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30 mt-3 border-t border-surface-variant/30 pt-3" href="/home.html">
+  <span class="material-symbols-outlined text-title-sm text-outline transition-colors group-hover:text-primary group-hover:scale-110">home</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ပင်မဝက်ဘ်ဆိုက်</span>
+</a>
+</nav></div><div class="p-space-md"><div class="bg-surface-container/60 backdrop-blur-xl rounded-xl p-space-md flex flex-col gap-space-xs shadow-[inset_0_1px_1px_0_rgba(243,229,171,0.1)]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Enclave Status</span><span class="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#f2ca50] radar-badge-pulse"></span></div><span class="font-code-sm text-code-sm text-secondary">POINTER-SEC-V4.9</span></div></div></aside><div class="pl-72 flex flex-col flex-1 h-screen overflow-y-auto relative z-10 custom-gold-scrollbar" id="main-workspace-scroll"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/80 backdrop-blur-xl z-40 shadow-[0_4px_24px_rgba(0,0,0,0.45)]"><div class="h-20 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg flex-1"><div class="flex flex-col"><h1 class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface flex items-center gap-space-xs"><span class="text-primary">POINTER</span><span>ADMIN</span></h1></div><div class="relative w-full max-w-md hidden md:block"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">search</span><input class="w-full bg-surface-container-low/80 text-on-surface placeholder:text-outline-variant font-body-sm text-body-sm pl-11 pr-space-md py-space-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/40 focus:bg-surface-container transition-all shadow-inner" placeholder="Search case IDs, merchant nodes, hashes..." type="text"></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-secondary-container/30"><span class="h-2 w-2 rounded-full bg-primary shadow-[0_0_6px_#f2ca50]"></span></div><button aria-label="Notifications" class="relative p-space-sm rounded-xl bg-surface-container-high/60 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all duration-200" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_#f2ca50]"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-primary/40 shadow-[0_0_12px_rgba(212,175,55,0.2)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiQhs4zezGqetNFVWjBW2rhkNn3TNFOepSV7r8DWD4EDw6b1U0xHixOcmjgNhjuoylMNyokCyfeMy6JsZo5iI7q4IQsoCQ_4c7oU4cxMqA2viNSWPqccywtfWwRILZjC1kb9SBs7bAR_cNvZ7txgTEnNC8PzGOqf156IKiABNKKN0VHmImea4t-9LwtV_wuLXMavxcZLYy2FEQ_jTnWo0z-HwnURbtbhiwa9ubzOU"><div class="flex flex-col text-left hidden lg:block"><span class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Admin U Min Thant</span><span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase opacity-90">Chief Administrator • admin@pointer.app</span></div></div></div></div></header><main class="w-full pt-20 px-space-lg py-space-xl flex-1 bg-transparent"><div class="flex flex-col w-full">
+<!-- Top Sovereign Utility & Breadcrumbs -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs text-outline mb-1">
+<span class="font-code-sm text-code-sm tracking-wider uppercase">Governance</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-code-sm text-code-sm text-primary tracking-wider uppercase font-semibold">Incident Sanctions &amp; Appeals</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-on-surface flex items-center gap-space-sm">
+        Reports &amp; Appeals Management
+        <span class="material-symbols-outlined text-primary text-[28px] drop-shadow-[0_0_12px_rgba(242,202,80,0.5)]">shield_with_heart</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-3xl">
+        Real-time incident response, multi-tier cryptographic evidence inspection, merchant sanctions, and sovereign restoration workflows.
+      </p>
+</div>
+<!-- Quick Global Actions -->
+<div class="flex items-center gap-space-sm flex-wrap">
+
+<button class="group relative flex items-center gap-space-xs px-space-md py-2.5 rounded-xl bg-surface-container-high/60 hover:bg-surface-container-highest text-primary font-body-md text-body-md font-semibold transition-all duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.35)] btn-gold-shimmer" id="btn-export-audit" type="button">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-y-0.5 transition-transform">download</span>
+<span>Export Incident Audit</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl bg-surface-container-high/40 hover:bg-surface-container-high text-on-surface font-body-md text-body-md transition-all" id="btn-open-audit-feed" type="button">
+<span class="material-symbols-outlined text-secondary text-[18px]">history</span>
+<span class="hidden sm:inline">Ledger Feed</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/60 text-secondary text-[10px] font-mono" id="audit-counter-badge">18</span>
+</button>
+</div>
+</div>
+<!-- Dual Mode Navigation Tab Strip (Liquid Glass Pill Architecture) -->
+<div class="relative p-1.5 rounded-2xl bg-surface-container-low/75 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.45),inset_0_1px_1px_0_rgba(243,229,171,0.1)] mb-space-lg w-full max-w-xl flex items-center">
+<div class="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] rounded-xl bg-primary-container text-on-primary-container shadow-[0_0_20px_rgba(212,175,55,0.35)] transition-all duration-300 ease-out z-0 pointer-events-none" id="tab-indicator"></div>
+<button class="relative z-10 w-1/2 py-2.5 flex items-center justify-center gap-space-xs rounded-xl font-headline-sm text-[15px] font-bold tracking-tight text-on-primary-container transition-all duration-200" id="tab-btn-reports" type="button">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Reports Queue</span>
+<span class="ml-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/40 font-code-sm text-[11px] text-surface-container-lowest font-bold" id="badge-total-reports">4</span>
+</button>
+<button class="relative z-10 w-1/2 py-2.5 flex items-center justify-center gap-space-xs rounded-xl font-headline-sm text-[15px] font-bold tracking-tight text-outline hover:text-on-surface transition-all duration-200" id="tab-btn-appeals" type="button">
+<span class="material-symbols-outlined text-[18px]">published_with_changes</span>
+<span>Ban Appeals</span>
+<span class="ml-1 px-2 py-0.5 rounded-full bg-surface-container-highest/60 font-code-sm text-[11px] text-secondary font-medium" id="badge-total-appeals">0</span>
+</button>
+</div>
+<!-- TAB 1: REPORTS QUEUE SECTION -->
+<section class="flex flex-col w-full transition-opacity duration-300" id="section-reports">
+<!-- Reports Stat Bento Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Stat 1 -->
+<div class="relative overflow-hidden p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)] group hover:bg-surface-container-high/60 transition-all duration-300">
+<div class="absolute -right-4 -top-4 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Reports</span>
+<div class="w-8 h-8 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary shadow-[0_0_12px_rgba(212,175,55,0.2)]">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-on-surface tracking-tight" id="stat-total-reports-num">4</span>
+<span class="font-code-sm text-code-sm text-primary flex items-center font-medium">4 Filed</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">in database audit logs</p>
+</div>
+<!-- Stat 2 -->
+<div class="relative overflow-hidden p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)] group hover:bg-surface-container-high/60 transition-all duration-300">
+<div class="absolute -right-4 -top-4 w-24 h-24 rounded-full bg-tertiary/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Pending Review</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-code-sm text-[10px] tracking-wide uppercase font-semibold radar-badge-pulse">Priority</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-tertiary tracking-tight" id="stat-pending-num">2</span>
+<span class="font-code-sm text-code-sm text-outline flex items-center">Open</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary/80 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>2 cases awaiting admin resolution</span>
+</p>
+</div>
+<!-- Stat 3 -->
+<div class="relative overflow-hidden p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)] group hover:bg-surface-container-high/60 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Under Investigation</span>
+<div class="w-8 h-8 rounded-xl bg-surface-container-highest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">travel_explore</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-on-surface tracking-tight">0</span>
+<span class="font-code-sm text-code-sm text-secondary font-medium">None</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">Multi-signature forensic scrutiny</p>
+</div>
+<!-- Stat 4 -->
+<div class="relative overflow-hidden p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)] group hover:bg-surface-container-high/60 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Resolved / Actioned</span>
+<span class="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_#f2ca50]"></span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-primary tracking-tight" id="stat-resolved-num">2</span>
+<span class="font-code-sm text-code-sm text-secondary font-semibold">50.0%</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">1 Resolved, 1 Dismissed</p>
+</div>
+</div>
+<!-- Liquid Glass Search & Dynamic Filter Control Bar -->
+<div class="p-space-md rounded-2xl bg-surface-container-low/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.45),inset_0_1px_1px_0_rgba(243,229,171,0.08)] mb-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row gap-space-md items-center justify-between">
+<!-- Main Search Bar -->
+<div class="relative w-full lg:max-w-xl">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-lowest/80 text-on-surface placeholder:text-outline/70 font-body-sm text-body-sm pl-11 pr-10 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/60 transition-all shadow-inner" id="input-search-reports" placeholder="Search by Report ID, reporter name, target entity, or shop ID..." type="text">
+<button class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" id="btn-clear-report-search" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Filter Selectors -->
+<div class="flex items-center gap-space-sm w-full lg:w-auto flex-wrap lg:flex-nowrap">
+<div class="relative flex-1 lg:flex-initial">
+<select class="w-full lg:w-48 appearance-none bg-surface-container-lowest/80 text-on-surface font-body-sm text-body-sm px-space-md py-3 pr-8 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/50 cursor-pointer" id="select-report-type">
+<option value="ALL">All Target Types (DB: target_type)</option>
+<option value="review">Review Reports (target_type: review)</option>
+<option value="place">Place Reports (target_type: place)</option>
+<option value="post">Post Reports (target_type: post)</option>
+<option value="Fraud / Scam">Urgent Fraud / Scam</option>
+<option value="Fake Reviews">Fake Reviews &amp; Sybil</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-md top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm">expand_more</span>
+</div>
+<div class="relative flex-1 lg:flex-initial">
+<select class="w-full lg:w-44 appearance-none bg-surface-container-lowest/80 text-on-surface font-body-sm text-body-sm px-space-md py-3 pr-8 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/50 cursor-pointer" id="select-report-status">
+<option value="ALL">All Statuses (DB: status)</option>
+<option value="open">Open / Pending Review (open)</option>
+<option value="resolved">Resolved / Actioned (resolved)</option>
+<option value="dismissed">Dismissed / Closed (dismissed)</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-md top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm">filter_alt</span>
+</div>
+<div class="relative flex-1 lg:flex-initial">
+<select class="w-full lg:w-44 appearance-none bg-surface-container-lowest/80 text-on-surface font-body-sm text-body-sm px-space-md py-3 pr-8 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/50 cursor-pointer" id="select-report-sort">
+<option value="newest">Sort: Newest First</option>
+<option value="urgency">Urgency: High to Low</option>
+<option value="oldest">Sort: Oldest First</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-md top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm">sort</span>
+</div>
+</div>
+</div>
+<!-- Quick Filter Tag Chips -->
+<div class="flex items-center gap-space-xs flex-wrap pt-2 border-t border-outline-variant/20">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline mr-2">Quick Presets:</span>
+<button class="chip-filter px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-highest/60 text-secondary hover:bg-primary-container/20 hover:text-primary transition-all" data-chip="Urgent Fraud" type="button">Urgent Fraud</button>
+<button class="chip-filter px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-highest/60 text-secondary hover:bg-primary-container/20 hover:text-primary transition-all" data-chip="Shop Disclosures" type="button">Shop Disclosures</button>
+<button class="chip-filter px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-highest/60 text-secondary hover:bg-primary-container/20 hover:text-primary transition-all" data-chip="Counterfeit Alerts" type="button">Counterfeit Alerts</button>
+<button class="chip-filter px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-highest/60 text-secondary hover:bg-primary-container/20 hover:text-primary transition-all" data-chip="Sybil Rings" type="button">Sybil Rings</button>
+<button class="ml-auto text-xs text-outline hover:text-primary underline cursor-pointer" id="btn-reset-filters" type="button">Reset Filters</button>
+</div>
+</div>
+<!-- Active Reports Stream (Liquid Glass Adjudication Cards) -->
+<div class="flex flex-col gap-space-lg" id="reports-feed-container">
+<!-- CARD 1: High Urgency Fraud / Scam -->
+<article class="report-card relative overflow-hidden rounded-2xl bg-surface-container/60 backdrop-blur-2xl shadow-[0_12px_40px_0_rgba(0,0,0,0.55),inset_0_1px_0_rgba(243,229,171,0.2)] p-space-lg transition-all duration-300 hover:shadow-[0_16px_48px_rgba(212,175,55,0.12)] luxury-interactive-card" data-report-id="REP-89412" data-status="open" data-type="Fraud / Scam" data-target-type="review" data-target-id="5" data-urgency="high">
+<div class="flex flex-col xl:flex-row justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-error-container/25 text-error flex items-center justify-center shadow-[0_0_16px_rgba(225,29,72,0.2)] flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary">#REP-89412</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="px-2.5 py-0.5 rounded-full bg-error-container/30 text-error text-[11px] font-bold tracking-wide uppercase">Urgent Fraud / Scam</span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-semibold flex items-center gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                  Pending Review
+                </span>
+<span class="font-code-sm text-code-sm text-outline opacity-80">Submitted 14 mins ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Counterfeit Luxury Goods &amp; Escrow Manipulation</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-center">
+<span class="px-3 py-1 rounded-xl bg-surface-container-high text-xs font-code-sm text-secondary font-medium">Risk Score: 98/100</span>
+<button class="px-space-md py-2.5 rounded-xl bg-gradient-to-br from-[#FFF2A7] via-[#D4AF37] to-[#AA7C11] text-surface-container-lowest font-headline-sm text-[13px] font-bold tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_28px_rgba(255,215,0,0.55)] transition-all flex items-center gap-1.5 btn-gold-shimmer" onclick="openReportModal('REP-89412')" type="button">
+<span>Review &amp; Triage</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Meta Dossier Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm p-space-md rounded-xl bg-surface-container-lowest/60 backdrop-blur-md mb-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Reporter</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-none">Marcus Sterling</p>
+<span class="font-code-sm text-[11px] text-primary">Verified Buyer • Tier 4</span>
+</div>
+</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Target Merchant</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]">storefront</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-none">Apex Luxury Timepieces</p>
+<span class="font-code-sm text-[11px] text-outline">Node #MK-44201 • 3 Active Stores</span>
+</div>
+</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Transaction Ref</span>
+<p class="font-code-sm text-code-sm text-secondary font-mono">TXN-0x89C...7A2F</p>
+<span class="font-code-sm text-[11px] text-outline">Escrow Hold: $48,500.00 USD</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Severity Vector</span>
+<span class="inline-flex items-center gap-1 font-body-sm text-body-sm text-error font-semibold">
+<span class="material-symbols-outlined text-sm">warning</span> Critical Violation
+            </span>
+<span class="font-code-sm text-[11px] text-outline block">Auto-Hold Escrow Triggered</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-md">
+          Merchant delivered a replica chronograph with falsified provenance certificates. Seller refused formal dispute mediation and attempted off-platform wire transfer via encrypted messaging. High potential capital flight.
+        </p>
+<!-- Attached Evidence Gallery Previews -->
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-space-xs">Cryptographic Attached Evidence (3 items)</span>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<!-- Evidence Item 1 -->
+<div class="cursor-pointer group relative h-28 rounded-xl overflow-hidden bg-surface-container-high/60 shadow-md" onclick="openLightbox('Certificate Comparison Analysis', 'Official forensic comparison between issued watch papers and counterfeit laser stamp.')">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High resolution macro photograph comparing genuine luxury watch serial engravings versus blurred counterfeit numbers under laboratory forensic lighting, deep dark mood with gold specular highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADjxqGrMOErTSli46TLtMv1Gpnvs0WPqT8B7FrFzF8nzwydI1gUdwvVLIaTKjsPXgBG4ytx9fEgvCQ6U1qQBbmMDXcRR3Td3JCN44z8ZgbzZqtTZ8O-ycZeh64bqve8lze3pUJltz683qpvl4wXG6lgkxZh7W_4b_U-vmgZcNNljAxSCrgd-dkzVkQha91_WiMbyC5kwayDlgt9y7bb4KYRhaDVraaxDnJkkr3q2s">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5">
+<span class="font-code-sm text-[11px] text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary">search</span> Certificate Comparison
+                </span>
+</div>
+</div>
+<!-- Evidence Item 2 -->
+<div class="cursor-pointer group relative h-28 rounded-xl overflow-hidden bg-surface-container-high/60 shadow-md" onclick="openLightbox('Macro Dial Inspection', 'Spectrometer analysis and bezel defect examination.')">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Extreme macro dial close-up of a high-end luxury mechanical timepiece chronograph showing misaligned subdial text and gold bezel accents in an obsidian laboratory setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAelManKWADCCL_i8fdnDie3X0-XB3fG7NMt8MbeexlscdNLOQIsylzTRBZQjVkwsVayZAIdNLcZWNew29wbGkW2oAs7UC7U8-yOeDHsfDoZ9KA85owIWsV3_hpyT7JQpwxxexGs0mirHAVqRavSsGi0XlVWuh2w6OYYy68YmQmhaNJ9qKkL0ajB8nIK_jkjt-QqPIRRaPST8d8Uv4KaS7Frs-chnwS0zWAEWBZe5A">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5">
+<span class="font-code-sm text-[11px] text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary">zoom_in</span> Dial Inspection Macro
+                </span>
+</div>
+</div>
+<!-- Evidence Item 3 -->
+<div class="cursor-pointer group relative h-28 rounded-xl overflow-hidden bg-surface-container-high/60 shadow-md" onclick="openLightbox('Off-Platform Chat Excerpts', 'Screenshots showing merchant requesting direct wire bypass.')">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Sleek dark interface screenshot showing redacted private chat negotiation transcript highlighting unauthorized cryptocurrency wire request phrases in gold and crimson tints" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwCFvKUhnfPxoR5SGGy9Eulig_RyI2rSBcEVEi7hVw9MBObzP9tZZ0jP6DubFxInw8CO-6Up45newxWtZSeF2x3uo8VTYDNN2USwoLHD8J2pVyR-s_QdzvN8g7_V13CkhTi9VP2EQ1y-qQUddsVRW5ase5OVfNne83xTWhR0t7ZNTCi-seyo4wkq2FEiAxOCFP_SqfNdHmnBbCnj5DkXk96S8NHAvKKNrxXbWTMY4">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5">
+<span class="font-code-sm text-[11px] text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary">chat</span> Chat Wire Logs
+                </span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- CARD 2: Fake Reviews & Sybil Ring -->
+<article class="report-card relative overflow-hidden rounded-2xl bg-surface-container/60 backdrop-blur-2xl shadow-[0_12px_40px_0_rgba(0,0,0,0.55),inset_0_1px_0_rgba(243,229,171,0.12)] p-space-lg transition-all duration-300 hover:shadow-[0_16px_48px_rgba(212,175,55,0.12)] luxury-interactive-card" data-report-id="REP-89408" data-status="resolved" data-type="Fake Reviews" data-target-type="place" data-target-id="19" data-urgency="medium">
+<div class="flex flex-col xl:flex-row justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">hub</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary">#REP-89408</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary text-[11px] font-bold tracking-wide uppercase">Fake Reviews &amp; Sybil Ring</span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container/40 text-secondary text-[11px] font-semibold">Under Investigation</span>
+<span class="font-code-sm text-code-sm text-outline opacity-80">Submitted 42 mins ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Coordinated Sybil Review Bot Farm from Cluster Subnet</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-center">
+<span class="px-3 py-1 rounded-xl bg-surface-container-high text-xs font-code-sm text-secondary font-medium">Risk Score: 74/100</span>
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container-high/80 hover:bg-surface-container-highest text-primary font-headline-sm text-[13px] font-bold tracking-wider uppercase transition-all flex items-center gap-1.5" onclick="openReportModal('REP-89408')" type="button">
+<span>Inspect Telemetry</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm p-space-md rounded-xl bg-surface-container-lowest/60 backdrop-blur-md mb-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Reporter</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">smart_toy</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-none">Automated Heuristic Engine</p>
+<span class="font-code-sm text-[11px] text-outline">Model POINTER-SENTINEL-v4</span>
+</div>
+</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Target Merchant</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">storefront</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-none">Elysian Fragrance Boutique</p>
+<span class="font-code-sm text-[11px] text-outline">Node #MK-33108</span>
+</div>
+</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Detected Footprint</span>
+<p class="font-code-sm text-code-sm text-secondary">48 Reviews in 9.2 Minutes</p>
+<span class="font-code-sm text-[11px] text-outline">Identical TLS fingerprints</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Investigation Stage</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold">Forensic Graph Assigned</span>
+<span class="font-code-sm text-[11px] text-outline block">Investigator: Admin Vance</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Coordinated synthetic rating injection detected. 48 distinct buyer personas registered within 30 minutes sharing identical canvas hashes and routing through a commercial residential proxy subnet to bypass baseline rate limiters.
+        </p>
+</article>
+<!-- CARD 3: Harassment / Offensive Behavior -->
+<article class="report-card relative overflow-hidden rounded-2xl bg-surface-container/60 backdrop-blur-2xl shadow-[0_12px_40px_0_rgba(0,0,0,0.55),inset_0_1px_0_rgba(243,229,171,0.12)] p-space-lg transition-all duration-300 hover:shadow-[0_16px_48px_rgba(212,175,55,0.12)] luxury-interactive-card" data-report-id="REP-89395" data-status="open" data-type="Inappropriate Content" data-target-type="post" data-target-id="2" data-urgency="high">
+<div class="flex flex-col xl:flex-row justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/20 text-tertiary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">front_hand</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary">#REP-89395</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-bold tracking-wide uppercase">Inappropriate Content &amp; Extortion</span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-semibold">Pending Triage</span>
+<span class="font-code-sm text-code-sm text-outline opacity-80">Submitted 1 hour ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Harassment &amp; Blackmail in Private Merchant Messaging</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-center">
+<span class="px-3 py-1 rounded-xl bg-surface-container-high text-xs font-code-sm text-secondary font-medium">Risk Score: 86/100</span>
+<button class="px-space-md py-2.5 rounded-xl bg-gradient-to-br from-[#FFF2A7] via-[#D4AF37] to-[#AA7C11] text-surface-container-lowest font-headline-sm text-[13px] font-bold tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_28px_rgba(255,215,0,0.55)] transition-all flex items-center gap-1.5 btn-gold-shimmer" onclick="openReportModal('REP-89395')" type="button">
+<span>Review &amp; Triage</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm p-space-md rounded-xl bg-surface-container-lowest/60 backdrop-blur-md mb-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Reporter</span>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-none">Victoria Sinclair</p>
+<span class="font-code-sm text-[11px] text-primary">VIP Collector • 99.4% Positive Rep</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Reported Account</span>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-none">@vance_trader</p>
+<span class="font-code-sm text-[11px] text-error font-medium">Individual Trader • 2 Prior Warnings</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Violation Policy</span>
+<p class="font-code-sm text-code-sm text-secondary">Sec 4.12: Hostile Extortion</p>
+<span class="font-code-sm text-[11px] text-outline">Automatic Suspension Threshold</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-0.5">Evidence Status</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold">2 Logs Verified</span>
+<span class="font-code-sm text-[11px] text-outline block">Cryptographically Sealed</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Reported account repeatedly threatened to initiate mass-negative listing flags across the seller catalog unless 50% retroactive refunds were disbursed outside of platform escrow.
+        </p>
+</article>
+<!-- CARD 4: Resolved / Actioned -->
+<article class="report-card relative overflow-hidden rounded-2xl bg-surface-container/60 backdrop-blur-2xl shadow-[0_12px_40px_0_rgba(0,0,0,0.55),inset_0_1px_0_rgba(243,229,171,0.08)] p-space-lg opacity-85 transition-all duration-300" data-report-id="REP-89381" data-status="dismissed" data-type="Fake Information" data-target-type="review" data-target-id="3" data-urgency="low">
+<div class="flex flex-col xl:flex-row justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap mb-1">
+<span class="font-code-sm text-code-sm font-bold text-outline">#REP-89381</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-outline text-[11px] font-bold tracking-wide uppercase">Fake Information &amp; Specs</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary text-[11px] font-semibold flex items-center gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                  Resolved • Sanction Applied
+                </span>
+<span class="font-code-sm text-code-sm text-outline opacity-80">Closed 3 hours ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Deceptive Hardware Specs &amp; Memory Allocation Listing</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-center">
+<span class="px-3 py-1 rounded-xl bg-surface-container-high text-xs font-code-sm text-secondary font-medium">Verdict: Listing Removed</span>
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container-high/60 hover:bg-surface-container-high text-on-surface font-headline-sm text-[13px] font-semibold transition-all" onclick="openReportModal('REP-89381')" type="button">
+<span>View Archival Record</span>
+</button>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest/60 text-body-sm text-on-surface-variant flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<span>Target Merchant: <strong class="text-on-surface font-semibold">Vanguard Tech Labs (#MK-12940)</strong></span>
+<span class="font-code-sm text-secondary">Actioned by Admin A. Vance • Official Warning Recorded</span>
+</div>
+</article>
+</div>
+<!-- Liquid Pagination & Load More -->
+<div class="mt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low/60 backdrop-blur-xl">
+<span class="font-code-sm text-code-sm text-outline">Showing <span class="text-on-surface font-bold">1–4</span> of 1,428 active reports</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-high/40 text-outline cursor-not-allowed opacity-50" disabled="" type="button">Previous</button>
+<button class="px-3 py-1.5 rounded-xl bg-primary-container text-on-primary-container font-code-sm font-bold" type="button">1</button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-high/40 text-on-surface hover:bg-surface-container-high font-code-sm" type="button">2</button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-high/40 text-on-surface hover:bg-surface-container-high font-code-sm" type="button">3</button>
+<span class="text-outline">...</span>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-high/40 text-on-surface hover:bg-surface-container-high font-code-sm" type="button">143</button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-high text-primary hover:bg-surface-container-highest" type="button">Next</button>
+</div>
+</div>
+</section>
+<!-- TAB 2: BAN APPEALS SECTION (Hidden by default, shown on toggle) -->
+<section class="hidden flex-col w-full transition-opacity duration-300" id="section-appeals">
+<!-- Appeals Stat Bento Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<div class="p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)]">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Total Appeals</span>
+<span class="font-display text-[32px] font-bold text-on-surface tracking-tight" id="stat-total-appeals-num">184</span>
+<p class="font-body-sm text-body-sm text-outline mt-1">Submitted lifetime appeals</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)]">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Pending Evaluation</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-tertiary tracking-tight" id="stat-appeals-pending-num">19</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-code-sm text-[10px]">Awaiting Adjudication</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary/80 mt-1">Senior Admin review mandatory</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)]">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Restoration Approved</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-primary tracking-tight" id="stat-appeals-approved-num">112</span>
+<span class="font-code-sm text-code-sm text-secondary font-medium">60.8% Rate</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">Accounts &amp; storefronts reinstated</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(243,229,171,0.15)]">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Appeals Rejected</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-[32px] font-bold text-error tracking-tight" id="stat-appeals-rejected-num">53</span>
+<span class="font-code-sm text-code-sm text-error/80 font-medium">Permanent</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">Sustained bans &amp; storefront freezes</p>
+</div>
+</div>
+<!-- Appeals Filter Strip -->
+<div class="p-space-md rounded-2xl bg-surface-container-low/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] mb-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="relative w-full md:max-w-md">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-lowest/80 text-on-surface placeholder:text-outline/70 font-body-sm text-body-sm pl-11 pr-space-md py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/60 transition-all shadow-inner" id="input-search-appeals" placeholder="Search by Appeal ID, user legal name, or merchant ID..." type="text">
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto">
+<select class="appearance-none bg-surface-container-lowest/80 text-on-surface font-body-sm text-body-sm px-space-md py-3 pr-8 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/50 cursor-pointer" id="select-appeal-status">
+<option value="ALL">All Appeal Statuses</option>
+<option value="Pending">Pending Evaluation</option>
+<option value="Approved">Approved &amp; Restored</option>
+<option value="Rejected">Rejected &amp; Sustained</option>
+</select>
+<span class="material-symbols-outlined text-outline -ml-7 pointer-events-none text-sm">expand_more</span>
+</div>
+</div>
+<!-- Appeals Dossier Cards List -->
+<div class="flex flex-col gap-space-lg" id="appeals-feed-container">
+<!-- APPEAL CARD 1: Jonathan Drake (Shop Owner) -->
+<article class="appeal-card relative overflow-hidden rounded-2xl bg-surface-container/60 backdrop-blur-2xl shadow-[0_12px_40px_0_rgba(0,0,0,0.55),inset_0_1px_0_rgba(243,229,171,0.2)] p-space-lg transition-all duration-300 hover:shadow-[0_16px_48px_rgba(212,175,55,0.15)]" data-appeal-id="APL-2044" data-appeal-status="Pending">
+<div class="flex flex-col xl:flex-row justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/20 text-primary flex items-center justify-center flex-shrink-0 shadow-[0_0_16px_rgba(212,175,55,0.25)]">
+<span class="material-symbols-outlined text-[24px]">published_with_changes</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary">#APL-2044</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-bold tracking-wide uppercase">Pending Senior Review</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary text-[11px] font-semibold">Enterprise Merchant</span>
+<span class="font-code-sm text-code-sm text-outline opacity-80">Banned on: Oct 12, 2024</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Appeal for Aura Diamonds Studio (#MK-55102)</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-center">
+<button class="px-space-md py-2.5 rounded-xl bg-gradient-to-br from-[#FFF2A7] via-[#D4AF37] to-[#AA7C11] text-surface-container-lowest font-headline-sm text-[13px] font-bold tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_28px_rgba(255,215,0,0.55)] transition-all flex items-center gap-1.5" onclick="openAppealModal('APL-2044')" type="button">
+<span>Evaluate Appeal</span>
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</button>
+</div>
+</div>
+<!-- Appeals Comparison Split-View Architecture -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md mb-space-md">
+<!-- Left: Original Sanction Evidence (Ruby-accented dark obsidian) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/80 border border-error/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">block</span> Original Sanction Rationale
+              </span>
+<span class="font-code-sm text-[11px] text-outline">Oct 12, 2024</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mb-2 font-medium">Reason: "Suspected unverified consignment origin and missing customs declaration papers."</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Consignment batch containing 14 certified rough cut emeralds lacked digital customs stamps. Automated border compliance flagged node for potential illegal cross-border tax evasion.
+            </p>
+</div>
+<!-- Right: User Defense & Attached Clearance (Golden-rimmed glass) -->
+<div class="p-space-md rounded-xl bg-surface-container-high/40 border border-primary/40 shadow-[0_0_16px_rgba(212,175,55,0.1),inset_0_1px_0_rgba(255,242,167,0.15)]">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">assignment_turned_in</span> User Defense Statement
+              </span>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-mono">GIA Lab Attached</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic mb-2">
+              "We have now obtained and attached official GIA lab certificates and custom import documentation proving the legitimacy of the entire consignment lot. We respectfully request reinstatement of our account and public shop catalog."
+            </p>
+<div class="flex items-center gap-2 mt-3 pt-2 border-t border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-[16px]">attachment</span>
+<span class="font-code-sm text-[11px] text-secondary">GIA_Lab_Audit_Cert_#774102.pdf (4.8 MB)</span>
+<button class="ml-auto text-primary text-xs underline font-semibold" onclick="openLightbox('GIA Lab Verification Certificate', 'Cryptographically verified laboratory provenance report for Aura Diamonds consignment.')" type="button">Inspect PDF</button>
+</div>
+</div>
+</div>
+<!-- Associated Merchant Footprint -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/60 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">store</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Connected Storefront: Aura Diamonds Studio</p>
+<p class="font-code-sm text-[11px] text-outline">Merchant Node: #MK-55102 • Active Enterprise Subscription Tier</p>
+</div>
+</div>
+<div class="px-3 py-1.5 rounded-xl bg-secondary-container/30 text-secondary font-code-sm text-xs font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+            Eligible for Immediate Storefront Visibility Restoration
+          </div>
+</div>
+</article>
+<!-- APPEAL CARD 2: Elena Rostova (Individual Trader) -->
+<article class="appeal-card relative overflow-hidden rounded-2xl bg-surface-container/60 backdrop-blur-2xl shadow-[0_12px_40px_0_rgba(0,0,0,0.55),inset_0_1px_0_rgba(243,229,171,0.12)] p-space-lg transition-all duration-300" data-appeal-id="APL-2039" data-appeal-status="Pending">
+<div class="flex flex-col xl:flex-row justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">person</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary">#APL-2039</span>
+<span class="h-1 w-1 rounded-full bg-outline"></span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary text-[11px] font-bold tracking-wide uppercase">Pending Evaluation</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary text-[11px] font-semibold">Individual Trader</span>
+<span class="font-code-sm text-code-sm text-outline opacity-80">Banned on: Oct 28, 2024</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Appeal for User @elena_rostova</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-center">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container-high/80 hover:bg-surface-container-highest text-primary font-headline-sm text-[13px] font-bold tracking-wider uppercase transition-all flex items-center gap-1.5" onclick="openAppealModal('APL-2039')" type="button">
+<span>Evaluate Appeal</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-lowest/80 border border-error/20">
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider font-semibold block mb-1">Original Ban Trigger</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Multiple failed chargebacks &amp; payment gateway fraud alert.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-high/30 border border-outline-variant/30">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold block mb-1">User Statement</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+              "My card was compromised while traveling abroad. The bank has resolved the false disputes and provided formal reversal documentation attached."
+            </p>
+</div>
+</div>
+</article>
+<!-- APPEAL CARD 3: Approved Historical -->
+<article class="appeal-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl p-space-lg opacity-85" data-appeal-id="APL-2021" data-appeal-status="Approved">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-sm">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-code-sm text-code-sm font-bold text-outline">#APL-2021</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-primary text-[11px] font-bold uppercase">Restoration Approved</span>
+<span class="font-code-sm text-[11px] text-outline">Restored on Nov 02, 2024</span>
+</div>
+<p class="font-title-md text-title-md font-semibold text-on-surface">Kaelen Horology Studio (#MK-19204)</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Adjudicated by Super Admin Alex Vance • All 2 storefronts unhidden</p>
+</div>
+<span class="px-3 py-1 rounded-xl bg-surface-container-high text-xs font-code-sm text-secondary">Ledger #AUD-9102</span>
+</div>
+</article>
+<!-- APPEAL CARD 4: Rejected Historical -->
+<article class="appeal-card relative overflow-hidden rounded-2xl bg-surface-container/40 backdrop-blur-xl p-space-lg opacity-80" data-appeal-id="APL-2015" data-appeal-status="Rejected">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-sm">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-code-sm text-code-sm font-bold text-outline">#APL-2015</span>
+<span class="px-2.5 py-0.5 rounded-full bg-error-container/30 text-error text-[11px] font-bold uppercase">Appeal Rejected</span>
+<span class="font-code-sm text-[11px] text-outline">Sustained on Oct 29, 2024</span>
+</div>
+<p class="font-title-md text-title-md font-semibold text-on-surface">Veloce Time Lab (#MK-09144)</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Rationale: Repeated deceptive counterfeit listings with falsified holographic seals.</p>
+</div>
+<span class="px-3 py-1 rounded-xl bg-surface-container-high text-xs font-code-sm text-error">Permanent Ban</span>
+</div>
+</article>
+</div>
+</section>
+<!-- ======================================================== -->
+<!-- MODAL 1: REPORT TRIAGE & FULL 4 ADMIN DECISION WORKFLOW -->
+<!-- ======================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" id="modal-report-triage">
+<!-- Backdrop with liquid blur -->
+<div class="fixed inset-0 bg-surface-container-lowest/85 backdrop-blur-2xl transition-opacity" onclick="closeReportModal()"></div>
+<!-- Modal Content Card -->
+<div class="relative w-full max-w-4xl rounded-2xl bg-surface-container-low/95 backdrop-blur-2xl border border-primary/40 shadow-[0_24px_64px_rgba(0,0,0,0.85),0_0_32px_rgba(212,175,55,0.15),inset_0_1px_2px_rgba(255,242,167,0.25)] p-space-lg my-8 z-10 modal-spring-scale">
+<!-- Modal Header -->
+<div class="flex items-start justify-between pb-space-md border-b border-outline-variant/30 mb-space-md">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary" id="modal-report-id">#REP-89412</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container/30 text-error font-code-sm text-[10px] font-bold uppercase" id="modal-report-type-badge">Fraud / Scam</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/30 text-secondary font-code-sm text-[10px]">Triage Enclave</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface" id="modal-report-title">Review &amp; Triage Incident</h2>
+</div>
+<button class="p-2 rounded-xl bg-surface-container-high/60 text-outline hover:text-on-surface transition-all" onclick="closeReportModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Dossier Breakdown -->
+<div class="flex flex-col gap-space-md mb-space-lg max-h-[512px] overflow-y-auto pr-2">
+<!-- Target Overview -->
+<div class="p-space-md rounded-xl bg-surface-container/60 border border-outline-variant/30 grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Target Account</span>
+<p class="font-title-md text-title-md font-bold text-on-surface" id="modal-target-name">Apex Luxury Timepieces</p>
+<p class="font-code-sm text-[11px] text-secondary" id="modal-target-id">Merchant Node #MK-44201</p>
+<p class="font-code-sm text-[11px] text-outline mt-1">3 Storefronts Associated</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Business License &amp; Escrow</span>
+<p class="font-code-sm text-code-sm text-on-surface">EIN: US-994102-CH</p>
+<p class="font-code-sm text-code-sm text-primary font-bold">Escrow Balance: $48,500.00</p>
+<p class="font-code-sm text-[11px] text-secondary">Sovereign Cold Storage</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Violation History</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="h-2 w-2 rounded-full bg-error"></span>
+<span class="font-code-sm text-code-sm text-error font-semibold">1 Prior Warning (Escrow Dispute)</span>
+</div>
+<span class="font-code-sm text-[11px] text-outline block mt-0.5">Trust Score: 32 / 100 (Degraded)</span>
+</div>
+</div>
+<!-- Incident Narrative -->
+<div class="p-space-md rounded-xl bg-surface-container/40">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Incident Report Narrative</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" id="modal-narrative-text">
+            Merchant delivered a replica chronograph with falsified provenance certificates. Seller refused dispute mediation and attempted off-platform wire transfer. Counterfeit inspection verified through optical serial comparison.
+          </p>
+</div>
+<!-- Evidence Attachment Preview Row in Modal -->
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-2">Cryptographic Verification Gallery</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="h-20 rounded-lg overflow-hidden bg-surface-container-high cursor-pointer relative group" onclick="openLightbox('Certificate Forensic Zoom', 'Lab examination confirming replica dial stamping.')">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Laboratory comparison microscope photograph of luxury watch metal case engraving showing jagged fake edges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoQ0J_jyFU1OFeJT2XK8fwUTxRVxsTp6OuQfIOI50NBRbnHszTg4pFtfzi3jRBAfnUy5yxnLYS5j_59sIg3A5TlRN440F4EqKpKogQosJCaZEDI0NnYIbFC0MsoEzo3afoA1SdUgxRhcdIQp2PJnH3Ccmh0hjFeGVbJ-o8601g7Lko27MwNI0Jm24W1HUOpg2a6-BVDR6LSZAJpkx6bfzNziSje6x83K2phaKnJdo">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-sm">zoom_in</span>
+</div>
+</div>
+<div class="h-20 rounded-lg overflow-hidden bg-surface-container-high cursor-pointer relative group" onclick="openLightbox('Macro Bezel Defect', 'Incorrect font weight on tachymeter scale.')">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Macro photography of luxury watch gold bezel with high intensity contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRCwKQBDik3Eg_PbfzlWqS19mrUIJxq498DILxj8aD-OEWyqLLHVWnayLvi6sueW5v2KKw4kqI5l_VRrAssOG9qW6Q_G-dTHJJM44b1qwzHEzwHzCHbZPEO0pP8_nfnpg0HdY0ucGZo0AmIUDJZpkfYXOW_kXXycSTZ4is9KmQuSajDtcJq910g4kFYW2rfWuufFVzgOx0d8waujiWc9dJOgCrWarinQ45FlKU3fo">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-sm">zoom_in</span>
+</div>
+</div>
+<div class="h-20 rounded-lg overflow-hidden bg-surface-container-high cursor-pointer relative group" onclick="openLightbox('Unsanctioned Wire Logs', 'Raw decrypted packet capture of seller message.')">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Encrypted chat application terminal text logs highlighting unauthorized bank wire details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9UqhEwYtYTnM4Qjg0TF56kaUSY4CQ97yhSzv5eiARba_bkAX1mIoxLsQ-qkbyDr7isVvuOGbR_v-U1KADnuxks_hH20ahQulC0VoJWkVX1VfGfaffFhFaLq4KaJef457Uvz777ghpOScbW43sf6b-jwPHClM1517H_AswzERNFzByffJeGv26cavgtuX2WqO9scL4XCjgQ5dQPsUTIuPx-DoldeS5JcDaZSrOjmQ">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-sm">zoom_in</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Custom Warning Input Drawer (Expands when clicking 'Send Official Warning') -->
+<div class="hidden p-space-md rounded-xl bg-surface-container-highest/60 border border-primary/30 transition-all" id="drawer-warning-input">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider block mb-2 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">edit_note</span> Compose Official Compliance Warning
+          </span>
+<div class="mb-3">
+<label class="font-code-sm text-xs text-outline block mb-1">Select Policy Template:</label>
+<select class="w-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm p-2 rounded-lg focus:ring-1 focus:ring-primary/50 focus:outline-none" id="select-warning-template" onchange="applyWarningTemplate(this.value)">
+<option value="">-- Choose Standard Sanction Notice --</option>
+<option value="escrow">Escrow Circumvention &amp; Direct Wire Solicitation</option>
+<option value="provenance">Unverified Provenance &amp; Replica Goods Notice</option>
+<option value="behavior">Harassment &amp; Marketplace Conduct Violation</option>
+</select>
+</div>
+<div>
+<label class="font-code-sm text-xs text-outline block mb-1">Formal Sanction Message (will be delivered to Merchant Portal &amp; Email):</label>
+<textarea class="w-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm p-3 rounded-lg focus:ring-1 focus:ring-primary/50 focus:outline-none placeholder:text-outline/50" id="textarea-warning-content" placeholder="Specify statutory violation clauses and cure period (e.g., 48 hours to remit proof of provenance)..." rows="3"></textarea>
+</div>
+<div class="mt-2 flex justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-outline text-xs" onclick="cancelWarningDrawer()" type="button">Cancel</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-xs font-bold shadow-[0_0_12px_rgba(212,175,55,0.3)]" onclick="executeSendWarning()" type="button">Dispatch Sanction Notice</button>
+</div>
+</div>
+<!-- Ban Merchant Confirmation Drawer (Expands when clicking 'Ban User / Merchant') -->
+<div class="hidden p-space-md rounded-xl bg-error-container/20 border border-error/50 transition-all" id="drawer-ban-confirmation">
+<div class="flex items-center gap-2 mb-2 text-error">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span class="font-headline-sm text-[15px] font-bold">Severe Sovereign Sanction: Irrevocable Freeze</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mb-3 leading-relaxed">
+            By executing this ban on <strong class="text-error font-bold" id="ban-modal-target-title">Apex Luxury Timepieces</strong>:
+          </p>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-1 mb-3 pl-4 list-disc">
+<li>All <strong class="text-on-surface">3 registered merchant storefronts</strong> ('Apex Horology', 'Apex Geneva', 'Apex Vintage') will be hidden from public search immediately.</li>
+<li>User credentials will be immediately suspended with active token invalidation.</li>
+<li>Shop records, escrow ledgers ($48,500.00), and transaction archives will be preserved securely for legal proceedings.</li>
+<li><strong class="text-primary font-mono text-xs">Rule Enforced: Admin accounts cannot be banned through the Reports section.</strong></li>
+</ul>
+<div class="mb-3">
+<label class="font-code-sm text-xs text-outline block mb-1">State Formal Administrative Reason:</label>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm p-2.5 rounded-lg focus:ring-1 focus:ring-error focus:outline-none" id="input-ban-reason" type="text" value="Systemic Fraud, Provenance Forgery, and Attempted Escrow Evasion">
+</div>
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-outline text-xs" onclick="cancelBanDrawer()" type="button">Abort</button>
+<button class="px-4 py-2 rounded-lg bg-error-container hover:bg-error text-on-error font-headline-sm text-xs font-bold shadow-[0_0_16px_rgba(225,29,72,0.4)]" onclick="executeBanMerchant()" type="button">Confirm Immediate Freeze &amp; Hide Stores</button>
+</div>
+</div>
+</div>
+<!-- Action Footer: The 4 Comprehensive Admin Decision Action Buttons -->
+<div class="pt-space-md border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-space-sm" id="admin-actions-bar">
+<span class="font-code-sm text-[11px] text-outline self-start sm:self-center">Adjudicator: <strong class="text-secondary font-mono">alex.vance (Super Admin)</strong></span>
+<div class="flex items-center gap-2 flex-wrap w-full sm:w-auto justify-end">
+<!-- Action 4: Dismiss -->
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-high/60 hover:bg-surface-container-high text-outline hover:text-on-surface font-body-md text-xs font-semibold transition-all" onclick="executeDismissReport()" type="button">
+            Dismiss (No Action)
+          </button>
+<!-- Action 1: Delete Content -->
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-high/80 hover:bg-surface-container-highest text-secondary hover:text-on-surface font-body-md text-xs font-semibold transition-all flex items-center gap-1" onclick="executeDeleteContent()" type="button">
+<span class="material-symbols-outlined text-[15px]">delete_forever</span>
+<span>Delete Listing</span>
+</button>
+<!-- Action 2: Send Warning -->
+<button class="px-3.5 py-2 rounded-xl bg-secondary-container/40 hover:bg-secondary-container/70 text-secondary font-body-md text-xs font-bold transition-all flex items-center gap-1" onclick="toggleWarningDrawer()" type="button">
+<span class="material-symbols-outlined text-[15px]">warning</span>
+<span>Send Warning</span>
+</button>
+<!-- Action 3: Ban Merchant / User -->
+<button class="px-4 py-2 rounded-xl bg-gradient-to-r from-error/20 via-error-container/40 to-error/20 hover:bg-error-container text-error hover:text-on-error border border-error/40 font-headline-sm text-xs font-bold tracking-wider uppercase shadow-[0_0_16px_rgba(225,29,72,0.25)] transition-all flex items-center gap-1.5" onclick="toggleBanDrawer()" type="button">
+<span class="material-symbols-outlined text-[16px]">block</span>
+<span>Ban Target Entity</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- MODAL 2: APPEAL EVALUATION & RESTORATION WORKFLOW -->
+<!-- ======================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" id="modal-appeal-evaluate">
+<div class="fixed inset-0 bg-surface-container-lowest/85 backdrop-blur-2xl transition-opacity" onclick="closeAppealModal()"></div>
+<div class="relative w-full max-w-3xl rounded-2xl bg-surface-container-low/95 backdrop-blur-2xl border border-primary/50 shadow-[0_24px_64px_rgba(0,0,0,0.85),0_0_32px_rgba(212,175,55,0.2),inset_0_1px_2px_rgba(255,242,167,0.3)] p-space-lg my-8 z-10">
+<!-- Modal Header -->
+<div class="flex items-start justify-between pb-space-md border-b border-outline-variant/30 mb-space-md">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-code-sm text-code-sm font-bold text-primary" id="appeal-modal-id">#APL-2044</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary font-code-sm text-[10px] font-bold uppercase">Restoration Adjudication</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Evaluate Reinstatement Request</h2>
+</div>
+<button class="p-2 rounded-xl bg-surface-container-high/60 text-outline hover:text-on-surface transition-all" onclick="closeAppealModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-md mb-space-lg max-h-[512px] overflow-y-auto pr-2">
+<!-- User & Membership Overview -->
+<div class="p-space-md rounded-xl bg-surface-container/60 border border-outline-variant/30 grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-1">Petitioner Dossier</span>
+<p class="font-title-md text-title-md font-bold text-on-surface" id="appeal-modal-user">Jonathan Drake (Shop Owner)</p>
+<p class="font-code-sm text-[12px] text-secondary">j.drake@auradiamonds.com</p>
+<p class="font-code-sm text-[11px] text-outline mt-1">Merchant Node: #MK-55102</p>
+</div>
+<div class="bg-surface-container-lowest/60 p-3 rounded-lg border border-primary/20">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider block mb-1 font-bold">Storefront Membership Status</span>
+<p class="font-code-sm text-code-sm text-on-surface flex items-center gap-1.5 font-semibold">
+<span class="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_#f2ca50]"></span>
+              Active Enterprise Tier Subscription
+            </p>
+<p class="font-body-sm text-[12px] text-secondary mt-1">
+              Storefront restoration rule: "Eligible for automatic catalog &amp; search re-indexing upon approval."
+            </p>
+</div>
+</div>
+<!-- Defense Evidence Statement -->
+<div class="p-space-md rounded-xl bg-surface-container-high/40 border border-primary/30">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider block mb-1 font-semibold">Formal Appeal Statement</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed italic" id="appeal-modal-statement">
+            "We have now obtained and attached official GIA lab certificates and custom import documentation proving the legitimacy of the entire consignment lot. We respectfully request reinstatement of our account and public shop catalog."
+          </p>
+</div>
+<!-- Document Verification Block -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/70 border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[28px]">verified</span>
+<div>
+<p class="font-title-md text-title-md font-semibold text-on-surface">GIA_Lab_Audit_Cert_#774102.pdf</p>
+<span class="font-code-sm text-xs text-outline">SHA256: 8f4b0e91...d5c7a • Cryptographically Signed</span>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary hover:text-on-surface text-xs font-semibold" onclick="openLightbox('GIA Lab Provenance Certificate', 'Cryptographic verification complete. Issuer: Gemological Institute of America.')" type="button">
+            View Certificate
+          </button>
+</div>
+<!-- Rejection Reason Input Drawer (Expands when clicking 'Reject Appeal') -->
+<div class="hidden p-space-md rounded-xl bg-error-container/20 border border-error/40 transition-all" id="drawer-appeal-reject">
+<label class="font-label-sm text-label-sm text-error uppercase tracking-wider block mb-1 font-bold">State Sustained Rejection Justification:</label>
+<textarea class="w-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm p-2.5 rounded-lg focus:ring-1 focus:ring-error focus:outline-none" id="textarea-appeal-reject-reason" placeholder="Provide evidentiary grounds for sustaining the ban (e.g., Documents provided failed third-party provenance verification)..." rows="2"></textarea>
+<div class="mt-2 flex justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-outline text-xs" onclick="document.getElementById('drawer-appeal-reject').classList.add('hidden')" type="button">Cancel</button>
+<button class="px-4 py-1.5 rounded-lg bg-error-container hover:bg-error text-on-error font-headline-sm text-xs font-bold" onclick="executeRejectAppeal()" type="button">Confirm Sustained Ban</button>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="pt-space-md border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-code-sm text-[11px] text-outline">Audit Destination: <strong class="text-primary">POINTER Cryptographic Ledger</strong></span>
+<div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+<!-- Reject Appeal -->
+<button class="px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-error-container/30 text-error hover:text-on-error-container font-headline-sm text-xs font-bold tracking-wider uppercase transition-all" onclick="toggleAppealRejectDrawer()" type="button">
+            Reject Appeal
+          </button>
+<!-- Approve Appeal & Restore Access -->
+<button class="px-space-md py-2.5 rounded-xl bg-gradient-to-br from-[#FFF2A7] via-[#D4AF37] to-[#AA7C11] text-surface-container-lowest font-headline-sm text-xs font-bold tracking-wider uppercase shadow-[0_0_24px_rgba(212,175,55,0.4)] hover:shadow-[0_0_32px_rgba(255,215,0,0.6)] transition-all flex items-center gap-1.5" onclick="executeApproveAppeal()" type="button">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Approve &amp; Restore Access</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- LIGHTBOX IMAGE VIEWER MODAL -->
+<!-- ======================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 overflow-hidden" id="modal-lightbox">
+<div class="fixed inset-0 bg-black/90 backdrop-blur-2xl transition-opacity" onclick="closeLightbox()"></div>
+<div class="relative max-w-4xl w-full bg-surface-container-lowest/95 rounded-2xl border border-primary/40 p-space-md shadow-2xl z-10 flex flex-col modal-spring-scale">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-outline-variant/20">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface" id="lightbox-title">Evidence Inspection</h3>
+<p class="font-body-sm text-body-sm text-secondary" id="lightbox-desc">High-resolution cryptographic asset</p>
+</div>
+<button class="p-2 rounded-xl bg-surface-container-high text-outline hover:text-on-surface" onclick="closeLightbox()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="w-full h-[563px] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-contain" data-alt="Cryptographic high resolution forensic inspection photo showing macro details and golden measurement markers" id="lightbox-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnZntmilitHV3uPonKZpFlRjjKj-ple2KFzUkZu6hleE8aqFsxcqN8ZuAyUBXYz6ukXboNuKaSA583_c8In5-YVmVqsXc9iwc60bJD7mItAGYrPZ9Mj9x_sFB3g7T_UA0vcF1wUSZdH0CnRygxQralEckHwVWfVsbH1sl2l2WvS21Ref9uODgSk4whw0tWUhE_skmfxWz-9bkBqnC-GPLpyKPDCZmRZ-RtbqIs45o">
+</div>
+<div class="mt-3 flex items-center justify-between">
+<span class="font-code-sm text-xs text-outline">Optical Integrity: 100% Verifiable • SHA-256 Validated</span>
+<button class="px-3 py-1 rounded-lg bg-surface-container-high text-primary text-xs font-semibold flex items-center gap-1" onclick="showToast('Evidence hash downloaded to local secure enclave.')" type="button">
+<span class="material-symbols-outlined text-xs">download</span> Export Proof
+        </button>
+</div>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- SLIDE-OVER RECENT ACTION LEDGER DRAWER -->
+<!-- ======================================================== -->
+<div class="fixed inset-y-0 right-0 w-full max-w-md bg-surface-container-low/95 backdrop-blur-2xl border-l border-primary/30 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col" id="drawer-audit-feed">
+<div class="p-space-md border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<h3 class="font-headline-sm text-[16px] font-bold text-on-surface">Live Sanctions &amp; Audit Ledger</h3>
+</div>
+<button class="p-1.5 rounded-lg bg-surface-container-high text-outline hover:text-on-surface" onclick="toggleAuditFeed(false)" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Ledger Entries Stream -->
+<div class="flex-1 overflow-y-auto p-space-md space-y-space-sm font-code-sm text-xs" id="audit-feed-list">
+<!-- Default Entry 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container/60 border border-outline-variant/20">
+<div class="flex items-center justify-between text-outline text-[10px] mb-1">
+<span>[14:28:02] NODE_01</span>
+<span class="text-primary font-semibold">#AUD-9912</span>
+</div>
+<p class="text-on-surface"><span class="text-secondary font-bold">ADMIN alex.vance</span> issued Official Sanction to <span class="text-primary">#MK-44201</span></p>
+<p class="text-outline text-[11px] mt-0.5">Action: Warning Dispatched • Escrow Under Observation</p>
+</div>
+<!-- Default Entry 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container/60 border border-outline-variant/20">
+<div class="flex items-center justify-between text-outline text-[10px] mb-1">
+<span>[13:50:18] NODE_03</span>
+<span class="text-primary font-semibold">#AUD-9911</span>
+</div>
+<p class="text-on-surface"><span class="text-secondary font-bold">SYSTEM SENTINEL</span> quarantined 48 sybil profiles for <span class="text-primary">#MK-33108</span></p>
+<p class="text-outline text-[11px] mt-0.5">Automated Heuristic Score: 92/100</p>
+</div>
+<!-- Default Entry 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container/60 border border-outline-variant/20">
+<div class="flex items-center justify-between text-outline text-[10px] mb-1">
+<span>[11:14:40] NODE_01</span>
+<span class="text-primary font-semibold">#AUD-9910</span>
+</div>
+<p class="text-on-surface"><span class="text-secondary font-bold">ADMIN alex.vance</span> executed Restoration of <span class="text-primary">#MK-19204</span></p>
+<p class="text-secondary text-[11px] mt-0.5">Appeal Approved • Storefronts Re-Indexed</p>
+</div>
+</div>
+<div class="p-space-md border-t border-outline-variant/30 bg-surface-container-lowest/60">
+<span class="font-code-sm text-[11px] text-outline block text-center">Immutable SHA-256 Ledger • Synchronized</span>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- GOLD TOAST NOTIFICATION CONTAINER -->
+<!-- ======================================================== -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" id="toast-container"></div>
+<div class="fixed bottom-6 right-8 z-40 flex items-center gap-2"><button type="button" onclick="document.getElementById('main-workspace-scroll').scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-surface-container-high/85 hover:bg-surface-container-highest backdrop-blur-xl border border-primary/30 hover:border-primary/60 text-secondary hover:text-primary shadow-[0_8px_24px_rgba(0,0,0,0.6),0_0_12px_rgba(212,175,55,0.15)] transition-all duration-300 transform hover:-translate-y-0.5" title="Scroll to top"><span class="material-symbols-outlined text-[18px] group-hover:-translate-y-0.5 transition-transform">arrow_upward</span><span class="font-code-sm text-[11px] font-semibold uppercase tracking-wider hidden sm:inline">Top</span></button></div></div>
+<!-- INTERACTIVE SCRIPTS & STATE MANAGEMENT -->
+<script>
+  // DOM Elements
+  const tabBtnReports = document.getElementById('tab-btn-reports');
+  const tabBtnAppeals = document.getElementById('tab-btn-appeals');
+  const tabIndicator = document.getElementById('tab-indicator');
+  const sectionReports = document.getElementById('section-reports');
+  const sectionAppeals = document.getElementById('section-appeals');
+
+  // Search & Filter Elements
+  const inputSearchReports = document.getElementById('input-search-reports');
+  const btnClearReportSearch = document.getElementById('btn-clear-report-search');
+  const selectReportType = document.getElementById('select-report-type');
+  const selectReportStatus = document.getElementById('select-report-status');
+  const selectReportSort = document.getElementById('select-report-sort');
+  const btnResetFilters = document.getElementById('btn-reset-filters');
+  const chipFilters = document.querySelectorAll('.chip-filter');
+  const reportCards = document.querySelectorAll('.report-card');
+
+  const inputSearchAppeals = document.getElementById('input-search-appeals');
+  const selectAppealStatus = document.getElementById('select-appeal-status');
+  const appealCards = document.querySelectorAll('.appeal-card');
+
+  // Drawer / Modals
+  const drawerAuditFeed = document.getElementById('drawer-audit-feed');
+  const auditFeedList = document.getElementById('audit-feed-list');
+  const auditCounterBadge = document.getElementById('audit-counter-badge');
+
+  let currentActiveReportId = null;
+  let currentActiveAppealId = null;
+  let auditLogCount = 18;
+
+  // TAB SWITCHER IMPLEMENTATION
+  function switchTab(target) {
+    if (target === 'reports') {
+      tabIndicator.style.transform = 'translateX(0%)';
+      tabBtnReports.classList.replace('text-outline', 'text-on-primary-container');
+      tabBtnAppeals.classList.replace('text-on-primary-container', 'text-outline');
+      sectionReports.classList.remove('hidden');
+      sectionAppeals.classList.add('hidden');
+    } else {
+      tabIndicator.style.transform = 'translateX(100%)';
+      tabBtnAppeals.classList.replace('text-outline', 'text-on-primary-container');
+      tabBtnReports.classList.replace('text-on-primary-container', 'text-outline');
+      sectionAppeals.classList.remove('hidden');
+      sectionReports.classList.add('hidden');
+    }
+  }
+
+  tabBtnReports.addEventListener('click', () => switchTab('reports'));
+  tabBtnAppeals.addEventListener('click', () => switchTab('appeals'));
+
+  // REPORTS REAL-TIME FILTERING & SEARCH (Supporting DB target_type and status)
+  function filterReports() {
+    const query = inputSearchReports.value.toLowerCase().trim();
+    const selectedType = selectReportType.value;
+    const selectedStatus = selectReportStatus.value;
+    
+    btnClearReportSearch.classList.toggle('hidden', query.length === 0);
+
+    reportCards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const type = card.getAttribute('data-type');
+      const targetType = card.getAttribute('data-target-type') || type;
+      const cardStatus = (card.getAttribute('data-status') || '').toLowerCase();
+
+      const matchesQuery = !query || text.includes(query);
+      const matchesType = (selectedType === 'ALL') || (type === selectedType) || (targetType === selectedType);
+      
+      let matchesStatus = (selectedStatus === 'ALL');
+      if (!matchesStatus) {
+        const filterStatusLower = selectedStatus.toLowerCase();
+        if (filterStatusLower === 'open' && (cardStatus === 'open' || cardStatus === 'pending')) {
+          matchesStatus = true;
+        } else if (filterStatusLower === 'resolved' && cardStatus === 'resolved') {
+          matchesStatus = true;
+        } else if (filterStatusLower === 'dismissed' && (cardStatus === 'dismissed' || cardStatus === 'closed')) {
+          matchesStatus = true;
+        } else {
+          matchesStatus = (cardStatus === filterStatusLower);
+        }
+      }
+
+      if (matchesQuery && matchesType && matchesStatus) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  inputSearchReports.addEventListener('input', filterReports);
+  selectReportType.addEventListener('change', filterReports);
+  selectReportStatus.addEventListener('change', filterReports);
+  
+  btnClearReportSearch.addEventListener('click', () => {
+    inputSearchReports.value = '';
+    filterReports();
+  });
+
+  btnResetFilters.addEventListener('click', () => {
+    inputSearchReports.value = '';
+    selectReportType.value = 'ALL';
+    selectReportStatus.value = 'ALL';
+    selectReportSort.value = 'newest';
+    chipFilters.forEach(c => c.classList.remove('bg-primary-container', 'text-on-primary-container'));
+    filterReports();
+    showToast('Report filters successfully reset to baseline.');
+  });
+
+  chipFilters.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const preset = chip.getAttribute('data-chip');
+      if (preset === 'Urgent Fraud') {
+        selectReportType.value = 'Fraud / Scam';
+        selectReportStatus.value = 'Pending';
+      } else if (preset === 'Shop Disclosures') {
+        selectReportType.value = 'Fake Information';
+      } else if (preset === 'Counterfeit Alerts') {
+        inputSearchReports.value = 'Counterfeit';
+      } else if (preset === 'Sybil Rings') {
+        selectReportType.value = 'Fake Reviews';
+      }
+      filterReports();
+      showToast(`Filter applied: ${preset}`);
+    });
+  });
+
+  // SORTING FUNCTIONALITY
+  selectReportSort.addEventListener('change', () => {
+    const container = document.getElementById('reports-feed-container');
+    const cardsArray = Array.from(reportCards);
+    const sortVal = selectReportSort.value;
+
+    cardsArray.sort((a, b) => {
+      if (sortVal === 'urgency') {
+        const uA = a.getAttribute('data-urgency') === 'high' ? 3 : a.getAttribute('data-urgency') === 'medium' ? 2 : 1;
+        const uB = b.getAttribute('data-urgency') === 'high' ? 3 : b.getAttribute('data-urgency') === 'medium' ? 2 : 1;
+        return uB - uA;
+      }
+      return 0; // Natural DOM order
+    });
+
+    cardsArray.forEach(c => container.appendChild(c));
+    showToast(`Reports re-ordered by ${selectReportSort.selectedOptions[0].text}`);
+  });
+
+  // APPEALS SEARCH & FILTER
+  function filterAppeals() {
+    const query = inputSearchAppeals.value.toLowerCase().trim();
+    const selectedStatus = selectAppealStatus.value;
+
+    appealCards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const status = card.getAttribute('data-appeal-status');
+
+      const matchesQuery = !query || text.includes(query);
+      const matchesStatus = (selectedStatus === 'ALL') || (status === selectedStatus);
+
+      if (matchesQuery && matchesStatus) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  inputSearchAppeals.addEventListener('input', filterAppeals);
+  selectAppealStatus.addEventListener('change', filterAppeals);
+
+  // REPORT MODAL LOGIC
+  const modalReportTriage = document.getElementById('modal-report-triage');
+  const modalReportId = document.getElementById('modal-report-id');
+  const modalReportTitle = document.getElementById('modal-report-title');
+  const modalTargetName = document.getElementById('modal-target-name');
+  const modalTargetId = document.getElementById('modal-target-id');
+  const banModalTargetTitle = document.getElementById('ban-modal-target-title');
+  const drawerWarningInput = document.getElementById('drawer-warning-input');
+  const drawerBanConfirmation = document.getElementById('drawer-ban-confirmation');
+  const adminActionsBar = document.getElementById('admin-actions-bar');
+
+  window.openReportModal = function(repId) {
+    currentActiveReportId = repId;
+    modalReportId.textContent = `#${repId}`;
+    drawerWarningInput.classList.add('hidden');
+    drawerBanConfirmation.classList.add('hidden');
+    adminActionsBar.classList.remove('opacity-40', 'pointer-events-none');
+
+    if (repId === 'REP-89412') {
+      modalReportTitle.textContent = 'Counterfeit Luxury Goods & Escrow Manipulation';
+      modalTargetName.textContent = 'Apex Luxury Timepieces';
+      modalTargetId.textContent = 'Merchant Node #MK-44201';
+      banModalTargetTitle.textContent = 'Apex Luxury Timepieces (#MK-44201)';
+    } else if (repId === 'REP-89408') {
+      modalReportTitle.textContent = 'Coordinated Sybil Review Bot Farm';
+      modalTargetName.textContent = 'Elysian Fragrance Boutique';
+      modalTargetId.textContent = 'Shop #MK-33108';
+      banModalTargetTitle.textContent = 'Elysian Fragrance Boutique (#MK-33108)';
+    } else if (repId === 'REP-89395') {
+      modalReportTitle.textContent = 'Harassment & Extortion in Private Chat';
+      modalTargetName.textContent = 'Individual Buyer @vance_trader';
+      modalTargetId.textContent = 'Account ID: #USR-77192';
+      banModalTargetTitle.textContent = 'User @vance_trader';
+    } else {
+      modalReportTitle.textContent = 'Hardware Spec Infraction Archival File';
+      modalTargetName.textContent = 'Vanguard Tech Labs';
+      modalTargetId.textContent = 'Shop #MK-12940';
+      banModalTargetTitle.textContent = 'Vanguard Tech Labs';
+    }
+
+    modalReportTriage.classList.remove('hidden');
+    modalReportTriage.classList.add('flex');
+  };
+
+  window.closeReportModal = function() {
+    modalReportTriage.classList.add('hidden');
+    modalReportTriage.classList.remove('flex');
+    drawerWarningInput.classList.add('hidden');
+    drawerBanConfirmation.classList.add('hidden');
+  };
+
+  // ADMIN ACTION: SEND WARNING
+  window.toggleWarningDrawer = function() {
+    drawerBanConfirmation.classList.add('hidden');
+    drawerWarningInput.classList.toggle('hidden');
+  };
+
+  window.cancelWarningDrawer = function() {
+    drawerWarningInput.classList.add('hidden');
+  };
+
+  window.applyWarningTemplate = function(val) {
+    const textarea = document.getElementById('textarea-warning-content');
+    if (val === 'escrow') {
+      textarea.value = 'OFFICIAL WARNING: Soliciting transactions or wire transfers outside platform escrow violates Merchant Code Sec 3.1. Immediate repeat will trigger store delisting.';
+    } else if (val === 'provenance') {
+      textarea.value = 'NOTICE OF DEFICIENCY: Provenance documentation submitted for current listing failed optical verification. You are granted 48 hours to submit certified lab documentation.';
+    } else if (val === 'behavior') {
+      textarea.value = 'CONDUCT VIOLATION: Aggressive extortion tactics and chat harassment are subject to permanent suspension under Conduct Clause 4.12.';
+    }
+  };
+
+  window.executeSendWarning = function() {
+    const text = document.getElementById('textarea-warning-content').value;
+    if (!text) {
+      alert('Please specify formal warning text.');
+      return;
+    }
+    closeReportModal();
+    appendAuditEntry(`ADMIN alex.vance dispatched Official Warning to target of #${currentActiveReportId}`);
+    showToast(`Warning successfully recorded and dispatched for ${currentActiveReportId}`);
+  };
+
+  // ADMIN ACTION: BAN MERCHANT / USER
+  window.toggleBanDrawer = function() {
+    drawerWarningInput.classList.add('hidden');
+    drawerBanConfirmation.classList.toggle('hidden');
+  };
+
+  window.cancelBanDrawer = function() {
+    drawerBanConfirmation.classList.add('hidden');
+  };
+
+  window.executeBanMerchant = async function() {
+    const reason = document.getElementById('input-ban-reason').value;
+    const reportId = currentActiveReportId;
+    closeReportModal();
+
+    if (window.AdminAPI) {
+      try {
+        await window.AdminAPI.resolveReport(reportId, 'resolved', 'Banned entity: ' + reason);
+      } catch (err) {
+        console.warn('Backend resolve report failed:', err);
+      }
+    }
+
+    // Mark card as actioned visually
+    const targetCard = document.querySelector(`[data-report-id="${reportId}"]`);
+    if (targetCard) {
+      targetCard.setAttribute('data-status', 'Resolved');
+      targetCard.classList.add('opacity-50');
+    }
+
+    // Dynamic stat increment/decrement
+    const pendingStat = document.getElementById('stat-pending-num');
+    if (pendingStat) pendingStat.textContent = Math.max(0, parseInt(pendingStat.textContent) - 1);
+
+    appendAuditEntry(`ADMIN alex.vance executed PERMANENT BAN on node associated with #${reportId}. Reason: ${reason}. All 3 storefronts hidden.`);
+    showToast(`Sanction Imposed: Entity Banned. 3 connected storefronts hidden from search catalog.`);
+  };
+
+  // ADMIN ACTION: DELETE CONTENT
+  window.executeDeleteContent = async function() {
+    const reportId = currentActiveReportId;
+    if (confirm(`Confirm deletion of flagged listing and all attached media under ${reportId}?`)) {
+      closeReportModal();
+      if (window.AdminAPI) {
+        try {
+          await window.AdminAPI.resolveReport(reportId, 'resolved', 'Deleted flagged content');
+        } catch (err) {
+          console.warn('Backend resolve report failed:', err);
+        }
+      }
+      appendAuditEntry(`ADMIN alex.vance executed DELETION of reported catalog item for #${reportId}`);
+      showToast(`Listing successfully removed. Cryptographic tombstone recorded in ledger.`);
+    }
+  };
+
+  // ADMIN ACTION: DISMISS
+  window.executeDismissReport = async function() {
+    const reportId = currentActiveReportId;
+    closeReportModal();
+    if (window.AdminAPI) {
+      try {
+        await window.AdminAPI.resolveReport(reportId, 'dismissed', 'Insufficient evidence');
+      } catch (err) {
+        console.warn('Backend dismiss report failed:', err);
+      }
+    }
+    appendAuditEntry(`ADMIN alex.vance dismissed #${reportId} (Insufficient evidence / legitimate customer dispute).`);
+    showToast(`Report #${reportId} dismissed with no adverse action.`);
+  };
+
+  // APPEAL MODAL LOGIC
+  const modalAppealEvaluate = document.getElementById('modal-appeal-evaluate');
+  const appealModalId = document.getElementById('appeal-modal-id');
+  const appealModalUser = document.getElementById('appeal-modal-user');
+  const appealModalStatement = document.getElementById('appeal-modal-statement');
+  const drawerAppealReject = document.getElementById('drawer-appeal-reject');
+
+  window.openAppealModal = function(aplId) {
+    currentActiveAppealId = aplId;
+    appealModalId.textContent = `#${aplId}`;
+    drawerAppealReject.classList.add('hidden');
+
+    if (aplId === 'APL-2044') {
+      appealModalUser.textContent = 'Jonathan Drake (Aura Diamonds Studio)';
+      appealModalStatement.textContent = '"We have now obtained and attached official GIA lab certificates and custom import documentation proving the legitimacy of the entire consignment lot. We respectfully request reinstatement of our account and public shop catalog."';
+    } else {
+      appealModalUser.textContent = 'Elena Rostova (Individual Trader)';
+      appealModalStatement.textContent = '"My card was compromised while traveling abroad. The bank has resolved the false disputes and provided formal reversal documentation attached."';
+    }
+
+    modalAppealEvaluate.classList.remove('hidden');
+    modalAppealEvaluate.classList.add('flex');
+  };
+
+  window.closeAppealModal = function() {
+    modalAppealEvaluate.classList.add('hidden');
+    modalAppealEvaluate.classList.remove('flex');
+    drawerAppealReject.classList.add('hidden');
+  };
+
+  // APPROVE APPEAL WORKFLOW
+  window.executeApproveAppeal = function() {
+    closeAppealModal();
+
+    // Visual card update
+    const card = document.querySelector(`[data-appeal-id="${currentActiveAppealId}"]`);
+    if (card) {
+      card.setAttribute('data-appeal-status', 'Approved');
+      card.classList.add('border-primary/60');
+    }
+
+    const pendingNum = document.getElementById('stat-appeals-pending-num');
+    const approvedNum = document.getElementById('stat-appeals-approved-num');
+    if (pendingNum) pendingNum.textContent = Math.max(0, parseInt(pendingNum.textContent) - 1);
+    if (approvedNum) approvedNum.textContent = parseInt(approvedNum.textContent) + 1;
+
+    appendAuditEntry(`ADMIN alex.vance APPROVED restoration for appeal #${currentActiveAppealId}. User unbanned, credentials reinstated, shop visibility re-indexed.`);
+    showToast(`Appeal #${currentActiveAppealId} Approved: User restored & storefronts re-indexed.`);
+  };
+
+  // REJECT APPEAL WORKFLOW
+  window.toggleAppealRejectDrawer = function() {
+    drawerAppealReject.classList.toggle('hidden');
+  };
+
+  window.executeRejectAppeal = function() {
+    const reason = document.getElementById('textarea-appeal-reject-reason').value || "Documents provided failed third-party provenance verification";
+    closeAppealModal();
+
+    const card = document.querySelector(`[data-appeal-id="${currentActiveAppealId}"]`);
+    if (card) {
+      card.setAttribute('data-appeal-status', 'Rejected');
+    }
+
+    const pendingNum = document.getElementById('stat-appeals-pending-num');
+    const rejectedNum = document.getElementById('stat-appeals-rejected-num');
+    if (pendingNum) pendingNum.textContent = Math.max(0, parseInt(pendingNum.textContent) - 1);
+    if (rejectedNum) rejectedNum.textContent = parseInt(rejectedNum.textContent) + 1;
+
+    appendAuditEntry(`ADMIN alex.vance REJECTED appeal #${currentActiveAppealId}. Ban sustained. Rationale: ${reason}`);
+    showToast(`Appeal #${currentActiveAppealId} Rejected: Ban sustained.`);
+  };
+
+  // LIGHTBOX LOGIC
+  const modalLightbox = document.getElementById('modal-lightbox');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDesc = document.getElementById('lightbox-desc');
+
+  window.openLightbox = function(title, desc) {
+    lightboxTitle.textContent = title;
+    lightboxDesc.textContent = desc;
+    modalLightbox.classList.remove('hidden');
+    modalLightbox.classList.add('flex');
+  };
+
+  window.closeLightbox = function() {
+    modalLightbox.classList.add('hidden');
+    modalLightbox.classList.remove('flex');
+  };
+
+  // AUDIT LEDGER DRAWER
+  window.toggleAuditFeed = function(open) {
+    if (open) {
+      drawerAuditFeed.classList.remove('translate-x-full');
+    } else {
+      drawerAuditFeed.classList.add('translate-x-full');
+    }
+  };
+
+  document.getElementById('btn-open-audit-feed').addEventListener('click', () => toggleAuditFeed(true));
+
+  document.getElementById('btn-export-audit').addEventListener('click', () => {
+    showToast('Exporting encrypted CSV audit file: POINTER_INCIDENT_AUDIT_2024.enc');
+  });
+
+  function appendAuditEntry(message) {
+    auditLogCount++;
+    auditCounterBadge.textContent = auditLogCount;
+
+    const time = new Date().toTimeString().split(' ')[0];
+    const auditId = `#AUD-${Math.floor(9900 + Math.random() * 99)}`;
+
+    const entry = document.createElement('div');
+    entry.className = 'p-space-sm rounded-xl bg-surface-container/60 border border-primary/30 animate-pulse';
+    entry.innerHTML = `
+      <div class="flex items-center justify-between text-outline text-[10px] mb-1">
+        <span>[${time}] LIVE ADJUDICATION</span>
+        <span class="text-primary font-semibold">${auditId}</span>
+      </div>
+      <p class="text-on-surface">${message}</p>
+      <p class="text-secondary text-[11px] mt-0.5">Written to SHA-256 block</p>
+    `;
+    auditFeedList.prepend(entry);
+    setTimeout(() => entry.classList.remove('animate-pulse'), 1500);
+  }
+
+  // LUXURY TOAST SYSTEM
+  window.showToast = function(msg) {
+    const toastContainer = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-surface-container-high/95 backdrop-blur-2xl border border-primary/50 text-on-surface shadow-[0_12px_32px_rgba(0,0,0,0.65),0_0_20px_rgba(212,175,55,0.25)] transition-all duration-300 transform translate-y-4 opacity-0 max-w-md';
+    toast.innerHTML = `
+      <span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">verified</span>
+      <span class="font-body-sm text-body-sm font-medium leading-snug">${msg}</span>
+      <button onclick="this.parentElement.remove()" class="text-outline hover:text-on-surface ml-auto pl-2">
+        <span class="material-symbols-outlined text-sm">close</span>
+      </button>
+    `;
+    toastContainer.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.classList.remove('translate-y-4', 'opacity-0');
+    });
+
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'translate-y-2');
+      setTimeout(() => toast.remove(), 300);
+    }, 4500);
+  };
+
+  // Real Backend Synchronization for Reports
+  async function loadBackendReports() {
+    if (!window.AdminAPI) return;
+    try {
+      const reports = await window.AdminAPI.getReports();
+      if (Array.isArray(reports) && reports.length > 0) {
+        const pendingCount = reports.filter(r => r.status === 'open' || r.status === 'pending').length;
+        const resolvedCount = reports.filter(r => r.status === 'resolved').length;
+        const dismissedCount = reports.filter(r => r.status === 'dismissed').length;
+
+        const elPending = document.getElementById('stat-pending-num');
+        const elResolved = document.getElementById('stat-resolved-num');
+        const elDismissed = document.getElementById('stat-dismissed-num');
+        if (elPending) elPending.textContent = pendingCount;
+        if (elResolved) elResolved.textContent = resolvedCount;
+        if (elDismissed) elDismissed.textContent = dismissedCount;
+      }
+    } catch (err) {
+      console.warn('Failed to load backend reports:', err);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBackendReports);
+  } else {
+    loadBackendReports();
+  }
+
+  window.addEventListener('adminLanguageChanged', (e) => {
+    const isMy = (e.detail.lang === 'my');
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      const type = tab.getAttribute('data-filter');
+      if (type === 'all') tab.textContent = isMy ? 'တိုင်ကြားမှု အားလုံး' : 'All Reports';
+      if (type === 'pending') tab.textContent = isMy ? 'စိစစ်ဆဲ' : 'Pending Review';
+      if (type === 'investigating') tab.textContent = isMy ? 'စုံစမ်းစစ်ဆေးဆဲ' : 'Under Investigation';
+      if (type === 'resolved') tab.textContent = isMy ? 'ဖြေရှင်းပြီး' : 'Resolved';
+      if (type === 'dismissed') tab.textContent = isMy ? 'ပယ်ဖျက်ထား' : 'Dismissed';
+    });
+  });
+</script></main></div>
+
+</body></html>

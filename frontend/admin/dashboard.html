@@ -1,0 +1,1507 @@
+<!DOCTYPE html><html lang="en"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POINTER Admin Dashboard - Overview</title>
+  <!-- Google Fonts: Inter & Noto Sans Myanmar for clean typography and flawless Unicode rendering -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+Myanmar:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN for interactive charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* CSS Variables & Pure Black + Gold Palette */
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-light: #F3E5AB;
+      --gold-bright: #FFD700;
+      --gold-dark: #996515;
+      --gold-metallic: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA771C 100%);
+      --gold-glow: 0 0 25px rgba(212, 175, 55, 0.25);
+      --glass-bg: rgba(18, 18, 20, 0.65);
+      --glass-border: rgba(212, 175, 55, 0.22);
+      --glass-border-hover: rgba(255, 215, 0, 0.65);
+    }
+
+    body {
+      background-color: #070709;
+      color: #E6E6E6;
+      font-family: 'Inter', 'Noto Sans Myanmar', -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-brand {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Ambient Gold Shimmer Lighting in Background */
+    .ambient-glow-1 {
+      position: absolute;
+      top: -100px;
+      left: 15%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      top: 45%;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(170, 119, 28, 0.06) 0%, rgba(0, 0, 0, 0) 75%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Liquid Glassmorphism Core Styling */
+    .liquid-glass {
+      background: linear-gradient(135deg, rgba(26, 26, 30, 0.72) 0%, rgba(12, 12, 14, 0.85) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(243, 229, 171, 0.15);
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(243, 229, 171, 0.35), rgba(212, 175, 55, 0.05) 50%, rgba(170, 119, 28, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .liquid-glass:hover {
+      border-color: var(--glass-border-hover);
+      box-shadow: 0 14px 40px -8px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.28);
+      transform: translateY(-3px);
+    }
+
+    /* Active clicked bounce ripple animation */
+    .card-clicked {
+      transform: scale(0.97) translateY(0) !important;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.6) !important;
+      border-color: #FFD700 !important;
+      transition: all 0.15s ease-out;
+    }
+
+    /* Gold Text Gradients */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 55%, #AA771C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gold-bright {
+      color: #FFD700;
+    }
+
+    .border-gold {
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .bg-gold-glow {
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0d0d10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #332a15;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+
+    /* Pulse Glow Animation */
+    @keyframes goldPulse {
+      0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.2); }
+      50% { box-shadow: 0 0 22px rgba(255, 215, 0, 0.45); }
+    }
+    .animate-gold-pulse {
+      animation: goldPulse 3.5s infinite ease-in-out;
+    }
+
+    /* Navigation item active pill */
+    .nav-active {
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.03) 100%);
+      border-left: 3px solid #D4AF37;
+      color: #FFD700 !important;
+    }
+
+    /* Notification badge */
+    .badge-gold {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #F3E5AB;
+    }
+  </style>
+  <script type="module" src="/admin/admin-auth.js"></script>
+</head>
+<body class="min-h-screen relative flex">
+
+  <!-- Ambient Glow lights behind UI -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Sidebar -->
+  <aside class="w-64 h-screen sticky top-0 hidden lg:flex flex-col justify-between liquid-glass border-r border-[#D4AF37]/20 z-30 shrink-0 bg-[#0A0A0C]/90 overflow-y-auto"><div class="flex flex-col"><div class="px-6 py-6 border-b border-[#D4AF37]/15 flex items-center justify-between shrink-0"><div class="flex items-center space-x-3 cursor-pointer group"><div class="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center border border-[#D4AF37]/40 group-hover:border-[#FFD700] transition-colors"><svg class="w-5 h-5 text-[#FFD700] transform group-hover:rotate-45 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11" fill="url(#goldGradientSidebar)" stroke="#FFD700" stroke-width="1.2"></polygon><defs><linearGradient id="goldGradientSidebar" x1="3" y1="2" x2="22" y2="21"><stop offset="0%" stop-color="#FFF0B3" stop-opacity="0.8"></stop><stop offset="100%" stop-color="#D4AF37" stop-opacity="0.2"></stop></linearGradient></defs></svg></div><div><span class="font-brand text-xl font-bold tracking-widest text-gold-gradient block leading-tight">POINTER</span><span class="text-[9px] uppercase tracking-widest text-[#D4AF37]/70 font-semibold">ADMIN PORTAL</span></div></div></div><nav class="p-4 space-y-3 text-sm overflow-y-auto max-h-[calc(100vh-220px)]">
+  <div>
+    <div class="px-3 pb-2 text-[10px] font-semibold uppercase tracking-wider text-[#D4AF37]/70 font-mono">Core Navigation</div>
+    <div class="space-y-1">
+      <!-- Dashboard (active) -->
+      <a href="/admin/dashboard.html" class="nav-active flex items-center justify-between px-3.5 py-2.5 rounded-lg text-white font-medium transition-all group bg-[#D4AF37]/20 border border-[#D4AF37]/40 shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid text-[#FFD700]"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+          <span class="text-xs font-semibold">Dashboard (ဒက်ရှ်ဘုတ်)</span>
+        </span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#FFD700] shadow-[0_0_8px_#FFD700]"></span>
+      </a>
+      <!-- Applications -->
+      <a href="/admin/application.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text text-[#D4AF37] group-hover:text-[#FFD700]"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+          <span class="text-xs font-semibold">Applications (လျှောက်ထားချက်)</span>
+        </span>
+      </a>
+      <!-- Shops -->
+      <a href="/admin/shop.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store text-[#D4AF37] group-hover:text-[#FFD700]"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path><path d="M2 7h20"></path></svg>
+          <span class="text-xs font-semibold">Shops (ဆိုင်များ)</span>
+        </span>
+      </a>
+      <!-- Public Places -->
+      <a href="/admin/publicplaces.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-landmark text-[#D4AF37] group-hover:text-[#FFD700]"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg>
+          <span class="text-xs font-semibold">Public Places (နေရာများ)</span>
+        </span>
+      </a>
+      <!-- Categories -->
+      <a href="/admin/category.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag text-[#D4AF37] group-hover:text-[#FFD700]"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
+          <span class="text-xs font-semibold">Categories (ကဏ္ဍများ)</span>
+        </span>
+      </a>
+      <!-- Reports -->
+      <a href="/admin/reports.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert text-[#D4AF37] group-hover:text-[#FFD700]"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+          <span class="text-xs font-semibold">Reports (အစီရင်ခံစာ)</span>
+        </span>
+      </a>
+      <!-- Users -->
+      <a href="/admin/user.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-[#D4AF37] group-hover:text-[#FFD700]"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="text-xs font-semibold">Users (အသုံးပြုသူများ)</span>
+        </span>
+      </a>
+      <!-- Audit Log -->
+      <a href="/admin/auditlog.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history text-[#D4AF37] group-hover:text-[#FFD700]"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path></svg>
+          <span class="text-xs font-semibold">Audit Log (စစ်ဆေးမှု)</span>
+        </span>
+      </a>
+      <!-- Main Web -->
+      <a href="/home.html" class="flex items-center justify-between px-3.5 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 font-medium transition-all group border-t border-[#D4AF37]/20 pt-2.5 mt-2">
+        <span class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home text-[#D4AF37] group-hover:text-[#FFD700]"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span class="text-xs font-semibold">Main Website</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav></div><div class="p-4 border-t border-[#D4AF37]/20 mt-auto space-y-3 bg-[#08080A]/60 shrink-0"><button type="button" onclick="handleAdminLogout()" class="w-full liquid-glass py-2.5 px-3 rounded-xl border border-[#D4AF37]/25 hover:border-red-500/50 hover:bg-red-950/40 text-gray-300 hover:text-red-300 transition-all flex items-center justify-between group"><span class="flex items-center space-x-2.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4 text-[#D4AF37] group-hover:text-red-400 transform group-hover:translate-x-0.5 transition-all"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg><span class="text-xs font-semibold tracking-wide">Log Out</span></span><span class="text-[10px] text-gray-500 font-mono group-hover:text-red-400">v2.5</span></button><div class="text-center text-[10px] text-gray-500 font-mono tracking-wider pt-0.5">v2.5.4 • Secure Core</div></div></aside>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto relative z-10">
+
+    <!-- Top Header Bar -->
+    <header class="h-20 liquid-glass sticky top-0 z-20 px-6 sm:px-8 flex items-center justify-between border-b border-[#D4AF37]/20 bg-[#08080A]/85">
+      <div class="flex items-center space-x-4">
+        <!-- Mobile Drawer Toggle -->
+        <button class="lg:hidden p-2 rounded-lg text-gray-300 hover:text-[#FFD700] hover:bg-[#D4AF37]/10">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" aria-hidden="true" class="lucide lucide-menu w-6 h-6"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+        </button>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center space-x-2">
+            <span data-i18n="header_title">Welcome Back</span>
+            <span class="inline-block w-2 h-2 rounded-full bg-[#FFD700] animate-ping ml-1"></span>
+          </h1>
+          <p class="text-xs text-gray-400 hidden sm:block" data-i18n="header_subtitle">Real-time metrics, directory insights &amp; platform surveillance</p>
+        </div>
+      </div>
+
+      <!-- Action Items: Search, Language Switcher, Notifications, Date -->
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <!-- Search bar -->
+        <div class="relative hidden md:block">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" aria-hidden="true" class="lucide lucide-search w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+          <input type="text" id="globalSearch" placeholder="Search shops, users, places..." data-i18n-placeholder="search_placeholder" class="pl-9 pr-4 py-2 text-xs rounded-xl bg-[#121216] border border-[#D4AF37]/20 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700]/50 transition-all w-52 lg:w-64">
+        </div>
+
+        <!-- Language Switcher Button (English / Myanmar Unicode) -->
+        
+
+        <!-- Quick notifications button -->
+        <div class="relative">
+          <button class="liquid-glass border border-[#D4AF37]/25 hover:border-[#FFD700] p-2.5 rounded-xl text-gray-300 hover:text-[#FFD700] transition-colors relative">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell" aria-hidden="true" class="lucide lucide-bell w-4 h-4"><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path></svg>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#FFD700]"></span>
+          </button>
+        </div>
+
+        <!-- Refresh Data Button -->
+        <button onclick="refreshDashboardData()" title="Refresh" class="liquid-glass border border-[#D4AF37]/25 hover:border-[#FFD700] p-2.5 rounded-xl text-gray-300 hover:text-[#FFD700] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" aria-hidden="true" class="lucide lucide-refresh-cw w-4 h-4" id="refreshIcon"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+        </button><div class="relative group ml-1"><button type="button" class="liquid-glass border border-[#D4AF37]/30 hover:border-[#FFD700] px-3 py-1.5 rounded-xl flex items-center space-x-2.5 transition-all"><div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#996515] to-[#FFD700] p-[1.5px] shrink-0"><div class="w-full h-full rounded-full bg-[#101014] flex items-center justify-center text-[#FFD700] font-bold text-xs">AD</div></div><div class="text-left hidden sm:block"><div class="text-xs font-semibold text-[#F3E5AB] leading-tight">Admin U Min Thant</div><div class="text-[10px] text-gray-400">Super Admin</div></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right w-3.5 h-3.5 text-[#D4AF37] transform group-hover:rotate-90 transition-transform"><path d="m9 18 6-6-6-6"></path></svg></button><div class="absolute right-0 mt-2 w-64 bg-[#0A0A0C]/90 backdrop-blur-md border border-[#D4AF37]/40 rounded-xl p-4 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"><div class="pb-3 mb-3 border-b border-[#D4AF37]/20"><div class="text-xs font-bold text-white">Admin U Min Thant</div><div class="text-[11px] text-[#D4AF37]">admin@pointer.app</div><span class="inline-block mt-1.5 px-2 py-0.5 rounded-full text-[9px] font-semibold bg-[#D4AF37]/20 text-[#FFD700] border border-[#D4AF37]/40 uppercase tracking-wider">Super Admin</span></div><div class="space-y-2 text-xs"><div class="px-2.5 py-2 rounded-lg bg-[#121216] border border-[#D4AF37]/20"><div class="flex items-center justify-between text-[11px] text-gray-400 mb-1.5"><span class="flex items-center space-x-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-[#FFD700]"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg><span class="text-[#F3E5AB] font-medium">Language</span></span><span class="text-[10px] text-[#FFD700] font-mono">EN (Default)</span></div><div class="grid grid-cols-1 gap-1.5 pt-0.5"><button type="button" class="py-1.5 px-2.5 rounded-lg text-left text-[10px] font-semibold bg-[#FFD700]/20 text-[#FFD700] border border-[#FFD700]/40 flex items-center justify-between transition-colors"><span>English (US)</span><span class="text-[9px] font-mono text-[#FFD700]">Active</span></button><button type="button" onclick="toggleLanguage()" class="py-1.5 px-2.5 rounded-lg text-left text-[10px] text-gray-400 hover:text-[#F3E5AB] hover:bg-[#D4AF37]/10 border border-transparent hover:border-[#D4AF37]/30 flex items-center justify-between transition-colors"><span>မြန်မာ (Unicode)</span><span class="text-[9px] font-mono text-[#D4AF37]/70">MY</span></button><button type="button" class="py-1.5 px-2.5 rounded-lg text-left text-[10px] text-gray-400 hover:text-[#F3E5AB] hover:bg-[#D4AF37]/10 border border-transparent hover:border-[#D4AF37]/30 flex items-center justify-between transition-colors"><span>System Auto</span><span class="text-[9px] font-mono text-gray-500">Auto</span></button></div></div><button type="button" class="w-full flex items-center space-x-2.5 px-2.5 py-2 rounded-lg text-gray-300 hover:text-[#FFD700] hover:bg-[#D4AF37]/10 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings text-[#D4AF37]"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg><span>Account Settings</span></button></div><div class="mt-2.5 pt-2.5 border-t border-[#D4AF37]/15"><button type="button" onclick="handleAdminLogout()" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-red-300 hover:bg-red-950/40 text-[11px] transition-colors"><span>Sign Out</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div></div></div>
+      </div>
+    </header>
+
+    <!-- Page Body Container -->
+    <div class="p-6 sm:p-8 space-y-8 w-full mx-auto">
+
+      <!-- ==========================================
+           SECTION 2: OVERVIEW STATISTIC CARDS (6 Cards)
+           ========================================== -->
+      <section>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="activity" aria-hidden="true" class="lucide lucide-activity w-5 h-5 text-[#FFD700]"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg>
+            <h2 class="text-base font-semibold text-[#F3E5AB] tracking-wide" data-i18n="sec_key_metrics">Key Platform Metrics</h2>
+          </div>
+          <span class="text-xs text-[#D4AF37]/75 font-mono" data-i18n="last_updated">Live Updated • 1 min ago</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 w-full"><!-- 1. Total Users -->
+<div onclick="handleCardClick('users', this)" class="liquid-glass p-4 rounded-2xl cursor-pointer group relative overflow-hidden select-none" data-target="users">
+  <div class="flex items-start justify-between">
+    <div class="w-8 h-8 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:bg-[#D4AF37]/20 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" aria-hidden="true" class="lucide lucide-users w-4 h-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+    </div>
+    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#D4AF37]/15 text-[#FFD700] border border-[#D4AF37]/30 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" aria-hidden="true" class="lucide lucide-trending-up w-2.5 h-2.5 mr-1"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>+12.4%
+    </span>
+  </div>
+  <div class="mt-3">
+    <div class="text-xl font-bold tracking-tight text-white count-up" data-target-val="18">18</div>
+    <div class="text-[11px] text-gray-400 mt-0.5 font-medium tracking-wide" data-i18n="card_total_users">Total Users</div>
+  </div>
+  <div class="mt-2.5 pt-2 border-t border-[#D4AF37]/15 flex items-center justify-between text-[10px] text-[#D4AF37]/80 group-hover:text-[#FFD700] transition-colors">
+    <span data-i18n="action_view_directory">View Directory</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3 h-3 transform group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+  </div>
+</div>
+
+<!-- 2. Registered Shops -->
+<div onclick="handleCardClick('shops', this)" class="liquid-glass p-4 rounded-2xl cursor-pointer group relative overflow-hidden select-none" data-target="shops">
+  <div class="flex items-start justify-between">
+    <div class="w-8 h-8 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:bg-[#D4AF37]/20 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="store" aria-hidden="true" class="lucide lucide-store w-4 h-4"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"></path><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"></path><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"></path></svg>
+    </div>
+    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#D4AF37]/15 text-[#FFD700] border border-[#D4AF37]/30 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" aria-hidden="true" class="lucide lucide-trending-up w-2.5 h-2.5 mr-1"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>+8.1%
+    </span>
+  </div>
+  <div class="mt-3">
+    <div class="text-xl font-bold tracking-tight text-white count-up" data-target-val="8">8</div>
+    <div class="text-[11px] text-gray-400 mt-0.5 font-medium tracking-wide" data-i18n="card_reg_shops">Registered Shops</div>
+  </div>
+  <div class="mt-2.5 pt-2 border-t border-[#D4AF37]/15 flex items-center justify-between text-[10px] text-[#D4AF37]/80 group-hover:text-[#FFD700] transition-colors">
+    <span data-i18n="action_view_shops">Active Vendors</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3 h-3 transform group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+  </div>
+</div>
+
+<!-- 3. Total Shops -->
+<div onclick="handleCardClick('total-shops', this)" class="liquid-glass p-4 rounded-2xl cursor-pointer group relative overflow-hidden select-none" data-target="total-shops">
+  <div class="flex items-start justify-between">
+    <div class="w-8 h-8 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:bg-[#D4AF37]/20 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="building-2" aria-hidden="true" class="lucide lucide-building-2 w-4 h-4"><path d="M10 12h4"></path><path d="M10 8h4"></path><path d="M14 21v-3a2 2 0 0 0-4 0v3"></path><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path></svg>
+    </div>
+    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#D4AF37]/15 text-[#FFD700] border border-[#D4AF37]/30 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" aria-hidden="true" class="lucide lucide-trending-up w-2.5 h-2.5 mr-1"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>+5.3%
+    </span>
+  </div>
+  <div class="mt-3">
+    <div class="text-xl font-bold tracking-tight text-white count-up" data-target-val="9">9</div>
+    <div class="text-[11px] text-gray-400 mt-0.5 font-medium tracking-wide" data-i18n="card_total_shops">Total Shops</div>
+  </div>
+  <div class="mt-2.5 pt-2 border-t border-[#D4AF37]/15 flex items-center justify-between text-[10px] text-[#D4AF37]/80 group-hover:text-[#FFD700] transition-colors">
+    <span data-i18n="action_shop_inventory">All Records</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3 h-3 transform group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+  </div>
+</div>
+
+<!-- 4. Total Public Places -->
+<div onclick="handleCardClick('places', this)" class="liquid-glass p-4 rounded-2xl cursor-pointer group relative overflow-hidden select-none" data-target="places">
+  <div class="flex items-start justify-between">
+    <div class="w-8 h-8 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:bg-[#D4AF37]/20 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="landmark" aria-hidden="true" class="lucide lucide-landmark w-4 h-4"><path d="M10 18v-7"></path><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"></path><path d="M14 18v-7"></path><path d="M18 18v-7"></path><path d="M3 22h18"></path><path d="M6 18v-7"></path></svg>
+    </div>
+    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#D4AF37]/15 text-[#FFD700] border border-[#D4AF37]/30 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" aria-hidden="true" class="lucide lucide-trending-up w-2.5 h-2.5 mr-1"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>+4.2%
+    </span>
+  </div>
+  <div class="mt-3">
+    <div class="text-xl font-bold tracking-tight text-white count-up" data-target-val="19">19</div>
+    <div class="text-[11px] text-gray-400 mt-0.5 font-medium tracking-wide" data-i18n="card_public_places">Total Public Places</div>
+  </div>
+  <div class="mt-2.5 pt-2 border-t border-[#D4AF37]/15 flex items-center justify-between text-[10px] text-[#D4AF37]/80 group-hover:text-[#FFD700] transition-colors">
+    <span data-i18n="action_explore_places">Explore Landmarks</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3 h-3 transform group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+  </div>
+</div></div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 3 & 4: WEEKLY REPORT & CATEGORY OVERVIEW
+           ========================================== -->
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Weekly Report Analysis (Span 2 Columns) -->
+        <div class="lg:col-span-2 liquid-glass p-6 rounded-2xl border border-[#D4AF37]/25 relative flex flex-col justify-between">
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#D4AF37]/15">
+              <div>
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="line-chart" aria-hidden="true" class="lucide lucide-line-chart w-5 h-5 text-[#FFD700]"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+                  <span data-i18n="chart_title">Weekly Registration Analysis</span>
+                </h3>
+                <p class="text-xs text-gray-400 mt-0.5" data-i18n="chart_subtitle">Daily breakdown of platform growth (Monday to Sunday)</p>
+              </div>
+
+              <!-- Metrics Legend Badges -->
+              <div class="flex items-center flex-wrap gap-2 text-xs">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700]">
+                  <span class="w-2 h-2 rounded-full bg-[#FFD700] mr-1.5 shadow-[0_0_8px_#FFD700]"></span>
+                  <span data-i18n="legend_users">New Users</span>
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#F3E5AB]">
+                  <span class="w-2 h-2 rounded-full bg-[#D4AF37] mr-1.5"></span>
+                  <span data-i18n="legend_shops">Shop Registrations</span>
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#996515]/20 border border-[#996515]/40 text-[#D4AF37]">
+                  <span class="w-2 h-2 rounded-full bg-[#996515] mr-1.5"></span>
+                  <span data-i18n="legend_places">Public Places</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Chart Canvas Container -->
+            <div class="relative w-full h-[310px] mt-4">
+              <canvas id="weeklyReportChart" width="728" height="387" style="display: block; box-sizing: border-box; height: 310px; width: 582.4px;"></canvas>
+            </div>
+          </div>
+
+          <!-- Bottom Micro summary banner -->
+          <div class="mt-4 pt-3 border-t border-[#D4AF37]/15 grid grid-cols-3 text-center">
+            <div class="px-2 border-r border-[#D4AF37]/15">
+              <div class="text-[11px] text-gray-400" data-i18n="chart_stat_peak">Peak Day</div>
+              <div class="text-xs sm:text-sm font-semibold text-[#FFD700]">Saturday (1,120)</div>
+            </div>
+            <div class="px-2 border-r border-[#D4AF37]/15">
+              <div class="text-[11px] text-gray-400" data-i18n="chart_stat_avg">Daily Avg Growth</div>
+              <div class="text-xs sm:text-sm font-semibold text-[#F3E5AB]">+486 Registrations</div>
+            </div>
+            <div class="px-2">
+              <div class="text-[11px] text-gray-400" data-i18n="chart_stat_net">Week Net Surge</div>
+              <div class="text-xs sm:text-sm font-semibold text-[#FFD700]">+24.5% vs Prev</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Category Overview (6 Categories) -->
+        <div class="liquid-glass p-6 rounded-2xl border border-[#D4AF37]/25 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3.5 border-b border-[#D4AF37]/15">
+              <div>
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="layers" aria-hidden="true" class="lucide lucide-layers w-5 h-5 text-[#FFD700]"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
+                  <span data-i18n="cat_title">Category Overview</span>
+                </h3>
+                <p class="text-xs text-gray-400 mt-0.5" data-i18n="cat_subtitle">Registered places &amp; shops distribution</p>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded-full badge-gold font-mono font-semibold">7 Segments (28 Places)</span>
+            </div>
+
+            <!-- Categories Grid / List -->
+            <div class="mt-4 space-y-2.5" id="categoryListContainer"><!-- Food & Drink -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="utensils" aria-hidden="true" class="lucide lucide-utensils w-3.5 h-3.5"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors" data-i18n="cat_food">Food &amp; Drink</div>
+      <div class="text-[9px] text-gray-400" data-i18n="cat_food_desc">Tea Shops, Cafes, Restaurants</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">7</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div>
+
+<!-- Stay -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="hotel" aria-hidden="true" class="lucide lucide-hotel w-3.5 h-3.5"><path d="M10 22v-6.57"></path><path d="M12 11h.01"></path><path d="M12 7h.01"></path><path d="M14 15.43V22"></path><path d="M15 16a5 5 0 0 0-6 0"></path><path d="M16 11h.01"></path><path d="M16 7h.01"></path><path d="M8 11h.01"></path><path d="M8 7h.01"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors" data-i18n="cat_stay">Stay</div>
+      <div class="text-[9px] text-gray-400" data-i18n="cat_stay_desc">Hotels, Guesthouses, Hostels</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">3</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div>
+
+<!-- Place to Visit -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="compass" aria-hidden="true" class="lucide lucide-compass w-3.5 h-3.5"><circle cx="12" cy="12" r="10"></circle><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors" data-i18n="cat_visit">Place to Visit</div>
+      <div class="text-[9px] text-gray-400" data-i18n="cat_visit_desc">Pagodas, Parks, Heritage Landmarks</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">11</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div>
+
+<!-- Shopping -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shopping-bag" aria-hidden="true" class="lucide lucide-shopping-bag w-3.5 h-3.5"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors" data-i18n="cat_shopping">Shopping</div>
+      <div class="text-[9px] text-gray-400" data-i18n="cat_shopping_desc">Markets, Grocery, Marts</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">3</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div>
+
+<!-- Health -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart-pulse" aria-hidden="true" class="lucide lucide-heart-pulse w-3.5 h-3.5"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors" data-i18n="cat_health">Health</div>
+      <div class="text-[9px] text-gray-400" data-i18n="cat_health_desc">Hospitals, Pharmacies, Care</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">2</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div>
+
+<!-- Beauty & Wellness -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" aria-hidden="true" class="lucide lucide-sparkles w-3.5 h-3.5"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors" data-i18n="cat_beauty">Beauty &amp; Wellness</div>
+      <div class="text-[9px] text-gray-400" data-i18n="cat_beauty_desc">Spas, Salons, Wellness</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">1</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div>
+
+<!-- Other -->
+<div class="liquid-glass px-3 py-2 rounded-xl flex items-center justify-between border border-[#D4AF37]/20 hover:border-[#FFD700]/70 group transition-all">
+  <div class="flex items-center space-x-2.5">
+    <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="tag" aria-hidden="true" class="lucide lucide-tag w-3.5 h-3.5"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><circle cx="7" cy="7" r=".5" fill="currentColor"></circle></svg>
+    </div>
+    <div>
+      <div class="text-xs font-semibold text-white group-hover:text-[#FFD700] transition-colors">Other Services</div>
+      <div class="text-[9px] text-gray-400">Books, Crafts &amp; Specialties</div>
+    </div>
+  </div>
+  <div class="text-right">
+    <span class="text-xs font-bold text-white font-mono">1</span>
+    <div class="text-[9px] text-[#D4AF37]" data-i18n="unit_places">places</div>
+  </div>
+</div></div>
+          </div>
+
+          <button onclick="handleViewAllCategories()" class="mt-4 w-full py-2.5 rounded-xl border border-[#D4AF37]/30 text-xs font-semibold text-[#F3E5AB] hover:text-[#FFD700] hover:border-[#FFD700] hover:bg-[#D4AF37]/10 transition-all flex items-center justify-center space-x-2">
+            <span data-i18n="btn_manage_categories">Manage All Categories</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-4 h-4"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+           SECTION 5 & 6: AUDIT LOG & TOP RATED SHOPS
+           ========================================== -->
+      <section class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+
+        <!-- SECTION 6: Top Rated Shops (7 Columns) -->
+        <div class="xl:col-span-7 liquid-glass p-6 rounded-2xl border border-[#D4AF37]/25 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#D4AF37]/15 gap-3">
+              <div>
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="crown" aria-hidden="true" class="lucide lucide-crown w-5 h-5 text-[#FFD700]"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path><path d="M5 21h14"></path></svg>
+                  <span data-i18n="shops_title">Top Rated Shops &amp; Venues</span>
+                </h3>
+                <p class="text-xs text-gray-400 mt-0.5" data-i18n="shops_subtitle">Ranked by user star ratings and verified review counts</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-xs text-gray-400" data-i18n="filter_label">Sort:</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg badge-gold font-medium">Highest Rating ★</span>
+              </div>
+            </div>
+
+            <!-- Table Responsive Wrapper -->
+            <div class="overflow-x-auto mt-4">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="border-b border-[#D4AF37]/20 text-gray-400 font-semibold uppercase tracking-wider text-[10px]">
+                    <th class="py-3 px-3 w-12 text-center" data-i18n="th_no">No.</th>
+                    <th class="py-3 px-3" data-i18n="th_shop_name">Shop Name</th>
+                    <th class="py-3 px-3" data-i18n="th_category">Category</th>
+                    <th class="py-3 px-3" data-i18n="th_rating">Rating</th>
+                    <th class="py-3 px-3 text-right" data-i18n="th_reviews">Total Reviews</th>
+                    <th class="py-3 px-3 text-center" data-i18n="th_status">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#D4AF37]/10" id="topShopsTableBody">
+                  <!-- Row 1 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors group cursor-pointer">
+                    <td class="py-3.5 px-3 text-center font-bold text-[#FFD700]">01</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] text-xs font-bold">
+                          L
+                        </div>
+                        <div>
+                          <div class="font-semibold text-white group-hover:text-[#FFD700] transition-colors">Lotus Nail Spa</div>
+                          <div class="text-[10px] text-gray-400">Kamayut, Yangon</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-gray-300">Beauty &amp; Wellness</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-1 text-[#FFD700] font-bold">
+                        <span>5.0</span>
+                        <div class="flex text-[#FFD700]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" aria-hidden="true" class="lucide lucide-star w-3.5 h-3.5 fill-[#FFD700]"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-right font-mono text-gray-200">2</td>
+                    <td class="py-3.5 px-3 text-center">
+                      <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/40 text-[#F3E5AB] border border-[#D4AF37]/40" data-i18n="status_verified">Verified</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors group cursor-pointer">
+                    <td class="py-3.5 px-3 text-center font-bold text-[#FFD700]">02</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] text-xs font-bold">
+                          M
+                        </div>
+                        <div>
+                          <div class="font-semibold text-white group-hover:text-[#FFD700] transition-colors">Mya Tea House</div>
+                          <div class="text-[10px] text-gray-400">Kyauktada, Yangon</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-gray-300">Food &amp; Drink</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-1 text-[#FFD700] font-bold">
+                        <span>5.0</span>
+                        <div class="flex text-[#FFD700]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" aria-hidden="true" class="lucide lucide-star w-3.5 h-3.5 fill-[#FFD700]"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-right font-mono text-gray-200">2</td>
+                    <td class="py-3.5 px-3 text-center">
+                      <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/40 text-[#F3E5AB] border border-[#D4AF37]/40" data-i18n="status_verified">Verified</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors group cursor-pointer">
+                    <td class="py-3.5 px-3 text-center font-bold text-[#FFD700]">03</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] text-xs font-bold">
+                          Y
+                        </div>
+                        <div>
+                          <div class="font-semibold text-white group-hover:text-[#FFD700] transition-colors">Yangon Heritage Books &amp; Crafts</div>
+                          <div class="text-[10px] text-gray-400">Pansodan, Kyauktada</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-gray-300">Other</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-1 text-[#FFD700] font-bold">
+                        <span>5.0</span>
+                        <div class="flex text-[#FFD700]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" aria-hidden="true" class="lucide lucide-star w-3.5 h-3.5 fill-[#FFD700]"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-right font-mono text-gray-200">2</td>
+                    <td class="py-3.5 px-3 text-center">
+                      <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/40 text-[#F3E5AB] border border-[#D4AF37]/40" data-i18n="status_verified">Verified</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 4 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors group cursor-pointer">
+                    <td class="py-3.5 px-3 text-center font-bold text-[#FFD700]">04</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] text-xs font-bold">
+                          G
+                        </div>
+                        <div>
+                          <div class="font-semibold text-white group-hover:text-[#FFD700] transition-colors">Golden Bean Café</div>
+                          <div class="text-[10px] text-gray-400">Bahan, Yangon</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-gray-300">Food &amp; Drink</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-1 text-[#FFD700] font-bold">
+                        <span>4.7</span>
+                        <div class="flex text-[#FFD700]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" aria-hidden="true" class="lucide lucide-star w-3.5 h-3.5 fill-[#FFD700]"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-right font-mono text-gray-200">3</td>
+                    <td class="py-3.5 px-3 text-center">
+                      <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/40 text-[#F3E5AB] border border-[#D4AF37]/40" data-i18n="status_verified">Verified</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 5 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors group cursor-pointer">
+                    <td class="py-3.5 px-3 text-center font-bold text-[#FFD700]">05</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#FFD700] text-xs font-bold">
+                          S
+                        </div>
+                        <div>
+                          <div class="font-semibold text-white group-hover:text-[#FFD700] transition-colors">Shwe Mohinga Corner</div>
+                          <div class="text-[10px] text-gray-400">Latha, Yangon</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-gray-300">Food &amp; Drink</td>
+                    <td class="py-3.5 px-3">
+                      <div class="flex items-center space-x-1 text-[#FFD700] font-bold">
+                        <span>4.5</span>
+                        <div class="flex text-[#FFD700]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" aria-hidden="true" class="lucide lucide-star w-3.5 h-3.5 fill-[#FFD700]"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-3 text-right font-mono text-gray-200">2</td>
+                    <td class="py-3.5 px-3 text-center">
+                      <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/40 text-[#F3E5AB] border border-[#D4AF37]/40" data-i18n="status_verified">Verified</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between">
+            <span class="text-xs text-gray-400" data-i18n="showing_top_shops">Showing Top 5 of 8 Verified Vendors</span>
+            <button onclick="handleViewAllShops()" class="text-xs font-semibold text-[#FFD700] hover:text-[#FFF0B3] flex items-center space-x-1 group">
+              <span data-i18n="view_full_rankings">View Full Rankings</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- SECTION 5: Compact Audit Log (5 Columns) -->
+        <div class="xl:col-span-5 liquid-glass p-6 rounded-2xl border border-[#D4AF37]/25 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-[#D4AF37]/15">
+              <div>
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-alert" aria-hidden="true" class="lucide lucide-shield-alert w-5 h-5 text-[#FFD700]"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                  <span data-i18n="audit_title">Admin Audit Log</span>
+                </h3>
+                <p class="text-xs text-gray-400 mt-0.5" data-i18n="audit_subtitle">Recent 5 administrative updates &amp; security trace</p>
+              </div>
+              <span class="text-xs px-2.5 py-0.5 rounded-full badge-gold font-mono">Real-time</span>
+            </div>
+
+            <!-- Table Responsive Wrapper for Audit Log -->
+            <div class="overflow-x-auto mt-4">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="border-b border-[#D4AF37]/20 text-gray-400 font-semibold uppercase tracking-wider text-[10px]">
+                    <th class="py-3 px-2.5" data-i18n="audit_th_admin">Admin Name</th>
+                    <th class="py-3 px-2.5" data-i18n="audit_th_activity">Activity</th>
+                    <th class="py-3 px-2.5" data-i18n="audit_th_datetime">Date &amp; Time</th>
+                    <th class="py-3 px-2.5 text-center" data-i18n="audit_th_status">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#D4AF37]/10" id="auditLogTableBody">
+                  <!-- Audit 1 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors">
+                    <td class="py-3 px-2.5">
+                      <div class="font-semibold text-[#F3E5AB]">Admin U Min Thant</div>
+                      <div class="text-[10px] text-gray-400">Super Admin</div>
+                    </td>
+                    <td class="py-3 px-2.5">
+                      <div class="text-white font-medium">Updated Public Place</div>
+                      <div class="text-[10px] text-[#D4AF37]">#PLC-1 (Shwedagon Pagoda)</div>
+                    </td>
+                    <td class="py-3 px-2.5 text-[11px] text-gray-400 font-mono">Nov 16, 10:00</td>
+                    <td class="py-3 px-2.5 text-center">
+                      <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#D4AF37]/20 text-[#FFD700] border border-[#D4AF37]/40" data-i18n="st_approved">Success</span>
+                    </td>
+                  </tr>
+
+                  <!-- Audit 2 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors">
+                    <td class="py-3 px-2.5">
+                      <div class="font-semibold text-[#F3E5AB]">Admin U Min Thant</div>
+                      <div class="text-[10px] text-gray-400">Super Admin</div>
+                    </td>
+                    <td class="py-3 px-2.5">
+                      <div class="text-white font-medium">Resolved User Report</div>
+                      <div class="text-[10px] text-[#D4AF37]">#RPT-2 (Yangon General Hospital Info)</div>
+                    </td>
+                    <td class="py-3 px-2.5 text-[11px] text-gray-400 font-mono">Nov 15, 14:00</td>
+                    <td class="py-3 px-2.5 text-center">
+                      <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#D4AF37]/20 text-[#FFD700] border border-[#D4AF37]/40" data-i18n="st_approved">Success</span>
+                    </td>
+                  </tr>
+
+                  <!-- Audit 3 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors">
+                    <td class="py-3 px-2.5">
+                      <div class="font-semibold text-[#F3E5AB]">Admin U Min Thant</div>
+                      <div class="text-[10px] text-gray-400">Super Admin</div>
+                    </td>
+                    <td class="py-3 px-2.5">
+                      <div class="text-white font-medium">Approved Shop License</div>
+                      <div class="text-[10px] text-[#D4AF37]">#KPAY-2026001 (Golden Bean Café)</div>
+                    </td>
+                    <td class="py-3 px-2.5 text-[11px] text-gray-400 font-mono">Nov 15, 10:00</td>
+                    <td class="py-3 px-2.5 text-center">
+                      <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#D4AF37]/20 text-[#FFD700] border border-[#D4AF37]/40" data-i18n="st_approved">Success</span>
+                    </td>
+                  </tr>
+
+                  <!-- Audit 4 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors">
+                    <td class="py-3 px-2.5">
+                      <div class="font-semibold text-[#F3E5AB]">Admin U Min Thant</div>
+                      <div class="text-[10px] text-gray-400">Super Admin</div>
+                    </td>
+                    <td class="py-3 px-2.5">
+                      <div class="text-white font-medium">Approved Shop License</div>
+                      <div class="text-[10px] text-[#D4AF37]">#WAVE-2026002 (Lotus Nail Spa)</div>
+                    </td>
+                    <td class="py-3 px-2.5 text-[11px] text-gray-400 font-mono">Nov 15, 10:00</td>
+                    <td class="py-3 px-2.5 text-center">
+                      <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#D4AF37]/20 text-[#FFD700] border border-[#D4AF37]/40" data-i18n="st_approved">Success</span>
+                    </td>
+                  </tr>
+
+                  <!-- Audit 5 -->
+                  <tr class="hover:bg-[#D4AF37]/5 transition-colors">
+                    <td class="py-3 px-2.5">
+                      <div class="font-semibold text-[#F3E5AB]">Admin U Min Thant</div>
+                      <div class="text-[10px] text-gray-400">Super Admin</div>
+                    </td>
+                    <td class="py-3 px-2.5">
+                      <div class="text-white font-medium">Approved Shop License</div>
+                      <div class="text-[10px] text-[#D4AF37]">#KPAY-2026008 (Yangon Heritage)</div>
+                    </td>
+                    <td class="py-3 px-2.5 text-[11px] text-gray-400 font-mono">Nov 10, 11:00</td>
+                    <td class="py-3 px-2.5 text-center">
+                      <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#D4AF37]/20 text-[#FFD700] border border-[#D4AF37]/40" data-i18n="st_approved">Success</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between">
+            <span class="text-xs text-gray-400" data-i18n="audit_integrity">Immutable Audit Trail • SHA-256</span>
+            <button onclick="handleViewAllAuditLogs()" class="text-xs font-semibold text-[#FFD700] hover:text-[#FFF0B3] flex items-center space-x-1 group">
+              <span data-i18n="view_all_audit">All Records</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Footer Info -->
+      <footer class="pt-6 pb-8 border-t border-[#D4AF37]/15 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-[#FFD700]"></span>
+          <span data-i18n="footer_copy">POINTER Platform Architecture • All Rights Reserved © 2025</span>
+        </div>
+        <div class="flex items-center space-x-4 text-[#D4AF37]/80">
+          <span data-i18n="security_level">Security Level: Strict Gold SSL</span>
+          <span>•</span>
+          <span data-i18n="system_status">System Normal</span>
+        </div>
+      </footer>
+
+    </div>
+  <script>if (window.lucide) { lucide.createIcons(); } if (window.animateCounters) { animateCounters(); }</script></main>
+
+  <!-- Interactive Modal for Card Navigation Demonstration -->
+  <div id="navigationModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-opacity duration-300 opacity-0">
+    <div class="liquid-glass border-2 border-[#FFD700] rounded-2xl max-w-md w-full p-6 relative shadow-[0_0_50px_rgba(255,215,0,0.35)] transform scale-95 transition-transform duration-300" id="modalBox">
+      <div class="flex items-center justify-between pb-3 border-b border-[#D4AF37]/25">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-[#FFD700]/20 border border-[#FFD700]/50 flex items-center justify-center text-[#FFD700]" id="modalIconContainer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="info" aria-hidden="true" class="lucide lucide-info w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white" id="modalTitle">Navigation Triggered</h4>
+            <p class="text-xs text-gray-400" id="modalSubtitle">POINTER Navigation Router</p>
+          </div>
+        </div>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-[#FFD700] p-1.5 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" aria-hidden="true" class="lucide lucide-x w-5 h-5"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+
+      <div class="py-5 text-sm text-gray-300 space-y-3" id="modalBody">
+        <p>Routing to section view...</p>
+      </div>
+
+      <div class="pt-3 border-t border-[#D4AF37]/20 flex justify-end space-x-3">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold border border-[#D4AF37]/30 text-gray-300 hover:text-white hover:border-[#D4AF37]">
+          Dismiss
+        </button>
+        <button id="modalProceedBtn" onclick="proceedModalRoute()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-black font-bold shadow-lg hover:brightness-110">
+          Open Full Page
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // ==========================================
+    // 8. BILINGUAL DICTIONARY (English & Myanmar Unicode)
+    // ==========================================
+    const translations = {
+      en: {
+        admin_panel: "ADMIN PORTAL",
+        nav_overview: "Overview",
+        nav_users: "Users Directory",
+        nav_shops: "Shops & Venues",
+        nav_places: "Public Places",
+        nav_categories: "Categories",
+        nav_applications: "Applications",
+        nav_reviews: "Reviews & Ratings",
+        nav_audit: "Audit Logs",
+        admin_super: "Aung Kyaw (Admin)",
+        header_title: "Overview Dashboard",
+        header_subtitle: "Real-time metrics, directory insights & platform surveillance",
+        search_placeholder: "Search shops, users, places...",
+        sec_key_metrics: "Key Platform Metrics",
+        last_updated: "Live Updated • 1 min ago",
+        card_total_users: "Total Users",
+        card_reg_shops: "Registered Shops",
+        card_total_shops: "Total Shops",
+        card_public_places: "Total Public Places",
+        card_pending_apps: "Pending Applications",
+        card_total_reviews: "Total Reviews",
+        action_view_directory: "View Directory",
+        action_view_shops: "Active Vendors",
+        action_shop_inventory: "All Records",
+        action_explore_places: "Explore Landmarks",
+        action_review_now: "Review Pending",
+        action_view_feedbacks: "Ratings Feed",
+        chart_title: "Weekly Registration Analysis",
+        chart_subtitle: "Daily breakdown of platform growth (Monday to Sunday)",
+        legend_users: "New Users",
+        legend_shops: "Shop Registrations",
+        legend_places: "Public Places",
+        chart_stat_peak: "Peak Day",
+        chart_stat_avg: "Daily Avg Growth",
+        chart_stat_net: "Week Net Surge",
+        cat_title: "Category Overview",
+        cat_subtitle: "Registered places & shops distribution",
+        cat_food: "Food & Drink",
+        cat_food_desc: "Cafes, Restaurants, Bars",
+        cat_stay: "Stay",
+        cat_stay_desc: "Hotels, Resorts, Hostels",
+        cat_visit: "Place to Visit",
+        cat_visit_desc: "Pagodas, Parks, Landmarks",
+        cat_shopping: "Shopping",
+        cat_shopping_desc: "Malls, Boutiques, Marts",
+        cat_health: "Health",
+        cat_health_desc: "Clinics, Pharmacies, Care",
+        cat_beauty: "Beauty & Wellness",
+        cat_beauty_desc: "Spas, Salons, Fitness",
+        unit_places: "places",
+        btn_manage_categories: "Manage All Categories",
+        shops_title: "Top Rated Shops & Venues",
+        shops_subtitle: "Ranked by user star ratings and verified review counts",
+        filter_label: "Sort:",
+        th_no: "No.",
+        th_shop_name: "Shop Name",
+        th_category: "Category",
+        th_rating: "Rating",
+        th_reviews: "Total Reviews",
+        th_status: "Status",
+        status_verified: "Verified",
+        showing_top_shops: "Showing Top 5 of 3,280 Verified Vendors",
+        view_full_rankings: "View Full Rankings",
+        audit_title: "Admin Audit Log",
+        audit_subtitle: "Recent 5 administrative updates & security trace",
+        audit_th_admin: "Admin Name",
+        audit_th_activity: "Activity",
+        audit_th_datetime: "Date & Time",
+        audit_th_status: "Status",
+        act_1: "Approved Shop License",
+        act_2: "Added Public Place",
+        act_3: "Blocked Fake Account",
+        act_4: "Category Re-assigned",
+        act_5: "Exported Weekly Audit",
+        st_approved: "Success",
+        st_blocked: "Blocked",
+        audit_integrity: "Immutable Audit Trail • SHA-256",
+        view_all_audit: "All Records",
+        footer_copy: "POINTER Platform Architecture • All Rights Reserved © 2025",
+        security_level: "Security Level: Strict Gold SSL",
+        system_status: "System Normal"
+      },
+      my: {
+        admin_panel: "စီမံခန့်ခွဲမှု စနစ်",
+        nav_overview: "ပင်မ ခြုံငုံသုံးသပ်ချက်",
+        nav_users: "အသုံးပြုသူများ စာရင်း",
+        nav_shops: "ဆိုင်များနှင့် နေရာများ",
+        nav_places: "အများပြည်သူဆိုင်ရာ နေရာများ",
+        nav_categories: "ကဏ္ဍ အုပ်စုများ",
+        nav_applications: "လျှောက်ထားချက်များ",
+        nav_reviews: "သုံးသပ်ချက်နှင့် မှတ်ချက်များ",
+        nav_audit: "လုပ်ဆောင်ချက် မှတ်တမ်း",
+        admin_super: "ကိုအောင်ကျော် (အက်ဒမင်)",
+        header_title: "ပင်မ ဒက်ရှ်ဘုတ် စီမံခန့်ခွဲမှု",
+        header_subtitle: "အချိန်နှင့်တပြေးညီ အချက်အလက်များနှင့် ပလက်ဖောင်း လည်ပတ်မှု အခြေအနေ",
+        search_placeholder: "ဆိုင်များ၊ အသုံးပြုသူများ၊ နေရာများ ရှာဖွေရန်...",
+        sec_key_metrics: "အဓိက စာရင်းအင်း အချက်အလက်များ",
+        last_updated: "တိုက်ရိုက် အချက်အလက် • ၁ မိနစ် အကြာ",
+        card_total_users: "စုစုပေါင်း အသုံးပြုသူ",
+        card_reg_shops: "မှတ်ပုံတင်ထားသော ဆိုင်များ",
+        card_total_shops: "ဆိုင်များ စုစုပေါင်း",
+        card_public_places: "အများပြည်သူဆိုင်ရာ နေရာများ",
+        card_pending_apps: "ဆိုင်းငံ့ လျှောက်ထားချက်များ",
+        card_total_reviews: "သုံးသပ်ချက် စုစုပေါင်း",
+        action_view_directory: "အသုံးပြုသူ စာရင်းကြည့်ရန်",
+        action_view_shops: "ဖွင့်လှစ်ထားသော ဆိုင်များ",
+        action_shop_inventory: "မှတ်တမ်းအားလုံး",
+        action_explore_places: "အထင်ကရနေရာများ",
+        action_review_now: "စစ်ဆေး အတည်ပြုရန်",
+        action_view_feedbacks: "အဆင့်သတ်မှတ်ချက်များ",
+        chart_title: "အပတ်စဉ် စာရင်းသွင်းမှု လေ့လာဆန်းစစ်ချက်",
+        chart_subtitle: "တနင်္လာ မှ တနင်္ဂနွေ အထိ နေ့စဉ် တိုးတက်မှု စာရင်းဇယား",
+        legend_users: "အသုံးပြုသူ အသစ်",
+        legend_shops: "ဆိုင် မှတ်ပုံတင်မှု",
+        legend_places: "အများပြည်သူ နေရာများ",
+        chart_stat_peak: "အမြင့်ဆုံးနေ့",
+        chart_stat_avg: "နေ့စဉ် ပျမ်းမျှ တိုးတက်မှု",
+        chart_stat_net: "အပတ်စဉ် တိုးတက်နှုန်း",
+        cat_title: "ကဏ္ဍအလိုက် ခြုံငုံသုံးသပ်ချက်",
+        cat_subtitle: "မှတ်ပုံတင်ထားသော နေရာများနှင့် ဆိုင်များ ခွဲဝေမှု",
+        cat_food: "အစားအသောက် နှင့် အဖျော်ယမကာ",
+        cat_food_desc: "ကဖေး၊ စားသောက်ဆိုင်၊ ဘားများ",
+        cat_stay: "တည်းခိုနေထိုင်ရေး",
+        cat_stay_desc: "ဟိုတယ်၊ အပန်းဖြေစခန်း၊ ရိပ်သာများ",
+        cat_visit: "လည်ပတ်စရာ နေရာများ",
+        cat_visit_desc: "ဘုရားစေတီ၊ ပန်းခြံ၊ သမိုင်းဝင်နေရာများ",
+        cat_shopping: "စျေးဝယ်ယူရေး",
+        cat_shopping_desc: "ကုန်တိုက်၊ ဆိုင်ခန်း၊ စူပါမားကတ်များ",
+        cat_health: "ကျန်းမာရေး",
+        cat_health_desc: "ဆေးခန်း၊ ဆေးဆိုင်၊ ကျန်းမာရေးစောင့်ရှောက်မှု",
+        cat_beauty: "အလှအပ နှင့် ကျန်းမာသုခ",
+        cat_beauty_desc: "စပါး၊ ဆံပင်ညှပ်ဆိုင်၊ အားကစားခန်းမများ",
+        unit_places: "နေရာ",
+        btn_manage_categories: "ကဏ္ဍအားလုံး စီမံခန့်ခွဲရန်",
+        shops_title: "အဆင့်သတ်မှတ်ချက် အမြင့်ဆုံး ဆိုင်များ",
+        shops_subtitle: "အသုံးပြုသူများ၏ ကြယ်ပွင့်နှင့် စစ်မှန်သော သုံးသပ်ချက်များအရ စီစဉ်ထားသည်",
+        filter_label: "အမျိုးအစား:",
+        th_no: "စဉ်",
+        th_shop_name: "ဆိုင်အမည်",
+        th_category: "ကဏ္ဍ",
+        th_rating: "အဆင့်",
+        th_reviews: "သုံးသပ်ချက်ပေါင်း",
+        th_status: "အခြေအနေ",
+        status_verified: "အတည်ပြုပြီး",
+        showing_top_shops: "အတည်ပြုပြီး ဆိုင် ၃,၂၈၀ အနက် ထိပ်တန်း ၅ ဆိုင်",
+        view_full_rankings: "အဆင့်အားလုံး ကြည့်ရန်",
+        audit_title: "အက်ဒမင် လုပ်ဆောင်ချက် မှတ်တမ်း",
+        audit_subtitle: "နောက်ဆုံး စီမံခန့်ခွဲမှု ၅ ခုနှင့် လုံခြုံရေး စစ်ဆေးချက်",
+        audit_th_admin: "အက်ဒမင် အမည်",
+        audit_th_activity: "လုပ်ဆောင်ချက်",
+        audit_th_datetime: "နေ့စွဲနှင့် အချိန်",
+        audit_th_status: "အခြေအနေ",
+        act_1: "ဆိုင် လိုင်စင် အတည်ပြုခဲ့သည်",
+        act_2: "အများပြည်သူနေရာ အသစ်ထည့်သွင်းခဲ့သည်",
+        act_3: "အကောင့်အတုအား ပိတ်ပင်ခဲ့သည်",
+        act_4: "ဆိုင်ကဏ္ဍ ပြင်ဆင် သတ်မှတ်ခဲ့သည်",
+        act_5: "အပတ်စဉ် မှတ်တမ်း ထုတ်ယူခဲ့သည်",
+        st_approved: "အောင်မြင်",
+        st_blocked: "ပိတ်ပင်ထား",
+        audit_integrity: "မပြောင်းလဲနိုင်သော မှတ်တမ်း • SHA-256",
+        view_all_audit: "မှတ်တမ်းအားလုံး",
+        footer_copy: "POINTER ပလက်ဖောင်း နည်းပညာစနစ် • မူပိုင်ခွင့် အားလုံးရယူထားပါသည် © ၂၀၂၅",
+        security_level: "လုံခြုံရေး အဆင့်: တင်းကြပ်သော ရွှေရောင် SSL",
+        system_status: "စနစ် ကောင်းမွန်စွာ လည်ပတ်နေသည်"
+      }
+    };
+
+    let currentLang = localStorage.getItem('pointer_admin_lang') || 'en';
+
+    function toggleLanguage() {
+      if (window.toggleAdminLanguage) {
+        window.toggleAdminLanguage();
+      } else {
+        currentLang = currentLang === 'en' ? 'my' : 'en';
+        applyTranslations();
+        updateChartLabels();
+      }
+    }
+
+    window.addEventListener('adminLanguageChanged', (e) => {
+      currentLang = e.detail.lang || 'en';
+      applyTranslations();
+      updateChartLabels();
+    });
+
+    function applyTranslations() {
+      const dict = translations[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key]) {
+          el.setAttribute('placeholder', dict[key]);
+        }
+      });
+    }
+
+    // ==========================================
+    // 7. ANIMATED NUMBER COUNTERS
+    // ==========================================
+    function animateCounters() {
+      const counters = document.querySelectorAll('.count-up');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target-val');
+        const duration = 1600; // ms
+        const startTime = performance.now();
+
+        function updateCount(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic formula
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.floor(easeOut * target);
+
+          counter.textContent = currentVal.toLocaleString();
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.textContent = target.toLocaleString();
+          }
+        }
+        requestAnimationFrame(updateCount);
+      });
+    }
+
+    // ==========================================
+    // 3. WEEKLY REPORT ANALYSIS (Chart.js Configuration)
+    // ==========================================
+    let weeklyChartInstance = null;
+
+    const chartDays = {
+      en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      my: ['တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ', 'တနင်္ဂနွေ']
+    };
+
+    function initChart() {
+      const ctx = document.getElementById('weeklyReportChart').getContext('2d');
+
+      // Create Gold Gradient Fills
+      const goldGradient1 = ctx.createLinearGradient(0, 0, 0, 300);
+      goldGradient1.addColorStop(0, 'rgba(255, 215, 0, 0.45)');
+      goldGradient1.addColorStop(1, 'rgba(255, 215, 0, 0.0)');
+
+      const goldGradient2 = ctx.createLinearGradient(0, 0, 0, 300);
+      goldGradient2.addColorStop(0, 'rgba(212, 175, 55, 0.3)');
+      goldGradient2.addColorStop(1, 'rgba(212, 175, 55, 0.0)');
+
+      weeklyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: chartDays[currentLang],
+          datasets: [
+            {
+              label: 'New Users',
+              data: [420, 580, 690, 810, 950, 1120, 890],
+              borderColor: '#FFD700',
+              backgroundColor: goldGradient1,
+              borderWidth: 2.8,
+              fill: true,
+              tension: 0.38,
+              pointBackgroundColor: '#121216',
+              pointBorderColor: '#FFD700',
+              pointBorderWidth: 2,
+              pointRadius: 4,
+              pointHoverRadius: 7,
+              pointHoverBackgroundColor: '#FFD700',
+              pointHoverBorderColor: '#FFF',
+              pointHoverBorderWidth: 2.5
+            },
+            {
+              label: 'Shop Registrations',
+              data: [65, 82, 94, 110, 145, 178, 120],
+              borderColor: '#D4AF37',
+              backgroundColor: goldGradient2,
+              borderWidth: 2.2,
+              fill: true,
+              tension: 0.38,
+              pointBackgroundColor: '#121216',
+              pointBorderColor: '#D4AF37',
+              pointBorderWidth: 2,
+              pointRadius: 3.5,
+              pointHoverRadius: 6,
+              pointHoverBackgroundColor: '#D4AF37',
+              pointHoverBorderColor: '#FFF'
+            },
+            {
+              label: 'Public Places',
+              data: [25, 30, 42, 38, 55, 70, 48],
+              borderColor: '#996515',
+              borderWidth: 1.8,
+              borderDash: [5, 5],
+              fill: false,
+              tension: 0.3,
+              pointBackgroundColor: '#996515',
+              pointRadius: 2.5,
+              pointHoverRadius: 5
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: {
+              display: false // Using custom UI legend buttons
+            },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 22, 0.95)',
+              titleColor: '#FFD700',
+              bodyColor: '#E6E6E6',
+              borderColor: 'rgba(212, 175, 55, 0.4)',
+              borderWidth: 1.2,
+              padding: 12,
+              boxPadding: 6,
+              usePointStyle: true,
+              callbacks: {
+                label: function(context) {
+                  return ` ${context.dataset.label}: +${context.parsed.y.toLocaleString()}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                color: 'rgba(212, 175, 55, 0.08)',
+                drawBorder: false
+              },
+              ticks: {
+                color: '#A0A0A0',
+                font: {
+                  family: "'Inter', 'Noto Sans Myanmar', sans-serif",
+                  size: 11
+                }
+              }
+            },
+            y: {
+              grid: {
+                color: 'rgba(212, 175, 55, 0.08)',
+                drawBorder: false
+              },
+              ticks: {
+                color: '#888888',
+                font: {
+                  size: 11
+                },
+                callback: function(val) {
+                  return val >= 1000 ? (val/1000) + 'k' : val;
+                }
+              }
+            }
+          },
+          animation: {
+            duration: 1800,
+            easing: 'easeOutQuart'
+          }
+        }
+      });
+    }
+
+    function updateChartLabels() {
+      if (weeklyChartInstance) {
+        weeklyChartInstance.data.labels = chartDays[currentLang];
+        weeklyChartInstance.data.datasets[0].label = translations[currentLang].legend_users;
+        weeklyChartInstance.data.datasets[1].label = translations[currentLang].legend_shops;
+        weeklyChartInstance.data.datasets[2].label = translations[currentLang].legend_places;
+        weeklyChartInstance.update();
+      }
+    }
+
+    // ==========================================
+    // CARD CLICK ANIMATION & NAVIGATION HANDLER
+    // ==========================================
+    function handleCardClick(routeKey, element) {
+      // Trigger golden flash/bounce animation
+      element.classList.add('card-clicked');
+      setTimeout(() => {
+        element.classList.remove('card-clicked');
+      }, 250);
+
+      // Open Navigation Confirmation Modal with detail
+      const targetMap = {
+        'users': { title: 'Users Directory Navigation', icon: 'users', text: 'Redirecting to platform User Accounts Management, Permissions & Verification queue.' },
+        'shops': { title: 'Registered Active Shops', icon: 'store', text: 'Redirecting to Verified Vendors directory, active subscriptions and license statuses.' },
+        'total-shops': { title: 'Total Shops Inventory', icon: 'building-2', text: 'Opening comprehensive repository of all listed storefronts across all regions.' },
+        'places': { title: 'Public Landmarks & Places', icon: 'landmark', text: 'Redirecting to Geo-tagged Public Parks, Historical Pagodas, and Tourist sites.' },
+        'applications': { title: 'Pending Vendor Applications', icon: 'clock', text: 'Opening 14 awaiting vendor verification files and business license documents.' },
+        'reviews': { title: 'Reviews & Feedback Surveillance', icon: 'message-square-quote', text: 'Redirecting to real-time user ratings stream and content moderation filter.' }
+      };
+
+      const routeUrlMap = {
+        'users': '/admin/user.html',
+        'shops': '/admin/shop.html',
+        'total-shops': '/admin/shop.html',
+        'places': '/admin/publicplaces.html',
+        'applications': '/admin/application.html',
+        'reviews': '/admin/reports.html',
+        'categories': '/admin/category.html',
+        'audit': '/admin/auditlog.html',
+        'logout': null
+      };
+      if (routeKey === 'logout') {
+        handleAdminLogout();
+        return;
+      }
+      currentModalTargetUrl = routeUrlMap[routeKey] || '/admin/dashboard.html';
+      const item = targetMap[routeKey] || { title: 'Navigation Link', icon: 'info', text: 'Navigating to selected subsection...' };
+
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalSubtitle').textContent = `Target Route: /admin/${routeKey}`;
+      document.getElementById('modalBody').innerHTML = `
+        <div class="p-3.5 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-xs text-[#F3E5AB]">
+          ${item.text}
+        </div>
+        <p class="text-xs text-gray-400">Security checkpoint: Admin authorization token verified. Action logged in audit trail.</p>
+      `;
+
+      openModal();
+    }
+
+    
+    let currentModalTargetUrl = '/admin/dashboard.html';
+    function proceedModalRoute() {
+      if (currentModalTargetUrl) {
+        location.href = currentModalTargetUrl;
+      }
+    }
+
+    function openModal() {
+      const modal = document.getElementById('navigationModal');
+      const box = document.getElementById('modalBox');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('navigationModal');
+      const box = document.getElementById('modalBox');
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 250);
+    }
+
+    function handleViewAllCategories() {
+      handleCardClick('categories', document.getElementById('categoryListContainer'));
+    }
+
+    function handleViewAllShops() {
+      handleCardClick('shops', document.getElementById('topShopsTableBody'));
+    }
+
+    function handleViewAllAuditLogs() {
+      handleCardClick('audit', document.getElementById('auditLogTableBody'));
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    async function syncDashboardWithBackend() {
+      if (!window.AdminAPI) return;
+      const data = await window.AdminAPI.getDashboard();
+      if (!data || !data.stats) return;
+
+      const userCountEl = document.querySelector('[data-target="users"] .count-up');
+      if (userCountEl) {
+        userCountEl.setAttribute('data-target-val', data.stats.totalUsers);
+        userCountEl.textContent = data.stats.totalUsers;
+      }
+      const shopsCountEl = document.querySelector('[data-target="shops"] .count-up');
+      if (shopsCountEl) {
+        shopsCountEl.setAttribute('data-target-val', data.stats.shopsLive);
+        shopsCountEl.textContent = data.stats.shopsLive;
+      }
+      const totalShopsEl = document.querySelector('[data-target="total-shops"] .count-up');
+      if (totalShopsEl) {
+        totalShopsEl.setAttribute('data-target-val', data.stats.totalShops);
+        totalShopsEl.textContent = data.stats.totalShops;
+      }
+      const placesCountEl = document.querySelector('[data-target="places"] .count-up');
+      if (placesCountEl) {
+        placesCountEl.setAttribute('data-target-val', data.stats.totalPlaces);
+        placesCountEl.textContent = data.stats.totalPlaces;
+      }
+
+      // Populate latest audit log if table exists
+      const auditBody = document.getElementById('auditLogTableBody');
+      if (auditBody && data.latestAuditLog && data.latestAuditLog.length > 0) {
+        auditBody.innerHTML = data.latestAuditLog.slice(0, 5).map(log => `
+          <tr class="hover:bg-white/[0.02] transition-colors">
+            <td class="py-3 px-4 text-xs font-semibold text-[#F3E5AB]">${escapeHtml(log.adminName)}</td>
+            <td class="py-3 px-4 text-xs font-mono text-gray-300"><span class="px-2 py-0.5 rounded bg-[#D4AF37]/15 text-[#FFD700] border border-[#D4AF37]/30">${escapeHtml(log.action)}</span></td>
+            <td class="py-3 px-4 text-xs text-gray-300 font-medium">${escapeHtml(log.targetName)}</td>
+            <td class="py-3 px-4 text-right text-[11px] text-gray-500 font-mono">${log.createdAt ? log.createdAt.slice(0, 16).replace('T', ' ') : ''}</td>
+          </tr>
+        `).join('');
+      }
+
+      animateCounters();
+    }
+
+    function refreshDashboardData() {
+      const icon = document.getElementById('refreshIcon');
+      icon.classList.add('animate-spin');
+      syncDashboardWithBackend();
+      animateCounters();
+      if (weeklyChartInstance) {
+        weeklyChartInstance.reset();
+        weeklyChartInstance.update();
+      }
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+      }, 1200);
+    }
+
+    // Initialize on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      currentLang = localStorage.getItem('pointer_admin_lang') || 'en';
+      applyTranslations();
+      initChart();
+      updateChartLabels();
+      animateCounters();
+      syncDashboardWithBackend();
+    });
+
+  </script>
+
+
+
+
+</body></html>

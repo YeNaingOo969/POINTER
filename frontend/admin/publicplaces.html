@@ -1,0 +1,1555 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-fixed":"#ffddb0","error-container":"#93000a","on-tertiary-fixed":"#281800","on-secondary-fixed":"#211b00","inverse-primary":"#735c00","surface-tint":"#e9c349","surface-container-low":"#1a1b20","inverse-on-surface":"#2f3035","on-secondary-container":"#c2b57f","on-primary-fixed":"#241a00","secondary-container":"#4f471b","on-primary-fixed-variant":"#574500","primary-fixed":"#ffe088","on-background":"#e3e2e8","surface-dim":"#121317","secondary-fixed-dim":"#d4c78f","on-error":"#690005","tertiary-container":"#e3a84b","on-secondary-fixed-variant":"#4f471b","on-secondary":"#383006","on-primary-container":"#554300","surface-bright":"#38393e","surface-variant":"#343439","on-error-container":"#ffdad6","on-surface":"#e3e2e8","on-tertiary-fixed-variant":"#614000","on-primary":"#3c2f00","surface-container":"#1f1f24","surface":"#121317","outline-variant":"#4d4635","inverse-surface":"#e3e2e8","primary":"#f2ca50","tertiary":"#ffc469","surface-container-high":"#292a2e","surface-container-highest":"#343439","on-tertiary":"#442c00","primary-fixed-dim":"#e9c349","outline":"#99907c","secondary-fixed":"#f1e3a9","surface-container-lowest":"#0d0e12","tertiary-fixed-dim":"#f9bc5c","secondary":"#d4c78f","background":"#121317","on-tertiary-container":"#5f3e00","primary-container":"#d4af37","on-surface-variant":"#d0c5af","error":"#ffb4ab"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{margin:"2rem","space-sm":"0.5rem","margin-sm":"1rem","space-xs":"0.25rem","space-md":"1rem","gutter-sm":"1rem","space-lg":"1.5rem","space-xl":"2.5rem",gutter:"1.5rem"},fontFamily:{"body-lg":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"display-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"body-md":["Inter"],"body-sm":["Inter"],"label-lg":["Inter"],"display-lg":["Plus Jakarta Sans"],"label-sm":["Inter"]},fontSize:{"body-lg":["16px",{lineHeight:"26px",fontWeight:"400"}],"headline-md":["22px",{lineHeight:"30px",letterSpacing:"-0.005em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.04em",fontWeight:"500"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"body-md":["14px",{lineHeight:"22px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.02em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.06em",fontWeight:"600"}]}}}};</script>  <script type="module" src="/admin/admin-auth.js"></script>
+</head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary overflow-y-auto min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-2xl z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="flex flex-col"><div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest/40"><img alt="POINTER Crest Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBptwidzuLBuggDy29VuWlC5k3-3T7NcGnZgNRVuo_NCDDrgMUS2mhWowv53YUT1uUfIpw7zv-ByGywJhFs-6GJyjUDkJhjto8rgk3erZdiUnKPFFVIqledid7ZrZkiJNJFPF3L35F1JQ643_tiiWYlCugBnS7AQyTSVOGg5w1_GKya8BbRywqcQyMk_VQRQ13eqD3XuTY21fzRH96_LkoFlJ4qAkq9T5x-MOzque-n"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-wider uppercase text-primary">POINTER</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/70">ADMINISTRATION SUITE</span></div></div><div class="px-space-md py-space-sm"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container/60"><span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#d4af37]"></span><span class="font-label-sm text-label-sm uppercase text-secondary font-semibold">System Live</span><span class="text-outline font-label-sm text-label-sm">•</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Yangon Division</span></div></div><nav class="flex-1 px-space-md space-y-1 overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="dashboard" href="/admin/dashboard.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">dashboard</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဒက်ရှ်ဘုတ်</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="application" href="/admin/application.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">app_registration</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">လျှောက်ထားချက်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="shop" href="/admin/shop.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">storefront</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဆိုင်များ</span>
+</a>
+<a aria-current="page" class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-300 bg-primary/20 text-primary font-semibold backdrop-blur-xl shadow-[0_0_15px_rgba(212,175,55,0.3)] ring-1 ring-primary/40" data-path="public-place" href="/admin/publicplaces.html">
+  <span class="material-symbols-outlined text-title-sm text-primary drop-shadow-[0_0_8px_currentColor] transition-transform group-hover:scale-110">location_city</span>
+  <span class="font-title-sm text-body-md text-on-surface group-hover:text-primary transition-colors">အများပြည်သူနေရာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="categories" href="/admin/category.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">category</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ကဏ္ဍများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="report" href="/admin/reports.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">analytics</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အစီရင်ခံစာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="users" href="/admin/user.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">group</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အသုံးပြုသူများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="audit-log" href="/admin/auditlog.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">history</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">စစ်ဆေးမှုမှတ်တမ်း</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30 mt-3 border-t border-surface-variant/30 pt-3" href="/home.html">
+  <span class="material-symbols-outlined text-title-sm text-outline transition-colors group-hover:text-primary group-hover:scale-110">home</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ပင်မဝက်ဘ်ဆိုက်</span>
+</a>
+</nav></div><div class="p-space-md bg-surface-container-lowest/60"><div class="p-space-sm rounded-lg bg-surface-container-low/80 flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-outline">Platform Edition</span><span class="font-label-sm text-label-sm text-primary font-semibold">Gold Tier v4.2</span></div></div></div></aside><div class="pl-72 min-h-screen flex flex-col"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/70 backdrop-blur-xl z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.3)]"><div class="flex-1 max-w-xl"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-md text-primary text-xl pointer-events-none">search</span><input class="w-full bg-surface-container/60 placeholder:text-outline text-on-surface font-body-sm text-body-sm pl-11 pr-space-lg py-space-sm rounded-lg outline-none transition-all duration-200 focus:bg-surface-container-high" placeholder="Search places, registry ID, coordinates or zones..." type="search"><span class="absolute right-space-sm hidden sm:inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-label-sm">⌘K</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center p-0.5 rounded-lg bg-surface-container-low"></div><button class="relative p-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:text-primary transition-all" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary shadow-[0_0_6px_#d4af37]"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right hidden lg:flex"><span class="font-label-lg text-label-lg text-on-surface font-semibold">Admin U Min Thant</span><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Chief Administrator • admin@pointer.app</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_0_10px_rgba(212,175,55,0.25)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmVVm_vikedOwTpUDeE_BMUVwn0omYWkZR39_flhhMSJxH7jwVWIQ_IGuRC7BxUaszK1N5wHTsLosD-84Trde85AV-1uOfFS-mnexsYRAI23PCO3bEJ19CujlgUmywYZRlAO1NTUxhViB4PaKqJveIRm97y5LF7oeKsIktmAluiYo70Zl_5rEh_whkOd9wBuvNCrU9jRDuezaAIRCYh1O2vMGH9tCjmrnMYVKlVgg"></div></div></header><main class="relative pt-20 w-full min-h-screen bg-background px-space-lg pb-space-xl"><div class="flex flex-col w-full text-on-surface">
+<!-- Ambient Underglow Accents -->
+<div class="fixed top-24 right-10 w-96 h-96 rounded-full bg-primary/5 blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-12 left-80 w-80 h-80 rounded-full bg-primary-container/5 blur-[100px] pointer-events-none -z-10"></div>
+<!-- Direct Authority Notification Bar -->
+<div class="w-full mb-space-lg">
+</div>
+<!-- Statistics Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-lg mb-space-xl">
+<!-- Stat 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#1c180e] via-[#0d0e12] to-[#261f0a] border border-[#d4af37]/35 shadow-lg shadow-[#d4af37]/10 backdrop-blur-md hover:border-[#d4af37]/60 p-space-lg transition-all duration-300">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-40 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-medium" data-i18n="statTotalLabel">Total Public Places</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg">domain</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-display-lg text-primary tracking-tight font-bold drop-shadow-[0_2px_12px_rgba(242,202,80,0.2)] text-2xl" id="stat-total-count">19</span>
+<span class="font-label-sm text-label-sm text-primary/80 bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">19 Registered</span>
+</div>
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span data-i18n="statTotalSub">Active Registry v4.2</span>
+<span class="text-secondary font-semibold">100% Verified</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low/60 hover:bg-surface-container/70 backdrop-blur-2xl p-space-lg shadow-xl border border-primary/15 hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="setCategoryFilter('pagoda')">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-40 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-medium" data-i18n="statPagodasLabel">Pagodas &amp; Temples</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg">temple_buddhist</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-display-lg text-primary tracking-tight font-bold drop-shadow-[0_2px_12px_rgba(242,202,80,0.2)] text-2xl">6</span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-2 py-0.5 rounded-full">Heritage Sites</span>
+</div>
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span data-i18n="statPagodasSub">Heritage Relics</span>
+<span class="text-primary hover:underline font-label-sm flex items-center gap-0.5">Filter <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low/60 hover:bg-surface-container/70 backdrop-blur-2xl p-space-lg shadow-xl border border-primary/15 hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="setCategoryFilter('hospital')">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-40 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-medium" data-i18n="statHospitalsLabel">Public Hospitals</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg">local_hospital</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-display-lg text-primary tracking-tight font-bold drop-shadow-[0_2px_12px_rgba(242,202,80,0.2)] text-2xl">1</span>
+<span class="font-label-sm text-label-sm text-primary/80 bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">24/7 Monitored</span>
+</div>
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span data-i18n="statHospitalsSub">Emergency Nodes</span>
+<span class="text-primary hover:underline font-label-sm flex items-center gap-0.5">Filter <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low/60 hover:bg-surface-container/70 backdrop-blur-2xl p-space-lg shadow-xl border border-primary/15 hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="setCategoryFilter('park')">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-40 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-medium" data-i18n="statParksLabel">Parks &amp; Gardens</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg">nature_people</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-display-lg text-primary tracking-tight font-bold drop-shadow-[0_2px_12px_rgba(242,202,80,0.2)] text-2xl">5</span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-2 py-0.5 rounded-full">Eco Sanctuaries</span>
+</div>
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span data-i18n="statParksSub">Urban Canopy</span>
+<span class="text-primary hover:underline font-label-sm flex items-center gap-0.5">Filter <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+</div>
+<!-- Command Toolbar & Filtering Interface -->
+<div class="flex flex-col gap-space-md mb-space-lg">
+<!-- Top row: Tabs & Add Button -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Tabs -->
+<div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface-container-low/80 backdrop-blur-xl border border-primary/20 overflow-x-auto">
+<button class="category-tab px-space-md py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider font-semibold transition-all duration-200 bg-primary-container text-on-primary-container shadow-[0_0_12px_rgba(212,175,55,0.3)] flex items-center gap-2" id="tab-all" onclick="setCategoryFilter('all')" type="button">
+<span class="material-symbols-outlined text-base">apps</span>
+<span data-i18n="tabAll">All Places</span>
+<span class="text-xs opacity-75 font-normal">(19)</span>
+</button>
+<button class="category-tab px-space-md py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider font-semibold transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-surface-container-high flex items-center gap-2" id="tab-pagoda" onclick="setCategoryFilter('pagoda')" type="button">
+<span class="material-symbols-outlined text-base">temple_buddhist</span>
+<span data-i18n="tabPagodas">Pagodas &amp; Temples</span>
+</button>
+<button class="category-tab px-space-md py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider font-semibold transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-surface-container-high flex items-center gap-2" id="tab-hospital" onclick="setCategoryFilter('hospital')" type="button">
+<span class="material-symbols-outlined text-base">local_hospital</span>
+<span data-i18n="tabHospitals">Public Hospitals</span>
+</button>
+<button class="category-tab px-space-md py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider font-semibold transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-surface-container-high flex items-center gap-2" id="tab-park" onclick="setCategoryFilter('park')" type="button">
+<span class="material-symbols-outlined text-base">nature_people</span>
+<span data-i18n="tabParks">Parks &amp; Gardens</span>
+</button>
+</div>
+<!-- Action Button Group -->
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container-low/90 hover:bg-surface-container border border-primary/30 text-secondary hover:text-primary transition-all flex items-center gap-2 font-label-md text-label-md shadow-lg" id="btn-language-toggle" onclick="toggleLanguage()" type="button">
+<span class="material-symbols-outlined text-base">translate</span>
+<span id="lang-indicator">မြန်မာဘာသာသို့ ပြောင်းမည်</span>
+</button>
+<!-- Radiant Gold CTA Button -->
+<button class="group relative px-space-lg py-2.5 rounded-xl font-label-lg text-label-lg font-bold text-on-primary bg-gradient-to-r from-primary via-primary-container to-tertiary-container shadow-[0_0_24px_rgba(212,175,55,0.4)] hover:shadow-[0_0_36px_rgba(212,175,55,0.7)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2 overflow-hidden border border-primary-fixed/40" onclick="openAddModal()" type="button">
+<div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none"></div>
+<span class="material-symbols-outlined text-xl">add_circle</span>
+<span data-i18n="ctaAddPlace">+ Add Public Place</span>
+</button>
+</div>
+</div>
+<!-- Filter Bar Slab (Level 1 Liquid Glass) -->
+<div class="w-full p-space-sm rounded-xl bg-surface-container-low/70 backdrop-blur-xl border border-primary/20 shadow-xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-sm">
+<!-- Search Input Slot -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-primary text-xl pointer-events-none">search</span>
+<input class="w-full bg-surface-container/60 hover:bg-surface-container text-on-surface font-body-sm text-body-sm pl-11 pr-space-md py-2.5 rounded-lg outline-none focus:ring-1 focus:ring-primary border border-outline-variant/30 placeholder:text-outline transition-all" id="filter-search-input" onkeyup="applyFilterLogic()" placeholder="Search place name, street, or registry code..." type="text">
+</div>
+<!-- Dropdown Selectors -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Township Filter -->
+<div class="relative min-w-[170px]">
+<select class="w-full bg-surface-container/60 hover:bg-surface-container text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-2.5 rounded-lg appearance-none outline-none border border-outline-variant/30 focus:ring-1 focus:ring-primary cursor-pointer transition-all" id="filter-township" onchange="applyFilterLogic()">
+<option data-i18n="optAllTownships" value="all">All Townships</option>
+<option value="Dagon">Dagon (ဒဂုံ)</option>
+<option value="Latha">Latha (လသာ)</option>
+<option value="Mingalar Taung Nyunt">Mingalar Taung Nyunt</option>
+<option value="Kyauktada">Kyauktada (ကျောက်တံတား)</option>
+<option value="Bahan">Bahan (ဗဟန်း)</option>
+<option value="Botahtaung">Botahtaung (ဗိုလ်တထောင်)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative min-w-[130px]">
+<select class="w-full bg-surface-container/60 hover:bg-surface-container text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-2.5 rounded-lg appearance-none outline-none border border-outline-variant/30 focus:ring-1 focus:ring-primary cursor-pointer transition-all" id="filter-status" onchange="applyFilterLogic()">
+<option data-i18n="optAllStatus" value="all">All Status</option>
+<option data-i18n="optActive" value="active">Active</option>
+<option data-i18n="optHidden" value="hidden">Hidden</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">expand_more</span>
+</div>
+<!-- Sort Filter -->
+<div class="relative min-w-[150px]">
+<select class="w-full bg-surface-container/60 hover:bg-surface-container text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-2.5 rounded-lg appearance-none outline-none border border-outline-variant/30 focus:ring-1 focus:ring-primary cursor-pointer transition-all" id="filter-sort" onchange="applyFilterLogic()">
+<option data-i18n="optSortLatest" value="latest">Latest Added</option>
+<option data-i18n="optSortAlphabetical" value="name">Alphabetical</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">swap_vert</span>
+</div>
+<!-- Reset Button -->
+<button class="p-2.5 rounded-lg bg-surface-container/60 hover:bg-surface-container text-outline hover:text-primary transition-all" onclick="resetAllFilters()" title="Reset Filters" type="button">
+<span class="material-symbols-outlined text-base">restart_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Places Mosaic Grid (3 Cards Per Row on Desktop) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg mb-space-xl" id="places-grid">
+<!-- Card 1: Shwedagon Pagoda -->
+<div class="place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300" data-address="Singuttara Hill, Dagon Township" data-category="pagoda" data-coords="16.7983° N, 96.1497° E" data-hours="04:00 AM – 10:00 PM Daily" data-id="1" data-name-en="Shwedagon Pagoda" data-name-my="ရွှေတိဂုံစေတီတော်မြတ်ကြီး" data-phone="+95 1 375767" data-status="active" data-township="Dagon">
+<!-- Top Image Frame -->
+<div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest">
+<img alt="Shwedagon Pagoda at dusk with glowing golden stupa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3izrYguYESl8jyN25w4L1Tb2nsdp74qR4cqYw90djHbKgljuHiGiizqImGO8xtbvWZxljg8WYbF5AJvj44_2WBPwOPx8ynWOeiN5r5-1a4aA7L2epxrgr1H6dPScf6KBt2FkM4lN9onkur8pXea1FiiGqseVcSI2-bxwAUP-uRvmlZB_R3n2LaJOKpC-8cnzgBnUz9sbO9k2RQMUM0IZ9Guz7tfiifTrrgThi5k">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+<!-- Category Badge -->
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-primary border border-primary/30 flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-sm">temple_buddhist</span>
+<span class="category-name-badge" data-i18n="badgePagoda">Pagodas &amp; Temples</span>
+</span>
+</div>
+<!-- Status Indicator Pill -->
+<div class="absolute top-space-sm right-space-sm">
+<div class="status-pill px-2.5 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-[0_0_8px_rgba(212,175,55,0.3)]">
+<span class="status-dot w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]"></span>
+<span class="status-text font-semibold uppercase" data-i18n="badgeActive">Active</span>
+</div>
+</div>
+<!-- Bottom Name Anchor Inside Scrim -->
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight drop-shadow-md place-title">Shwedagon Pagoda</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium tracking-wide">Singuttara Hill, Dagon</p>
+</div>
+</div>
+<!-- Card Body Meta -->
+<div class="p-space-md flex flex-col gap-space-sm flex-1">
+<div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+<span class="truncate">Dagon Township</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+<span class="truncate">04:00 AM – 10:00 PM</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+<span class="truncate">+95 1 375767</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('Shwedagon Pagoda', 'Singuttara Hill, Dagon Township', '16.7983° N, 96.1497° E')">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+<span class="truncate">16.7983°, 96.1497°</span>
+</div>
+</div>
+</div>
+<!-- Footer Control Panel -->
+<div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" onclick="openDetailsModal(1)" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span data-i18n="btnView">View Details</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" onclick="openEditModal(1)" title="Edit Place" type="button">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-tertiary transition-all" onclick="togglePlaceStatus(1)" title="Hide/Unhide" type="button">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all" onclick="openDeleteDialog(1)" title="Delete Record" type="button">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Yangon General Hospital -->
+<div class="place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300" data-address="Bogyoke Aung San Road, Latha Township" data-category="hospital" data-coords="16.7794° N, 96.1527° E" data-hours="24/7 Emergency &amp; Outpatient" data-id="2" data-name-en="Yangon General Hospital" data-name-my="ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး" data-phone="+95 1 256112" data-status="active" data-township="Latha">
+<div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest">
+<img alt="Yangon General Hospital historic red brick facade under clear daylight" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8_ZHl8IQ3dJd9etpOmhAKcnA94z22bacEp8nBK1WYmRWIRp5jZfJYBfo7Cx1-JryCYI5SaWWoNoOVtOmdsvc2HPvSz1VlS1Hepd9HqjMhIf4b09zpLn9z22s-R-TwqRv-YX3LqSFSu8SJ4LjQza9OXaJU63xvoSUqkfYRHpi9Oo3tQj_KOsdU8KZX_zEboUWqI97StKDK9cEscMKwI_ta8F5m18j5h6mcdEeQrko">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-primary border border-primary/30 flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-sm">local_hospital</span>
+<span class="category-name-badge" data-i18n="badgeHospital">Public Hospitals</span>
+</span>
+</div>
+<div class="absolute top-space-sm right-space-sm">
+<div class="status-pill px-2.5 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-[0_0_8px_rgba(212,175,55,0.3)]">
+<span class="status-dot w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]"></span>
+<span class="status-text font-semibold uppercase" data-i18n="badgeActive">Active</span>
+</div>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight drop-shadow-md place-title">Yangon General Hospital</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium tracking-wide">Bogyoke Aung San Road, Latha</p>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm flex-1">
+<div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+<span class="truncate">Latha Township</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+<span class="truncate">24/7 Emergency</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+<span class="truncate">+95 1 256112</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('Yangon General Hospital', 'Bogyoke Aung San Road, Latha Township', '16.7794° N, 96.1527° E')">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+<span class="truncate">16.7794°, 96.1527°</span>
+</div>
+</div>
+</div>
+<div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" onclick="openDetailsModal(2)" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span data-i18n="btnView">View Details</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" onclick="openEditModal(2)" title="Edit Place" type="button">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-tertiary transition-all" onclick="togglePlaceStatus(2)" title="Hide/Unhide" type="button">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all" onclick="openDeleteDialog(2)" title="Delete Record" type="button">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Kandawgyi Nature Park & Royal Lake -->
+<div class="place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300" data-address="Nat Mauk Street, Mingalar Taung Nyunt Township" data-category="park" data-coords="16.7942° N, 96.1628° E" data-hours="05:00 AM – 09:30 PM Daily" data-id="3" data-name-en="Kandawgyi Nature Park &amp; Royal Lake" data-name-my="ကန်တော်ကြီး သဘာဝဥယျာဉ်နှင့် ကရဝိတ်" data-phone="+95 1 545638" data-status="active" data-township="Mingalar Taung Nyunt">
+<div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest">
+<img alt="Kandawgyi Lake reflecting Karaweik Palace at tranquil golden sunrise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-0Gyed_nWmDrvCsjQLUCdLwyiCMAfQdWUELiv-yLrQ9h-9PcaSNfYurDnUf8YTuE2YBi2e6ccEAnMNpOh_rpHLsPThT_5icfr9Ijkw5V9cX0oshsh18LkW6RTuoYRZYUd4-maU24_7tWEanoHJUHi3u02khb-eNy1SieEAD2kRBUwnpmI9lU4ZLf8cBtP5-bhyp-t95reikxpfdK15-CXXFc503C7A4ChXYFKe8c">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-primary border border-primary/30 flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-sm">nature_people</span>
+<span class="category-name-badge" data-i18n="badgePark">Parks &amp; Gardens</span>
+</span>
+</div>
+<div class="absolute top-space-sm right-space-sm">
+<div class="status-pill px-2.5 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-[0_0_8px_rgba(212,175,55,0.3)]">
+<span class="status-dot w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]"></span>
+<span class="status-text font-semibold uppercase" data-i18n="badgeActive">Active</span>
+</div>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight drop-shadow-md place-title">Kandawgyi Nature Park</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium tracking-wide">Nat Mauk Street, Mingalar Taung Nyunt</p>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm flex-1">
+<div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+<span class="truncate">Mingalar Taung Nyunt</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+<span class="truncate">05:00 AM – 09:30 PM</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+<span class="truncate">+95 1 545638</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('Kandawgyi Nature Park', 'Nat Mauk Street, Mingalar Taung Nyunt', '16.7942° N, 96.1628° E')">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+<span class="truncate">16.7942°, 96.1628°</span>
+</div>
+</div>
+</div>
+<div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" onclick="openDetailsModal(3)" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span data-i18n="btnView">View Details</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" onclick="openEditModal(3)" title="Edit Place" type="button">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-tertiary transition-all" onclick="togglePlaceStatus(3)" title="Hide/Unhide" type="button">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all" onclick="openDeleteDialog(3)" title="Delete Record" type="button">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Sule Pagoda -->
+<div class="place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300" data-address="Junction of Sule Pagoda Rd &amp; Maha Bandula Rd, Kyauktada" data-category="pagoda" data-coords="16.7744° N, 96.1587° E" data-hours="06:00 AM – 09:00 PM" data-id="4" data-name-en="Sule Pagoda" data-name-my="ဆူးလေစေတီတော်" data-phone="+95 1 371282" data-status="active" data-township="Kyauktada">
+<div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest">
+<img alt="Sule Pagoda illuminated at downtown Yangon traffic roundabout at twilight" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbQYL5FhIJ1-_rTUz3IficySPsxY41lYi9eS57raGF9eJSCFIHLXDjkihT07LFfTlmnZZ3R34k5qTNLz7DlnhyfE8sKdLtsDEr6aEDAPlHE-_W4v7V4PG7rNxsP8sjGc6fdRyZo6OgESog8fXZaLOnGJoKHcmkmADVONFq8s0nZUu3ji57ADO_d1-Lrfbsj1bRzo-nRFpwrVXr3FxunnmXomz-RwS9VuuJDFWNdM8">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-primary border border-primary/30 flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-sm">temple_buddhist</span>
+<span class="category-name-badge" data-i18n="badgePagoda">Pagodas &amp; Temples</span>
+</span>
+</div>
+<div class="absolute top-space-sm right-space-sm">
+<div class="status-pill px-2.5 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-[0_0_8px_rgba(212,175,55,0.3)]">
+<span class="status-dot w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]"></span>
+<span class="status-text font-semibold uppercase" data-i18n="badgeActive">Active</span>
+</div>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight drop-shadow-md place-title">Sule Pagoda</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium tracking-wide">Maha Bandula Road, Kyauktada</p>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm flex-1">
+<div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+<span class="truncate">Kyauktada Township</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+<span class="truncate">06:00 AM – 09:00 PM</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+<span class="truncate">+95 1 371282</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('Sule Pagoda', 'Kyauktada Township, Yangon', '16.7744° N, 96.1587° E')">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+<span class="truncate">16.7744°, 96.1587°</span>
+</div>
+</div>
+</div>
+<div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" onclick="openDetailsModal(4)" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span data-i18n="btnView">View Details</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" onclick="openEditModal(4)" title="Edit Place" type="button">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-tertiary transition-all" onclick="togglePlaceStatus(4)" title="Hide/Unhide" type="button">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all" onclick="openDeleteDialog(4)" title="Delete Record" type="button">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Maha Bandula Park (Initially Hidden) -->
+<div class="place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/60 hover:bg-surface-container/85 backdrop-blur-2xl border border-outline-variant/40 hover:border-primary/40 shadow-lg hover:shadow-[0_16px_36px_rgba(0,0,0,0.8)] transition-all duration-300 opacity-90" data-address="Maha Bandula Road, Kyauktada Township" data-category="park" data-coords="16.7728° N, 96.1601° E" data-hours="05:30 AM – 08:30 PM" data-id="5" data-name-en="Maha Bandula Park &amp; Monument" data-name-my="မဟာဗန္ဓုလပန်းခြံ" data-phone="+95 1 388120" data-status="hidden" data-township="Kyauktada">
+<div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest filter grayscale-[30%] group-hover:grayscale-0 transition-all">
+<img alt="Maha Bandula Park independence obelisk grounds surrounded by heritage buildings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbQYL5FhIJ1-_rTUz3IficySPsxY41lYi9eS57raGF9eJSCFIHLXDjkihT07LFfTlmnZZ3R34k5qTNLz7DlnhyfE8sKdLtsDEr6aEDAPlHE-_W4v7V4PG7rNxsP8sjGc6fdRyZo6OgESog8fXZaLOnGJoKHcmkmADVONFq8s0nZUu3ji57ADO_d1-Lrfbsj1bRzo-nRFpwrVXr3FxunnmXomz-RwS9VuuJDFWNdM8">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/40 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-secondary border border-outline-variant/30 flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-sm">nature_people</span>
+<span class="category-name-badge" data-i18n="badgePark">Parks &amp; Gardens</span>
+</span>
+</div>
+<div class="absolute top-space-sm right-space-sm">
+<div class="status-pill px-2.5 py-1 rounded-full bg-surface-variant/80 backdrop-blur-md border border-outline-variant/60 text-outline font-label-sm text-label-sm flex items-center gap-1.5 shadow-md">
+<span class="status-dot w-2 h-2 rounded-full bg-outline"></span>
+<span class="status-text font-semibold uppercase" data-i18n="badgeHidden">Hidden</span>
+</div>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<h3 class="font-headline-sm text-headline-sm text-secondary font-bold tracking-tight drop-shadow-md place-title">Maha Bandula Park</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium tracking-wide">Maha Bandula Road, Kyauktada</p>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm flex-1">
+<div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+<span class="truncate">Kyauktada Township</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+<span class="truncate">05:30 AM – 08:30 PM</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+<span class="truncate">+95 1 388120</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('Maha Bandula Park', 'Maha Bandula Road, Kyauktada', '16.7728° N, 96.1601° E')">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+<span class="truncate">16.7728°, 96.1601°</span>
+</div>
+</div>
+</div>
+<div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" onclick="openDetailsModal(5)" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span data-i18n="btnView">View Details</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" onclick="openEditModal(5)" title="Edit Place" type="button">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-primary hover:text-primary-fixed transition-all" onclick="togglePlaceStatus(5)" title="Unhide Place" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all" onclick="openDeleteDialog(5)" title="Delete Record" type="button">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6: New Yangon Specialist Hospital -->
+<div class="place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300" data-address="Min Ye Kyaw Swa Road, Dagon Township" data-category="hospital" data-coords="16.7845° N, 96.1432° E" data-hours="24 Hours Emergency" data-id="6" data-name-en="New Yangon Specialist Hospital" data-name-my="ရန်ကုန်အထူးကုဆေးရုံသစ်ကြီး" data-phone="+95 1 230155" data-status="active" data-township="Dagon">
+<div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest">
+<img alt="Contemporary facade of Yangon modern clinical medical complex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8_ZHl8IQ3dJd9etpOmhAKcnA94z22bacEp8nBK1WYmRWIRp5jZfJYBfo7Cx1-JryCYI5SaWWoNoOVtOmdsvc2HPvSz1VlS1Hepd9HqjMhIf4b09zpLn9z22s-R-TwqRv-YX3LqSFSu8SJ4LjQza9OXaJU63xvoSUqkfYRHpi9Oo3tQj_KOsdU8KZX_zEboUWqI97StKDK9cEscMKwI_ta8F5m18j5h6mcdEeQrko">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-primary border border-primary/30 flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-sm">local_hospital</span>
+<span class="category-name-badge" data-i18n="badgeHospital">Public Hospitals</span>
+</span>
+</div>
+<div class="absolute top-space-sm right-space-sm">
+<div class="status-pill px-2.5 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-[0_0_8px_rgba(212,175,55,0.3)]">
+<span class="status-dot w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]"></span>
+<span class="status-text font-semibold uppercase" data-i18n="badgeActive">Active</span>
+</div>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight drop-shadow-md place-title">New Yangon Specialist Hospital</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium tracking-wide">Min Ye Kyaw Swa Road, Dagon</p>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm flex-1">
+<div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+<span class="truncate">Dagon Township</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+<span class="truncate">24 Hours Emergency</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+<span class="truncate">+95 1 230155</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('New Yangon Specialist Hospital', 'Min Ye Kyaw Swa Road, Dagon', '16.7845° N, 96.1432° E')">
+<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+<span class="truncate">16.7845°, 96.1432°</span>
+</div>
+</div>
+</div>
+<div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" onclick="openDetailsModal(6)" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span data-i18n="btnView">View Details</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" onclick="openEditModal(6)" title="Edit Place" type="button">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-tertiary transition-all" onclick="togglePlaceStatus(6)" title="Hide/Unhide" type="button">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all" onclick="openDeleteDialog(6)" title="Delete Record" type="button">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty Search Results State (Hidden by default) -->
+<div class="hidden flex-col items-center justify-center p-space-xl rounded-xl bg-surface-container-low/40 border border-primary/20 backdrop-blur-xl mb-space-xl" id="no-results-state">
+<span class="material-symbols-outlined text-primary text-5xl mb-space-sm">travel_explore</span>
+<h3 class="font-headline-md text-headline-md text-primary font-bold" data-i18n="noResultsTitle">No Public Places Matched</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-center max-w-md" data-i18n="noResultsSub">Adjust your filter terms or query coordinates to discover indexed locations.</p>
+<button class="mt-space-md px-space-md py-2 rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all font-label-md font-semibold" onclick="resetAllFilters()" type="button">
+      Reset All Filters
+    </button>
+</div>
+<!-- ============================================================== -->
+<!-- MODAL: ADD / CREATE NEW PUBLIC PLACE                           -->
+<!-- ============================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-2xl" id="modal-add-place">
+<div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-surface-container-low/95 border border-primary/30 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(212,175,55,0.2)] flex flex-col">
+<!-- Modal Header -->
+<div class="sticky top-0 z-10 px-space-lg py-space-md bg-surface-container-lowest/90 backdrop-blur-xl border-b border-primary/20 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary shadow-[0_0_12px_rgba(212,175,55,0.3)]">
+<span class="material-symbols-outlined text-xl">add_location_alt</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold" data-i18n="modalAddTitle">Add New Public Place</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant" data-i18n="modalAddSub">Central Registry Spatial Creation Protocol</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center transition-all" onclick="closeAddModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Form Inputs Container -->
+<form class="p-space-lg flex flex-col gap-space-md" id="form-add-place" onsubmit="handleCreatePlace(event)">
+<!-- Dual Name Inputs (EN & MY) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblPlaceNameEn">Place Name (English) *</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="add-name-en" placeholder="e.g. Botataung Pagoda" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblPlaceNameMy">Place Name (Myanmar Unicode) *</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="add-name-my" placeholder="ဥပမာ - ဗိုလ်တထောင်စေတီတော်" required="" type="text">
+</div>
+</div>
+<!-- Category & Township Selects -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblCategory">Category *</label>
+<div class="relative">
+<select class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none appearance-none transition-all cursor-pointer" id="add-category" required="">
+<option value="3">Places to Visit (Pagodas, Parks &amp; Sights - ID: 3)</option>
+<option value="5">Health &amp; Medical (Public Hospitals - ID: 5)</option>
+<option value="4">Shopping (Bazaars &amp; Public Markets - ID: 4)</option>
+<option value="1">Food &amp; Drink (Food Streets &amp; Dining - ID: 1)</option>
+<option value="2">Stay (Heritage Hotels &amp; Lodging - ID: 2)</option>
+<option value="6">Beauty &amp; Wellness (ID: 6)</option>
+<option value="7">Other Public Landmarks (ID: 7)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblTownship">Township *</label>
+<div class="relative">
+<select class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none appearance-none transition-all cursor-pointer" id="add-township" required="">
+<option value="Dagon">Dagon (ဒဂုံ)</option>
+<option value="Botahtaung">Botahtaung (ဗိုလ်တထောင်)</option>
+<option value="Latha">Latha (လသာ)</option>
+<option value="Bahan">Bahan (ဗဟန်း)</option>
+<option value="Mingalar Taung Nyunt">Mingalar Taung Nyunt</option>
+<option value="Kyauktada">Kyauktada (ကျောက်တံတား)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblDescription">Spatial Description</label>
+<textarea class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md p-space-md rounded-lg border border-primary/20 focus:border-primary outline-none transition-all resize-none" id="add-desc" placeholder="Enter landmark history, cultural significance, or architectural overview..." rows="3"></textarea>
+</div>
+<!-- Image Upload Slot (Gold dashed border) -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblImageUpload">Place Media Frame (Cover Image)</label>
+<div class="relative w-full p-space-lg rounded-xl border-2 border-dashed border-primary/40 bg-surface-container/30 hover:bg-surface-container/50 transition-all flex flex-col items-center justify-center cursor-pointer text-center group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+</div>
+<p class="font-label-md text-label-md text-primary font-semibold" data-i18n="dragDropImg">Drag &amp; drop spatial photography or browse file</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">High-resolution JPEG, WEBP or PNG (Up to 12MB)</p>
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file">
+</div>
+</div>
+<!-- Address & Google Maps Coordinates -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblAddress">Physical Address *</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="add-address" placeholder="e.g. Strand Road, Botahtaung" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblCoords">GPS Coordinates (Lat, Long)</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all font-mono" id="add-coords" placeholder="e.g. 16.7684° N, 96.1685° E" type="text">
+</div>
+</div>
+<!-- Contact & Operating Hours -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblContact">Direct Contact Number</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="add-phone" placeholder="e.g. +95 1 291244" type="tel">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold" data-i18n="lblHours">Public Hours</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="add-hours" placeholder="e.g. 05:00 AM – 09:00 PM Daily" type="text">
+</div>
+</div>
+<!-- Publishing Status Toggle -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container/40 border border-primary/10">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary font-semibold" data-i18n="lblImmediatePublish">Public Visibility Status</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="lblImmediateSub">Set place to Active (Immediately searchable on POINTER apps)</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="add-status" type="checkbox">
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary-container after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary/30 peer-checked:border peer-checked:border-primary"></div>
+</label>
+</div>
+<!-- Modal Actions Footer -->
+<div class="mt-space-md pt-space-md border-t border-primary/20 flex items-center justify-end gap-space-md">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-label-md text-label-md font-semibold transition-all" data-i18n="btnCancel" onclick="closeAddModal()" type="button">
+            Cancel
+          </button>
+<button class="px-space-xl py-2.5 rounded-xl bg-gradient-to-r from-primary via-primary-container to-tertiary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] transition-all flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg">save</span>
+<span data-i18n="btnSavePlace">Save Place Record</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- ============================================================== -->
+<!-- MODAL: VIEW DETAILS (Haute Preview)                            -->
+<!-- ============================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-2xl" id="modal-view-details">
+<div class="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-surface-container-low/95 border border-primary/30 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(212,175,55,0.25)] flex flex-col">
+<!-- Media Hero -->
+<div class="relative w-full h-64 bg-surface-container-lowest">
+<img alt="Place detail hero preview" class="w-full h-full object-cover" id="view-modal-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3izrYguYESl8jyN25w4L1Tb2nsdp74qR4cqYw90djHbKgljuHiGiizqImGO8xtbvWZxljg8WYbF5AJvj44_2WBPwOPx8ynWOeiN5r5-1a4aA7L2epxrgr1H6dPScf6KBt2FkM4lN9onkur8pXea1FiiGqseVcSI2-bxwAUP-uRvmlZB_R3n2LaJOKpC-8cnzgBnUz9sbO9k2RQMUM0IZ9Guz7tfiifTrrgThi5k">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<button class="absolute top-space-md right-space-md w-8 h-8 rounded-full bg-surface-container-lowest/80 text-on-surface hover:text-primary flex items-center justify-center transition-all" onclick="closeDetailsModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+<div class="absolute bottom-space-md left-space-lg right-space-lg">
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/40 mb-2 inline-block" id="view-modal-badge">Pagodas &amp; Temples</span>
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="view-modal-title">Shwedagon Pagoda</h2>
+<p class="font-body-sm text-body-sm text-secondary" id="view-modal-subtitle">Singuttara Hill, Dagon Township</p>
+</div>
+</div>
+<!-- Specs & Metadata -->
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container/60 border border-primary/10 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Township &amp; Location</span>
+<span class="font-body-md text-body-md text-on-surface font-medium" id="view-modal-township">Dagon Township</span>
+<span class="font-label-sm text-label-sm text-primary font-mono mt-1" id="view-modal-coords">16.7983° N, 96.1497° E</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container/60 border border-primary/10 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Operating Specifications</span>
+<span class="font-body-md text-body-md text-on-surface font-medium" id="view-modal-hours">04:00 AM – 10:00 PM Daily</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1" id="view-modal-phone">+95 1 375767</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container/40 border border-primary/10 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Administrative Governance Protocol</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Official heritage status managed directly by POINTER Core Administrators. All public foot-traffic counters, digital signage coordinates, and emergency spatial access routes are synchronized with Yangon City Development Committee (YCDC) GIS servers.
+          </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary">Registry Verified: Live</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 transition-all" id="view-modal-mapbtn" type="button">
+<span class="material-symbols-outlined text-base">near_me</span>
+<span>Open in Spatial Map</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-bold transition-all" onclick="closeDetailsModal()" type="button">
+              Done
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ============================================================== -->
+<!-- MODAL: EDIT PLACE                                              -->
+<!-- ============================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-2xl" id="modal-edit-place">
+<div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-surface-container-low/95 border border-primary/30 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(212,175,55,0.2)] flex flex-col">
+<div class="sticky top-0 z-10 px-space-lg py-space-md bg-surface-container-lowest/90 backdrop-blur-xl border-b border-primary/20 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary shadow-[0_0_12px_rgba(212,175,55,0.3)]">
+<span class="material-symbols-outlined text-xl">edit_location</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold" data-i18n="modalEditTitle">Modify Public Place</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Update Live Registry Attributes</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center transition-all" onclick="closeEditModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<form class="p-space-lg flex flex-col gap-space-md" id="form-edit-place" onsubmit="handleSaveEditPlace(event)">
+<input id="edit-id" type="hidden">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Place Name (English) *</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="edit-name-en" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Place Name (Myanmar Unicode) *</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="edit-name-my" required="" type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Category *</label>
+<div class="relative">
+<select class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none appearance-none transition-all cursor-pointer" id="edit-category" required="">
+<option value="pagoda">Pagodas &amp; Temples</option>
+<option value="hospital">Public Hospitals</option>
+<option value="park">Parks &amp; Gardens</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Township *</label>
+<div class="relative">
+<select class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none appearance-none transition-all cursor-pointer" id="edit-township" required="">
+<option value="Dagon">Dagon</option>
+<option value="Latha">Latha</option>
+<option value="Mingalar Taung Nyunt">Mingalar Taung Nyunt</option>
+<option value="Kyauktada">Kyauktada</option>
+<option value="Bahan">Bahan</option>
+<option value="Botahtaung">Botahtaung</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base">expand_more</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Physical Address *</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="edit-address" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">GPS Coordinates</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all font-mono" id="edit-coords" type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Direct Phone</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="edit-phone" type="tel">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">Public Hours</label>
+<input class="w-full bg-surface-container/60 focus:bg-surface-container text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-lg border border-primary/20 focus:border-primary outline-none transition-all" id="edit-hours" type="text">
+</div>
+</div>
+<div class="mt-space-md pt-space-md border-t border-primary/20 flex items-center justify-end gap-space-md">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-label-md text-label-md font-semibold transition-all" onclick="closeEditModal()" type="button">
+            Cancel
+          </button>
+<button class="px-space-xl py-2.5 rounded-xl bg-gradient-to-r from-primary via-primary-container to-tertiary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] transition-all flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+<span>Update Record</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- ============================================================== -->
+<!-- DIALOG: CONFIRM DELETE                                         -->
+<!-- ============================================================== -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-2xl" id="modal-delete-dialog">
+<div class="relative w-full max-w-md overflow-hidden rounded-2xl bg-surface-container-low/95 border border-error/40 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(255,180,171,0.2)] p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-error-container/40 flex items-center justify-center text-error shadow-inner">
+<span class="material-symbols-outlined text-2xl">warning</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold" data-i18n="delTitle">Delete Public Place?</h3>
+<p class="font-label-sm text-label-sm text-error" data-i18n="delSub">Irreversible Central Action</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="delMessage">
+        This action will permanently delete this record from the central directory. Public routing and GIS navigation telemetry for this place will cease immediately.
+      </p>
+<input id="delete-target-id" type="hidden">
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-label-md text-label-md font-semibold transition-all" data-i18n="btnCancel" onclick="closeDeleteDialog()" type="button">
+          Cancel
+        </button>
+<button class="px-space-lg py-2 rounded-xl bg-error text-on-error font-label-md text-label-md font-bold shadow-[0_0_16px_rgba(255,180,171,0.4)] hover:brightness-110 transition-all flex items-center gap-1.5" data-i18n="btnConfirmDelete" onclick="confirmDeletePlace()" type="button">
+<span class="material-symbols-outlined text-base">delete_forever</span>
+          Confirm Delete
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Map View Overlay Modal -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-2xl" id="modal-map-view">
+<div class="relative w-full max-w-3xl overflow-hidden rounded-2xl bg-surface-container-low/95 border border-primary/30 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(212,175,55,0.25)] flex flex-col">
+<div class="px-space-lg py-space-md bg-surface-container-lowest/90 border-b border-primary/20 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">explore</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold" id="map-modal-title">Spatial Satellite Matrix</h3>
+<p class="font-label-sm text-label-sm text-secondary font-mono" id="map-modal-coords"></p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center transition-all" onclick="closeMapModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<div class="w-full h-96 bg-surface-container-lowest relative flex items-center justify-center overflow-hidden" data-location="Yangon, Myanmar" id="map-modal-target">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="High-resolution dark night satellite map view of Yangon city grid with illuminated golden coordinates, sleek vector road outlines, and subtle golden GPS targeting reticle overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDfR4gGDPay6RBmMe3SDVXTdia0cY8tgA2RumLv6ipdz18Fe4O4WURjVm4ovXhYwm-TOgyc5sqd7dqLg5MZKelvUatthWNh2C6VlHE5P0EmcBPlRVJP1yxrW158w3U7EIrjojC0oYuv0PIcA5A1dz-s8iQrFs35N93ARHPAQKQk7FqVHHNbV5A8jKTlPqvH9ZqjeQ4gUu5fColnAe45KGh7xbCrRf8DwdJoBen5hA')"></div>
+<div class="relative z-10 p-space-md rounded-xl bg-surface-container-lowest/80 backdrop-blur-md border border-primary/40 flex flex-col items-center gap-2 shadow-2xl">
+<span class="w-4 h-4 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-md text-label-md text-primary font-semibold text-center" id="map-modal-address">Singuttara Hill, Dagon Township</span>
+<span class="font-label-sm text-label-sm text-secondary">Spatial Mesh Latency: 12ms • Live GIS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Vanilla JS Micro-Interactions & State Engine -->
+<script>
+  let currentLanguage = 'en';
+  let activeCategory = 'all';
+
+  const translations = {
+    en: {
+      authBadge: "Direct Administrative Authority",
+      authDesc: "Directly curated and verified by POINTER Central Spatial Commission. Modifying geospatial coordinates publishes instantaneous telemetry to all public navigation clients.",
+      statTotalLabel: "Total Public Places",
+      statTotalSub: "Active Registry v4.2",
+      statPagodasLabel: "Pagodas & Temples",
+      statPagodasSub: "Heritage Relics",
+      statHospitalsLabel: "Public Hospitals",
+      statHospitalsSub: "Emergency Nodes",
+      statParksLabel: "Parks & Gardens",
+      statParksSub: "Urban Canopy",
+      tabAll: "All Places",
+      tabPagodas: "Pagodas & Temples",
+      tabHospitals: "Public Hospitals",
+      tabParks: "Parks & Gardens",
+      ctaAddPlace: "+ Add Public Place",
+      optAllTownships: "All Townships",
+      optAllStatus: "All Status",
+      optActive: "Active",
+      optHidden: "Hidden",
+      optSortLatest: "Latest Added",
+      optSortAlphabetical: "Alphabetical",
+      badgePagoda: "Pagodas & Temples",
+      badgeHospital: "Public Hospitals",
+      badgePark: "Parks & Gardens",
+      badgeActive: "Active",
+      badgeHidden: "Hidden",
+      btnView: "View Details",
+      modalAddTitle: "Add New Public Place",
+      modalAddSub: "Central Registry Spatial Creation Protocol",
+      lblPlaceNameEn: "Place Name (English) *",
+      lblPlaceNameMy: "Place Name (Myanmar Unicode) *",
+      lblCategory: "Category *",
+      lblTownship: "Township *",
+      lblDescription: "Spatial Description",
+      lblImageUpload: "Place Media Frame (Cover Image)",
+      dragDropImg: "Drag & drop spatial photography or browse file",
+      lblAddress: "Physical Address *",
+      lblCoords: "GPS Coordinates (Lat, Long)",
+      lblContact: "Direct Contact Number",
+      lblHours: "Public Hours",
+      lblImmediatePublish: "Public Visibility Status",
+      lblImmediateSub: "Set place to Active (Immediately searchable on POINTER apps)",
+      btnCancel: "Cancel",
+      btnSavePlace: "Save Place Record",
+      delTitle: "Delete Public Place?",
+      delSub: "Irreversible Central Action",
+      delMessage: "This action will permanently delete this record from the central directory. Public routing and GIS navigation telemetry for this place will cease immediately.",
+      btnConfirmDelete: "Confirm Delete",
+      noResultsTitle: "No Public Places Matched",
+      noResultsSub: "Adjust your filter terms or query coordinates to discover indexed locations.",
+      langSwitchBtn: "မြန်မာဘာသာသို့ ပြောင်းမည်"
+    },
+    my: {
+      authBadge: "တိုက်ရိုက်စီမံခန့်ခွဲမှု အာဏာပိုင်အဆင့်",
+      authDesc: "POINTER ဗဟိုအုပ်ချုပ်ရေးအဖွဲ့မှ တိုက်ရိုက်ထိန်းချုပ်စီမံသော အများပြည်သူနေရာများဖြစ်ပြီး ပြင်ပခွင့်ပြုချက်များမလိုဘဲ ချက်ချင်းစနစ်ထဲသို့ စာရင်းဝင်ရောက်ပါသည်။",
+      statTotalLabel: "စုစုပေါင်းနေရာများ",
+      statTotalSub: "မှတ်ပုံတင်စနစ် v4.2",
+      statPagodasLabel: "ဘုရားနှင့်စေတီပုထိုးများ",
+      statPagodasSub: "ယဉ်ကျေးမှုအမွေအနှစ်များ",
+      statHospitalsLabel: "အစိုးရဆေးရုံကြီးများ",
+      statHospitalsSub: "အရေးပေါ်ကုသရေးဌာနများ",
+      statParksLabel: "ပန်းခြံနှင့်ဥယျာဉ်များ",
+      statParksSub: "စိမ်းလန်းစိုပြေမှု ဧရိယာ",
+      tabAll: "နေရာအားလုံး",
+      tabPagodas: "ဘုရား၊ စေတီများ",
+      tabHospitals: "အစိုးရဆေးရုံများ",
+      tabParks: "အများပြည်သူပန်းခြံများ",
+      ctaAddPlace: "+ အများပြည်သူနေရာအသစ်ထည့်ရန်",
+      optAllTownships: "မြို့နယ်အားလုံး",
+      optAllStatus: "အခြေအနေအားလုံး",
+      optActive: "အသုံးပြုနေဆဲ",
+      optHidden: "ဖျောက်ထားသည်",
+      optSortLatest: "နောက်ဆုံးထည့်သွင်းမှု",
+      optSortAlphabetical: "အက္ခရာစဉ်အလိုက်",
+      badgePagoda: "ဘုရား၊ စေတီများ",
+      badgeHospital: "အစိုးရဆေးရုံများ",
+      badgePark: "အများပြည်သူပန်းခြံများ",
+      badgeActive: "အသုံးပြုနေဆဲ",
+      badgeHidden: "ဖျောက်ထားသည်",
+      btnView: "အသေးစိတ်ကြည့်ရန်",
+      modalAddTitle: "အများပြည်သူနေရာအသစ်ထည့်သွင်းရန်",
+      modalAddSub: "ဗဟိုမြေပုံစနစ် တိုက်ရိုက်မှတ်ပုံတင်ခြင်း",
+      lblPlaceNameEn: "နေရာအမည် (အင်္ဂလိပ်) *",
+      lblPlaceNameMy: "နေရာအမည် (မြန်မာ ယူနီကုဒ်) *",
+      lblCategory: "အမျိုးအစား *",
+      lblTownship: "မြို့နယ် *",
+      lblDescription: "နေရာအကြောင်း အကျဉ်းချုပ်",
+      lblImageUpload: "နေရာဓာတ်ပုံ တင်သွင်းရန်",
+      dragDropImg: "ဓာတ်ပုံဖိုင်ကို ဤနေရာသို့ ဆွဲထည့်ပါ သို့မဟုတ် ရွေးချယ်ပါ",
+      lblAddress: "လိပ်စာ အပြည့်အစုံ *",
+      lblCoords: "ဂျီပီအက်စ် ကိုဩဒိနိတ် (Lat, Long)",
+      lblContact: "ဆက်သွယ်ရန်ဖုန်းနံပါတ်",
+      lblHours: "ဖွင့်လှစ်ချိန်",
+      lblImmediatePublish: "အများပြည်သူမြင်နိုင်မှု အခြေအနေ",
+      lblImmediateSub: "အသုံးပြုနေဆဲအဖြစ် သတ်မှတ်ပါ (POINTER အက်ပ်တွင် ချက်ချင်းပေါ်မည်)",
+      btnCancel: "မပြုလုပ်တော့ပါ",
+      btnSavePlace: "အချက်အလက်များ သိမ်းဆည်းမည်",
+      delTitle: "နေရာစာရင်းအား ဖျက်ပစ်ရန် သေချာပါသလား?",
+      delSub: "ဗဟိုစနစ်မှ အပြီးတိုင်ဖျက်သိမ်းမှု",
+      delMessage: "ဤလုပ်ဆောင်ချက်သည် စာရင်းမှ အပြီးအပိုင်ဖျက်ပစ်မည်ဖြစ်ပြီး အများပြည်သူလမ်းညွှန်မြေပုံမှ ချက်ချင်းဖယ်ရှားသွားမည်ဖြစ်ပါသည်။",
+      btnConfirmDelete: "ဖျက်ပစ်မည်",
+      noResultsTitle: "ကိုက်ညီသော နေရာမရှိပါ",
+      noResultsSub: "ရှာဖွေမှုစကားလုံး သို့မဟုတ် မြို့နယ်ရွေးချယ်မှုကို ပြန်လည်စစ်ဆေးပါ။",
+      langSwitchBtn: "Switch to English"
+    }
+  };
+
+  function applyLanguage(targetLang) {
+    if (targetLang) currentLanguage = targetLang;
+    const lang = translations[currentLanguage] || translations.en;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (lang[key]) {
+        el.innerText = lang[key];
+      }
+    });
+
+    const langInd = document.getElementById('lang-indicator');
+    if (langInd) langInd.innerText = lang.langSwitchBtn;
+
+    // Update Place titles based on active language
+    document.querySelectorAll('.place-card').forEach(card => {
+      const titleEl = card.querySelector('.place-title');
+      if (titleEl) {
+        titleEl.innerText = currentLanguage === 'my' 
+          ? (card.getAttribute('data-name-my') || card.getAttribute('data-name-en')) 
+          : card.getAttribute('data-name-en');
+      }
+    });
+  }
+
+  function toggleLanguage() {
+    if (window.toggleAdminLanguage) {
+      window.toggleAdminLanguage();
+    } else {
+      currentLanguage = currentLanguage === 'en' ? 'my' : 'en';
+      applyLanguage(currentLanguage);
+    }
+  }
+
+  window.addEventListener('adminLanguageChanged', (e) => {
+    applyLanguage(e.detail.lang);
+  });
+
+  // Apply on init
+  const savedPlLang = localStorage.getItem('pointer_admin_lang');
+  if (savedPlLang) {
+    currentLanguage = savedPlLang;
+    setTimeout(() => applyLanguage(currentLanguage), 100);
+  }
+
+  function setCategoryFilter(category) {
+    activeCategory = category;
+    
+    // Style tabs
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-[0_0_12px_rgba(212,175,55,0.3)]');
+      tab.classList.add('text-on-surface-variant', 'hover:text-primary', 'hover:bg-surface-container-high');
+    });
+
+    const activeTab = document.getElementById(`tab-${category}`);
+    if (activeTab) {
+      activeTab.classList.remove('text-on-surface-variant', 'hover:text-primary', 'hover:bg-surface-container-high');
+      activeTab.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-[0_0_12px_rgba(212,175,55,0.3)]');
+    }
+
+    applyFilterLogic();
+  }
+
+  function applyFilterLogic() {
+    const searchQuery = document.getElementById('filter-search-input').value.toLowerCase().trim();
+    const township = document.getElementById('filter-township').value;
+    const status = document.getElementById('filter-status').value;
+    const sort = document.getElementById('filter-sort').value;
+
+    const cards = Array.from(document.querySelectorAll('.place-card'));
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      const cardTownship = card.getAttribute('data-township');
+      const cardStatus = card.getAttribute('data-status');
+      const nameEn = card.getAttribute('data-name-en').toLowerCase();
+      const nameMy = (card.getAttribute('data-name-my') || '').toLowerCase();
+      const address = card.getAttribute('data-address').toLowerCase();
+
+      const matchCategory = (activeCategory === 'all' || cardCategory === activeCategory);
+      const matchTownship = (township === 'all' || cardTownship === township);
+      const matchStatus = (status === 'all' || cardStatus === status);
+      const matchSearch = (!searchQuery || nameEn.includes(searchQuery) || nameMy.includes(searchQuery) || address.includes(searchQuery));
+
+      if (matchCategory && matchTownship && matchStatus && matchSearch) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Sorting
+    const grid = document.getElementById('places-grid');
+    if (sort === 'name') {
+      cards.sort((a, b) => {
+        const textA = a.getAttribute('data-name-en');
+        const textB = b.getAttribute('data-name-en');
+        return textA.localeCompare(textB);
+      }).forEach(card => grid.appendChild(card));
+    }
+
+    const noResults = document.getElementById('no-results-state');
+    if (visibleCount === 0) {
+      noResults.classList.remove('hidden');
+      noResults.classList.add('flex');
+    } else {
+      noResults.classList.add('hidden');
+      noResults.classList.remove('flex');
+    }
+  }
+
+  function resetAllFilters() {
+    document.getElementById('filter-search-input').value = '';
+    document.getElementById('filter-township').value = 'all';
+    document.getElementById('filter-status').value = 'all';
+    document.getElementById('filter-sort').value = 'latest';
+    setCategoryFilter('all');
+  }
+
+  async function togglePlaceStatus(id) {
+    const card = document.querySelector(`.place-card[data-id="${id}"]`);
+    if (!card) return;
+    
+    const currentStatus = card.getAttribute('data-status');
+    const newStatus = currentStatus === 'active' ? 'hidden' : 'active';
+    card.setAttribute('data-status', newStatus);
+
+    if (window.AdminAPI) {
+      try {
+        await window.AdminAPI.updatePlace(id, { isHidden: newStatus === 'hidden' });
+      } catch (err) {
+        console.warn('Backend place status update failed:', err);
+      }
+    }
+
+    const pill = card.querySelector('.status-pill');
+    const dot = card.querySelector('.status-dot');
+    const text = card.querySelector('.status-text');
+    const toggleBtnIcon = card.querySelector('.btn-toggle-status span');
+
+    if (newStatus === 'active') {
+      pill.className = 'status-pill px-2.5 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/40 text-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-[0_0_8px_rgba(212,175,55,0.3)]';
+      dot.className = 'status-dot w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]';
+      text.innerText = currentLanguage === 'my' ? 'အသုံးပြုနေဆဲ' : 'ACTIVE';
+      toggleBtnIcon.innerText = 'visibility_off';
+      card.classList.remove('opacity-90', 'border-outline-variant/40');
+      card.classList.add('border-primary/20');
+    } else {
+      pill.className = 'status-pill px-2.5 py-1 rounded-full bg-surface-variant/80 backdrop-blur-md border border-outline-variant/60 text-outline font-label-sm text-label-sm flex items-center gap-1.5 shadow-md';
+      dot.className = 'status-dot w-2 h-2 rounded-full bg-outline';
+      text.innerText = currentLanguage === 'my' ? 'ဖျောက်ထားသည်' : 'HIDDEN';
+      toggleBtnIcon.innerText = 'visibility';
+      card.classList.add('opacity-90');
+    }
+  }
+
+  function openAddModal() {
+    document.getElementById('modal-add-place').classList.remove('hidden');
+    document.getElementById('modal-add-place').classList.add('flex');
+  }
+
+  function closeAddModal() {
+    document.getElementById('modal-add-place').classList.add('hidden');
+    document.getElementById('modal-add-place').classList.remove('flex');
+    document.getElementById('form-add-place').reset();
+  }
+
+  async function handleCreatePlace(e) {
+    e.preventDefault();
+    const nameEn = document.getElementById('add-name-en').value;
+    const nameMy = document.getElementById('add-name-my').value;
+    const category = document.getElementById('add-category').value;
+    const categoryId = parseInt(category, 10) || 3;
+    const township = document.getElementById('add-township').value;
+    const address = document.getElementById('add-address').value;
+    const coords = document.getElementById('add-coords').value || '16.7900° N, 96.1500° E';
+    const phone = document.getElementById('add-phone').value || '+95 1 200000';
+    const hours = document.getElementById('add-hours').value || '06:00 AM – 08:00 PM';
+    const isActive = document.getElementById('add-status').checked;
+
+    let createdId = Date.now();
+
+    // Call Real Backend API
+    if (window.AdminAPI) {
+      try {
+        const res = await window.AdminAPI.createPublicPlace({
+          name: nameEn,
+          categoryId: categoryId,
+          address: address,
+          phone: phone,
+          description: nameMy ? `${nameEn} (${nameMy})` : nameEn
+        });
+        if (res && res.id) createdId = res.id;
+      } catch (err) {
+        console.warn('Backend place creation failed:', err);
+      }
+    }
+
+    const newId = createdId;
+    const cardTemplate = document.createElement('div');
+    cardTemplate.className = 'place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300';
+    cardTemplate.setAttribute('data-id', newId);
+    cardTemplate.setAttribute('data-category', category);
+    cardTemplate.setAttribute('data-category-id', categoryId);
+    cardTemplate.setAttribute('data-township', township);
+    cardTemplate.setAttribute('data-status', isActive ? 'active' : 'hidden');
+    cardTemplate.setAttribute('data-name-en', nameEn);
+    cardTemplate.setAttribute('data-name-my', nameMy);
+    cardTemplate.setAttribute('data-name', `${nameEn} (${nameMy})`);
+    cardTemplate.setAttribute('data-coords', coords);
+    cardTemplate.setAttribute('data-address', address);
+    cardTemplate.setAttribute('data-phone', phone);
+    cardTemplate.setAttribute('data-hours', hours);
+
+    const displayName = currentLanguage === 'my' ? nameMy : nameEn;
+    const catLabels = {
+      '1': 'Food & Drink',
+      '2': 'Stay',
+      '3': 'Places to Visit',
+      '4': 'Shopping',
+      '5': 'Health & Medical',
+      '6': 'Beauty & Wellness',
+      '7': 'Other Landmarks',
+      pagoda: 'Places to Visit',
+      hospital: 'Public Hospitals',
+      park: 'Parks & Gardens'
+    };
+
+    cardTemplate.innerHTML = `
+      <div class="relative w-full h-56 overflow-hidden bg-surface-container-lowest">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3izrYguYESl8jyN25w4L1Tb2nsdp74qR4cqYw90djHbKgljuHiGiizqImGO8xtbvWZxljg8WYbF5AJvj44_2WBPwOPx8ynWOeiN5r5-1a4aA7L2epxrgr1H6dPScf6KBt2FkM4lN9onkur8pXea1FiiGqseVcSI2-bxwAUP-uRvmlZB_R3n2LaJOKpC-8cnzgBnUz9sbO9k2RQMUM0IZ9Guz7tfiifTrrgThi5k" alt="${nameEn}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+        <div class="absolute top-space-sm left-space-sm">
+          <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest/80 backdrop-blur-md text-primary border border-primary/30 flex items-center gap-1 shadow-md">
+            <span class="material-symbols-outlined text-sm">domain</span>
+            <span class="category-name-badge">${catLabels[category]}</span>
+          </span>
+        </div>
+        <div class="absolute top-space-sm right-space-sm">
+          <div class="status-pill px-2.5 py-1 rounded-full ${isActive ? 'bg-primary/10 border-primary/40 text-primary shadow-[0_0_8px_rgba(212,175,55,0.3)]' : 'bg-surface-variant/80 border-outline-variant/60 text-outline'} backdrop-blur-md border font-label-sm text-label-sm flex items-center gap-1.5">
+            <span class="status-dot w-2 h-2 rounded-full ${isActive ? 'bg-primary animate-pulse shadow-[0_0_6px_#f2ca50]' : 'bg-outline'}"></span>
+            <span class="status-text font-semibold uppercase">${isActive ? 'Active' : 'Hidden'}</span>
+          </div>
+        </div>
+        <div class="absolute bottom-space-sm left-space-md right-space-md">
+          <h3 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight drop-shadow-md place-title">${displayName}</h3>
+          <p class="font-body-sm text-body-sm text-secondary font-medium tracking-wide">${address}</p>
+        </div>
+      </div>
+      <div class="p-space-md flex flex-col gap-space-sm flex-1">
+        <div class="grid grid-cols-2 gap-space-xs font-body-sm text-body-sm">
+          <div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+            <span class="material-symbols-outlined text-secondary text-base flex-shrink-0">pin_drop</span>
+            <span class="truncate">${township} Township</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+            <span class="material-symbols-outlined text-secondary text-base flex-shrink-0">schedule</span>
+            <span class="truncate">${hours}</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-on-surface-variant truncate">
+            <span class="material-symbols-outlined text-secondary text-base flex-shrink-0">call</span>
+            <span class="truncate">${phone}</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-primary hover:underline cursor-pointer truncate" onclick="viewMapModal('${nameEn}', '${address}', '${coords}')">
+            <span class="material-symbols-outlined text-secondary text-base flex-shrink-0">near_me</span>
+            <span class="truncate">${coords}</span>
+          </div>
+        </div>
+      </div>
+      <div class="px-space-md py-space-sm bg-surface-container-lowest/60 border-t border-outline-variant/30 flex items-center justify-between">
+        <button type="button" onclick="openDetailsModal(${newId})" class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary hover:text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">visibility</span>
+          <span>View Details</span>
+        </button>
+        <div class="flex items-center gap-1">
+          <button type="button" onclick="openEditModal(${newId})" class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all">
+            <span class="material-symbols-outlined text-lg">edit</span>
+          </button>
+          <button type="button" onclick="togglePlaceStatus(${newId})" class="btn-toggle-status p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-tertiary transition-all">
+            <span class="material-symbols-outlined text-lg">visibility_off</span>
+          </button>
+          <button type="button" onclick="openDeleteDialog(${newId})" class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-error transition-all">
+            <span class="material-symbols-outlined text-lg">delete</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('places-grid').prepend(cardTemplate);
+    const countEl = document.getElementById('stat-total-count');
+    if (countEl) countEl.innerText = parseInt(countEl.innerText) + 1;
+
+    closeAddModal();
+    applyFilterLogic();
+  }
+
+  function openDetailsModal(id) {
+    const card = document.querySelector(`.place-card[data-id="${id}"]`);
+    if (!card) return;
+
+    const img = card.querySelector('img').getAttribute('src');
+    const name = currentLanguage === 'my' ? (card.getAttribute('data-name-my') || card.getAttribute('data-name-en')) : card.getAttribute('data-name-en');
+    const address = card.getAttribute('data-address');
+    const township = card.getAttribute('data-township');
+    const coords = card.getAttribute('data-coords');
+    const hours = card.getAttribute('data-hours');
+    const phone = card.getAttribute('data-phone');
+    const cat = card.getAttribute('data-category');
+
+    document.getElementById('view-modal-img').setAttribute('src', img);
+    document.getElementById('view-modal-title').innerText = name;
+    document.getElementById('view-modal-subtitle').innerText = address;
+    document.getElementById('view-modal-township').innerText = township + ' Township';
+    document.getElementById('view-modal-coords').innerText = coords;
+    document.getElementById('view-modal-hours').innerText = hours;
+    document.getElementById('view-modal-phone').innerText = phone;
+    document.getElementById('view-modal-badge').innerText = cat === 'pagoda' ? 'Pagodas & Temples' : (cat === 'hospital' ? 'Public Hospitals' : 'Parks & Gardens');
+    document.getElementById('view-modal-mapbtn').onclick = () => viewMapModal(name, address, coords);
+
+    document.getElementById('modal-view-details').classList.remove('hidden');
+    document.getElementById('modal-view-details').classList.add('flex');
+  }
+
+  function closeDetailsModal() {
+    document.getElementById('modal-view-details').classList.add('hidden');
+    document.getElementById('modal-view-details').classList.remove('flex');
+  }
+
+  function openEditModal(id) {
+    const card = document.querySelector(`.place-card[data-id="${id}"]`);
+    if (!card) return;
+
+    document.getElementById('edit-id').value = id;
+    document.getElementById('edit-name-en').value = card.getAttribute('data-name-en') || '';
+    document.getElementById('edit-name-my').value = card.getAttribute('data-name-my') || '';
+    document.getElementById('edit-category').value = card.getAttribute('data-category') || 'pagoda';
+    document.getElementById('edit-township').value = card.getAttribute('data-township') || 'Dagon';
+    document.getElementById('edit-address').value = card.getAttribute('data-address') || '';
+    document.getElementById('edit-coords').value = card.getAttribute('data-coords') || '';
+    document.getElementById('edit-phone').value = card.getAttribute('data-phone') || '';
+    document.getElementById('edit-hours').value = card.getAttribute('data-hours') || '';
+
+    document.getElementById('modal-edit-place').classList.remove('hidden');
+    document.getElementById('modal-edit-place').classList.add('flex');
+  }
+
+  function closeEditModal() {
+    document.getElementById('modal-edit-place').classList.add('hidden');
+    document.getElementById('modal-edit-place').classList.remove('flex');
+  }
+
+  async function handleSaveEditPlace(e) {
+    e.preventDefault();
+    const id = document.getElementById('edit-id').value;
+    const card = document.querySelector(`.place-card[data-id="${id}"]`);
+    if (!card) return;
+
+    const nameEn = document.getElementById('edit-name-en').value;
+    const nameMy = document.getElementById('edit-name-my').value;
+    const category = document.getElementById('edit-category').value;
+    const township = document.getElementById('edit-township').value;
+    const address = document.getElementById('edit-address').value;
+    const coords = document.getElementById('edit-coords').value;
+    const phone = document.getElementById('edit-phone').value;
+    const hours = document.getElementById('edit-hours').value;
+
+    if (window.AdminAPI) {
+      try {
+        await window.AdminAPI.updatePlace(id, {
+          name: nameEn,
+          address: address,
+          phone: phone,
+          categoryId: parseInt(category, 10) || 3
+        });
+      } catch (err) {
+        console.warn('Backend update place failed:', err);
+      }
+    }
+
+    card.setAttribute('data-name-en', nameEn);
+    card.setAttribute('data-name-my', nameMy);
+    card.setAttribute('data-category', category);
+    card.setAttribute('data-township', township);
+    card.setAttribute('data-address', address);
+    card.setAttribute('data-coords', coords);
+    card.setAttribute('data-phone', phone);
+    card.setAttribute('data-hours', hours);
+
+    const titleEl = card.querySelector('.place-title');
+    if (titleEl) {
+      titleEl.innerText = currentLanguage === 'my' ? nameMy : nameEn;
+    }
+
+    closeEditModal();
+    applyFilterLogic();
+  }
+
+  function openDeleteDialog(id) {
+    document.getElementById('delete-target-id').value = id;
+    document.getElementById('modal-delete-dialog').classList.remove('hidden');
+    document.getElementById('modal-delete-dialog').classList.add('flex');
+  }
+
+  function closeDeleteDialog() {
+    document.getElementById('modal-delete-dialog').classList.add('hidden');
+    document.getElementById('modal-delete-dialog').classList.remove('flex');
+  }
+
+  async function confirmDeletePlace() {
+    const id = document.getElementById('delete-target-id').value;
+    const card = document.querySelector(`.place-card[data-id="${id}"]`);
+
+    if (window.adminFetch) {
+      try {
+        await window.adminFetch(`places.php?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('Backend delete place failed:', err);
+      }
+    }
+
+    if (card) {
+      card.remove();
+      const countEl = document.getElementById('stat-total-count');
+      if (countEl) countEl.innerText = Math.max(0, parseInt(countEl.innerText) - 1);
+    }
+    closeDeleteDialog();
+    applyFilterLogic();
+  }
+
+  // Load Real Public Places from Backend
+  async function loadBackendPublicPlaces() {
+    if (!window.AdminAPI) return;
+    try {
+      const places = await window.AdminAPI.getPlaces({ owned: 0 });
+      if (Array.isArray(places) && places.length > 0) {
+        const grid = document.getElementById('places-grid');
+        if (grid) {
+          grid.innerHTML = '';
+          places.forEach(p => {
+            const card = document.createElement('div');
+            const isActive = p.status === 'active';
+            card.className = 'place-card group relative flex flex-col justify-between overflow-hidden rounded-xl bg-surface-container-low/75 hover:bg-surface-container/85 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-xl hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300';
+            card.setAttribute('data-id', p.id);
+            card.setAttribute('data-category', String(p.categoryId));
+            card.setAttribute('data-category-id', String(p.categoryId));
+            card.setAttribute('data-township', 'Yangon');
+            card.setAttribute('data-status', p.status || 'active');
+            card.setAttribute('data-name-en', p.name);
+            card.setAttribute('data-name-my', p.name);
+            card.setAttribute('data-name', p.name);
+            card.setAttribute('data-coords', `${p.lat}° N, ${p.lng}° E`);
+            card.setAttribute('data-address', p.address || '');
+            card.setAttribute('data-phone', p.phone || '');
+            card.setAttribute('data-hours', '06:00 AM – 08:00 PM');
+
+            const photoUrl = p.coverPhoto || 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80';
+            const catName = p.categoryName || 'Places to visit';
+
+            card.innerHTML = `
+              <div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+                <img src="${photoUrl}" alt="${p.name}" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/40"></div>
+                <div class="absolute top-3 left-3 flex items-center gap-2">
+                  <span class="category-badge px-2.5 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-primary/30 text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+                    ${catName}
+                  </span>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                  <button type="button" onclick="togglePlaceStatus(${p.id})" class="btn-toggle-status p-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface hover:text-primary hover:bg-surface-container-high transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">${isActive ? 'visibility_off' : 'visibility'}</span>
+                  </button>
+                  <button type="button" onclick="openDeleteDialog(${p.id})" class="p-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-outline hover:text-error hover:bg-surface-container-high transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                  </button>
+                </div>
+                <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                  <span class="status-pill px-2.5 py-1 rounded-full ${isActive ? 'bg-primary/10 border-primary/40 text-primary' : 'bg-surface-variant/80 border-outline-variant/60 text-outline'} backdrop-blur-md border font-label-sm text-label-sm flex items-center gap-1.5 shadow-md">
+                    <span class="status-dot w-2 h-2 rounded-full ${isActive ? 'bg-primary animate-pulse' : 'bg-outline'}"></span>
+                    <span class="status-text">${isActive ? 'ACTIVE' : 'HIDDEN'}</span>
+                  </span>
+                </div>
+              </div>
+              <div class="p-space-md flex flex-col gap-2 flex-1 justify-between">
+                <div>
+                  <h3 class="place-title font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">${p.name}</h3>
+                  <p class="font-body-sm text-body-sm text-outline mt-1 line-clamp-2">${p.description || p.address}</p>
+                </div>
+                <div class="pt-3 border-t border-primary/10 flex items-center justify-between text-body-sm text-outline">
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">location_on</span>${p.address || 'Yangon'}</span>
+                  <button type="button" onclick="openEditModal(${p.id})" class="text-primary hover:underline font-label-sm text-label-sm">Edit</button>
+                </div>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+
+          const countEl = document.getElementById('stat-total-count');
+          if (countEl) countEl.innerText = places.length;
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to load public places from backend:', e);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBackendPublicPlaces);
+  } else {
+    loadBackendPublicPlaces();
+  }
+
+  function viewMapModal(name, address, coords) {
+    document.getElementById('map-modal-title').innerText = name;
+    document.getElementById('map-modal-address').innerText = address;
+    document.getElementById('map-modal-coords').innerText = coords;
+    document.getElementById('modal-map-view').classList.remove('hidden');
+    document.getElementById('modal-map-view').classList.add('flex');
+  }
+
+  function closeMapModal() {
+    document.getElementById('modal-map-view').classList.add('hidden');
+    document.getElementById('modal-map-view').classList.remove('flex');
+  }
+</script></main><footer class="w-full bg-surface-container-lowest/90 px-space-lg py-space-md"><div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant"><span class="font-body-sm text-body-sm">© 2025 POINTER Spatial Authority. Republic of the Union of Myanmar. All Rights Reserved.</span><div class="flex items-center gap-space-md font-label-sm text-label-sm"><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Security Protocol</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Audit Standards</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Network State: Live (99.98%)</a></div></div></footer></div>
+
+
+</body></html>
