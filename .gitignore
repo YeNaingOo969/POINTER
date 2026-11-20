@@ -26,3 +26,6 @@ ehthumbs.db
 
 # Log Files
 *.log
+
+# Scratch and temporary work
+scratch/

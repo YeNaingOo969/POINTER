@@ -69,6 +69,19 @@ export async function mountAppNav(active, { bottom = false } = {}) {
   if (!user) return;
   const top = document.querySelector('.app-top');
   if (!top) return; // pages with their own top bar (the map) keep their account button
+
+  if (user.role === 'admin') {
+    const adminLink = document.createElement('a');
+    adminLink.className = 'app-top__pill app-top__admin';
+    adminLink.href = '/admin/dashboard.html';
+    adminLink.style.borderColor = 'var(--gold, #c8a951)';
+    adminLink.style.color = 'var(--gold, #c8a951)';
+    adminLink.style.fontWeight = '600';
+    adminLink.textContent = '⚙ Admin';
+    const lang = top.querySelector('[data-lang-toggle]');
+    if (lang) top.insertBefore(adminLink, lang); else top.append(adminLink);
+  }
+
   const wrap = document.createElement('div');
   wrap.className = 'notif';
   wrap.innerHTML = `

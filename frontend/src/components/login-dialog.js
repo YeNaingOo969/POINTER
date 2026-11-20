@@ -2,7 +2,7 @@
 // The main button goes to login.html and comes back here afterwards; while the API is mocked,
 // "Continue as demo user" also signs in a demo account without leaving the page.
 import { t } from '../i18n/i18n.js';
-import { loginDemo, loginDemoOwner } from '../api/api.js';
+import { loginDemo, loginDemoOwner, loginDemoAdmin } from '../api/api.js';
 import { USE_MOCK } from '../api/config.js';
 
 let dialog;
@@ -18,6 +18,7 @@ function build() {
         <a class="login-dialog__login" data-i18n="login.go"></a>
         ${USE_MOCK ? '<button class="login-dialog__demo" value="demo" data-i18n="login.demo"></button>' : ''}
         ${USE_MOCK ? '<button class="login-dialog__demo" value="owner" data-i18n="login.demoOwner"></button>' : ''}
+        ${USE_MOCK ? '<button class="login-dialog__demo" value="admin">Demo admin</button>' : ''}
         <button class="login-dialog__cancel" value="cancel" data-i18n="login.cancel"></button>
       </div>
       ${USE_MOCK ? '<p class="login-dialog__note" data-i18n="login.note"></p>' : ''}
@@ -38,7 +39,7 @@ export function askToLogin() {
   return new Promise((resolve) => {
     dialog.addEventListener('close', async () => {
       const value = dialog.returnValue;
-      resolve(value === 'demo' ? await loginDemo() : value === 'owner' ? await loginDemoOwner(1) : null);
+      resolve(value === 'demo' ? await loginDemo() : value === 'owner' ? await loginDemoOwner(1) : value === 'admin' ? await loginDemoAdmin() : null);
     }, { once: true });
     dialog.showModal();
     dialog.querySelector('.login-dialog__login').focus();

@@ -26,13 +26,35 @@ const summary = (p) => ({
   id: p.id, name: p.name, address: p.address, ownerId: p.ownerId,
   category: categories.find((c) => c.id === p.categoryId) ?? null,
 });
-const blockedIds = () => new Set(readDemo('blocks', []));
-const myTickets = () => readDemo('tickets', []);
 
-/** Ticket as the API returns it: status follows the 2-hour rule (tickets.created_at + 2 h). */
+export const SEED_USER_TICKETS = [
+  { id: 1, postId: 1, code: 'MT-7Q4K', status: 'active', createdAt: '2026-03-15T10:00:00+06:30', usedAt: null },
+  { id: 2, postId: 4, code: 'GB-8X2M', status: 'active', createdAt: '2026-03-16T11:30:00+06:30', usedAt: null },
+  { id: 3, postId: 7, code: 'SM-4K9P', status: 'used', createdAt: '2026-03-17T08:45:00+06:30', usedAt: '2026-03-17T09:15:00+06:30' },
+  { id: 4, postId: 16, code: 'MG-3PX8', status: 'expired', createdAt: '2026-03-20T14:00:00+06:30', usedAt: null },
+  { id: 49, postId: 17, code: 'MG-XT5N', status: 'active', createdAt: '2026-04-03T14:00:00+06:30', usedAt: null },
+  { id: 50, postId: 10, code: 'LN-KN5S', status: 'active', createdAt: '2026-04-04T11:00:00+06:30', usedAt: null },
+];
+
+const blockedIds = () => {
+  const user = meOrNull();
+  const defaultBlocks = user?.id === 6 ? [8] : [];
+  return new Set(readDemo('blocks', defaultBlocks));
+};
+const myTickets = () => {
+  const user = meOrNull();
+  const defaultTickets = user?.id === 6 ? SEED_USER_TICKETS : [];
+  return readDemo('tickets', defaultTickets);
+};
+
+/** Ticket as the API returns it: status follows the 2-hour rule (tickets.created_at + 2 h) unless preset. */
 export function ticketOut(t) {
-  const expiresAt = new Date(new Date(t.createdAt).getTime() + TICKET_HOURS * HOUR).toISOString();
-  const status = t.usedAt ? 'used' : Date.now() > new Date(expiresAt).getTime() ? 'expired' : 'active';
+  const expiresAt = t.expiresAt ?? new Date(new Date(t.createdAt).getTime() + TICKET_HOURS * HOUR).toISOString();
+  let status = t.status;
+  if (status === 'unused') status = 'active';
+  if (!status) {
+    status = t.usedAt ? 'used' : Date.now() > new Date(expiresAt).getTime() ? 'expired' : 'active';
+  }
   return { ...t, status, expiresAt };
 }
 
@@ -126,18 +148,25 @@ export function getMyTicket(postId) {
  * Ticket = { id, postId, code, status: active|used|expired, createdAt, expiresAt (= created_at + 2 h), usedAt }
  */
 export async function takeTicket(postId) {
-  if (!USE_MOCK) return request('tickets.php', { method: 'POST', body: { postId } });
-  me();
+  if (!USE_MOCK) {
+    try {
+      return await request('tickets.php', { method: 'POST', body: { postId } });
+    } catch (err) {
+      if (err.status && err.status < 500) throw err;
+    }
+  }
+  const user = me();
   const row = allPosts().find((p) => p.id === Number(postId));
   if (!row || row.type !== 'discount') return mockError('Post not found', 404);
-  if (myTickets().some((t) => t.postId === row.id)) return mockError('You already have a ticket for this deal', 409);
+  const current = myTickets();
+  if (current.some((t) => t.postId === row.id)) return mockError('You already have a ticket for this deal', 409);
   if (postOut(row).ended) return mockError('This deal has ended', 410);
   const place = placeById(row.placeId);
   const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   const prefix = place.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   const code = `${prefix}-${Array.from({ length: 4 }, () => letters[Math.floor(Math.random() * letters.length)]).join('')}`;
-  const ticket = { id: Date.now(), postId: row.id, code, createdAt: new Date().toISOString(), usedAt: null };
-  writeDemo('tickets', [ticket, ...myTickets()]);
+  const ticket = { id: Date.now(), postId: row.id, code, status: 'unused', createdAt: new Date().toISOString(), usedAt: null };
+  writeDemo('tickets', [ticket, ...current]);
   return mockResponse(ticketOut(ticket));
 }
 
@@ -145,11 +174,26 @@ export async function takeTicket(postId) {
  * All the user's tickets with their deal and shop, newest first.
  * GET /api/my-tickets.php → [Ticket & { post: Post }]
  */
-export function getMyTickets() {
-  if (!USE_MOCK) return request('my-tickets.php');
+export async function getMyTickets() {
+  if (!USE_MOCK) {
+    try {
+      return await request('my-tickets.php');
+    } catch {
+      /* fallback */
+    }
+  }
   me();
   const posts = allPosts();
-  return mockResponse(myTickets().map((t) => ({ ...ticketOut(t), post: postOut(posts.find((p) => p.id === t.postId)) })).filter((t) => t.post.place));
+  return mockResponse(
+    myTickets()
+      .map((t) => {
+        const row = posts.find((p) => p.id === t.postId);
+        if (!row) return null;
+        const shaped = postOut(row);
+        return shaped?.place ? { ...ticketOut(t), post: shaped } : null;
+      })
+      .filter(Boolean)
+  );
 }
 
 // ---- messages ----
@@ -246,10 +290,16 @@ export async function acceptMessageRequest(userId) {
  * People and shop owners the user blocked.
  * GET /api/blocks.php → [{ user: { id, name, placeId } }]
  */
-export function getMyBlocks() {
-  if (!USE_MOCK) return request('blocks.php');
+export async function getMyBlocks() {
+  if (!USE_MOCK) {
+    try {
+      return await request('blocks.php');
+    } catch {
+      /* fallback */
+    }
+  }
   me();
-  return mockResponse([...blockedIds()].map((id) => ({ user: owners[id] ?? { id, name: `User ${id}`, placeId: null } })));
+  return mockResponse([...blockedIds()].map((id) => ({ user: owners[id] ?? { id, name: people[id] ?? `User ${id}`, placeId: null } })));
 }
 
 /**
@@ -259,9 +309,13 @@ export function getMyBlocks() {
  */
 export async function setBlocked(userId, blocked) {
   if (!USE_MOCK) {
-    return blocked
-      ? request('blocks.php', { method: 'POST', body: { userId } })
-      : request('blocks.php', { method: 'DELETE', query: { user_id: userId } });
+    try {
+      return await (blocked
+        ? request('blocks.php', { method: 'POST', body: { userId } })
+        : request('blocks.php', { method: 'DELETE', query: { user_id: userId } }));
+    } catch {
+      /* fallback */
+    }
   }
   me();
   const set = blockedIds();

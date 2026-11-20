@@ -1,0 +1,2191 @@
+<!DOCTYPE html><html class="dark" lang="en" style="min-height: 100%; scroll-behavior: smooth;"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700&amp;family=Pyidaungsu:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'surface-container-highest': '#353437', 'surface-container-lowest': '#0e0e10', 'on-tertiary-fixed': '#211b00', 'primary-container': '#d4af37', 'error-container': '#93000a', 'outline': '#99907c', 'on-primary-container': '#554300', 'on-secondary-container': '#392600', 'secondary-container': '#b88920', 'on-error-container': '#ffdad6', 'on-tertiary-fixed-variant': '#4f471b', 'secondary': '#f4be53', 'on-secondary': '#412d00', 'on-error': '#690005', 'on-secondary-fixed-variant': '#5e4200', 'on-secondary-fixed': '#271900', 'on-primary-fixed-variant': '#574500', 'tertiary-fixed-dim': '#d4c78f', 'on-surface-variant': '#d0c5af', 'surface-container-high': '#2a2a2c', 'on-primary-fixed': '#241a00', 'surface-tint': '#e9c349', 'surface-bright': '#39393b', 'surface': '#131315', 'primary': '#f2ca50', 'primary-fixed': '#ffe088', 'surface-variant': '#353437', 'error': '#ffb4ab', 'outline-variant': '#4d4635', 'surface-dim': '#131315', 'surface-container-low': '#1c1b1e', 'inverse-surface': '#e5e1e4', 'tertiary-container': '#c0b37d', 'primary-fixed-dim': '#e9c349', 'secondary-fixed': '#ffdea6', 'surface-container': '#201f22', 'on-surface': '#e5e1e4', 'secondary-fixed-dim': '#f4be53', 'on-tertiary': '#383006', 'tertiary': '#dccf96', 'tertiary-fixed': '#f1e3a9', 'on-tertiary-container': '#4e451a', 'inverse-primary': '#735c00', 'background': '#131315', 'on-background': '#e5e1e4', 'on-primary': '#3c2f00', 'inverse-on-surface': '#313032' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'gutter': '1.5rem', 'space-md': '1rem', 'space-lg': '1.5rem', 'space-xs': '0.25rem', 'gutter-mobile': '0.75rem', 'margin': '2rem', 'margin-mobile': '1rem', 'space-sm': '0.5rem', 'space-xl': '2.5rem' }, fontFamily: { 'display-lg': ['Outfit, Noto Sans Myanmar, sans-serif'], 'label-lg': ['Outfit, Noto Sans Myanmar, sans-serif'], 'title-lg': ['Outfit, Noto Sans Myanmar, sans-serif'], 'body-sm': ['Noto Sans, Noto Sans Myanmar, Pyidaungsu, sans-serif'], 'label-sm': ['Outfit, Noto Sans Myanmar, sans-serif'], 'title-md': ['Outfit, Noto Sans Myanmar, sans-serif'], 'headline-lg': ['Outfit, Noto Sans Myanmar, sans-serif'], 'headline-lg-mobile': ['Outfit, Noto Sans Myanmar, sans-serif'], 'body-lg': ['Noto Sans, Noto Sans Myanmar, Pyidaungsu, sans-serif'], 'label-md': ['Outfit, Noto Sans Myanmar, sans-serif'], 'title-sm': ['Outfit, Noto Sans Myanmar, sans-serif'], 'headline-sm': ['Outfit, Noto Sans Myanmar, sans-serif'], 'body-md': ['Noto Sans, Noto Sans Myanmar, Pyidaungsu, sans-serif'], 'display-lg-mobile': ['Outfit, Noto Sans Myanmar, sans-serif'], 'headline-md': ['Outfit, Noto Sans Myanmar, sans-serif'] }, fontSize: { 'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.02em', fontWeight: '600' }], 'label-lg': ['13px', { lineHeight: '18px', letterSpacing: '0.04em', fontWeight: '600' }], 'title-lg': ['18px', { lineHeight: '26px', fontWeight: '600' }], 'body-sm': ['12px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['10px', { lineHeight: '14px', letterSpacing: '0.08em', fontWeight: '600' }], 'title-md': ['16px', { lineHeight: '24px', fontWeight: '500' }], 'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '600' }], 'headline-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '26px', fontWeight: '400' }], 'label-md': ['11px', { lineHeight: '16px', letterSpacing: '0.05em', fontWeight: '500' }], 'title-sm': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'headline-sm': ['20px', { lineHeight: '28px', fontWeight: '500' }], 'body-md': ['14px', { lineHeight: '22px', fontWeight: '400' }], 'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.01em', fontWeight: '600' }], 'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.01em', fontWeight: '500' }] } } } };</script>  <script type="module" src="/admin/admin-auth.js"></script>
+</head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen overflow-y-auto"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-2xl z-50 flex flex-col justify-between shadow-[0_8px_32px_0_rgba(0,0,0,0.6)]"><div class="flex flex-col"><div class="h-20 px-space-lg flex items-center gap-space-sm bg-gradient-to-b from-surface-container-high/20 to-transparent"><img alt="POINTER Luxury Gold Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrB0B3JMK6LuGg2UTgmn2S9tcbfslG5u5ku_geguN8vtHVOzrvHhRWIPpuYWDhcQubqeB2RBqnfFPY8kRaUAgQXUm7XCgd_kedHI82f6IkauY8G1MBX04FtnqLPgXeXe5L2-7ANxb6LbODrlvonZQXhrn4QadgwJ1pA4lnl7kqqTPWHXUQuKQQKjRgUEK955D-qTk0NCGVSgm8DgnPg7wjDn_ra3NRMPVtajZxafYYQ"><div class="flex flex-col"><span class="font-title-md text-title-md tracking-wider text-primary uppercase">POINTER ADMIN</span><span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">Sovereign Core</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-widest text-outline">Operations Console</div></div><nav class="flex-1 px-space-md space-y-1 overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="dashboard" href="/admin/dashboard.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">dashboard</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဒက်ရှ်ဘုတ်</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="application" href="/admin/application.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">app_registration</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">လျှောက်ထားချက်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="shop" href="/admin/shop.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">storefront</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ဆိုင်များ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="public-place" href="/admin/publicplaces.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">location_city</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အများပြည်သူနေရာများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="categories" href="/admin/category.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">category</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ကဏ္ဍများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="report" href="/admin/reports.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">analytics</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">အစီရင်ခံစာများ</span>
+</a>
+<a aria-current="page" class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-300 bg-primary/20 text-primary font-semibold backdrop-blur-xl shadow-[0_0_15px_rgba(212,175,55,0.3)] ring-1 ring-primary/40" data-path="users" href="/admin/user.html">
+  <span class="material-symbols-outlined text-title-sm text-primary drop-shadow-[0_0_8px_currentColor] transition-transform group-hover:scale-110">group</span>
+  <span class="font-title-sm text-body-md text-on-surface group-hover:text-primary transition-colors">အသုံးပြုသူများ</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30" data-path="audit-log" href="/admin/auditlog.html">
+  <span class="material-symbols-outlined text-title-sm text-secondary transition-colors group-hover:text-primary group-hover:scale-110">history</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">စစ်ဆေးမှုမှတ်တမ်း</span>
+</a>
+<a class="group flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high/60 hover:text-on-surface transition-all duration-300 backdrop-blur-md ring-1 ring-surface-variant/30 hover:ring-primary/30 mt-3 border-t border-surface-variant/30 pt-3" href="/home.html">
+  <span class="material-symbols-outlined text-title-sm text-outline transition-colors group-hover:text-primary group-hover:scale-110">home</span>
+  <span class="font-title-sm text-body-md transition-colors group-hover:text-on-surface">ပင်မဝက်ဘ်ဆိုက်</span>
+</a>
+</nav></div><div class="p-space-md m-space-sm rounded-xl bg-surface-container-high/30 backdrop-blur-md flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Node Status</span><span class="font-label-sm text-label-sm text-primary flex items-center gap-1"><span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Encrypted</span></div><span class="font-body-sm text-body-sm text-on-surface-variant">Cluster: MMR-YGN-01</span></div></aside><div class="pl-72 flex flex-col min-h-screen w-full"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/80 backdrop-blur-2xl z-40 px-space-lg flex items-center justify-between shadow-[0_8px_32px_0_rgba(0,0,0,0.6)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high/50 backdrop-blur-md"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span><span class="font-label-sm text-label-sm text-primary tracking-wide uppercase">Audit Pipeline Active</span><span class="text-outline font-label-sm text-label-sm">• 12ms</span></div></div><div class="flex items-center gap-space-lg"><button class="relative p-space-xs rounded-full text-on-surface-variant hover:text-primary transition-colors" type="button"><span class="material-symbols-outlined text-2xl">notifications</span><span class="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span></button><div class="flex items-center gap-space-sm pl-space-md"><div class="text-right flex flex-col"><span class="font-title-sm text-title-sm text-on-surface leading-tight">Admin U Min Thant</span><span class="font-label-sm text-label-sm text-primary tracking-wide">Chief Administrator • admin@pointer.app</span></div><div class="relative p-0.5 rounded-full bg-gradient-to-tr from-primary to-secondary-container"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQaKsnON5Wb_W9-hxPygWfdP5yO9ft7ySF4b39wHHOjvfddvibHJ_Lb_BhPvvEJl_-CUNIx-lrMXPZvDuYA-1X_t7Jk_5pFUy9hTOi3UwnN3sRG6oC8AS_9-LFzGYT99J10GwWfOE0or8XAY9WrgD-7BkiPRiWYz90FYjKIJn7LwxxjETMdEVa1e8gg_96smSf5_WSU_Zk4BUmPcVCc1SZefUn1ouiBWv2iImRLo"></div></div></div></header><main class="flex-1 pt-20 w-full px-space-lg pb-space-xl bg-surface"><div class="flex flex-col w-full relative">
+<!-- Specular Ambient Background Layer -->
+<div class="absolute -top-12 -left-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="absolute top-80 right-10 w-80 h-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none"></div>
+<!-- Page Header & Action Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase bg-surface-container-high px-2 py-0.5 rounded-full border border-primary/20">Sovereign Directory</span>
+<span class="text-outline text-label-sm">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          Cluster Sync: Optimal
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-baseline gap-3">
+<span data-i18n="pageTitle">User Directory &amp; Access Governance</span>
+<span class="font-body-md text-body-md text-outline font-normal" data-i18n="pageSubTitle">Manage user accounts, roles, and administrative governance policies</span>
+</h1>
+</div>
+<!-- Quick Stats Summary Strip & Live Add Control -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-2 px-space-md py-2 rounded-xl bg-surface-container-high/40 backdrop-blur-md border border-primary/15 shadow-sm">
+<span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Active Enforcement</span>
+<span class="font-title-sm text-title-sm text-primary">Rule 8 Sovereign</span>
+</div>
+</div>
+<div class="px-space-md py-2 rounded-xl bg-surface-container-high/60 backdrop-blur-md border border-primary/25 text-on-surface flex items-center gap-2 shadow-sm"><span class="material-symbols-outlined text-primary text-lg">gavel</span><span class="font-title-sm text-title-sm font-semibold">Governance Active</span></div>
+<button class="px-space-md py-2 rounded-xl bg-gradient-to-r from-primary to-secondary-container text-on-primary font-bold shadow-[0_4px_20px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.55)] transition-all flex items-center gap-2 transform hover:-translate-y-0.5" onclick="showToast('Exporting Sovereign Audit Log...', 'info')" type="button">
+<span class="material-symbols-outlined text-xl">download_for_offline</span>
+<span class="font-title-sm text-title-sm" data-i18n="exportAudit">Export Directory Log</span>
+</button>
+</div>
+</div>
+<!-- SECTION A: USER STATISTICS CARDS (6 Top Metric Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-md mb-space-xl">
+<!-- Card 1: Total Users -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high/30 backdrop-blur-xl p-space-md border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] group hover:border-primary/50 transition-all">
+<div class="absolute -right-6 -bottom-6 w-20 h-20 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/20 transition-all"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider" data-i18n="statTotalUsers">Total Users</span>
+<div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">groups</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight" id="stat-total-val">18</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center">
+<span class="material-symbols-outlined text-xs">trending_up</span> 18 Enrolled
+          </span>
+<span class="font-body-sm text-body-sm text-outline" data-i18n="thisMonth">in database</span>
+</div>
+
+</div>
+</div>
+<!-- Card 2: Active Users -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high/30 backdrop-blur-xl p-space-md border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] group hover:border-primary/50 transition-all">
+<div class="absolute -right-6 -bottom-6 w-20 h-20 bg-secondary/10 rounded-full blur-xl group-hover:bg-secondary/20 transition-all"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider" data-i18n="statActiveUsers">Active Users</span>
+<div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined text-lg">how_to_reg</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight" id="stat-active-val">18</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-emerald-400">100% operational</span>
+</div>
+
+</div>
+</div>
+<!-- Card 3: Banned Users -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high/30 backdrop-blur-xl p-space-md border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] group hover:border-error/50 transition-all">
+<div class="absolute -right-6 -bottom-6 w-20 h-20 bg-error/10 rounded-full blur-xl group-hover:bg-error/20 transition-all"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider" data-i18n="statBannedUsers">Banned Users</span>
+<div class="w-8 h-8 rounded-lg bg-error-container/30 border border-error/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-lg">gavel</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-error font-semibold tracking-tight" id="stat-banned-val">0</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-sm text-label-sm text-error/90">0% infractions</span>
+</div>
+
+</div>
+</div>
+<!-- Card 4: Shop Owner Users -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high/30 backdrop-blur-xl p-space-md border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] group hover:border-primary/50 transition-all">
+<div class="absolute -right-6 -bottom-6 w-20 h-20 bg-primary-container/10 rounded-full blur-xl group-hover:bg-primary-container/20 transition-all"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider" data-i18n="statShopOwners">Shop Owners</span>
+<div class="w-8 h-8 rounded-lg bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">storefront</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">7</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-sm text-label-sm text-secondary">Merchant Tier</span>
+</div>
+
+</div>
+</div>
+<!-- Card 5: Regular Users -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high/30 backdrop-blur-xl p-space-md border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] group hover:border-primary/50 transition-all">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider" data-i18n="statRegularUsers">Regular Users</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest border border-outline/30 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-lg">person</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">10</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Verified Consumers</span>
+</div>
+
+</div>
+</div>
+<!-- Card 6: Protected Admins -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high/30 backdrop-blur-xl p-space-md border border-primary/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] group hover:border-primary transition-all">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider" data-i18n="statAdmins">Admin Accounts</span>
+<div class="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">military_tech</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">1</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">shield</span> Root Protected
+          </span>
+</div>
+
+</div>
+</div>
+</div>
+<!-- SECTION B: CONTROLS & DUAL-VIEW TOGGLE -->
+<div class="p-space-lg rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] mb-space-lg">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<!-- Search Box with liquid gold focus -->
+<div class="relative flex-1 max-w-xl">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-11 pl-11 pr-4 rounded-xl bg-surface-container-lowest/80 border border-primary/25 text-on-surface placeholder:text-outline font-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-inner transition-all" id="searchInput" placeholder="Search by name, email, or phone (e.g. Aung Kyaw, 09420...)" type="text">
+<button class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" id="clearSearchBtn" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Filters and Dual View Toggle -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Role Filter -->
+<div class="flex items-center gap-2 bg-surface-container-lowest/80 px-3 py-1.5 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-outline text-lg">badge</span>
+<select class="bg-transparent text-on-surface font-title-sm text-title-sm focus:outline-none cursor-pointer" id="roleFilter"><option class="bg-surface-container-high text-on-surface" value="ALL">All Roles</option><option class="bg-surface-container-high text-on-surface" value="Admin">Admin</option><option class="bg-surface-container-high text-on-surface" value="Shop Owner">Shop Owners</option><option class="bg-surface-container-high text-on-surface" value="Regular User">Regular Users</option></select>
+</div>
+<!-- Status Filter -->
+<div class="flex items-center gap-2 bg-surface-container-lowest/80 px-3 py-1.5 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-outline text-lg">filter_alt</span>
+<select class="bg-transparent text-on-surface font-title-sm text-title-sm focus:outline-none cursor-pointer" id="statusFilter"><option class="bg-surface-container-high text-on-surface" value="ALL">All Status</option><option class="bg-surface-container-high text-on-surface" value="active">Active (DB: active)</option><option class="bg-surface-container-high text-on-surface" value="suspended">Suspended / Banned (DB: suspended)</option></select>
+</div>
+<!-- Sort Filter -->
+<div class="flex items-center gap-2 bg-surface-container-lowest/80 px-3 py-1.5 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-outline text-lg">swap_vert</span>
+<select class="bg-transparent text-on-surface font-title-sm text-title-sm focus:outline-none cursor-pointer" id="sortFilter">
+<option class="bg-surface-container-high text-on-surface" value="newest">Newest First</option>
+<option class="bg-surface-container-high text-on-surface" value="oldest">Oldest First</option>
+</select>
+</div>
+<!-- View Switcher (Cards vs Table) -->
+<div class="flex items-center p-1 rounded-xl bg-surface-container-lowest border border-primary/25 ml-auto">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-title-sm font-title-sm bg-gradient-to-r from-primary to-secondary-container text-on-primary font-bold shadow-sm transition-all" id="viewCardsBtn" type="button">
+<span class="material-symbols-outlined text-lg">grid_view</span>
+<span data-i18n="viewCards">Cards</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-title-sm font-title-sm text-outline hover:text-on-surface transition-all" id="viewTableBtn" type="button">
+<span class="material-symbols-outlined text-lg">table_rows</span>
+<span data-i18n="viewTable">Table</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION C: CARD VIEW CONTAINER -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-lg mb-space-xl" id="cardViewContainer"><!-- User Card 1: Admin May Phyo (Protected Admin) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=Admin%20May%20Phyo&amp;background=1F1A05&amp;color=F2CA50&amp;size=128&amp;bold=true" alt="Admin May Phyo" class="w-14 h-14 rounded-full object-cover border-2 border-primary shadow-[0_0_12px_rgba(212,175,55,0.4)]">
+        <span class="material-symbols-outlined absolute -bottom-1 -right-1 text-xs text-on-primary bg-primary rounded-full p-0.5 border border-surface">security</span>
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/40 font-bold shadow-[0_0_12px_rgba(212,175,55,0.2)]">
+          <span class="material-symbols-outlined text-xs">crown</span> Root Admin
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Admin May Phyo</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@mayphyo_ops</span>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> mayphyo.admin@pointer.io</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> +95 9 9700 00002</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2022-03-01</span>
+        <span>Active: Online Now</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-007')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button disabled="" title="Admin Protected • Cannot be banned or modified by other Admins (Rule 8)" class="py-1.5 px-3 rounded-xl bg-surface-container-lowest/80 text-outline border border-outline/20 font-title-sm text-title-sm cursor-not-allowed flex items-center gap-1 opacity-70 group/lock">
+      <span class="material-symbols-outlined text-xs text-primary">lock</span>
+      <span>Rule 8</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 2: Super Admin Zaw Min (Protected Admin) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQaKsnON5Wb_W9-hxPygWfdP5yO9ft7ySF4b39wHHOjvfddvibHJ_Lb_BhPvvEJl_-CUNIx-lrMXPZvDuYA-1X_t7Jk_5pFUy9hTOi3UwnN3sRG6oC8AS_9-LFzGYT99J10GwWfOE0or8XAY9WrgD-7BkiPRiWYz90FYjKIJn7LwxxjETMdEVa1e8gg_96smSf5_WSU_Zk4BUmPcVCc1SZefUn1ouiBWv2iImRLo" alt="Super Admin Zaw Min" class="w-14 h-14 rounded-full object-cover border-2 border-primary shadow-[0_0_12px_rgba(212,175,55,0.4)]">
+        <span class="material-symbols-outlined absolute -bottom-1 -right-1 text-xs text-on-primary bg-primary rounded-full p-0.5 border border-surface">security</span>
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/40 font-bold shadow-[0_0_12px_rgba(212,175,55,0.2)]">
+          <span class="material-symbols-outlined text-xs">crown</span> Root Admin
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Super Admin Zaw Min</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@zawmin_core</span>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> zawmin.admin@pointer.io</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> +95 9 9700 00001</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2022-01-15</span>
+        <span>Active: Online Now</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-003')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button disabled="" title="Admin Protected • Cannot be banned or modified by other Admins (Rule 8)" class="py-1.5 px-3 rounded-xl bg-surface-container-lowest/80 text-outline border border-outline/20 font-title-sm text-title-sm cursor-not-allowed flex items-center gap-1 opacity-70 group/lock">
+      <span class="material-symbols-outlined text-xs text-primary">lock</span>
+      <span>Rule 8</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 3: Ko Aung Kyaw (Shop Owner - Active) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=Ko%20Aung%20Kyaw&amp;background=281E08&amp;color=F4BE53&amp;size=128&amp;bold=true" alt="Ko Aung Kyaw" class="w-14 h-14 rounded-full object-cover border-2 border-secondary shadow-[0_0_12px_rgba(244,190,83,0.3)]">
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary/15 text-secondary border border-secondary/35">
+          <span class="material-symbols-outlined text-xs">storefront</span> Shop Owner
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Ko Aung Kyaw</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@aungkyaw_gem</span>
+      <div class="flex items-center gap-1.5 mt-2 text-secondary font-label-sm text-label-sm truncate bg-secondary/10 px-2 py-1 rounded-lg border border-secondary/20">
+        <span class="material-symbols-outlined text-xs">store</span>
+        <span class="truncate">Golden Yangon Gems &amp; Jade</span>
+      </div>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> aungkyaw@gemsyangon.com</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> +95 9 4200 88912</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2023-04-12</span>
+        <span>Active: 10 mins ago</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-001')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button onclick="openBanModal('USR-001')" class="py-1.5 px-3 rounded-xl bg-error-container/20 hover:bg-error-container/40 text-error border border-error/30 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+      <span class="material-symbols-outlined text-sm">gavel</span>
+      <span>Ban</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 4: Daw Thida Win (Regular User - Active) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=Daw%20Thida%20Win&amp;background=1A1B22&amp;color=D0C5AF&amp;size=128&amp;bold=true" alt="Daw Thida Win" class="w-14 h-14 rounded-full object-cover border-2 border-outline/40">
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline/30">
+          <span class="material-symbols-outlined text-xs">person</span> Regular User
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Daw Thida Win</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@thidawin_ygn</span>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> thida.win@gmail.com</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> +95 9 7981 12345</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2023-08-20</span>
+        <span>Active: 1 hour ago</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-002')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button onclick="openBanModal('USR-002')" class="py-1.5 px-3 rounded-xl bg-error-container/20 hover:bg-error-container/40 text-error border border-error/30 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+      <span class="material-symbols-outlined text-sm">gavel</span>
+      <span>Ban</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 5: Ma Su Mon (Regular User - Active) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=Ma%20Su%20Mon&amp;background=1A1B22&amp;color=D0C5AF&amp;size=128&amp;bold=true" alt="Ma Su Mon" class="w-14 h-14 rounded-full object-cover border-2 border-outline/40">
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline/30">
+          <span class="material-symbols-outlined text-xs">person</span> Regular User
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Ma Su Mon</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@sumon_mm</span>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> sumon.lifestyle@outlook.com</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> +95 9 2500 44556</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2023-11-04</span>
+        <span>Active: 3 hours ago</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-005')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button onclick="openBanModal('USR-005')" class="py-1.5 px-3 rounded-xl bg-error-container/20 hover:bg-error-container/40 text-error border border-error/30 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+      <span class="material-symbols-outlined text-sm">gavel</span>
+      <span>Ban</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 6: Kyaw Lin Htet (Regular User - Banned) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-error/30 hover:border-error/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(239,68,68,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-error/40 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=Kyaw%20Lin%20Htet&amp;background=2A1012&amp;color=FFB4AB&amp;size=128&amp;bold=true" alt="Kyaw Lin Htet" class="w-14 h-14 rounded-full object-cover border-2 border-error/40">
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-error-container/30 text-error border border-error/40">
+          <span class="w-1.5 h-1.5 rounded-full bg-error"></span> Banned
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline/30">
+          <span class="material-symbols-outlined text-xs">person</span> Regular User
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-error transition-colors">Kyaw Lin Htet</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@kyawlin_tech</span>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-error/20 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-error">mail</span> kyawlinhtet@yahoo.com</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-error">call</span> +95 9 7800 33211</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2023-09-15</span>
+        <span class="text-error">Banned (Nov 01)</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-006')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button onclick="openUnbanModal('USR-006')" class="py-1.5 px-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+      <span class="material-symbols-outlined text-sm">lock_open</span>
+      <span>Unban</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 7: Hein Myat Soe (Shop Owner - Banned) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-error/30 hover:border-error/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(239,68,68,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-error/40 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=Hein%20Myat%20Soe&amp;background=281E08&amp;color=FFB4AB&amp;size=128&amp;bold=true" alt="Hein Myat Soe" class="w-14 h-14 rounded-full object-cover border-2 border-error/40">
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-error-container/30 text-error border border-error/40">
+          <span class="w-1.5 h-1.5 rounded-full bg-error"></span> Banned
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary/15 text-secondary border border-secondary/35">
+          <span class="material-symbols-outlined text-xs">storefront</span> Shop Owner
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-error transition-colors">Hein Myat Soe</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@heinmyat_craft</span>
+      <div class="flex items-center gap-1.5 mt-2 text-outline font-label-sm text-label-sm truncate bg-surface-container-lowest/80 px-2 py-1 rounded-lg border border-outline/20">
+        <span class="material-symbols-outlined text-xs text-error">store</span>
+        <span class="truncate">Bagan Lacquer &amp; Silk Artisans</span>
+      </div>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-error/20 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-error">mail</span> heinmyat@baganlacquer.com</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-error">call</span> +95 9 4500 77123</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2023-01-10</span>
+        <span class="text-error">Banned (Oct 12)</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-004')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button onclick="openUnbanModal('USR-004')" class="py-1.5 px-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+      <span class="material-symbols-outlined text-sm">lock_open</span>
+      <span>Unban</span>
+    </button>
+  </div>
+</div>
+
+<!-- User Card 8: U Nanda (Shop Owner - Active) -->
+<div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div>
+    <div class="flex items-start justify-between gap-3 mb-space-md">
+      <div class="relative">
+        <img src="https://ui-avatars.com/api/?name=U%20Nanda&amp;background=281E08&amp;color=F4BE53&amp;size=128&amp;bold=true" alt="U Nanda" class="w-14 h-14 rounded-full object-cover border-2 border-secondary shadow-[0_0_12px_rgba(244,190,83,0.3)]">
+      </div>
+      <div class="flex flex-col items-end gap-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary/15 text-secondary border border-secondary/35">
+          <span class="material-symbols-outlined text-xs">storefront</span> Shop Owner
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col mb-space-md">
+      <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">U Nanda</h3>
+      <span class="font-body-sm text-body-sm text-outline truncate">@nanda_ruby</span>
+      <div class="flex items-center gap-1.5 mt-2 text-secondary font-label-sm text-label-sm truncate bg-secondary/10 px-2 py-1 rounded-lg border border-secondary/20">
+        <span class="material-symbols-outlined text-xs">store</span>
+        <span class="truncate">Mandalay Ruby Palace Ltd.</span>
+      </div>
+    </div>
+    <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> unanda@mandalayruby.com</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> +95 9 4000 66554</span>
+      </div>
+      <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+        <span>Joined: 2023-02-18</span>
+        <span>Active: 2 days ago</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+    <button onclick="openUserDetailsModal('USR-008')" class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-sm">visibility</span>
+      <span>Details</span>
+    </button>
+    <button onclick="openBanModal('USR-008')" class="py-1.5 px-3 rounded-xl bg-error-container/20 hover:bg-error-container/40 text-error border border-error/30 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+      <span class="material-symbols-outlined text-sm">gavel</span>
+      <span>Ban</span>
+    </button>
+  </div>
+</div></div>
+<!-- SECTION D: TABLE VIEW CONTAINER -->
+<div class="hidden rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] overflow-hidden mb-space-xl" id="tableViewContainer">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest/80 border-b border-primary/15 text-outline font-label-md text-label-md uppercase tracking-wider">
+<th class="py-3.5 px-4 font-semibold">No.</th>
+<th class="py-3.5 px-4 font-semibold" data-i18n="thUser">User &amp; Profile</th>
+<th class="py-3.5 px-4 font-semibold" data-i18n="thContact">Email &amp; Phone</th>
+<th class="py-3.5 px-4 font-semibold" data-i18n="thRole">Role Tier</th>
+<th class="py-3.5 px-4 font-semibold" data-i18n="thRegDate">Reg. Date</th>
+<th class="py-3.5 px-4 font-semibold" data-i18n="thStatus">Status</th>
+<th class="py-3.5 px-4 font-semibold text-right" data-i18n="thActions">Governance Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/10 font-body-md text-body-md" id="tableBody">
+        <tr class="hover:bg-primary/5 transition-colors group">
+          <td class="py-3 px-4 font-label-md text-label-md text-outline">01</td>
+          <td class="py-3 px-4">
+            <div class="flex items-center gap-3">
+              <img src="https://ui-avatars.com/api/?name=Admin%20May%20Phyo&amp;background=1F1A05&amp;color=F2CA50&amp;size=128&amp;bold=true" alt="Admin May Phyo" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Admin%20May%20Phyo&amp;background=1F1A05&amp;color=F2CA50&amp;size=128&amp;bold=true';" class="w-10 h-10 rounded-full object-cover border border-primary">
+              <div class="flex flex-col">
+                <span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Admin May Phyo</span>
+                <span class="font-body-sm text-body-sm text-outline">@mayphyo_ops</span>
+                
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4 text-outline font-body-sm">
+            <div class="flex flex-col">
+              <span class="text-on-surface-variant font-medium">mayphyo.admin@pointer.io</span>
+              <span>+95 9 9700 00002</span>
+            </div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/40 font-bold shadow-[0_0_12px_rgba(212,175,55,0.2)]">
+        <span class="material-symbols-outlined text-xs">crown</span> Root Admin
+      </span>
+          </td>
+          <td class="py-3 px-4 text-outline font-body-sm">
+            2022-03-01
+          </td>
+          <td class="py-3 px-4">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+      </span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <div class="inline-flex items-center justify-end gap-1.5">
+              <button onclick="openUserDetailsModal('USR-007')" class="p-1.5 rounded-lg bg-surface-container-highest hover:bg-surface-bright text-outline hover:text-on-surface transition-colors" title="View Dossier">
+                <span class="material-symbols-outlined text-base">visibility</span>
+              </button>
+
+              
+                <span title="Admin Protected (Rule 8) • Immutable Account" class="p-1.5 rounded-lg bg-surface-container-lowest text-outline border border-outline/20 cursor-not-allowed opacity-60 inline-flex items-center">
+                  <span class="material-symbols-outlined text-base text-primary">lock</span>
+                </span>
+              
+            </div>
+          </td>
+        </tr>
+      
+        <tr class="hover:bg-primary/5 transition-colors group">
+          <td class="py-3 px-4 font-label-md text-label-md text-outline">02</td>
+          <td class="py-3 px-4">
+            <div class="flex items-center gap-3">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQaKsnON5Wb_W9-hxPygWfdP5yO9ft7ySF4b39wHHOjvfddvibHJ_Lb_BhPvvEJl_-CUNIx-lrMXPZvDuYA-1X_t7Jk_5pFUy9hTOi3UwnN3sRG6oC8AS_9-LFzGYT99J10GwWfOE0or8XAY9WrgD-7BkiPRiWYz90FYjKIJn7LwxxjETMdEVa1e8gg_96smSf5_WSU_Zk4BUmPcVCc1SZefUn1ouiBWv2iImRLo" alt="Super Admin Zaw Min" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Super%20Admin%20Zaw%20Min&amp;background=1F1A05&amp;color=F2CA50&amp;size=128&amp;bold=true';" class="w-10 h-10 rounded-full object-cover border border-primary">
+              <div class="flex flex-col">
+                <span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Super Admin Zaw Min</span>
+                <span class="font-body-sm text-body-sm text-outline">@zawmin_core</span>
+                
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4 text-outline font-body-sm">
+            <div class="flex flex-col">
+              <span class="text-on-surface-variant font-medium">zawmin.admin@pointer.io</span>
+              <span>+95 9 9700 00001</span>
+            </div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/40 font-bold shadow-[0_0_12px_rgba(212,175,55,0.2)]">
+        <span class="material-symbols-outlined text-xs">crown</span> Root Admin
+      </span>
+          </td>
+          <td class="py-3 px-4 text-outline font-body-sm">
+            2022-01-15
+          </td>
+          <td class="py-3 px-4">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active
+      </span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <div class="inline-flex items-center justify-end gap-1.5">
+              <button onclick="openUserDetailsModal('USR-003')" class="p-1.5 rounded-lg bg-surface-container-highest hover:bg-surface-bright text-outline hover:text-on-surface transition-colors" title="View Dossier">
+                <span class="material-symbols-outlined text-base">visibility</span>
+              </button>
+
+              
+                <span title="Admin Protected (Rule 8) • Immutable Account" class="p-1.5 rounded-lg bg-surface-container-lowest text-outline border border-outline/20 cursor-not-allowed opacity-60 inline-flex items-center">
+                  <span class="material-symbols-outlined text-base text-primary">lock</span>
+                </span>
+              
+            </div>
+          </td>
+        </tr>
+      </tbody>
+</table>
+</div>
+<!-- Table Pagination Bar -->
+<div class="px-space-lg py-3 bg-surface-container-lowest/60 border-t border-primary/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+        Showing <span class="font-semibold text-on-surface">1-8</span> of <span class="font-semibold text-on-surface">24,850</span> registered accounts
+      </div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg bg-surface-container-high border border-primary/20 text-outline hover:text-primary flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-bold text-title-sm flex items-center justify-center shadow-sm">1</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high border border-primary/15 text-on-surface-variant hover:text-primary text-title-sm flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high border border-primary/15 text-on-surface-variant hover:text-primary text-title-sm flex items-center justify-center transition-colors">3</button>
+<span class="text-outline px-1">...</span>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high border border-primary/15 text-on-surface-variant hover:text-primary text-title-sm flex items-center justify-center transition-colors">3106</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high border border-primary/20 text-outline hover:text-primary flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION G: BAN & UNBAN RECORDS AUDIT HISTORY TABLE -->
+<div class="p-space-lg rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] mb-space-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-space-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">history_edu</span>
+</div>
+<div>
+<h2 class="font-title-lg text-title-lg text-on-surface font-semibold" data-i18n="auditTitle">Ban &amp; Unban Records Audit Ledger</h2>
+<span class="font-body-sm text-body-sm text-outline" data-i18n="auditSub">Immutable System Security Records</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<input class="h-9 px-3 rounded-lg bg-surface-container-lowest border border-primary/20 text-on-surface text-body-sm focus:outline-none focus:border-primary" id="auditSearchInput" placeholder="Filter audit log..." type="text">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high border border-primary/25 text-outline hover:text-primary transition-colors flex items-center gap-1 font-title-sm text-title-sm" onclick="showToast('Refreshing Ledger synchronization...', 'info')">
+<span class="material-symbols-outlined text-sm">sync</span>
+          Sync
+        </button>
+</div>
+</div>
+<div class="overflow-x-auto rounded-xl border border-primary/10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest/90 border-b border-primary/15 text-outline font-label-md text-label-md uppercase tracking-wider">
+<th class="py-3 px-4">Timestamp (MMT)</th>
+<th class="py-3 px-4">Target User</th>
+<th class="py-3 px-4">Role</th>
+<th class="py-3 px-4">Action Taken</th>
+<th class="py-3 px-4">Reason &amp; Justification</th>
+<th class="py-3 px-4">Enforcing Admin</th>
+<th class="py-3 px-4 text-right">Audit Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/10 font-body-sm text-body-sm" id="auditTableBody">
+        <tr class="hover:bg-primary/5 transition-colors">
+          <td class="py-2.5 px-4 font-mono text-xs text-outline">2024-11-01 09:15 MMT</td>
+          <td class="py-2.5 px-4 font-medium text-on-surface">Kyaw Lin Htet</td>
+          <td class="py-2.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline/30">
+      <span class="material-symbols-outlined text-xs">person</span> Regular User
+    </span></td>
+          <td class="py-2.5 px-4">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-error-container/30 text-error border border-error/40">
+              <span class="material-symbols-outlined text-xs">gavel</span>
+              BAN
+            </span>
+          </td>
+          <td class="py-2.5 px-4 text-on-surface-variant max-w-sm truncate" title="Fraudulent Activity / Scam (Chargeback abuse)">Fraudulent Activity / Scam (Chargeback abuse)</td>
+          <td class="py-2.5 px-4 text-primary font-medium">Admin May Phyo</td>
+          <td class="py-2.5 px-4 text-right">
+            <span class="font-label-sm text-label-sm text-outline flex items-center justify-end gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Committed
+            </span>
+          </td>
+        </tr>
+      
+        <tr class="hover:bg-primary/5 transition-colors">
+          <td class="py-2.5 px-4 font-mono text-xs text-outline">2024-10-12 14:32 MMT</td>
+          <td class="py-2.5 px-4 font-medium text-on-surface">Hein Myat Soe</td>
+          <td class="py-2.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary/15 text-secondary border border-secondary/35">
+        <span class="material-symbols-outlined text-xs">storefront</span> Shop Owner
+      </span></td>
+          <td class="py-2.5 px-4">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-error-container/30 text-error border border-error/40">
+              <span class="material-symbols-outlined text-xs">gavel</span>
+              BAN
+            </span>
+          </td>
+          <td class="py-2.5 px-4 text-on-surface-variant max-w-sm truncate" title="Policy violation #304: Bulk listings with unverified certifications">Policy violation #304: Bulk listings with unverified certifications</td>
+          <td class="py-2.5 px-4 text-primary font-medium">Super Admin Zaw Min</td>
+          <td class="py-2.5 px-4 text-right">
+            <span class="font-label-sm text-label-sm text-outline flex items-center justify-end gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Committed
+            </span>
+          </td>
+        </tr>
+      
+        <tr class="hover:bg-primary/5 transition-colors">
+          <td class="py-2.5 px-4 font-mono text-xs text-outline">2024-09-05 11:20 MMT</td>
+          <td class="py-2.5 px-4 font-medium text-on-surface">Maung Tin Win</td>
+          <td class="py-2.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline/30">
+      <span class="material-symbols-outlined text-xs">person</span> Regular User
+    </span></td>
+          <td class="py-2.5 px-4">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+              <span class="material-symbols-outlined text-xs">lock_open</span>
+              UNBAN
+            </span>
+          </td>
+          <td class="py-2.5 px-4 text-on-surface-variant max-w-sm truncate" title="Identity KYC verified after manual appeal review">Identity KYC verified after manual appeal review</td>
+          <td class="py-2.5 px-4 text-primary font-medium">Super Admin Zaw Min</td>
+          <td class="py-2.5 px-4 text-right">
+            <span class="font-label-sm text-label-sm text-outline flex items-center justify-end gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Committed
+            </span>
+          </td>
+        </tr>
+      </tbody>
+</table>
+</div>
+</div>
+<!-- SECTION H: ADMIN SECURITY & PRIVILEGE ENFORCEMENT CALLOUT (Rule 8) -->
+<div class="p-space-lg rounded-2xl bg-gradient-to-r from-surface-container-high/80 via-surface-container-high/50 to-surface-container-high/80 backdrop-blur-2xl border border-primary/30 shadow-[0_8px_32px_rgba(212,175,55,0.15)] flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/40 flex items-center justify-center text-primary flex-shrink-0 shadow-[0_0_20px_rgba(212,175,55,0.25)]">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-title-md text-title-md text-primary font-bold">Rule 8 Sovereign Enforcement: Admin Cryptographic Lock</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/30 uppercase">Active Shield</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">Admin accounts are cryptographically safeguarded against deletion, suspension, or role changes from within the User Directory. All actions are immutably logged to the Audit Security Ledger.</p>
+</div>
+</div>
+<div class="flex-shrink-0">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container-lowest border border-primary/40 text-primary hover:bg-primary hover:text-on-primary transition-all font-title-sm text-title-sm font-semibold flex items-center gap-2 shadow-sm" onclick="openRule8Details()">
+<span class="material-symbols-outlined text-lg">shield_with_heart</span>
+<span>View Protocol 8</span>
+</button>
+</div>
+</div>
+<!-- ================= MODALS & TOAST CONTAINER ================= -->
+<!-- SECTION E: BAN USER MODAL -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container-lowest/80 backdrop-blur-md hidden transition-opacity opacity-0" id="banModal">
+<div class="relative w-full max-w-2xl rounded-2xl bg-surface-container-high backdrop-blur-3xl border border-error/40 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(239,68,68,0.2)] p-space-lg flex flex-col gap-space-md max-h-[90vh] overflow-y-auto">
+<!-- Modal Header -->
+<div class="flex items-center justify-between border-b border-error/20 pb-space-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-error-container/30 border border-error/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-2xl">block</span>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-error font-bold" data-i18n="modalBanTitle">Account Suspension Protocol</h3>
+<span class="font-body-sm text-body-sm text-outline" data-i18n="modalBanSub">Suspend user account access and permissions</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container-highest/60 text-outline hover:text-on-surface flex items-center justify-center transition-colors" onclick="closeBanModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Target User Info Strip -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest border border-primary/20" id="banTargetUserBox">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-12 h-12 rounded-full border border-primary/40 object-cover" id="banModalAvatar" src="">
+<div>
+<span class="font-title-sm text-title-sm text-on-surface font-semibold block" id="banModalName">Ko Aung Kyaw</span>
+<span class="font-body-sm text-body-sm text-outline" id="banModalEmail">aungkyaw@gmail.com</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-secondary/15 text-secondary border border-secondary/30" id="banModalRole">Shop Owner</span>
+</div>
+<!-- SPECIAL RULE FOR SHOP OWNER USERS BAN NOTIFICATION BANNER -->
+<div class="p-3.5 rounded-xl bg-error-container/20 border border-error/40 flex gap-3 text-error hidden" id="shopOwnerBanWarning">
+<span class="material-symbols-outlined text-2xl flex-shrink-0">warning</span>
+<div class="font-body-sm text-body-sm leading-relaxed text-on-error-container">
+<strong class="font-bold block text-error uppercase tracking-wide">SPECIAL SHOP OWNER PROTECTION PROTOCOL:</strong>
+          Banning this shop owner will automatically <span class="underline font-bold">hide all linked shops</span> (<span class="font-semibold text-primary" id="shopOwnerShopNames">"Golden Yangon Gems"</span>) from public marketplace search results. All shop inventory, payment ledgers, reviews, and transaction records will remain safely preserved in the database. The owner cannot log in or manage inventory. <strong class="text-error">Do NOT permanently delete shops.</strong>
+</div>
+</div>
+<!-- Form Inputs -->
+<div class="flex flex-col gap-3">
+<label class="font-title-sm text-title-sm text-on-surface font-medium">
+          Select Primary Violation Reason <span class="text-error">*</span>
+</label>
+<select class="w-full h-11 px-3 rounded-xl bg-surface-container-lowest border border-primary/30 text-on-surface font-body-md focus:outline-none focus:border-error focus:ring-1 focus:ring-error" id="banReasonSelect">
+<option value="Terms of Service Violation">Terms of Service Violation</option>
+<option value="Fraudulent Activity / Scam">Fraudulent Activity / Scam</option>
+<option value="Spam &amp; Malicious Promotion">Spam &amp; Malicious Promotion</option>
+<option value="Shop Counterfeit Goods">Shop Counterfeit Goods</option>
+<option value="Customer Harassment">Customer Harassment</option>
+<option value="Other (Custom Justification)">Other (Custom Justification)</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-title-sm text-title-sm text-on-surface font-medium">
+          Administrative Audit Notes &amp; Evidence <span class="text-error">*</span>
+</label>
+<textarea class="w-full p-3 rounded-xl bg-surface-container-lowest border border-primary/30 text-on-surface font-body-md focus:outline-none focus:border-error focus:ring-1 focus:ring-error placeholder:text-outline" id="banNotesInput" placeholder="Document the exact infraction, incident ticket ID, or policy clause violated..." rows="3"></textarea>
+</div>
+<!-- Confirmation Checkbox -->
+<div class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest/50 border border-outline/20">
+<input class="w-4 h-4 rounded border-primary text-error focus:ring-error bg-surface-container-high cursor-pointer" id="banConfirmCheck" type="checkbox">
+<label class="font-body-sm text-body-sm text-on-surface cursor-pointer select-none" for="banConfirmCheck">
+          I confirm this action complies with Sovereign Compliance Protocol &amp; Enforcement Policies.
+        </label>
+</div>
+<!-- Modal Actions -->
+<div class="flex items-center justify-end gap-3 border-t border-outline/20 pt-4"><button class="px-space-md py-2 rounded-xl bg-surface-container-highest text-on-surface hover:bg-surface-bright font-title-sm text-title-sm transition-colors" onclick="closeBanModal()" type="button">Cancel</button><button class="px-space-md py-2 rounded-xl bg-error text-on-error font-bold font-title-sm text-title-sm shadow-[0_4px_20px_rgba(239,68,68,0.4)] hover:shadow-[0_6px_28px_rgba(239,68,68,0.6)] transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled="" id="confirmBanBtn" onclick="executeBanUser()" type="button"><span class="material-symbols-outlined text-lg">gavel</span><span>Confirm Ban Account</span></button></div>
+</div>
+</div>
+<!-- SECTION F: UNBAN USER SYSTEM MODAL -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container-lowest/80 backdrop-blur-md hidden transition-opacity opacity-0" id="unbanModal">
+<div class="relative w-full max-w-xl rounded-2xl bg-surface-container-high backdrop-blur-3xl border border-primary/30 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(212,175,55,0.2)] p-space-lg flex flex-col gap-space-md">
+<!-- Modal Header -->
+<div class="flex items-center justify-between border-b border-primary/20 pb-space-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined text-2xl">lock_open</span>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface font-bold" data-i18n="modalUnbanTitle">Restore Account Clearance</h3>
+<span class="font-body-sm text-body-sm text-outline" data-i18n="modalUnbanSub">Reinstate suspended user access and privileges</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container-highest/60 text-outline hover:text-on-surface flex items-center justify-center transition-colors" onclick="closeUnbanModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Target Info -->
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-lowest border border-primary/20">
+<img alt="User" class="w-12 h-12 rounded-full border border-primary/40 object-cover" id="unbanModalAvatar" src="">
+<div>
+<span class="font-title-sm text-title-sm text-on-surface font-semibold block" id="unbanModalName">Hein Myat Soe</span>
+<span class="font-body-sm text-body-sm text-outline" id="unbanModalEmail">heinmyat@baganlacquer.com</span>
+</div>
+</div>
+<!-- Historical Ban Information Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-error/30 flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider font-semibold">Active Ban Record on File</span>
+<div class="grid grid-cols-2 gap-2 font-body-sm text-body-sm">
+<div><span class="text-outline">Banned Timestamp:</span> <span class="text-on-surface font-medium block" id="unbanModalBannedDate">Oct 12, 2024, 14:32 MMT</span></div>
+<div><span class="text-outline">Enforcing Admin:</span> <span class="text-primary font-medium block" id="unbanModalAdmin">Super Admin Zaw Min</span></div>
+</div>
+<div>
+<span class="text-outline font-body-sm text-body-sm">Original Infraction:</span>
+<p class="text-on-surface-variant font-body-sm text-body-sm mt-0.5 italic" id="unbanModalReason">"Policy violation #304 - Suspicious bulk listings"</p>
+</div>
+</div>
+<!-- Shop Owner Notice for Unban -->
+<div class="p-3 rounded-xl bg-primary/10 border border-primary/25 text-primary text-body-sm flex gap-2 hidden" id="unbanShopOwnerNote">
+<span class="material-symbols-outlined text-lg flex-shrink-0">info</span>
+<span>Note: Account access will be restored, but shop visibility remains <strong class="underline">HIDDEN</strong> until admin manually verifies and re-publishes the shop catalogue.</span>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-3 border-t border-primary/15 pt-4">
+<button class="px-space-md py-2 rounded-xl bg-surface-container-highest text-on-surface hover:bg-surface-bright font-title-sm text-title-sm transition-colors" onclick="closeUnbanModal()" type="button">
+          Cancel
+        </button>
+<button class="px-space-md py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold font-title-sm text-title-sm shadow-[0_4px_20px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_28px_rgba(16,185,129,0.5)] transition-all flex items-center gap-2" onclick="executeUnbanUser()" type="button"><span class="material-symbols-outlined text-lg">check_circle</span><span>Restore Active Status</span></button>
+</div>
+</div>
+</div>
+<!-- RULE 8 DETAILS MODAL -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container-lowest/80 backdrop-blur-md hidden transition-opacity opacity-0" id="rule8Modal">
+<div class="relative w-full max-w-xl rounded-2xl bg-surface-container-high backdrop-blur-3xl border border-primary/40 shadow-[0_24px_64px_rgba(0,0,0,0.9),0_0_32px_rgba(212,175,55,0.25)] p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-primary/20 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+<h3 class="font-title-lg text-title-lg text-primary font-bold">Rule 8 Protocol Specification</h3>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container-highest text-outline hover:text-on-surface flex items-center justify-center" onclick="closeRule8Details()">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant flex flex-col gap-3">
+<p><strong>1. Administrative Immunity:</strong> All users possessing the role <code class="text-primary font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded">Admin</code> are designated as Sovereign Roots. No Admin may invoke ban, suspension, or credential revocation against another Admin via standard directory consoles.</p>
+<p><strong>2. Multi-Sig Safeguard:</strong> Any administrative role demotion or offboarding requires physical hardware security key multi-signature at the infrastructure console level.</p>
+<p><strong>3. Immutable Auditing:</strong> Every query, view, or attempted governance action on root accounts is appended to the hardware-anchored audit ledger.</p>
+</div>
+<div class="flex justify-end pt-2">
+<button class="px-space-md py-2 rounded-xl bg-primary text-on-primary font-bold font-title-sm text-title-sm" onclick="closeRule8Details()">
+          Acknowledge
+        </button>
+</div>
+</div>
+</div>
+<!-- USER DETAILS QUICK VIEW MODAL -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container-lowest/80 backdrop-blur-md hidden transition-opacity opacity-0" id="userDetailsModal">
+<div class="relative w-full max-w-lg rounded-2xl bg-surface-container-high backdrop-blur-3xl border border-primary/30 shadow-[0_24px_64px_rgba(0,0,0,0.9)] p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-primary/20 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">account_circle</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-bold">Account Dossier</h3>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container-highest text-outline hover:text-on-surface flex items-center justify-center" onclick="closeUserDetailsModal()">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-4" id="userDetailsContent">
+<!-- Rendered by JS -->
+</div>
+<div class="flex justify-end pt-2">
+<button class="px-space-md py-2 rounded-xl bg-surface-container-highest text-on-surface font-title-sm text-title-sm" onclick="closeUserDetailsModal()">
+          Close Dossier
+        </button>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" id="toastContainer"></div>
+</div>
+<!-- Interactive Logic -->
+<script>
+  // Initial Dataset
+  const INITIAL_USERS = [
+    {
+      id: "USR-001",
+      name: "Ye Naing Oo",
+      nameMm: "ရဲနိုင်ဦး",
+      handle: "@ynoo_cafe",
+      email: "yno@gmail.com",
+      phone: "+95 9 5123 4567",
+      role: "Shop Owner",
+      shopName: "Golden Bean Café",
+      regDate: "2026-11-15",
+      lastActive: "10 mins ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCmQaKsnON5Wb_W9-hxPygWfdP5yO9ft7ySF4b39wHHOjvfddvibHJ_Lb_BhPvvEJl_-CUNIx-lrMXPZvDuYA-1X_t7Jk_5pFUy9hTOi3UwnN3sRG6oC8AS_9-LFzGYT99J10GwWfOE0or8XAY9WrgD-7BkiPRiWYz90FYjKIJn7LwxxjETMdEVa1e8gg_96smSf5_WSU_Zk4BUmPcVCc1SZefUn1ouiBWv2iImRLo",
+      bannedData: null
+    },
+    {
+      id: "USR-002",
+      name: "Lotus Spa Owner",
+      nameMm: "ကြာပန်း စပါ ပိုင်ရှင်",
+      handle: "@lotus_spa",
+      email: "owner2@pointer.mm",
+      phone: "+95 9 7788 1234",
+      role: "Shop Owner",
+      shopName: "Lotus Nail Spa",
+      regDate: "2026-11-16",
+      lastActive: "25 mins ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3O3XGuhxX_s7sM59qUuXWJ5KSmK-jP77p7k8WJjJ8bZt0l4x74NqCq6jX9K2C5L3k4m2n1v0w9x8y7z6a5b4c3d2e1f0",
+      bannedData: null
+    },
+    {
+      id: "USR-003",
+      name: "Mohinga Corner Owner",
+      nameMm: "ရွှေမုန့်ဟင်းခါး ပိုင်ရှင်",
+      handle: "@shwe_mohinga",
+      email: "owner3@pointer.mm",
+      phone: "+95 9 7981 1234",
+      role: "Shop Owner",
+      shopName: "Shwe Mohinga Corner",
+      regDate: "2026-11-16",
+      lastActive: "40 mins ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuHp6M5l4k3j2h1g0f9e8d7c6b5a4z3y2x1w0v9u8t7s6r5q4p3o",
+      bannedData: null
+    },
+    {
+      id: "USR-004",
+      name: "Guesthouse Owner",
+      nameMm: "ကန်တော်ရိပ် ဧည့်ရိပ်သာ ပိုင်ရှင်",
+      handle: "@kandaw_guesthouse",
+      email: "owner4@pointer.mm",
+      phone: "+95 9 4500 7712",
+      role: "Shop Owner",
+      shopName: "Kandaw Lake Guesthouse",
+      regDate: "2026-11-16",
+      lastActive: "1 hour ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQqA8b1mZ0yX5v3L9p2R8k4w7j6h5f4d3c2b1a0e9f8d7c6b5a4",
+      bannedData: null
+    },
+    {
+      id: "USR-005",
+      name: "Pharmacy Owner",
+      nameMm: "ပြည်လမ်း ဆေးဆိုင် ပိုင်ရှင်",
+      handle: "@pyayrd_pharmacy",
+      email: "owner5@pointer.mm",
+      phone: "+95 9 2500 4455",
+      role: "Shop Owner",
+      shopName: "Pyay Road Pharmacy",
+      regDate: "2026-11-16",
+      lastActive: "2 hours ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuEm2Q1k9j8h7g6f5d4s3a2z1y0x9w8v7u6t5r4e3w2q1p0o9n8m7",
+      bannedData: null
+    },
+    {
+      id: "USR-006",
+      name: "Demo User",
+      nameMm: "သရုပ်ပြ အသုံးပြုသူ",
+      handle: "@demouser",
+      email: "demo@pointer.app",
+      phone: "+95 9 4200 88912",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "Online Now",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuFn4K3j2h1g0f9e8d7c6b5a4z3y2x1w0v9u8t7s6r5q4p3o2n1m",
+      bannedData: null
+    },
+    {
+      id: "USR-007",
+      name: "Mya Aung",
+      nameMm: "မြအောင်",
+      handle: "@myaaung_tea",
+      email: "owner@pointer.app",
+      phone: "+95 9 450 123 456",
+      role: "Shop Owner",
+      shopName: "Mya Tea House & Grocery",
+      regDate: "2026-11-17",
+      lastActive: "15 mins ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuGo5L4k3j2h1g0f9e8d7c6b5a4z3y2x1w0v9u8t7s6r5q4p3o2n",
+      bannedData: null
+    },
+    {
+      id: "USR-008",
+      name: "Ko Zaw",
+      nameMm: "ကိုဇော်",
+      handle: "@kozaw_pending",
+      email: "pending@pointer.app",
+      phone: "+95 9 770 123 456",
+      role: "Regular User",
+      shopName: "Pending Noodle Shop (လျှောက်ထားဆဲ)",
+      regDate: "2026-11-17",
+      lastActive: "35 mins ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQqA8b1mZ0yX5v3L9p2R8k4w7j6h5f4d3c2b1a0e9f8d7c6b5a4",
+      bannedData: null
+    },
+    {
+      id: "USR-009",
+      name: "Thiri Swe",
+      nameMm: "သီရိဆွေ",
+      handle: "@thiriswe",
+      email: "thiri@pointer.app",
+      phone: "+95 9 7981 99887",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "4 hours ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3O3XGuhxX_s7sM59qUuXWJ5KSmK-jP77p7k8WJjJ8bZt0l4x74NqCq6jX9K2C5L3k4m2n1v0w9x8y7z6a5b4c3d2e1f0",
+      bannedData: null
+    },
+    {
+      id: "USR-010",
+      name: "Min Khant",
+      nameMm: "မင်းခန့်",
+      handle: "@minkhant",
+      email: "minkhant@pointer.app",
+      phone: "+95 9 4500 11223",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "5 hours ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuHp6M5l4k3j2h1g0f9e8d7c6b5a4z3y2x1w0v9u8t7s6r5q4p3o",
+      bannedData: null
+    },
+    {
+      id: "USR-011",
+      name: "Sophie Martin",
+      nameMm: "ဆိုဖီမာတင်",
+      handle: "@sophiemartin",
+      email: "sophie@pointer.app",
+      phone: "+95 9 2500 99887",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "6 hours ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuEm2Q1k9j8h7g6f5d4s3a2z1y0x9w8v7u6t5r4e3w2q1p0o9n8m7",
+      bannedData: null
+    },
+    {
+      id: "USR-012",
+      name: "Aung Paing",
+      nameMm: "အောင်ပိုင်",
+      handle: "@aungpaing",
+      email: "aungpaing@pointer.app",
+      phone: "+95 9 7800 55443",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "1 day ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuFn4K3j2h1g0f9e8d7c6b5a4z3y2x1w0v9u8t7s6r5q4p3o2n1m",
+      bannedData: null
+    },
+    {
+      id: "USR-013",
+      name: "Hnin Nu Wai",
+      nameMm: "နှင်းနုဝေ",
+      handle: "@hninnuwai",
+      email: "hnin@pointer.app",
+      phone: "+95 9 4200 66778",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "1 day ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3O3XGuhxX_s7sM59qUuXWJ5KSmK-jP77p7k8WJjJ8bZt0l4x74NqCq6jX9K2C5L3k4m2n1v0w9x8y7z6a5b4c3d2e1f0",
+      bannedData: null
+    },
+    {
+      id: "USR-014",
+      name: "Kyaw Zin Oo",
+      nameMm: "ကျော်ဇင်ဦး",
+      handle: "@kyawzinoo",
+      email: "kyawzin@pointer.app",
+      phone: "+95 9 7900 88776",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "2 days ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQqA8b1mZ0yX5v3L9p2R8k4w7j6h5f4d3c2b1a0e9f8d7c6b5a4",
+      bannedData: null
+    },
+    {
+      id: "USR-015",
+      name: "Su Myat Noe",
+      nameMm: "စုမြတ်နိုး",
+      handle: "@sumyatnoe",
+      email: "sumyat@pointer.app",
+      phone: "+95 9 2500 33445",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "2 days ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuEm2Q1k9j8h7g6f5d4s3a2z1y0x9w8v7u6t5r4e3w2q1p0o9n8m7",
+      bannedData: null
+    },
+    {
+      id: "USR-016",
+      name: "Ei Phyu Thin",
+      nameMm: "အိဖြူသင်း",
+      handle: "@eiphyuthin",
+      email: "eiphyu@pointer.app",
+      phone: "+95 9 4500 88990",
+      role: "Regular User",
+      shopName: null,
+      regDate: "2026-11-17",
+      lastActive: "2 days ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3O3XGuhxX_s7sM59qUuXWJ5KSmK-jP77p7k8WJjJ8bZt0l4x74NqCq6jX9K2C5L3k4m2n1v0w9x8y7z6a5b4c3d2e1f0",
+      bannedData: null
+    },
+    {
+      id: "USR-017",
+      name: "Zaw Min Tun",
+      nameMm: "ဇော်မင်းထွန်း",
+      handle: "@zawmintun_heritage",
+      email: "zawmin@pointer.app",
+      phone: "+95 9 780 112 233",
+      role: "Shop Owner",
+      shopName: "Yangon Heritage Books & Crafts",
+      regDate: "2026-11-17",
+      lastActive: "3 hours ago",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuHp6M5l4k3j2h1g0f9e8d7c6b5a4z3y2x1w0v9u8t7s6r5q4p3o",
+      bannedData: null
+    },
+    {
+      id: "USR-018",
+      name: "Admin U Min Thant",
+      nameMm: "ဦးမင်းသန့် (အက်ဒမင်)",
+      handle: "@admin_minthant",
+      email: "admin@pointer.app",
+      phone: "+95 9 9700 00001",
+      role: "Admin",
+      shopName: null,
+      regDate: "2026-11-10",
+      lastActive: "Online Now",
+      status: "Active",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCmQaKsnON5Wb_W9-hxPygWfdP5yO9ft7ySF4b39wHHOjvfddvibHJ_Lb_BhPvvEJl_-CUNIx-lrMXPZvDuYA-1X_t7Jk_5pFUy9hTOi3UwnN3sRG6oC8AS_9-LFzGYT99J10GwWfOE0or8XAY9WrgD-7BkiPRiWYz90FYjKIJn7LwxxjETMdEVa1e8gg_96smSf5_WSU_Zk4BUmPcVCc1SZefUn1ouiBWv2iImRLo",
+      bannedData: null
+    }
+  ];
+
+  // Initial Audit Log History
+  let AUDIT_LOGS = [];
+
+  // State Management
+  let users = [...INITIAL_USERS];
+  let currentLanguage = 'en'; // 'en' or 'mm'
+  let currentView = 'cards'; // 'cards' or 'table'
+  let selectedUserForBan = null;
+  let selectedUserForUnban = null;
+
+  // Bilingual Dictionary
+  const I18N = {
+    en: {
+      pageTitle: "User Directory & Access Governance",
+      pageSubTitle: "အသုံးပြုသူ စီမံခန့်ခွဲမှုနှင့် လုံခြုံရေး",
+      exportAudit: "Export Directory Log",
+      statTotalUsers: "Total Users",
+      statTotalMm: "စုစုပေါင်း အသုံးပြုသူ",
+      statActiveUsers: "Active Users",
+      statActiveMm: "လက်ရှိ အသုံးပြုနေသူ",
+      statBannedUsers: "Banned Users",
+      statBannedMm: "ပိတ်ပင်ထားသူများ",
+      statShopOwners: "Shop Owners",
+      statShopMm: "ဆိုင်ပိုင်ရှင်များ",
+      statRegularUsers: "Regular Users",
+      statRegularMm: "သာမန် အသုံးပြုသူများ",
+      statAdmins: "Admin Accounts",
+      statAdminsMm: "အက်ဒမင် အကောင့်များ",
+      thisMonth: "this month",
+      viewCards: "Cards (ကတ်)",
+      viewTable: "Table (ဇယား)",
+      thUser: "User & Profile",
+      thContact: "Email & Phone",
+      thRole: "Role Tier",
+      thRegDate: "Reg. Date",
+      thStatus: "Status",
+      thActions: "Governance Actions",
+      auditTitle: "Ban & Unban Records Audit Ledger",
+      auditSub: "ပိတ်ပင်မှုနှင့် ပြန်လည်ဖွင့်လှစ်မှု မှတ်တမ်းများ (Immutable System Records)",
+      modalBanTitle: "Account Suspension Protocol",
+      modalBanSub: "အသုံးပြုသူအား ယာယီ/အပြီး ပိတ်ပင်ခြင်း",
+      modalUnbanTitle: "Restore Account Clearance",
+      modalUnbanSub: "အကောင့်အား ပြန်လည်ဖွင့်လှစ်ပေးခြင်း",
+      activeText: "Active / အသုံးပြုနိုင်",
+      bannedText: "Banned / ပိတ်ပင်ထား"
+    },
+    mm: {
+      pageTitle: "အသုံးပြုသူ စီမံခန့်ခွဲမှုနှင့် လုံခြုံရေး စနစ်",
+      pageSubTitle: "User Directory & Sovereign Access Governance",
+      exportAudit: "မှတ်တမ်း ထုတ်ယူမည်",
+      statTotalUsers: "စုစုပေါင်း အသုံးပြုသူ",
+      statTotalMm: "Total Users Enrolled",
+      statActiveUsers: "လက်ရှိ အသုံးပြုနေသူ",
+      statActiveMm: "Active & Verified",
+      statBannedUsers: "ပိတ်ပင်ထားသော အကောင့်များ",
+      statBannedMm: "Infractions Recorded",
+      statShopOwners: "ဆိုင်ပိုင်ရှင် အကောင့်များ",
+      statShopMm: "Merchant Tier Users",
+      statRegularUsers: "သာမန် အသုံးပြုသူများ",
+      statRegularMm: "Consumer Accounts",
+      statAdmins: "အက်ဒမင် အကောင့်များ",
+      statAdminsMm: "Root Privileged",
+      thisMonth: "ယခုလအတွင်း",
+      viewCards: "ကတ်ပုံစံ (Cards)",
+      viewTable: "ဇယားပုံစံ (Table)",
+      thUser: "အသုံးပြုသူ ပရိုဖိုင်",
+      thContact: "အီးမေးလ်နှင့် ဖုန်း",
+      thRole: "အဆင့် သတ်မှတ်ချက်",
+      thRegDate: "စတင်ရက်",
+      thStatus: "အခြေအနေ",
+      thActions: "စီမံခန့်ခွဲမှု ဆောင်ရွက်ချက်",
+      auditTitle: "ပိတ်ပင်မှုနှင့် ပြန်လည်ဖွင့်လှစ်မှု စာရင်းစစ်မှတ်တမ်း",
+      auditSub: "Ban & Unban Records Ledger (ဖျက်၍မရသော စနစ်မှတ်တမ်းများ)",
+      modalBanTitle: "အကောင့်ပိတ်သိမ်းခြင်း လုပ်ငန်းစဉ်",
+      modalBanSub: "Suspension Protocol Enforcement",
+      modalUnbanTitle: "အကောင့်ပြန်လည်ဖွင့်လှစ်ပေးခြင်း",
+      modalUnbanSub: "Restore Access & Clear Penalties",
+      activeText: "လက်ရှိ အသုံးပြုနိုင်",
+      bannedText: "ပိတ်ပင်ထားသည်"
+    }
+  };
+
+  // Safe fallback avatar generator using styled initials
+  function getInitialsAvatar(name, role) {
+    const initials = name.split(' ').map(n => n[0]).slice(0, 2).join('');
+    const bgCol = role === 'Admin' ? '1F1A05' : (role === 'Shop Owner' ? '281E08' : '1A1B22');
+    const txtCol = role === 'Admin' ? 'F2CA50' : (role === 'Shop Owner' ? 'F4BE53' : 'D0C5AF');
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${bgCol}&color=${txtCol}&size=128&bold=true`;
+  }
+
+  // DOM Elements
+  const cardViewContainer = document.getElementById('cardViewContainer');
+  const tableViewContainer = document.getElementById('tableViewContainer');
+  const tableBody = document.getElementById('tableBody');
+  const auditTableBody = document.getElementById('auditTableBody');
+  const searchInput = document.getElementById('searchInput');
+  const clearSearchBtn = document.getElementById('clearSearchBtn');
+  const roleFilter = document.getElementById('roleFilter');
+  const statusFilter = document.getElementById('statusFilter');
+  const sortFilter = document.getElementById('sortFilter');
+  const viewCardsBtn = document.getElementById('viewCardsBtn');
+  const viewTableBtn = document.getElementById('viewTableBtn');
+  const langToggleBtn = document.getElementById('langToggleBtn');
+  const langLabel = document.getElementById('langLabel');
+
+  // Modals
+  const banModal = document.getElementById('banModal');
+  const unbanModal = document.getElementById('unbanModal');
+  const userDetailsModal = document.getElementById('userDetailsModal');
+  const rule8Modal = document.getElementById('rule8Modal');
+  const banConfirmCheck = document.getElementById('banConfirmCheck');
+  const confirmBanBtn = document.getElementById('confirmBanBtn');
+
+  // Initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    renderUsers();
+    renderAuditLedger();
+    setupEventListeners();
+  });
+
+  function setupEventListeners() {
+    // Search & Filter Listeners
+    searchInput.addEventListener('input', (e) => {
+      clearSearchBtn.classList.toggle('hidden', !e.target.value);
+      renderUsers();
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      renderUsers();
+    });
+
+    roleFilter.addEventListener('change', renderUsers);
+    statusFilter.addEventListener('change', renderUsers);
+    sortFilter.addEventListener('change', renderUsers);
+
+    // View Switcher
+    viewCardsBtn.addEventListener('click', () => switchView('cards'));
+    viewTableBtn.addEventListener('click', () => switchView('table'));
+
+    // Language Toggle
+    langToggleBtn.addEventListener('click', toggleLanguage);
+
+    // Audit Search
+    document.getElementById('auditSearchInput').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = AUDIT_LOGS.filter(l => 
+        l.targetUser.toLowerCase().includes(q) || 
+        l.reason.toLowerCase().includes(q) || 
+        l.admin.toLowerCase().includes(q)
+      );
+      renderAuditRows(filtered);
+    });
+
+    // Ban Confirm Checkbox
+    banConfirmCheck.addEventListener('change', (e) => {
+      confirmBanBtn.disabled = !e.target.checked;
+    });
+  }
+
+  function switchView(view) {
+    currentView = view;
+    if (view === 'cards') {
+      cardViewContainer.classList.remove('hidden');
+      tableViewContainer.classList.add('hidden');
+      viewCardsBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-title-sm font-title-sm bg-gradient-to-r from-primary to-secondary-container text-on-primary font-bold shadow-sm transition-all";
+      viewTableBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-title-sm font-title-sm text-outline hover:text-on-surface transition-all";
+    } else {
+      cardViewContainer.classList.add('hidden');
+      tableViewContainer.classList.remove('hidden');
+      viewTableBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-title-sm font-title-sm bg-gradient-to-r from-primary to-secondary-container text-on-primary font-bold shadow-sm transition-all";
+      viewCardsBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-title-sm font-title-sm text-outline hover:text-on-surface transition-all";
+    }
+  }
+
+  function applyUserLanguage(targetLang) {
+    if (targetLang) currentLanguage = (targetLang === 'my' || targetLang === 'mm') ? 'mm' : 'en';
+    if (langLabel) langLabel.innerText = currentLanguage === 'en' ? 'မြန်မာစာသို့ ပြောင်းရန်' : 'Switch to English';
+    
+    // Update data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (I18N[currentLanguage] && I18N[currentLanguage][key]) {
+        el.innerText = I18N[currentLanguage][key];
+      }
+    });
+
+    renderUsers();
+  }
+
+  function toggleLanguage() {
+    if (window.toggleAdminLanguage) {
+      window.toggleAdminLanguage();
+    } else {
+      currentLanguage = currentLanguage === 'en' ? 'mm' : 'en';
+      applyUserLanguage(currentLanguage);
+    }
+  }
+
+  window.addEventListener('adminLanguageChanged', (e) => {
+    applyUserLanguage(e.detail.lang);
+  });
+
+  const savedUserLang = localStorage.getItem('pointer_admin_lang');
+  if (savedUserLang) {
+    currentLanguage = (savedUserLang === 'my' || savedUserLang === 'mm') ? 'mm' : 'en';
+    setTimeout(() => applyUserLanguage(currentLanguage), 100);
+  }
+
+  // Filter and Sorting Logic
+  function getFilteredUsers() {
+    const query = searchInput.value.toLowerCase().trim();
+    const role = roleFilter.value;
+    const status = statusFilter.value;
+    const sort = sortFilter.value;
+
+    return users.filter(user => {
+      const matchQuery = 
+        user.name.toLowerCase().includes(query) ||
+        (user.nameMm && user.nameMm.toLowerCase().includes(query)) ||
+        user.email.toLowerCase().includes(query) ||
+        user.phone.toLowerCase().includes(query) ||
+        user.handle.toLowerCase().includes(query);
+
+      const matchRole = role === 'ALL' || user.role === role;
+      const userStatusLower = (user.status || '').toLowerCase();
+      const filterStatusLower = (status || '').toLowerCase();
+      const matchStatus = status === 'ALL' || 
+        userStatusLower === filterStatusLower ||
+        (filterStatusLower === 'suspended' && (userStatusLower === 'suspended' || userStatusLower === 'banned')) ||
+        (filterStatusLower === 'banned' && (userStatusLower === 'suspended' || userStatusLower === 'banned')) ||
+        (filterStatusLower === 'active' && userStatusLower === 'active');
+
+      return matchQuery && matchRole && matchStatus;
+    }).sort((a, b) => {
+      if (sort === 'newest') return new Date(b.regDate) - new Date(a.regDate);
+      return new Date(a.regDate) - new Date(b.regDate);
+    });
+  }
+
+  // Render both Card View and Table View
+  function renderUsers() {
+    const list = getFilteredUsers();
+    renderCards(list);
+    renderTable(list);
+  }
+
+  // Helper for Role Badges
+  function getRoleBadge(role) {
+    if (role === 'Admin') {
+      return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20 text-primary border border-primary/40 font-bold shadow-[0_0_12px_rgba(212,175,55,0.2)]">
+        <span class="material-symbols-outlined text-xs">crown</span> Root Admin
+      </span>`;
+    }
+    if (role === 'Shop Owner') {
+      return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary/15 text-secondary border border-secondary/35">
+        <span class="material-symbols-outlined text-xs">storefront</span> Shop Owner
+      </span>`;
+    }
+    return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline/30">
+      <span class="material-symbols-outlined text-xs">person</span> Regular User
+    </span>`;
+  }
+
+  // Helper for Status Pills (Supporting DB status: active, suspended)
+  function getStatusPill(status) {
+    const s = (status || '').toLowerCase();
+    if (s === 'active') {
+      return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ${currentLanguage === 'en' ? 'Active' : 'အသုံးပြုနိုင်'}
+      </span>`;
+    }
+    return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-error-container/30 text-error border border-error/40">
+      <span class="w-1.5 h-1.5 rounded-full bg-error"></span> ${currentLanguage === 'en' ? 'Suspended' : 'ပိတ်ပင်ထား'}
+    </span>`;
+  }
+
+  // Render Card Grid
+  function renderCards(userList) {
+    if (userList.length === 0) {
+      cardViewContainer.innerHTML = `
+        <div class="col-span-full py-16 flex flex-col items-center justify-center text-center">
+          <div class="w-16 h-16 rounded-2xl bg-surface-container-high border border-primary/20 flex items-center justify-center text-outline mb-3">
+            <span class="material-symbols-outlined text-3xl">person_off</span>
+          </div>
+          <span class="font-title-lg text-title-lg text-on-surface font-semibold">No Accounts Found</span>
+          <p class="font-body-md text-body-md text-outline mt-1">Try adjusting your filters or keyword query.</p>
+        </div>
+      `;
+      return;
+    }
+
+    cardViewContainer.innerHTML = userList.map(u => {
+      const isProtectedAdmin = u.role === 'Admin';
+      const displayName = currentLanguage === 'mm' && u.nameMm ? u.nameMm : u.name;
+      const avatarSrc = u.avatar || getInitialsAvatar(u.name, u.role);
+
+      return `
+        <div class="relative group rounded-2xl bg-surface-container-high/40 backdrop-blur-2xl border border-primary/20 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] p-space-lg flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,175,55,0.15)]">
+          <!-- Ambient Card Highlight -->
+          <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+
+          <div>
+            <!-- Top Identity Header -->
+            <div class="flex items-start justify-between gap-3 mb-space-md">
+              <div class="relative">
+                <img 
+                  src="${avatarSrc}" 
+                  alt="${u.name}"
+                  onerror="this.onerror=null;this.src='${getInitialsAvatar(u.name, u.role)}';"
+                  class="w-14 h-14 rounded-full object-cover border-2 ${isProtectedAdmin ? 'border-primary shadow-[0_0_12px_rgba(212,175,55,0.4)]' : (u.role === 'Shop Owner' ? 'border-secondary' : 'border-outline/40')}"
+                />
+                ${isProtectedAdmin ? `<span class="material-symbols-outlined absolute -bottom-1 -right-1 text-xs text-on-primary bg-primary rounded-full p-0.5 border border-surface">security</span>` : ''}
+              </div>
+              <div class="flex flex-col items-end gap-1.5">
+                ${getStatusPill(u.status)}
+                ${getRoleBadge(u.role)}
+              </div>
+            </div>
+
+            <!-- User Textual Identifiers -->
+            <div class="flex flex-col mb-space-md">
+              <h3 class="font-title-md text-title-md text-on-surface font-semibold truncate group-hover:text-primary transition-colors">${displayName}</h3>
+              <span class="font-body-sm text-body-sm text-outline truncate">${u.handle}</span>
+              ${u.shopName ? `
+                <div class="flex items-center gap-1.5 mt-2 text-secondary font-label-sm text-label-sm truncate bg-secondary/10 px-2 py-1 rounded-lg border border-secondary/20">
+                  <span class="material-symbols-outlined text-xs">store</span>
+                  <span class="truncate">${u.shopName}</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Metadata Box -->
+            <div class="rounded-xl bg-surface-container-lowest/60 border border-primary/10 p-2.5 flex flex-col gap-1.5 text-body-sm font-body-sm text-outline mb-space-md">
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-1.5 truncate"><span class="material-symbols-outlined text-xs text-primary">mail</span> ${u.email}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-xs text-primary">call</span> ${u.phone}</span>
+              </div>
+              <div class="flex items-center justify-between text-label-sm font-label-sm pt-1 border-t border-outline/10 text-outline">
+                <span>Joined: ${u.regDate}</span>
+                <span>Active: ${u.lastActive}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Suite -->
+          <div class="flex items-center gap-2 pt-2 border-t border-primary/10">
+            <button 
+              onclick="openUserDetailsModal('${u.id}')" 
+              class="flex-1 py-1.5 px-2 rounded-xl bg-surface-container-highest/70 hover:bg-surface-bright text-on-surface font-title-sm text-title-sm transition-colors flex items-center justify-center gap-1"
+            >
+              <span class="material-symbols-outlined text-sm">visibility</span>
+              <span data-i18n="btnDetails">${currentLanguage === 'en' ? 'Details' : 'အသေးစိတ်'}</span>
+            </button>
+
+            ${isProtectedAdmin ? `
+              <!-- CRITICAL ADMIN PROTECTION RULE: Locked Button -->
+              <button 
+                disabled 
+                title="Admin Protected • Cannot be banned or modified by other Admins (Rule 8)"
+                class="py-1.5 px-3 rounded-xl bg-surface-container-lowest/80 text-outline border border-outline/20 font-title-sm text-title-sm cursor-not-allowed flex items-center gap-1 opacity-70 group/lock"
+              >
+                <span class="material-symbols-outlined text-xs text-primary">lock</span>
+                <span>Rule 8</span>
+              </button>
+            ` : (
+              u.status === 'Active' ? `
+                <button 
+                  onclick="openBanModal('${u.id}')" 
+                  class="py-1.5 px-3 rounded-xl bg-error-container/20 hover:bg-error-container/40 text-error border border-error/30 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]"
+                >
+                  <span class="material-symbols-outlined text-sm">gavel</span>
+                  <span>${currentLanguage === 'en' ? 'Ban' : 'ပိတ်မည်'}</span>
+                </button>
+              ` : `
+                <button 
+                  onclick="openUnbanModal('${u.id}')" 
+                  class="py-1.5 px-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 font-title-sm text-title-sm transition-all flex items-center gap-1 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]"
+                >
+                  <span class="material-symbols-outlined text-sm">lock_open</span>
+                  <span>${currentLanguage === 'en' ? 'Unban' : 'ပြန်ဖွင့်'}</span>
+                </button>
+              `
+            )}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Render Table View
+  function renderTable(userList) {
+    if (userList.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="7" class="py-12 text-center text-outline">
+            No matching accounts found in the sovereign directory.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = userList.map((u, idx) => {
+      const isProtectedAdmin = u.role === 'Admin';
+      const displayName = currentLanguage === 'mm' && u.nameMm ? u.nameMm : u.name;
+      const avatarSrc = u.avatar || getInitialsAvatar(u.name, u.role);
+
+      return `
+        <tr class="hover:bg-primary/5 transition-colors group">
+          <td class="py-3 px-4 font-label-md text-label-md text-outline">${String(idx + 1).padStart(2, '0')}</td>
+          <td class="py-3 px-4">
+            <div class="flex items-center gap-3">
+              <img 
+                src="${avatarSrc}" 
+                alt="${u.name}"
+                onerror="this.onerror=null;this.src='${getInitialsAvatar(u.name, u.role)}';"
+                class="w-10 h-10 rounded-full object-cover border ${isProtectedAdmin ? 'border-primary' : 'border-outline/30'}"
+              />
+              <div class="flex flex-col">
+                <span class="font-title-sm text-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">${displayName}</span>
+                <span class="font-body-sm text-body-sm text-outline">${u.handle}</span>
+                ${u.shopName ? `<span class="text-secondary font-label-sm text-label-sm truncate max-w-xs flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">store</span>${u.shopName}</span>` : ''}
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4 text-outline font-body-sm">
+            <div class="flex flex-col">
+              <span class="text-on-surface-variant font-medium">${u.email}</span>
+              <span>${u.phone}</span>
+            </div>
+          </td>
+          <td class="py-3 px-4">
+            ${getRoleBadge(u.role)}
+          </td>
+          <td class="py-3 px-4 text-outline font-body-sm">
+            ${u.regDate}
+          </td>
+          <td class="py-3 px-4">
+            ${getStatusPill(u.status)}
+          </td>
+          <td class="py-3 px-4 text-right">
+            <div class="inline-flex items-center justify-end gap-1.5">
+              <button 
+                onclick="openUserDetailsModal('${u.id}')" 
+                class="p-1.5 rounded-lg bg-surface-container-highest hover:bg-surface-bright text-outline hover:text-on-surface transition-colors"
+                title="View Dossier"
+              >
+                <span class="material-symbols-outlined text-base">visibility</span>
+              </button>
+
+              ${isProtectedAdmin ? `
+                <span 
+                  title="Admin Protected (Rule 8) • Immutable Account"
+                  class="p-1.5 rounded-lg bg-surface-container-lowest text-outline border border-outline/20 cursor-not-allowed opacity-60 inline-flex items-center"
+                >
+                  <span class="material-symbols-outlined text-base text-primary">lock</span>
+                </span>
+              ` : (
+                u.status === 'Active' ? `
+                  <button 
+                    onclick="openBanModal('${u.id}')" 
+                    class="px-2.5 py-1 rounded-lg bg-error-container/20 hover:bg-error-container/40 text-error border border-error/30 font-title-sm text-title-sm transition-all flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-sm">gavel</span>
+                    <span>Ban</span>
+                  </button>
+                ` : `
+                  <button 
+                    onclick="openUnbanModal('${u.id}')" 
+                    class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 font-title-sm text-title-sm transition-all flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-sm">lock_open</span>
+                    <span>Unban</span>
+                  </button>
+                `
+              )}
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Render Audit Ledger Rows
+  function renderAuditLedger() {
+    renderAuditRows(AUDIT_LOGS);
+  }
+
+  function renderAuditRows(list) {
+    if (list.length === 0) {
+      auditTableBody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-outline">No log entries found.</td></tr>`;
+      return;
+    }
+
+    auditTableBody.innerHTML = list.map(log => {
+      const isBan = log.action.toLowerCase() === 'ban';
+      return `
+        <tr class="hover:bg-primary/5 transition-colors">
+          <td class="py-2.5 px-4 font-mono text-xs text-outline">${log.timestamp}</td>
+          <td class="py-2.5 px-4 font-medium text-on-surface">${log.targetUser}</td>
+          <td class="py-2.5 px-4">${getRoleBadge(log.role)}</td>
+          <td class="py-2.5 px-4">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm font-label-sm ${isBan ? 'bg-error-container/30 text-error border border-error/40' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'}">
+              <span class="material-symbols-outlined text-xs">${isBan ? 'gavel' : 'lock_open'}</span>
+              ${log.action.toUpperCase()}
+            </span>
+          </td>
+          <td class="py-2.5 px-4 text-on-surface-variant max-w-sm truncate" title="${log.reason}">${log.reason}</td>
+          <td class="py-2.5 px-4 text-primary font-medium">${log.admin}</td>
+          <td class="py-2.5 px-4 text-right">
+            <span class="font-label-sm text-label-sm text-outline flex items-center justify-end gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Committed
+            </span>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Ban System Logic
+  function openBanModal(userId) {
+    const user = users.find(u => u.id === userId);
+    if (!user) return;
+
+    if (user.role === 'Admin') {
+      showToast('Action Denied: Root Admins are protected by Rule 8', 'error');
+      return;
+    }
+
+    selectedUserForBan = user;
+    document.getElementById('banModalAvatar').src = user.avatar || getInitialsAvatar(user.name, user.role);
+    document.getElementById('banModalName').innerText = user.name + (user.nameMm ? ` (${user.nameMm})` : '');
+    document.getElementById('banModalEmail').innerText = user.email;
+    document.getElementById('banModalRole').innerText = user.role;
+    
+    // Check Shop Owner Specific Warning Banner
+    const shopWarning = document.getElementById('shopOwnerBanWarning');
+    if (user.role === 'Shop Owner') {
+      shopWarning.classList.remove('hidden');
+      document.getElementById('shopOwnerShopNames').innerText = user.shopName || 'Registered Vendor Store';
+    } else {
+      shopWarning.classList.add('hidden');
+    }
+
+    // Reset inputs
+    document.getElementById('banConfirmCheck').checked = false;
+    document.getElementById('confirmBanBtn').disabled = true;
+    document.getElementById('banNotesInput').value = '';
+
+    banModal.classList.remove('hidden');
+    setTimeout(() => {
+      banModal.classList.add('opacity-100');
+    }, 10);
+  }
+
+  function closeBanModal() {
+    banModal.classList.remove('opacity-100');
+    setTimeout(() => {
+      banModal.classList.add('hidden');
+      selectedUserForBan = null;
+    }, 200);
+  }
+
+  async function executeBanUser() {
+    if (!selectedUserForBan) return;
+
+    const reason = document.getElementById('banReasonSelect').value;
+    const notes = document.getElementById('banNotesInput').value.trim() || 'Direct administrative compliance violation recorded.';
+    const now = new Date();
+    const formattedDate = now.toISOString().replace('T', ' ').substring(0, 16) + ' MMT';
+
+    // Real Backend API Call
+    if (window.AdminAPI) {
+      try {
+        await window.AdminAPI.setUserBanned(selectedUserForBan.id, true);
+      } catch (e) {
+        console.warn('Backend ban failed:', e);
+      }
+    }
+
+    // Mutate User Object (DB status: suspended)
+    selectedUserForBan.status = 'suspended';
+    selectedUserForBan.lastActive = `Suspended (${now.toLocaleString('default', { month: 'short' })} ${now.getDate()})`;
+    selectedUserForBan.bannedData = {
+      bannedDate: formattedDate,
+      banningAdmin: "Admin U Min Thant",
+      reason: reason,
+      notes: notes
+    };
+
+    // Prepend to Audit Logs (DB action: ban_user)
+    AUDIT_LOGS.unshift({
+      id: `LOG-${Math.floor(1000 + Math.random() * 9000)}`,
+      timestamp: formattedDate,
+      targetUser: selectedUserForBan.name,
+      role: selectedUserForBan.role,
+      action: "ban_user",
+      reason: `${reason} - ${notes}`,
+      admin: "Admin U Min Thant",
+      status: "suspended"
+    });
+
+    // Update Counter metric in UI
+    const bannedCountEl = document.getElementById('stat-banned-val');
+    if (bannedCountEl) {
+      bannedCountEl.innerText = parseInt(bannedCountEl.innerText) + 1;
+    }
+
+    closeBanModal();
+    renderUsers();
+    renderAuditLedger();
+    showToast(`User ${selectedUserForBan.name} has been suspended. Stores hidden from public.`, 'error');
+  }
+
+  // Unban System Logic
+  function openUnbanModal(userId) {
+    const user = users.find(u => u.id === userId);
+    if (!user) return;
+
+    selectedUserForUnban = user;
+    document.getElementById('unbanModalAvatar').src = user.avatar || getInitialsAvatar(user.name, user.role);
+    document.getElementById('unbanModalName').innerText = user.name;
+    document.getElementById('unbanModalEmail').innerText = user.email;
+
+    if (user.bannedData) {
+      document.getElementById('unbanModalBannedDate').innerText = user.bannedData.bannedDate;
+      document.getElementById('unbanModalAdmin').innerText = user.bannedData.banningAdmin;
+      document.getElementById('unbanModalReason').innerText = `"${user.bannedData.reason}" - ${user.bannedData.notes}`;
+    }
+
+    // Shop Owner note check
+    const unbanShopNote = document.getElementById('unbanShopOwnerNote');
+    if (user.role === 'Shop Owner') {
+      unbanShopNote.classList.remove('hidden');
+    } else {
+      unbanShopNote.classList.add('hidden');
+    }
+
+    unbanModal.classList.remove('hidden');
+    setTimeout(() => {
+      unbanModal.classList.add('opacity-100');
+    }, 10);
+  }
+
+  function closeUnbanModal() {
+    unbanModal.classList.remove('opacity-100');
+    setTimeout(() => {
+      unbanModal.classList.add('hidden');
+      selectedUserForUnban = null;
+    }, 200);
+  }
+
+  async function executeUnbanUser() {
+    if (!selectedUserForUnban) return;
+
+    const now = new Date();
+    const formattedDate = now.toISOString().replace('T', ' ').substring(0, 16) + ' MMT';
+
+    // Real Backend API Call
+    if (window.AdminAPI) {
+      try {
+        await window.AdminAPI.setUserBanned(selectedUserForUnban.id, false);
+      } catch (e) {
+        console.warn('Backend unban failed:', e);
+      }
+    }
+
+    // Mutate User (DB status: active)
+    selectedUserForUnban.status = 'active';
+    selectedUserForUnban.lastActive = 'Restored Just Now';
+    const priorReason = selectedUserForUnban.bannedData ? selectedUserForUnban.bannedData.reason : 'General infraction review';
+    selectedUserForUnban.bannedData = null;
+
+    // Append to Audit Logs (DB action: unban_user)
+    AUDIT_LOGS.unshift({
+      id: `LOG-${Math.floor(1000 + Math.random() * 9000)}`,
+      timestamp: formattedDate,
+      targetUser: selectedUserForUnban.name,
+      role: selectedUserForUnban.role,
+      action: "unban_user",
+      reason: `Cleared penalty. Appeal approved for: [${priorReason}]`,
+      admin: "Admin U Min Thant",
+      status: "active"
+    });
+
+    // Update Counter metric in UI
+    const bannedCountEl = document.getElementById('stat-banned-val');
+    if (bannedCountEl) {
+      bannedCountEl.innerText = Math.max(0, parseInt(bannedCountEl.innerText) - 1);
+    }
+
+    closeUnbanModal();
+    renderUsers();
+    renderAuditLedger();
+    showToast(`Access clearance restored for ${selectedUserForUnban.name}`, 'success');
+  }
+
+  // Real Backend Synchronization for Users
+  async function loadBackendUsers() {
+    if (!window.AdminAPI) return;
+    try {
+      const data = await window.AdminAPI.getUsers();
+      if (Array.isArray(data) && data.length > 0) {
+        users = data.map(u => ({
+          id: u.id,
+          name: u.name,
+          email: u.email,
+          role: u.role === 'admin' ? 'Super Administrator' : (u.role === 'owner' ? 'Shop Owner' : 'Verified Member'),
+          phone: '+95 9 1234 5678',
+          handle: '@' + (u.name ? u.name.toLowerCase().replace(/[^a-z0-9]/g, '') : 'user') + u.id,
+          regDate: u.createdAt ? u.createdAt.substring(0, 10) : '2026-11-15',
+          lastActive: u.banned ? 'Suspended' : 'Online Now',
+          status: u.banned ? 'suspended' : 'active',
+          avatar: null,
+          placesCount: u.placesCount || 0,
+          reviewsCount: u.reviewsCount || 0,
+          bannedData: u.banned ? {
+            bannedDate: u.createdAt ? u.createdAt.substring(0, 10) : '2026-11-15',
+            banningAdmin: 'Admin U Min Thant',
+            reason: 'Administrative compliance infraction / suspended',
+            notes: 'Flagged in sovereign ledger'
+          } : null
+        }));
+
+        const totalCount = users.length;
+        const activeCount = users.filter(u => u.status === 'active').length;
+        const bannedCount = users.filter(u => u.status === 'suspended').length;
+        const ownerCount = users.filter(u => u.role === 'Shop Owner').length;
+        const memberCount = users.filter(u => u.role === 'Verified Member').length;
+        const adminCount = users.filter(u => u.role === 'Super Administrator').length;
+
+        if (document.getElementById('stat-total-val')) document.getElementById('stat-total-val').innerText = totalCount;
+        if (document.getElementById('stat-active-val')) document.getElementById('stat-active-val').innerText = activeCount;
+        if (document.getElementById('stat-banned-val')) document.getElementById('stat-banned-val').innerText = bannedCount;
+        if (document.getElementById('stat-shops-val')) document.getElementById('stat-shops-val').innerText = ownerCount;
+        if (document.getElementById('stat-regular-val')) document.getElementById('stat-regular-val').innerText = memberCount;
+        if (document.getElementById('stat-admins-val')) document.getElementById('stat-admins-val').innerText = adminCount;
+
+        renderUsers();
+      }
+    } catch (err) {
+      console.warn('Failed to load backend users:', err);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBackendUsers);
+  } else {
+    loadBackendUsers();
+  }
+
+  // User Details Quick Modal
+  function openUserDetailsModal(userId) {
+    const user = users.find(u => u.id === userId);
+    if (!user) return;
+
+    const content = document.getElementById('userDetailsContent');
+    content.innerHTML = `
+      <div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container-lowest border border-primary/20">
+        <img src="${user.avatar || getInitialsAvatar(user.name, user.role)}" class="w-16 h-16 rounded-full border border-primary/40 object-cover" />
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-title-lg text-title-lg text-on-surface font-semibold">${user.name}</span>
+            ${getRoleBadge(user.role)}
+          </div>
+          <span class="font-body-sm text-body-sm text-outline">${user.handle} • ${user.id}</span>
+          ${user.nameMm ? `<span class="font-body-sm text-body-sm text-primary">${user.nameMm}</span>` : ''}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 text-body-sm">
+        <div class="p-3 rounded-xl bg-surface-container-lowest border border-primary/10">
+          <span class="text-outline block font-label-sm text-label-sm uppercase">Contact Information</span>
+          <span class="text-on-surface font-medium block mt-1">${user.email}</span>
+          <span class="text-on-surface-variant block">${user.phone}</span>
+        </div>
+        <div class="p-3 rounded-xl bg-surface-container-lowest border border-primary/10">
+          <span class="text-outline block font-label-sm text-label-sm uppercase">Lifecycle & Security</span>
+          <span class="text-on-surface font-medium block mt-1">Enrolled: ${user.regDate}</span>
+          <span class="text-on-surface-variant block">Status: ${user.status}</span>
+        </div>
+      </div>
+
+      ${user.shopName ? `
+        <div class="p-3.5 rounded-xl bg-secondary/10 border border-secondary/25 flex items-center justify-between">
+          <div class="flex items-center gap-2 text-secondary">
+            <span class="material-symbols-outlined text-2xl">store</span>
+            <div>
+              <span class="font-title-sm text-title-sm font-bold block">${user.shopName}</span>
+              <span class="font-body-sm text-body-sm text-outline">Linked Marketplace Merchant Account</span>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm ${user.status === 'Active' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-error-container/30 text-error'} font-semibold">
+            ${user.status === 'Active' ? 'Catalog Live' : 'Catalog Hidden'}
+          </span>
+        </div>
+      ` : ''}
+
+      ${user.bannedData ? `
+        <div class="p-3.5 rounded-xl bg-error-container/20 border border-error/30 text-body-sm">
+          <span class="text-error font-bold block">Sanction Record:</span>
+          <p class="text-on-surface-variant mt-1">${user.bannedData.reason}</p>
+          <span class="text-outline font-label-sm text-label-sm block mt-1">By ${user.bannedData.banningAdmin} on ${user.bannedData.bannedDate}</span>
+        </div>
+      ` : ''}
+    `;
+
+    userDetailsModal.classList.remove('hidden');
+    setTimeout(() => {
+      userDetailsModal.classList.add('opacity-100');
+    }, 10);
+  }
+
+  function closeUserDetailsModal() {
+    userDetailsModal.classList.remove('opacity-100');
+    setTimeout(() => {
+      userDetailsModal.classList.add('hidden');
+    }, 200);
+  }
+
+  function openRule8Details() {
+    rule8Modal.classList.remove('hidden');
+    setTimeout(() => {
+      rule8Modal.classList.add('opacity-100');
+    }, 10);
+  }
+
+  function closeRule8Details() {
+    rule8Modal.classList.remove('opacity-100');
+    setTimeout(() => {
+      rule8Modal.classList.add('hidden');
+    }, 200);
+  }
+
+  // Toast System
+  function showToast(message, type = 'gold') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    
+    let borderStyle = 'border-primary/40';
+    let icon = 'notifications_active';
+    let iconColor = 'text-primary';
+
+    if (type === 'error') {
+      borderStyle = 'border-error/50';
+      icon = 'warning';
+      iconColor = 'text-error';
+    } else if (type === 'success') {
+      borderStyle = 'border-emerald-500/50';
+      icon = 'check_circle';
+      iconColor = 'text-emerald-400';
+    } else if (type === 'info') {
+      borderStyle = 'border-secondary/50';
+      icon = 'info';
+      iconColor = 'text-secondary';
+    }
+
+    toast.className = `pointer-events-auto flex items-center gap-3 px-space-md py-3 rounded-xl bg-surface-container-high/90 backdrop-blur-2xl border ${borderStyle} shadow-[0_12px_36px_rgba(0,0,0,0.8),0_0_24px_rgba(212,175,55,0.15)] text-on-surface font-title-sm text-title-sm transition-all transform translate-y-4 opacity-0`;
+    toast.innerHTML = `
+      <span class="material-symbols-outlined ${iconColor} text-xl">${icon}</span>
+      <span>${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-4', 'opacity-0');
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.add('translate-y-4', 'opacity-0');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, 4500);
+  }
+</script></main></div>
+
+</body></html>
