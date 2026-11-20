@@ -56,7 +56,7 @@ if ($proofFile['size'] > 5 * 1024 * 1024) {
 
 $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mime  = finfo_file($finfo, $proofFile['tmp_name']);
-finfo_close($finfo);
+// finfo_close() is deprecated in PHP 8.5; the object is freed automatically.
 $ext = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'][$mime] ?? null;
 if ($ext === null) {
     fail(422, 'Payment proof must be a JPEG, PNG or WebP image');

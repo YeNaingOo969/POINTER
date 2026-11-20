@@ -81,7 +81,7 @@ function store_post_image(): ?string
     }
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mime  = finfo_file($finfo, $f['tmp_name']);
-    finfo_close($finfo);
+    // finfo_close() is deprecated in PHP 8.5; the object is freed automatically.
     $ext = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'][$mime] ?? null;
     if ($ext === null) {
         fail(422, 'Image must be a JPEG, PNG or WebP');
