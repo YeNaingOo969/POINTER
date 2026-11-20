@@ -43,20 +43,7 @@ if ($addrLen < 5 || $addrLen > 200) {
 // Opening hours: a JSON array of { day, open, close } objects.
 $openingHours = null;
 if (array_key_exists('openingHours', $in)) {
-    $hours = $in['openingHours'];
-    if (!is_array($hours)) {
-        fail(422, 'Opening hours must be an array');
-    }
-    $days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-    foreach ($hours as $h) {
-        if (!isset($h['day'], $h['open'], $h['close']) || !in_array($h['day'], $days, true)) {
-            fail(422, 'Invalid opening hours');
-        }
-        if (!preg_match('/^\d{2}:\d{2}$/', (string) $h['open']) || !preg_match('/^\d{2}:\d{2}$/', (string) $h['close'])) {
-            fail(422, 'Opening hours must use HH:MM format');
-        }
-    }
-    $openingHours = json_encode(array_values($hours), JSON_UNESCAPED_UNICODE);
+    $openingHours = owner_opening_hours($in['openingHours']);
 }
 
 // ---------- Persist ----------
@@ -72,20 +59,18 @@ if ($openingHours !== null) {
 $params[] = (int) $place['id'];
 db()->prepare('UPDATE places SET ' . implode(', ', $sets) . ' WHERE id = ?')->execute($params);
 
-// Return fresh place row.
-$fresh = db()->prepare(
-    "SELECT p.id, p.name, p.owner_id, p.category_id, p.description, p.phone,
-            p.open_hours, p.address, p.lat, p.lng, p.cover_photo, p.storefront_photo,
-            p.status, p.created_at,
-            c.id AS cat_id, c.name_en, c.name_my, c.group_name,
-            COALESCE(r.avg_rating, 0) AS avg_rating,
-            COALESCE(r.review_count, 0) AS review_count
-     FROM places p
-     LEFT JOIN categories c ON c.id = p.category_id
-     LEFT JOIN (SELECT place_id, AVG(rating) AS avg_rating, COUNT(*) AS review_count
-                FROM reviews GROUP BY place_id) r ON r.place_id = p.id
-     WHERE p.id = ?"
-);
-$fresh->execute([(int) $place['id']]);
+// ---------- Audit log (only the fields that changed) ----------
 
-json_out(owner_place_shape($fresh->fetch()));
+$fresh = owner_place_by_id((int) $place['id']);
+
+$tracked = [
+    'description' => [$place['description'], $fresh['description']],
+    'phone'       => [$place['phone'], $fresh['phone']],
+    'address'     => [$place['address'], $fresh['address']],
+    'open_hours'  => [$place['open_hours'], $fresh['open_hours']],
+];
+foreach ($tracked as $field => [$old, $new]) {
+    log_place_edit((int) $place['id'], (int) $user['id'], $field, $old, $new);
+}
+
+json_out(owner_place_shape($fresh));

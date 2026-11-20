@@ -27,6 +27,7 @@ function require_owner(): array
              FROM reviews GROUP BY place_id
          ) r ON r.place_id = p.id
          WHERE p.owner_id = ? AND p.status = 'active'
+         ORDER BY p.id ASC
          LIMIT 1"
     );
     $st->execute([$user['id']]);
@@ -72,6 +73,146 @@ function subscription_out(?array $sub): ?array
         'active'    => $daysLeft > 0,
         'daysLeft'  => $daysLeft,
     ];
+}
+
+/**
+ * Overview numbers shown on the owner dashboard / shop endpoint.
+ * activeDeals = discount posts that have not expired and still have tickets left.
+ */
+function owner_stats(int $placeId, array $place): array
+{
+    $pdo = db();
+
+    $st = $pdo->prepare('SELECT COUNT(*) FROM posts WHERE place_id = ?');
+    $st->execute([$placeId]);
+    $posts = (int) $st->fetchColumn();
+
+    $st = $pdo->prepare(
+        "SELECT COUNT(*) FROM posts po
+         WHERE po.place_id = ? AND po.type = 'discount'
+           AND (po.expires_at IS NULL OR po.expires_at > NOW())
+           AND (po.ticket_limit IS NULL OR po.ticket_limit >
+                (SELECT COUNT(*) FROM tickets t WHERE t.post_id = po.id))"
+    );
+    $st->execute([$placeId]);
+    $activeDeals = (int) $st->fetchColumn();
+
+    $st = $pdo->prepare(
+        'SELECT COUNT(*) FROM tickets t JOIN posts po ON po.id = t.post_id WHERE po.place_id = ?'
+    );
+    $st->execute([$placeId]);
+    $ticketsTaken = (int) $st->fetchColumn();
+
+    $st = $pdo->prepare(
+        'SELECT COUNT(*) FROM tickets t JOIN posts po ON po.id = t.post_id
+         WHERE po.place_id = ? AND t.used_at IS NOT NULL'
+    );
+    $st->execute([$placeId]);
+    $ticketsUsed = (int) $st->fetchColumn();
+
+    return [
+        'posts'        => $posts,
+        'activeDeals'  => $activeDeals,
+        'ticketsTaken' => $ticketsTaken,
+        'ticketsUsed'  => $ticketsUsed,
+        'rating'       => [
+            'average' => round((float) $place['avg_rating'], 1),
+            'count'   => (int) $place['review_count'],
+        ],
+    ];
+}
+
+/**
+ * Payload for GET/PUT /api/owner/shop.php: profile + subscription + overview numbers.
+ */
+function owner_shop_payload(array $user, array $place): array
+{
+    return [
+        'place'        => owner_place_shape($place),
+        'subscription' => subscription_out(active_subscription((int) $user['id'])),
+        'stats'        => owner_stats((int) $place['id'], $place),
+    ];
+}
+
+/**
+ * Fetch one place again after an update (same joins as require_owner()).
+ */
+function owner_place_by_id(int $placeId): array
+{
+    $st = db()->prepare(
+        "SELECT p.id, p.name, p.owner_id, p.category_id, p.description, p.phone,
+                p.open_hours, p.address, p.lat, p.lng, p.cover_photo, p.storefront_photo,
+                p.status, p.created_at,
+                c.id AS cat_id, c.name_en, c.name_my, c.group_name,
+                COALESCE(r.avg_rating, 0) AS avg_rating,
+                COALESCE(r.review_count, 0) AS review_count
+         FROM places p
+         LEFT JOIN categories c ON c.id = p.category_id
+         LEFT JOIN (SELECT place_id, AVG(rating) AS avg_rating, COUNT(*) AS review_count
+                    FROM reviews GROUP BY place_id) r ON r.place_id = p.id
+         WHERE p.id = ?"
+    );
+    $st->execute([$placeId]);
+    $row = $st->fetch();
+    if (!$row) {
+        fail(404, 'Shop not found');
+    }
+    return $row;
+}
+
+/**
+ * Log one changed place column into place_edit_history (issue #6).
+ * Soft-fails when the migration (sql/004_place_edit_history.sql) has not been run,
+ * so an older database does not break saving the shop.
+ */
+function log_place_edit(int $placeId, int $ownerId, string $field, mixed $old, mixed $new): void
+{
+    static $ready = null;
+
+    if ((string) $old === (string) $new) {
+        return;
+    }
+    if ($ready === null) {
+        $st    = db()->query("SHOW TABLES LIKE 'place_edit_history'");
+        $ready = (bool) $st->fetchColumn();
+    }
+    if (!$ready) {
+        return;
+    }
+
+    $st = db()->prepare(
+        'INSERT INTO place_edit_history (place_id, owner_id, field, old_value, new_value)
+         VALUES (?, ?, ?, ?, ?)'
+    );
+    $st->execute([
+        $placeId,
+        $ownerId,
+        $field,
+        $old === null ? null : (string) $old,
+        $new === null ? null : (string) $new,
+    ]);
+}
+
+/**
+ * Validate + normalise openingHours from a JSON body.
+ * Expected: [{ day: mon..sun, open: HH:MM, close: HH:MM }, ...]
+ * Returns the JSON string to store, or fails 422.
+ */
+function owner_opening_hours(mixed $hours): string
+{
+    if (!is_array($hours)) {
+        fail(422, 'Opening hours must be an array');
+    }
+    $days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+    foreach ($hours as $h) {
+        if (!is_array($h) || !isset($h['day'], $h['open'], $h['close']) || !in_array($h['day'], $days, true)) {
+            fail(422, 'Invalid opening hours');
+        }
+        if (!preg_match('/^\d{2}:\d{2}$/', (string) $h['open']) || !preg_match('/^\d{2}:\d{2}$/', (string) $h['close'])) {
+            fail(422, 'Opening hours must use HH:MM format');
+        }
+    }
+    return json_encode(array_values($hours), JSON_UNESCAPED_UNICODE);
 }
 
 /**

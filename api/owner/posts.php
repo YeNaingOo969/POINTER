@@ -1,4 +1,5 @@
 <?php
+// GET    /api/owner/posts.php                       Every post of my shop (pinned first)
 // POST   /api/owner/posts.php                       Create a post / deal
 // PUT    /api/owner/posts.php?id=101                Edit a post (content, discount fields, isPinned)
 // DELETE /api/owner/posts.php?id=101                Delete a post (keeps existing tickets valid)
@@ -19,13 +20,25 @@ require __DIR__ . '/../../include/bootstrap.php';
 require __DIR__ . '/../../include/posts.php';
 require __DIR__ . '/../../include/owner.php';
 
-$method = require_method('POST', 'PUT', 'DELETE');
+$method = require_method('GET', 'POST', 'PUT', 'DELETE');
 
 ['user' => $user, 'place' => $place] = require_owner();
-require_csrf();
 
 $placeId = (int) $place['id'];
 $pdo     = db();
+
+// ─── GET: every post of my shop, pinned first ────────────────────────────────
+
+if ($method === 'GET') {
+    $st = $pdo->prepare(
+        post_select() . ' WHERE po.place_id = ?
+        ORDER BY po.is_pinned DESC, po.created_at DESC, po.id DESC'
+    );
+    $st->execute([$placeId]);
+    json_out(array_map('post_shape', $st->fetchAll()));
+}
+
+require_csrf();
 
 // ─── Shared helpers ──────────────────────────────────────────────────────────
 

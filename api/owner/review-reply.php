@@ -1,18 +1,21 @@
 <?php
-// PUT /api/owner/review-reply.php?id=12 { reply }
+// PUT|POST /api/owner/review-reply.php?id=12 { reply }
 // Owner replies to a customer review of their own place.
-// A reply can be updated (PUT again). Owners cannot delete reviews.
+// A reply can be updated (send it again). Owners cannot delete reviews.
 //
 // Response: { id, ownerReply }
 // 403 when the review is not for the owner's place
 // 422 when reply is empty or > 600 characters
+//
+// The schema stores the reply in `reviews.owner_reply` (database/pointer.sql).
+// There is no review_replies table / parent_id column in this project.
 declare(strict_types=1);
 
 require __DIR__ . '/../../include/bootstrap.php';
 require __DIR__ . '/../../include/shapes.php';
 require __DIR__ . '/../../include/owner.php';
 
-require_method('PUT');
+require_method('PUT', 'POST');
 
 ['user' => $user, 'place' => $place] = require_owner();
 require_csrf();
