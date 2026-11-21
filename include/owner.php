@@ -47,10 +47,13 @@ function require_owner(): array
 function active_subscription(int $userId): ?array
 {
     $st = db()->prepare(
-        "SELECT id, months, amount, payment_method, starts_at, expires_at
-         FROM owner_upgrades
-         WHERE user_id = ? AND status = 'approved' AND expires_at > NOW()
-         ORDER BY expires_at DESC LIMIT 1"
+        "SELECT o.id, COALESCE(o.months, pl.months, 3) AS months,
+                COALESCE(o.amount, pl.amount, 30000) AS amount,
+                o.payment_method, o.starts_at, o.expires_at
+         FROM owner_upgrades o
+         LEFT JOIN plans pl ON pl.id = o.plan_id
+         WHERE o.user_id = ? AND o.status = 'approved' AND o.expires_at > NOW()
+         ORDER BY o.expires_at DESC LIMIT 1"
     );
     $st->execute([$userId]);
     $row = $st->fetch();

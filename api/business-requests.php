@@ -175,11 +175,18 @@ try {
 
     // owner_upgrades keeps the payment by user (the schema has no place_id).
     // starts_at / expires_at stay NULL until an admin approves the request.
+    $planId = match($months) {
+        1 => 1,
+        3 => 2,
+        6 => 3,
+        12 => 4,
+        default => 2
+    };
     $st = $pdo->prepare(
-        "INSERT INTO owner_upgrades (user_id, months, amount, payment_method, payment_ref, payment_proof, status)
-         VALUES (?, ?, ?, ?, ?, ?, 'pending')"
+        "INSERT INTO owner_upgrades (user_id, plan_id, months, amount, payment_method, payment_ref, payment_proof, status)
+         VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')"
     );
-    $st->execute([$userId, $months, round((float) $amount, 2), $method, $paymentRef, $proofPath]);
+    $st->execute([$userId, $planId, $months, round((float) $amount, 2), $method, $paymentRef, $proofPath]);
 
     $pdo->commit();
 } catch (Throwable $e) {

@@ -74,11 +74,19 @@ $proofPath = '/uploads/payments/' . $proofName;
 
 // ---------- Insert ----------
 
+$planId = match($months) {
+    1 => 1,
+    3 => 2,
+    6 => 3,
+    12 => 4,
+    default => 2
+};
+
 $st = db()->prepare(
-    "INSERT INTO owner_upgrades (user_id, months, amount, payment_method, payment_ref, payment_proof, status)
-     VALUES (?, ?, ?, ?, ?, ?, 'pending')"
+    "INSERT INTO owner_upgrades (user_id, plan_id, months, amount, payment_method, payment_ref, payment_proof, status)
+     VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')"
 );
-$st->execute([$user['id'], $months, $amountVal, $paymentMethod, $paymentRef, $proofPath]);
+$st->execute([$user['id'], $planId, $months, $amountVal, $paymentMethod, $paymentRef, $proofPath]);
 
 $newId = (int) db()->lastInsertId();
 

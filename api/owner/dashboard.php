@@ -29,10 +29,13 @@ $subOut  = subscription_out($sub);
 
 // Pending renewal (a new owner_upgrades row in 'pending' status).
 $pendSt = $pdo->prepare(
-    "SELECT id, months, amount, payment_method, payment_ref, status, created_at
-     FROM owner_upgrades
-     WHERE user_id = ? AND status = 'pending'
-     ORDER BY id DESC LIMIT 1"
+    "SELECT o.id, COALESCE(o.months, pl.months, 3) AS months,
+            COALESCE(o.amount, pl.amount, 30000) AS amount,
+            o.payment_method, o.payment_ref, o.status, o.created_at
+     FROM owner_upgrades o
+     LEFT JOIN plans pl ON pl.id = o.plan_id
+     WHERE o.user_id = ? AND o.status = 'pending'
+     ORDER BY o.id DESC LIMIT 1"
 );
 $pendSt->execute([$user['id']]);
 $pendRow = $pendSt->fetch();

@@ -11,9 +11,13 @@ function business_request_for_user(int $userId): ?array
     $st = db()->prepare(
         'SELECT p.id, p.status, p.name, p.category_id, p.description, p.phone, p.address, p.open_hours,
                 p.lat, p.lng, p.storefront_photo, p.created_at,
-                o.months, o.amount, o.payment_method, o.status AS payment_status
+                COALESCE(o.months, pl.months) AS months,
+                COALESCE(o.amount, pl.amount) AS amount,
+                o.payment_method, o.status AS payment_status,
+                o.starts_at, o.expires_at
          FROM places p
          LEFT JOIN owner_upgrades o ON o.user_id = p.owner_id
+         LEFT JOIN plans pl ON pl.id = o.plan_id
          WHERE p.owner_id = ?
          ORDER BY p.id DESC, o.id DESC
          LIMIT 1'
@@ -25,6 +29,19 @@ function business_request_for_user(int $userId): ?array
     }
 
     $hours = json_decode((string) $r['open_hours'], true);
+
+    $sub = null;
+    if (!empty($r['expires_at'])) {
+        $expires = strtotime((string) $r['expires_at']);
+        $daysLeft = max(0, (int) ceil(($expires - time()) / 86400));
+        $sub = [
+            'months'    => (int) ($r['months'] ?? 3),
+            'startsAt'  => iso($r['starts_at']),
+            'expiresAt' => iso($r['expires_at']),
+            'active'    => $daysLeft > 0,
+            'daysLeft'  => $daysLeft,
+        ];
+    }
 
     return [
         'id'           => (int) $r['id'],
@@ -44,6 +61,7 @@ function business_request_for_user(int $userId): ?array
             'method' => $r['payment_method'],
             'status' => $r['payment_status'],                // pending / approved / rejected
         ],
+        'subscription' => $sub,
         'createdAt'    => iso($r['created_at']),
     ];
 }

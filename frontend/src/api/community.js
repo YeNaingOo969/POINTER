@@ -38,12 +38,12 @@ export const SEED_USER_TICKETS = [
 
 const blockedIds = () => {
   const user = meOrNull();
-  const defaultBlocks = user?.id === 6 ? [8] : [];
+  const defaultBlocks = user ? [25] : [];
   return new Set(readDemo('blocks', defaultBlocks));
 };
 const myTickets = () => {
   const user = meOrNull();
-  const defaultTickets = user?.id === 6 ? SEED_USER_TICKETS : [];
+  const defaultTickets = user ? SEED_USER_TICKETS : [];
   return readDemo('tickets', defaultTickets);
 };
 

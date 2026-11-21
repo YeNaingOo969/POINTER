@@ -182,7 +182,7 @@ export async function getMySaves() {
     }
   }
   const user = requireDemoUser();
-  const defaultSaves = user.id === 6 ? [1, 7, 12, 17, 20, 25] : [];
+  const defaultSaves = [1, 7, 12, 17, 20, 25];
   const savedIds = readDemo('saved', defaultSaves);
   const list = savedIds
     .map((id) => places.find((p) => p.id === id))
@@ -376,7 +376,7 @@ export async function getMyPlace(placeId) {
   }
   const session = readDemo('session', null);
   if (!session) return mockResponse({ saved: false, reviewId: null });
-  const defaultSaves = session.user?.id === 6 ? [1, 7, 12, 17, 20, 25] : [];
+  const defaultSaves = [1, 7, 12, 17, 20, 25];
   const own = readDemo('reviews', []).find((r) => r.placeId === placeId && r.user.id === session.user.id);
   return mockResponse({ saved: readDemo('saved', defaultSaves).includes(placeId), reviewId: own?.id ?? null });
 }
@@ -396,7 +396,7 @@ export async function setSaved(placeId, saved) {
     }
   }
   const user = requireDemoUser();
-  const defaultSaves = user.id === 6 ? [1, 7, 12, 17, 20, 25] : [];
+  const defaultSaves = [1, 7, 12, 17, 20, 25];
   const list = readDemo('saved', defaultSaves).filter((id) => id !== placeId);
   writeDemo('saved', saved ? [...list, placeId] : list);
   return mockResponse({ saved });
