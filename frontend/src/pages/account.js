@@ -85,14 +85,17 @@ function renderBusiness() {
   }
   const status = el('span', `account-status account-status--${r.status}`, t(`account.biz${r.status[0].toUpperCase()}${r.status.slice(1)}`));
   box.replaceChildren(el('div', 'account-business__head', el('b', 'account-business__name', r.name), status));
-  if ((r.status === 'active' || r.status === 'hidden') && r.subscription) {
+  if (r.status === 'active' || (r.status === 'hidden' && r.subscription)) {
     // Approved shop: subscription line and the way into Owner mode (flowchart 1b / 3).
-    const line = r.subscription.active
-      ? t('acct2.ownerActive').replace('{d}', dateInYangon(r.subscription.expiresAt))
-      : t('acct2.ownerHidden');
+    if (r.subscription) {
+      const line = r.subscription.active
+        ? t('acct2.ownerActive').replace('{d}', dateInYangon(r.subscription.expiresAt))
+        : t('acct2.ownerHidden');
+      box.append(el('p', 'account-business__meta', line));
+    }
     const go = el('a', 'account-button account-button--gold', t('acct2.ownerMode'));
     go.href = '/owner.html';
-    box.append(el('p', 'account-business__meta', line), go);
+    box.append(go);
   } else if (r.createdAt) {
     box.append(el('p', 'account-business__meta', `${t('account.bizSent')} ${dateInYangon(r.createdAt)}`));
   }
