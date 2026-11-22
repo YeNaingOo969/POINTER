@@ -263,11 +263,16 @@ The place card has "Route here": pick a start (my location or another place) and
 and the map draws the line with distance, time and steps. `getRoute(from, to, mode)` returns
 `{ mode, source, distance (m), duration (s), coordinates: [[lng, lat]…], steps: [{ instruction, distance, duration }] }`.
 
-- With `VITE_ORS_API_KEY` in `.env` (free key from https://account.heigit.org → Tokens) it calls
-  OpenRouteService at `https://api.heigit.org/openrouteservice/v2/directions` from the browser.
-- Without a key it returns a straight-line preview (dashed line, labelled as an estimate).
-- Optional: `GET /api/route.php?from=lng,lat&to=lng,lat&mode=walk|car` forwarding to
-  OpenRouteService with the key kept on the server, same response shape. No table needed.
+- With `VITE_ORS_API_KEY` in `.env` (optional free key from https://account.heigit.org → Tokens)
+  it calls OpenRouteService at `https://api.heigit.org/openrouteservice/v2/directions` first.
+- Without a key — or if ORS fails — it calls the keyless FOSSGIS OSRM demo at
+  `https://routing.openstreetmap.de/routed-{foot|car}/route/v1/driving` (CORS enabled, no secret).
+  So every user gets real road routes and turn-by-turn steps after a fresh clone; no `.env` needed.
+  `source` is `ors` or `osrm`, and both draw a solid gold line.
+- Only if both services are unreachable it returns a dashed straight-line preview, labelled as an
+  estimate. This is a fallback, not the default.
+- The public OSRM service is a small demo instance; if usage grows, move the key to a PHP proxy:
+  `GET /api/route.php?from=lng,lat&to=lng,lat&mode=walk|car`, same response shape. No table needed.
 - The user's location is only used for the route and never sent to our backend.
 
 ## Map (frontend only — no backend work)

@@ -25,7 +25,7 @@ export function addRouteLayer(map) {
   }, firstLabel);
   map.addLayer({
     id: 'route-line', type: 'line', source: SOURCE, layout: lineLayout,
-    filter: ['==', ['get', 'source'], 'ors'],
+    filter: ['!=', ['get', 'source'], 'preview'],
     paint: { 'line-color': '#e8b04a', 'line-width': width([[11, 3], [15, 7], [18, 15]]) },
   }, firstLabel);
   map.addLayer({

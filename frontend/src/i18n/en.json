@@ -43,7 +43,7 @@
     "walk": "Walk",
     "car": "Car / taxi",
     "finding": "Finding a route…",
-    "previewNote": "Straight-line estimate — road routes need an OpenRouteService key.",
+    "previewNote": "Live routing is unavailable — showing a straight-line estimate.",
     "noLocation": "Couldn't get your location. Choose a start place instead.",
     "outside": "You're outside Yangon. Choose a start place instead.",
     "failed": "No route found. Try another start.",

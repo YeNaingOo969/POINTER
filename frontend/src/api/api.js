@@ -1,9 +1,9 @@
 // The only module pages use to get or send data.
 // Each function returns mock data while USE_MOCK is true; its comment names the PHP endpoint
 // the backend should provide (see HANDOFF.md for the full contract).
-import { USE_MOCK, ORS_API_KEY } from './config.js';
+import { USE_MOCK } from './config.js';
 import { mockResponse, mockError, request, setCsrfToken } from './client.js';
-import { orsRoute, previewRoute } from './routing.js';
+import { getRoute as routedRoute } from './routing.js';
 import { readDemo, writeDemo } from './demo-store.js';
 import { places as placeRows } from '../data/places.js';
 import { categories } from '../data/categories.js';
@@ -404,13 +404,13 @@ export async function setSaved(placeId, saved) {
 
 /**
  * A route from `from` to `to` ([lng, lat] each) for 'walk' or 'car' (shape: src/api/routing.js).
- * With VITE_ORS_API_KEY in .env: OpenRouteService road routes with turn-by-turn steps.
- * Without: a straight-line preview estimate.
+ * OpenRouteService when a key is configured, otherwise the keyless OSRM service — both give real
+ * road routes with turn-by-turn steps. A dashed straight-line preview is the last-resort fallback.
  * Optional later: GET /api/route.php?from=lng,lat&to=lng,lat&mode=walk — a PHP proxy to
  * OpenRouteService so the key stays on the server; same response shape.
  */
 export function getRoute(from, to, mode) {
-  return ORS_API_KEY ? orsRoute(from, to, mode) : previewRoute(from, to, mode);
+  return routedRoute(from, to, mode);
 }
 
 // Phase 2 customer features: deals, tickets, messages, blocks, reports, notifications.
