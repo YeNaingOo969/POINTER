@@ -283,3 +283,16 @@ Strand, the bridges and every road flyover) are 3D models built in Blender by `n
 (`scripts/blender/landmarks/`) and drawn by [src/map/landmarks-3d.js](src/map/landmarks-3d.js). Static files
 only — nothing for the backend. Place ids 1, 2, 3, 5, 7, 11, 12, 15 sit on landmarks, so their bubbles float
 above the models.
+
+### Resilience (2026-11-22)
+
+`createMap()` resolves after a 4s timeout even if MapLibre never fires `'load'` (slow/blocked tile
+servers, GPU context reset). `explore.js` keeps the category filter, search and place list outside
+the map-layer setup; decorative layers (3D landmarks, POI labels, bus stops, route line) are skipped
+with a `console.warn` if the style isn't ready, and `routeLayer` falls back to a no-op. The UI stays
+usable without tiles. Verified with `USE_MOCK = true`: 27 pins, 8 category chips, "Food & drink"
+filters to 6 pins, no error status.
+
+The admin portal (`admin/`) still fetches `/api/session.php` and `/api/admin/dashboard.php` directly
+from `admin-auth.js`; those return 502 under Vite alone (PHP backend not running). This is expected —
+run the PHP server from the repo root (`php -S localhost:8000`) to exercise the real admin dashboard.
