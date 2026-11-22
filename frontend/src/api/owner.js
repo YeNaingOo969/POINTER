@@ -9,7 +9,7 @@ import { categories } from "../data/categories.js";
 import { reviews as seedReviews } from "../data/reviews.js";
 import { customerTickets, owners } from "../data/community.js";
 import { allPosts, subscriptionFor, withEdits } from "./mock-shared.js";
-import { postOut, ticketOut } from "./community.js";
+import { postOut, ticketOut, SEED_USER_TICKETS } from "./community.js";
 
 const DAY = 24 * 3600 * 1000;
 
@@ -55,9 +55,16 @@ function ticketsForPlace(placeId) {
     .filter((p) => p.placeId === placeId)
     .map((p) => p.id);
   const used = readDemo("usedTickets", {});
-  return [...customerTickets, ...readDemo("tickets", [])]
+  return [...customerTickets, ...readDemo("tickets", SEED_USER_TICKETS)]
     .filter((t) => posts.includes(t.postId))
-    .map((t) => ({ ...t, usedAt: t.usedAt ?? used[t.code] ?? null }));
+    .map((t) => ticketOut(usedAtOverride(t, used)));
+}
+
+/** A code used at the counter wins over the seed ticket's preset status. */
+function usedAtOverride(ticket, used) {
+  return used[ticket.code]
+    ? { ...ticket, usedAt: used[ticket.code], status: "used" }
+    : { ...ticket, usedAt: ticket.usedAt ?? null };
 }
 
 /**
@@ -82,7 +89,7 @@ export async function getOwnerDashboard() {
     .filter((r) => r.placeId === place.id)
     .map((r) => ({ ...r, ownerReply: replies[r.id] ?? r.ownerReply ?? null }))
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  const tickets = ticketsForPlace(place.id).map(ticketOut);
+  const tickets = ticketsForPlace(place.id);
   const pending =
     readDemo("renewals", []).find(
       (r) => r.userId === place.ownerId && r.status === "pending",
@@ -193,7 +200,7 @@ export async function deletePost(id) {
 
 /**
  * Look up a ticket code at the counter (flowchart 3b) without using it.
- * GET /api/owner/ticket.php?code=GB-7Q4K → { result: 'ok' | 'not_found' | 'other_shop' | 'used' | 'expired',
+ * GET /api/owner/ticket.php?code=GB-8X2M → { result: 'ok' | 'not_found' | 'other_shop' | 'used' | 'expired',
  *   ticket?: Ticket & { userName }, post?: Post }
  */
 export async function checkTicket(code) {
@@ -203,16 +210,13 @@ export async function checkTicket(code) {
   const used = readDemo("usedTickets", {});
   const raw = [
     ...customerTickets,
-    ...readDemo("tickets", []).map((t) => ({ ...t, userName: "Demo user" })),
+    ...readDemo("tickets", SEED_USER_TICKETS).map((t) => ({ ...t, userName: "Demo user" })),
   ].find((t) => t.code === wanted);
   if (!raw) return mockResponse({ result: "not_found" });
   const post = allPosts().find((p) => p.id === raw.postId);
   if (!post || post.placeId !== place.id)
     return mockResponse({ result: "other_shop" });
-  const ticket = ticketOut({
-    ...raw,
-    usedAt: raw.usedAt ?? used[raw.code] ?? null,
-  });
+  const ticket = ticketOut(usedAtOverride(raw, used));
   const result = ticket.status === "active" ? "ok" : ticket.status;
   return mockResponse({ result, ticket, post: postOut(post) });
 }

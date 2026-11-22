@@ -63,6 +63,10 @@ Newest decisions win over the kickoff brief. Dates are Asia/Yangon.
 
 | 2026-11-22 | Plan prices aligned with the database | The `plans` table in `database/pointer.sql` is now the source of truth: 1 month 12,000 Ks, 3 months 30,000 Ks, 6 months 55,000 Ks, 12 months 100,000 Ks. Updated `business.html`, `owner.html`, landing (now four cards), `en/my.json`, admin mock amounts, flowcharts and the backend-2 task note. The 2026-11-15 entry above keeps the earlier demo prices for history. |
 
+| 2026-11-22 | Owner demo tickets | The customer seed tickets are now shared with the owner mock, so a code shown in "My tickets" can actually be checked at the counter. A code used at the counter overrides its seed `status`. Codes for Golden Bean Café: `GB-8X2M` valid, `GB-4Y5Z` used, `GB-R8XT` expired. Updated `HANDOFF.md`, `owner.html` placeholder, landing ticket example and backend-3 note. |
+| 2026-11-22 | Admin portal scope in M7 | Only the placeholder prices and mobile overflow were changed: `admin/application.html` now shows 12,000 / 30,000 / 100,000 MMK and a shared `admin/mobile-fixes.css` clamps the page to the viewport on phones. The backend team keeps ownership of the black/gold CDN theme; no full redesign was attempted. |
+| 2026-11-22 | Asset scripts restored | `gen-image.mjs`, `build-brand.mjs`, `build-reveal-layers.mjs` and `export-reveal-video.mjs` were copied byte-for-byte from the old YangonGo source repo and wired into `package.json`. Dependencies were already present. |
+
 ## Still open
 
 - Rename leftovers: the repo folder and older docs still say YangonGo (the name is now POINTER).

@@ -85,7 +85,7 @@ In Owner Mode, merchants can:
 
 ### 2.3 Ticket Validation & Redemption at Store Counter
 * **Check Ticket (Inspection without using):** `GET /api/owner/ticket.php?code={code}`
-  - Used by cashiers when typing a code (e.g. `GB-7Q4K`) or scanning a QR code with the camera.
+  - Used by cashiers when typing a code (e.g. `GB-8X2M`) or scanning a QR code with the camera.
   - **Lookup Logic:**
     - `ok`: Valid ticket for this shop, status is `'unused'`, and `created_at + 2 hours > NOW()`.
     - `not_found`: Code does not exist in `tickets` table.
@@ -96,12 +96,12 @@ In Owner Mode, merchants can:
     ```json
     {
       "result": "ok",
-      "ticket": { "id": 1, "code": "GB-7Q4K", "status": "active", "userName": "Demo user" },
+      "ticket": { "id": 1, "code": "GB-8X2M", "status": "active", "userName": "Demo user" },
       "post": { "id": 2, "discountText": "20% off all iced espresso" }
     }
     ```
 * **Confirm / Redeem Ticket:** `POST /api/owner/ticket.php`
-  - Body: `{ "code": "GB-7Q4K" }`
+  - Body: `{ "code": "GB-8X2M" }`
   - Executes atomic redemption query:
     ```sql
     UPDATE tickets 

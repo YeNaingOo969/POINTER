@@ -29,7 +29,10 @@
     "directions": "Google Maps မှာ လမ်းညွှန်",
     "demo": "Rating တွေက နမူနာ data ဖြစ်ပါတယ်။",
     "details": "အသေးစိတ်",
-    "closedNow": "အခု ပိတ်ထားတယ်"
+    "closedNow": "အခု ပိတ်ထားတယ်",
+    "free": "အခမဲ့",
+    "local": "ပြည်တွင်းသား",
+    "foreigner": "နိုင်ငံခြားသား"
   },
   "route": {
     "title": "ဒီကို သွားမယ်",

@@ -94,6 +94,7 @@ export const customerTickets = [
   { id: 7, postId: 1, code: 'MT-9A1B', userName: 'Thiri Swe', createdAt: '2026-11-17T10:00:00+06:30', usedAt: null },
   { id: 8, postId: 1, code: 'MT-2C3D', userName: 'Min Khant', createdAt: '2026-11-17T15:00:00+06:30', usedAt: '2026-11-17T16:00:00+06:30' },
   { id: 18, postId: 4, code: 'GB-4Y5Z', userName: 'Sophie Martin', createdAt: '2026-11-17T14:30:00+06:30', usedAt: '2026-11-17T15:45:00+06:30' },
+  { id: 19, postId: 4, code: 'GB-R8XT', userName: 'Demo user', createdAt: '2026-11-14T09:00:00+06:30', status: 'expired', usedAt: null },
   { id: 25, postId: 7, code: 'SM-9N0P', userName: 'Min Khant', createdAt: '2026-11-17T07:30:00+06:30', usedAt: '2026-11-17T08:45:00+06:30' },
   { id: 30, postId: 9, code: 'LN-1Y2Z', userName: 'Thiri Swe', createdAt: '2026-11-17T14:00:00+06:30', usedAt: null },
   { id: 31, postId: 9, code: 'LN-3A4B', userName: 'Hnin Nu Wai', createdAt: '2026-11-17T16:00:00+06:30', usedAt: '2026-11-17T17:30:00+06:30' },

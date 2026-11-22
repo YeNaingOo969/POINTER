@@ -1,0 +1,26 @@
+/* M7 polish: keep the backend team's black/gold admin theme inside phone viewports.
+   This intentionally does not restyle the theme — it only stops the whole page from
+   scrolling sideways. Wide tables remain desktop-first and are clipped on small screens. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.ambient-glow-1,
+.ambient-glow-2 {
+  max-width: 100vw;
+}
+
+/* The auth overlay is the first thing a visitor sees while the PHP API is offline. */
+#admin-auth-barrier .max-w-md {
+  box-sizing: border-box;
+  width: calc(100vw - 2rem) !important;
+  max-width: 28rem !important;
+}
+
+@media (max-width: 767px) {
+  table {
+    font-size: 11px;
+  }
+}

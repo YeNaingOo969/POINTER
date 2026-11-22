@@ -215,7 +215,7 @@ isPinned, createdAt, place: { id, name, address, ownerId, category }, ticketsTak
 
 **Ticket** = `{ id, postId, code, status: 'active'|'used'|'expired', createdAt, expiresAt, usedAt }` —
 `expiresAt` is `tickets.created_at + 2 h` (no column needed); `code` is unique (`tickets.ticket_code`),
-e.g. `GB-7Q4K` (shop initials + 4 characters). One ticket per user per post.
+e.g. `GB-8X2M` (shop initials + 4 characters). One ticket per user per post.
 
 **Message** = `{ id, senderId, receiverId, body, status: 'request'|'accepted', isRead, createdAt }`. The first
 message between two people is a `request` until the receiver replies or accepts (owner side, phase 2b).
@@ -244,7 +244,7 @@ Way in: My account → My business → **Owner mode** (shown when the request is
 | `createPost(fields)` | `POST /api/owner/posts.php` (multipart) | `type`, `content`, `image?`; discount: `discountText`, `ticketLimit` (1–500), `expiresAt` (future) → `201 Post` · 403 subscription not active · 422 | posts |
 | `updatePost(id, fields)` / `setPostPinned(id, on)` | `PUT /api/owner/posts.php?id=101` | `{ content?, discountText?, ticketLimit?, expiresAt?, isPinned? }` → `Post` · 403 not yours | posts |
 | `deletePost(id)` | `DELETE /api/owner/posts.php?id=101` | → `{ deleted: true }` (tickets already taken stay valid until they expire) | posts |
-| `checkTicket(code)` | `GET /api/owner/ticket.php?code=GB-7Q4K` | → `{ result: ok\|not_found\|other_shop\|used\|expired, ticket?: Ticket & { userName }, post? }` (does not use it). The ticket shows its code as a QR code too; scanning it (phone camera) just types the same code here, so no backend change | tickets, posts |
+| `checkTicket(code)` | `GET /api/owner/ticket.php?code=GB-8X2M` | → `{ result: ok\|not_found\|other_shop\|used\|expired, ticket?: Ticket & { userName }, post? }` (does not use it). The ticket shows its code as a QR code too; scanning it (phone camera) just types the same code here, so no backend change | tickets, posts |
 | `confirmTicket(code)` | `POST /api/owner/ticket.php { code }` | → `{ result: 'used', ticket }` (`status = used`, `used_at = now`) · 404 · 403 other shop · 409 used / expired | tickets |
 | `replyToReview(id, reply)` | `PUT /api/owner/review-reply.php?id=12 { reply }` | → `{ id, ownerReply }` · 403 not my place · 422 empty / > 600 | reviews.owner_reply |
 | `updateMyPlace(fields)` | `PUT /api/owner/place.php { description, phone, address }` (address 5–200) | → `Place` (name, group and pin stay with the admin) · 422 | places |
@@ -255,7 +255,7 @@ Rules: a ticket is valid only for one of the owner's own posts, while `status = 
 `created_at + 2 h > now`. Owners can reply to reviews but not delete them, and can't review their own
 place. While `USE_MOCK` is true the "Log in to continue" dialog has **Try as a demo shop owner**
 (Golden Bean Café, user 1); demo shops 2–5 cover the other cases (2 ends in 5 days, 3 has ended).
-Test ticket codes for shop 1: `GB-7Q4K` (valid), `GB-H2NM` (used), `GB-R8XT` (expired).
+Test ticket codes for shop 1: `GB-8X2M` (valid, seeded as the demo user's ticket), `GB-4Y5Z` (used), `GB-R8XT` (expired). Owner mock reads the same seeded customer tickets as the customer pages, and a code used at the counter stays `used`.
 
 ### Routes (frontend only; optional PHP proxy later)
 
@@ -296,3 +296,18 @@ filters to 6 pins, no error status.
 The admin portal (`admin/`) still fetches `/api/session.php` and `/api/admin/dashboard.php` directly
 from `admin-auth.js`; those return 502 under Vite alone (PHP backend not running). This is expected —
 run the PHP server from the repo root (`php -S localhost:8000`) to exercise the real admin dashboard.
+
+### M7 polish (2026-11-22)
+
+- Owner counter demo now reads the same seeded customer tickets as the customer pages
+  (`SEED_USER_TICKETS` from `src/api/community.js`), and a code used at the counter keeps `status = used`.
+  Test codes for Golden Bean Café: `GB-8X2M` valid, `GB-4Y5Z` used, `GB-R8XT` expired.
+- `fee()` labels (`card.free`, `card.local`, `card.foreigner`) were missing from both dictionaries;
+  added in `en.json` / `my.json` so entry fees no longer print raw key names.
+- Restored asset scripts from the old source repo: `gen-image.mjs`, `build-brand.mjs`,
+  `build-reveal-layers.mjs`, `export-reveal-video.mjs` with `gen:image`, `build:brand`, `build:reveal`
+  and `export:reveal` npm scripts. No new packages were needed.
+- Admin portal: the static placeholder amounts in `admin/application.html` now follow the database
+  plans (12,000 / 30,000 / 100,000 MMK), and `admin/mobile-fixes.css` stops horizontal scrolling on
+  phones (all admin pages measured `scrollWidth = 390` at a 390 px viewport). The black/gold theme
+  stays with the backend team; wide tables are still desktop-first.

@@ -29,7 +29,10 @@
     "directions": "Directions in Google Maps",
     "demo": "Ratings are demo data.",
     "details": "More details",
-    "closedNow": "Closed now"
+    "closedNow": "Closed now",
+    "free": "Free",
+    "local": "Locals",
+    "foreigner": "Visitors"
   },
   "route": {
     "title": "Route here",
