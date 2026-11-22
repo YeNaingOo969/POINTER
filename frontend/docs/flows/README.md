@@ -57,7 +57,7 @@ draw.io → Arrange → Insert → Advanced → Mermaid and paste it.
 |---|---|
 | Status values | `users.status`: active · blocked — `places.status`: pending · approved · rejected · hidden — `owner_upgrades.status`: pending · approved · rejected — `tickets.status`: active · used · expired — `messages.status`: request · accepted — `reports.status`: open · closed |
 | A place is visible when | `places.status = approved` **and** (`owner_id` is NULL **or** the owner's latest approved `owner_upgrades.expires_at > now`) **and** the owner is not blocked |
-| Paying | sent **with** the "Add your business" request (team decision, flowchart 2): `owner_upgrades` row with `months` (1 / 3 / 12), `amount`, `payment_method`, `payment_ref`, `payment_proof` |
+| Paying | sent **with** the "Add your business" request (team decision, flowchart 2): `owner_upgrades` row with `months` (1 / 3 / 6 / 12), `amount`, `payment_method`, `payment_ref`, `payment_proof` |
 | Approving | `owner_upgrades.status = approved`, `admin_id`, `reviewed_at`, `starts_at = now` (renewal: the old `expires_at`), `expires_at = starts_at + months` |
 | One business per user | a user with a `pending` or `approved` place can't send another request |
 | Reviews | one per user per place (unique `user_id, place_id`); owners can't review their own place and can't delete reviews, only reply (`owner_reply`) |

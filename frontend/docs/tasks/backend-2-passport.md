@@ -19,7 +19,7 @@ use a test user: in your local `include/` code, if there is no session, set
 > "approved" in older notes means `active`). The payment row keeps its own status:
 > `owner_upgrades.status` = `pending` / `approved` / `rejected`.
 >
-> Changed on 2026-11-15 (team flowchart): the owner **pays with the request** — 1, 3 or 12 months,
+> Changed on 2026-11-15 (team flowchart): the owner **pays with the request** — 1, 3, 6 or 12 months,
 > paid by KBZPay / Wave Pay / AYA Pay (demo, no real payment), with the transaction ID and a
 > screenshot. Save it as an `owner_upgrades` row next to the pending `places` row (section 5).
 
@@ -91,7 +91,7 @@ Fields: `name` (2–100), `categoryId` (1–7), `description` (10–600), `phone
 `address` (5–200, stored in `places.address` — added 2026-11-16),
 `openingHours` (JSON text, open days only: `[{ "day": "mon", "open": "06:00", "close": "11:00" }]`),
 `lat`, `lng` (numbers inside Yangon: lat 16.65–17.05, lng 95.95–96.35), `photo` (one image),
-and the payment: `months` (1, 3 or 12), `amount` (number), `paymentMethod` (`KBZPay`, `Wave Pay`
+and the payment: `months` (1, 3, 6 or 12), `amount` (number), `paymentMethod` (`KBZPay`, `Wave Pay`
 or `AYA Pay`), `paymentRef` (the transaction ID, 4–40 characters) and `proof` (a screenshot, image).
 
 `BusinessRequest` = `{ "id", "status": "pending" | "active" | "rejected" | "hidden", "name", "categoryId",

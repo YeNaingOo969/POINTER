@@ -1,5 +1,5 @@
 // Sections 7–10: for shop owners (the request form fills itself in, gets approved, tools
-// unlock), owner plans (1 / 3 / 12 months, turning gold rim on the favourite), why it's free
+// unlock), owner plans (1 / 3 / 6 / 12 months, turning gold rim on the favourite), why it's free
 // for users (the flywheel draws itself) and the finale (dusk Shwedagon + photo-filled wordmark).
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';

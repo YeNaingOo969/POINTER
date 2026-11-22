@@ -229,7 +229,7 @@ get 403. **Notification types:** `new_deal` (ref = post id), `message` (ref = me
 **Business request payment** — `submitBusinessRequest` now also sends `months` (1/3/12), `amount`,
 `paymentMethod` (KBZPay / Wave Pay / AYA Pay), `paymentRef` and `proof` (image, same checks as the
 photo). Save them as an `owner_upgrades` row with `status = 'pending'` next to the pending `places` row.
-Prices on the form (15,000 / 40,000 / 150,000 Ks) are placeholders until the team sets real ones.
+Prices on the form match the database `plans` table (12,000 / 30,000 / 55,000 / 100,000 Ks for 1 / 3 / 6 / 12 months). With `USE_MOCK = true` payment is still simulated.
 
 ### Phase 2 — shop owner (`owner.html`, flowcharts 3, 3a–3c)
 

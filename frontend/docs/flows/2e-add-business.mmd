@@ -5,7 +5,7 @@ flowchart TD
   S([From 2]) --> ABQ{"Already have a place or<br/>a pending request?"}
   ABQ -- Yes --> STS["See request and<br/>subscription status"]
   ABQ -- No --> FI[/"Shop info: name, category, description, phone,<br/>open_hours, map pin, storefront photo"/]
-  FI --> PL[/"Plan: 1, 3 or 12 months · KBZPay / Wave Pay / AYA Pay<br/>payment ref + proof"/]
+  FI --> PL[/"Plan: 1, 3, 6 or 12 months · KBZPay / Wave Pay / AYA Pay<br/>payment ref + proof"/]
   PL --> SV[("places: status = pending, owner_id = me<br/>owner_upgrades: status = pending")]
   SV --> WAR["Wait for admin review<br/>(notification) → 4a"]
   STS & WAR --> E([Back to 2])
