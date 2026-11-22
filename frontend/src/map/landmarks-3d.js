@@ -128,6 +128,12 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
 
 /** Add the 3D landmarks under the map labels. */
 export function addLandmarkLayer(map, options) {
-  const firstLabel = map.getStyle().layers.find((l) => l.type === 'symbol')?.id;
-  map.addLayer(createLandmarkLayer(map, options), firstLabel);
+  // 3D landmarks are decoration: if the style never finished loading (slow/blocked tiles,
+  // GPU context reset), skip them so the rest of the map UI can still render.
+  try {
+    const firstLabel = map.getStyle()?.layers?.find((l) => l.type === 'symbol')?.id;
+    map.addLayer(createLandmarkLayer(map, options), firstLabel);
+  } catch (error) {
+    console.warn('Map: 3D landmarks skipped (style not ready)', error);
+  }
 }

@@ -77,12 +77,19 @@ async function start() {
     }
 
     const markers = addPlaceMarkers(map, places, { onSelect: openPlace });
-    // 3D landmarks (Blender models); bubbles of places on them float above their tops.
-    addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots), extras: [cityTiles, busShelters, clouds, birds, walkers] });
     search = createPlaceSearch(document.querySelector('.place-search'), places, { onPick: openPlace });
-    addPoiLabels(map); // names of the city's shops, malls, hotels… (under the bus stops)
-    addBusStops(map); // after the 3D landmarks, so the stops stay visible
-    const routeLayer = addRouteLayer(map); // after the 3D landmarks, so the line draws on top
+    // These add MapLibre layers, which need a loaded style. If tiles never arrive (timeout in
+    // createMap), skip the decoration instead of taking the whole UI down with it.
+    let routeLayer = { show() {}, clear() {} };
+    try {
+      // 3D landmarks (Blender models); bubbles of places on them float above their tops.
+      addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots), extras: [cityTiles, busShelters, clouds, birds, walkers] });
+      addPoiLabels(map); // names of the city's shops, malls, hotels… (under the bus stops)
+      addBusStops(map); // after the 3D landmarks, so the stops stay visible
+      routeLayer = addRouteLayer(map); // after the 3D landmarks, so the line draws on top
+    } catch (error) {
+      console.warn('Map: decorative layers skipped (style not ready)', error);
+    }
     createCategoryFilter(document.querySelector('.cat-filter'), categories, (group) => {
       markers.filter(group);
       if (card.place && group && card.place.category?.group !== group) closePlace();

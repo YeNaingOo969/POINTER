@@ -63,11 +63,22 @@ export function createMap(container) {
     container.dispatchEvent(new CustomEvent('map:contextrestored', { bubbles: true }));
   });
 
-  return new Promise((resolve, reject) => {
-    map.once('load', () => resolve(map));
+  // The UI must never depend on tiles finishing: slow/blocked tile servers, a GPU context
+  // reset or a style that never fires 'load' would otherwise freeze the whole page in
+  // Promise.all (see explore.js). Resolve on 'load', but fall back to a short timeout.
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (reason) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      if (reason) console.warn('Map: continuing without a full tile load', reason);
+      resolve(map);
+    };
+    const timer = setTimeout(() => finish('load timed out'), 4000);
+    map.once('load', () => finish());
     map.once('error', (e) => {
-      // A tile error after load is not fatal; only reject if the style never loaded.
-      if (!map.loaded()) reject(e.error ?? e);
+      if (!map.loaded()) finish(e.error ?? e);
     });
   });
 }
