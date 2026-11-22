@@ -311,3 +311,21 @@ run the PHP server from the repo root (`php -S localhost:8000`) to exercise the 
   plans (12,000 / 30,000 / 100,000 MMK), and `admin/mobile-fixes.css` stops horizontal scrolling on
   phones (all admin pages measured `scrollWidth = 390` at a 390 px viewport). The black/gold theme
   stays with the backend team; wide tables are still desktop-first.
+
+### Local backend run (2026-11-22)
+
+- Verified with `php -S localhost:8000` from the repo root and Vite preview on port 4173:
+  `/api/session.php` 200, admin login (`admin@pointer.app` / `pointer-demo`) 200,
+  `/api/admin/dashboard.php` 200 with real DB values (users 7, shops 0, total shops 3, places 19),
+  and users / places / categories / reports / audit-log all 200. The dashboard count-up animation
+  reaches the API values; the earlier static-looking numbers were mid-animation, not placeholders.
+- The machine's local DB was a test database with no admin. Only the demo admin row from
+  `database/seed_demo.sql` and the `plans` table from `database/pointer.sql` (1/3/6/12 months =
+  12,000 / 30,000 / 55,000 / 100,000 MMK) were added locally. No other rows were changed, and no
+  backend file was edited.
+
+**Open backend schema gap:** `api/admin/applications.php:48` selects `u.plan_id` from
+`owner_upgrades`, but the local `owner_upgrades` table has no `plan_id` column (it stores `months`
+and `amount` directly), so `/api/admin/applications.php` returns 500. Please align the local schema
+with `database/pointer.sql` (add `plan_id` and backfill plan ids by months). The frontend left this
+to the backend team and did not patch the column.
