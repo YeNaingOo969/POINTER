@@ -152,6 +152,28 @@
   }
 }
 
+/* Collision pass (place-markers.js): a lower-priority name that would overlap a kept bubble
+   collapses to its dot. Hover or keyboard focus opens it again above the rest. */
+.place-pin.is-collided .place-pin__text { display: none; }
+
+.place-pin.is-collided .place-pin__bubble { padding: 7px; }
+
+.place-pin.is-collided:hover,
+.place-pin.is-collided:focus-visible { z-index: 4; }
+
+.place-pin.is-collided:hover .place-pin__text,
+.place-pin.is-collided:focus-visible .place-pin__text { display: flex; }
+
+.place-pin.is-collided:hover .place-pin__bubble,
+.place-pin.is-collided:focus-visible .place-pin__bubble { padding: 6px 12px 6px 8px; }
+
+/* Even the dot is under a kept bubble: leave no invisible, unclickable target behind.
+   visibility (not opacity) also takes it out of the tab order and the a11y tree. */
+.place-pin.is-collided-dot {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* ---- MapLibre controls in our style ---- */
 
 .maplibregl-ctrl-group {

@@ -298,6 +298,23 @@ with a `console.warn` if the style isn't ready, and `routeLayer` falls back to a
 usable without tiles. Verified with `USE_MOCK = true`: 27 pins, 8 category chips, "Food & drink"
 filters to 6 pins, no error status.
 
+### Pin bubbles never overlap (2026-11-24)
+
+HTML markers don't get MapLibre's label collision, so neighbouring bubbles used to cover each other
+(e.g. `Sule Pagoda` / `Yangon City Hall`, `Kandawgyi` / `Kandaw Lake Guesthouse`). After every camera
+move (`moveend`, `resize`, filter, selection) [src/map/place-markers.js](src/map/place-markers.js) runs a
+declutter pass: full bubbles are measured in priority order (selected → featured → open now → rest) and a
+bubble that would intersect a kept one collapses to its dot (`is-collided`). If even the dot is still
+covered, the pin is hidden completely (`is-collided-dot`, `visibility: hidden` — also out of the tab order)
+instead of leaving an invisible, unclickable target. Hover or keyboard focus still opens a collapsed
+bubble above its neighbours ([map-ui.css](src/styles/components/map-ui.css)).
+
+Measured with `USE_MOCK = true` at 1600×732: initial view 0 overlapping bubbles; after opening Sule
+(zoom 15.5) 18 named bubbles, 9 collapsed, **0 overlaps**; two zoom steps in, 25 names with only 2
+collapsed. Hover on a 24×24 dot expands it to 167×48, focus-visible works, clicking a dot opens the
+right place card, console errors 0. At 390 px the existing mobile rule already keeps names on the
+selected pin only, so no declutter is needed there and `scrollWidth` stays 390.
+
 The admin portal (`admin/`) still fetches `/api/session.php` and `/api/admin/dashboard.php` directly
 from `admin-auth.js`; those return 502 under Vite alone (PHP backend not running). This is expected —
 run the PHP server from the repo root (`php -S localhost:8000`) to exercise the real admin dashboard.

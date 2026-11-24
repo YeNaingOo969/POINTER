@@ -67,6 +67,8 @@ Newest decisions win over the kickoff brief. Dates are Asia/Yangon.
 | 2026-11-22 | Admin portal scope in M7 | Only the placeholder prices and mobile overflow were changed: `admin/application.html` now shows 12,000 / 30,000 / 100,000 MMK and a shared `admin/mobile-fixes.css` clamps the page to the viewport on phones. The backend team keeps ownership of the black/gold CDN theme; no full redesign was attempted. |
 | 2026-11-22 | Asset scripts restored | `gen-image.mjs`, `build-brand.mjs`, `build-reveal-layers.mjs` and `export-reveal-video.mjs` were copied byte-for-byte from the old YangonGo source repo and wired into `package.json`. Dependencies were already present. |
 
+| 2026-11-24 | Map bubbles: declutter instead of overlap | MapLibre HTML markers have no label collision, so nearby place bubbles covered each other. A pass in `place-markers.js` keeps the higher-priority bubble (selected → featured → open → rest) and collapses the rest to their dot, hiding a dot that is still covered. Hover / focus reopens a collapsed bubble. Chosen over shrinking every label (unreadable) and over a tooltip-on-hover map (loses the "read the map at a glance" goal). Names stay on the selected pin only under 640 px, as before. |
+
 ## Still open
 
 - Rename leftovers: the repo folder and older docs still say YangonGo (the name is now POINTER).
