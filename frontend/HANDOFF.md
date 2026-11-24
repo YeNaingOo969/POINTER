@@ -315,6 +315,21 @@ collapsed. Hover on a 24×24 dot expands it to 167×48, focus-visible works, cli
 right place card, console errors 0. At 390 px the existing mobile rule already keeps names on the
 selected pin only, so no declutter is needed there and `scrollWidth` stays 390.
 
+### People and dogs really walk (2026-11-24)
+
+The park figures in [src/map/walkers.js](src/map/walkers.js) used to hop up and down as one rigid
+box. Everyone now has a stride: torso, head, two legs and two arms are separate `InstancedMesh`es and
+each instance swings around its own hip or shoulder (the dog's two leg pairs too). A figure's two legs
+are half a step apart and each arm swings against its own leg, so the walk reads correctly. Standing
+figures drop the stride to 0.
+
+Still six draw calls in total (torso, head, legs, arms, dog body, dog legs) for up to 240 people and
+60 dogs; one `tick()` with 186 people + 43 dogs measured **0.31 ms average / 0.6 ms p95**, far under
+the 30 fps repaint cap. Verified at People's Park (zoom 18.5): 186 people, 43 dogs, legs ±0.5 rad
+out of phase, arms ±0.34 rad against their leg, console errors 0, both dev and `npm run build` preview.
+No downloaded assets — a third-party rigged model would need one draw call per skeleton clone, which
+the 610M can't afford at this count.
+
 The admin portal (`admin/`) still fetches `/api/session.php` and `/api/admin/dashboard.php` directly
 from `admin-auth.js`; those return 502 under Vite alone (PHP backend not running). This is expected —
 run the PHP server from the repo root (`php -S localhost:8000`) to exercise the real admin dashboard.

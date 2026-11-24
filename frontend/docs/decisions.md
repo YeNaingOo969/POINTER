@@ -69,6 +69,8 @@ Newest decisions win over the kickoff brief. Dates are Asia/Yangon.
 
 | 2026-11-24 | Map bubbles: declutter instead of overlap | MapLibre HTML markers have no label collision, so nearby place bubbles covered each other. A pass in `place-markers.js` keeps the higher-priority bubble (selected → featured → open → rest) and collapses the rest to their dot, hiding a dot that is still covered. Hover / focus reopens a collapsed bubble. Chosen over shrinking every label (unreadable) and over a tooltip-on-hover map (loses the "read the map at a glance" goal). Names stay on the selected pin only under 640 px, as before. |
 
+| 2026-11-24 | Park figures walk instead of hopping | The user asked for every walker to have a walking motion, not a few rigged ones. Skinned models can't be instanced (one draw call per clone, impossible for 240 figures on the 610M), so the figure is split into torso, head, two legs and two arms as separate `InstancedMesh`es and each instance swings around its hip / shoulder in the instance matrix; the dog's two leg pairs move the same way. Six draw calls in all, 0.31 ms per tick for 186 people + 43 dogs. Third-party rigged assets stay an option only for a handful of near-camera figures, not for the whole crowd. |
+
 ## Still open
 
 - Rename leftovers: the repo folder and older docs still say YangonGo (the name is now POINTER).
