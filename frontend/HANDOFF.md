@@ -265,6 +265,9 @@ and the map draws the line with distance, time and steps. `getRoute(from, to, mo
 
 - With `VITE_ORS_API_KEY` in `.env` (optional free key from https://account.heigit.org → Tokens)
   it calls OpenRouteService at `https://api.heigit.org/openrouteservice/v2/directions` first.
+  **A `VITE_` value is inlined into the public JS bundle, so the key is public**; the local key was
+  therefore commented out on 2026-11-24 and the keyless OSRM path is now the default. Only put a key
+  here for a private demo, or route ORS through the PHP proxy below.
 - Without a key — or if ORS fails — it calls the keyless FOSSGIS OSRM demo at
   `https://routing.openstreetmap.de/routed-{foot|car}/route/v1/driving` (CORS enabled, no secret).
   So every user gets real road routes and turn-by-turn steps after a fresh clone; no `.env` needed.
