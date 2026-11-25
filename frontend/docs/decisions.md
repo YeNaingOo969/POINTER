@@ -71,6 +71,9 @@ Newest decisions win over the kickoff brief. Dates are Asia/Yangon.
 
 | 2026-11-24 | Park figures walk instead of hopping | The user asked for every walker to have a walking motion, not a few rigged ones. Skinned models can't be instanced (one draw call per clone, impossible for 240 figures on the 610M), so the figure is split into torso, head, two legs and two arms as separate `InstancedMesh`es and each instance swings around its hip / shoulder in the instance matrix; the dog's two leg pairs move the same way. Six draw calls in all, 0.31 ms per tick for 186 people + 43 dogs. Third-party rigged assets stay an option only for a handful of near-camera figures, not for the whole crowd. |
 
+| 2026-11-25 | Latin-only map labels | Burmese / Zawgyi text in OSM `name` (and sometimes `name:en`) renders as broken glyph clusters in MapLibre. A shared `isLatinText()` filter now guards water, road, suburb, city and POI labels, and POI labels prefer `name:latin`. Untranslated features stay unlabelled rather than showing gibberish; Burmese remains in HTML popups and UI where the browser can shape it. Chosen over adding a shaping library (heavy, and the map font stack would still be wrong). |
+| 2026-11-25 | Pastel city, grounded buildings, clear pins | Lighting was softened (warm hemisphere + gentle sun + cool fill) so the 3D boxes read as pastel, and a small shader-based base darkening replaces shadows (no textures or extra draw calls on the 610M). Desktop camera padding at the bottom went 40 → 104 px so the selected pin never hides behind the app tab bar. |
+
 ## Still open
 
 - Rename leftovers: the repo folder and older docs still say YangonGo (the name is now POINTER).

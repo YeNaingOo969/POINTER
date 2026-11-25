@@ -80,10 +80,15 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
     onAdd(_map, gl) {
       camera = new THREE.Camera();
       scene = new THREE.Scene();
-      scene.add(new THREE.HemisphereLight(0xfff4e2, 0xb9c7a0, 2.0));
-      const sun = new THREE.DirectionalLight(0xffe2b8, 2.2); // golden-hour sun from the south-west
-      sun.position.set(-0.6, 1, 0.8);
-      scene.add(sun, group);
+      // Light that keeps the city reading as light pastel boxes: a strong warm sky fill so shaded
+      // faces never go charcoal, and a softer sun so the contrast stays gentle.
+      scene.add(new THREE.HemisphereLight(0xfff8ec, 0xe8dfcb, 1.55));
+      const sun = new THREE.DirectionalLight(0xffeacb, 1.75); // golden-hour sun low in the south-west
+      sun.position.set(-0.85, 0.62, 0.75);
+      // A cool fill from the opposite side so unlit faces keep their shape instead of going flat.
+      const fill = new THREE.DirectionalLight(0xd6e4ff, 0.42);
+      fill.position.set(0.7, 0.6, -0.9);
+      scene.add(sun, fill, group);
       for (const build of extras) {
         const obj = build({ map, toLocal });
         if (!obj) continue;

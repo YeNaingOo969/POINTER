@@ -19,13 +19,28 @@ export function cityTiles({ map, toLocal }) {
   let tiles = [];
 
   const texLoader = new THREE.TextureLoader();
+  // Buildings sit on flat, shadowless ground, so a box looks pasted onto the map. Darkening each
+  // surface a little near street level (in the shader, no extra draw call or texture) gives every
+  // building a soft base and makes the city read as solid.
+  const grounded = (material) => {
+    material.onBeforeCompile = (shader) => {
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', '#include <common>\nvarying float vGroundY;')
+        .replace('#include <begin_vertex>', '#include <begin_vertex>\nvGroundY = (modelMatrix * vec4(transformed, 1.0)).y;');
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', '#include <common>\nvarying float vGroundY;')
+        .replace('#include <map_fragment>', '#include <map_fragment>\ndiffuseColor.rgb *= mix(0.8, 1.0, smoothstep(0.0, 12.0, vGroundY));');
+    };
+    material.customProgramCacheKey = () => 'city-grounded';
+    return material;
+  };
   const materials = Object.fromEntries(TEXTURES.map((name) => {
     const map_ = texLoader.load(`/models/city/tex/${name}.jpg`, () => map.triggerRepaint());
     map_.colorSpace = THREE.SRGBColorSpace;
     map_.wrapS = THREE.RepeatWrapping;
     map_.wrapT = THREE.RepeatWrapping;
     map_.anisotropy = 4;
-    return [name, new THREE.MeshStandardMaterial({ map: map_, vertexColors: true, roughness: name === 'glass' ? 0.35 : 0.92 })];
+    return [name, grounded(new THREE.MeshStandardMaterial({ map: map_, vertexColors: true, roughness: name === 'glass' ? 0.35 : 0.92 }))];
   }));
   materials.car = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.45 }); // parked cars: colour only
 

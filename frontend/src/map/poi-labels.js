@@ -4,6 +4,7 @@
 // (map labels can't shape Burmese); a click shows both names. Important ones (low `rank`) win when
 // labels collide. Our own place bubbles are HTML markers and always stay on top.
 import { maplibregl } from './map.js';
+import { isLatinText } from './style.js';
 import { t } from '../i18n/i18n.js';
 
 const MIN_ZOOM = 15;
@@ -14,9 +15,12 @@ const MIN_ZOOM = 15;
 // For the same reason no layer may start above zoom 15.)
 const MAJOR_RANK = 12;
 const isMajor = ['<=', ['coalesce', ['get', 'rank'], 99], MAJOR_RANK];
-const englishName = ['coalesce', ['get', 'name:en'], ['get', 'name_en'], ['get', 'name:latin'], ''];
+// `name_en` (OpenMapTiles' generated field) is often a copy of the local name, so it can carry
+// Zawgyi or Unicode Burmese, which the map's text renderer can't shape. The latin transliteration is
+// usually a readable English name, so it comes first; `isLatinText` drops whatever still isn't latin.
+const englishName = ['coalesce', ['get', 'name:latin'], ['get', 'name:en'], ''];
 // Bus stops have their own layer (bus-stops.js); unnamed points are skipped.
-const filter = ['all', ['!=', ['get', 'class'], 'bus'], ['!=', englishName, '']];
+const filter = ['all', ['!=', ['get', 'class'], 'bus'], ['!=', englishName, ''], isLatinText(englishName)];
 const colour = ['match', ['get', 'class'],
   ['restaurant', 'fast_food', 'cafe', 'bar', 'beer', 'ice_cream', 'bakery'], '#d9773a',
   ['shop', 'grocery', 'clothing_store', 'shoe', 'jewelry', 'mobile_phone', 'hardware', 'furniture', 'department_store', 'alcohol_shop'], '#c4558a',
@@ -66,7 +70,7 @@ export function addPoiLabels(map) {
   map.on('click', DOT_LAYERS, (e) => {
     const f = e.features[0];
     const my = f.properties.name || '';
-    const en = f.properties['name:en'] || f.properties.name_en || f.properties['name:latin'] || '';
+    const en = f.properties['name:en'] || f.properties['name:latin'] || '';
     const el = document.createElement('div');
     el.innerHTML = '<p class="bus-popup__kind"></p><p class="bus-popup__name"></p><p class="bus-popup__alt"></p>';
     el.querySelector('.bus-popup__kind').textContent = t('map.poi');

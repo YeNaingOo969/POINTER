@@ -47,9 +47,18 @@ const buildingTint = ['match',
 // Line width that grows with zoom (exponential, like real road widths on screen).
 const width = (pairs) => ['interpolate', ['exponential', 1.6], ['zoom'], ...pairs.flat()];
 
-// English first; the OSM name as a fallback. (Burmese map labels are left to our own HTML
-// markers: the WebGL text renderer can't shape Myanmar script correctly.)
-const NAME = ['coalesce', ['get', 'name:en'], ['get', 'name_en'], ['get', 'name:latin'], ['get', 'name']];
+// Latin names only. The WebGL text renderer can't shape Myanmar script (and Zawgyi-encoded names
+// come out as gibberish), so falling back to `name` painted broken clusters across the map — e.g.
+// "ဗစ်ကုန္တိုက္ၾ" over a shop. A road or suburb without an English name simply stays unlabelled;
+// the Burmese name is shown by our own HTML markers, which the browser shapes correctly.
+const NAME = ['coalesce', ['get', 'name:en'], ['get', 'name:latin'], ''];
+
+// …but `name:en` is sometimes filled with Zawgyi or Unicode Burmese by mistake (40 of ~2,000 POIs in
+// downtown Yangon), so a label also has to pass this test. Every Myanmar syllable begins with one of
+// these letters or digits, which is enough to keep a name the renderer would mangle off the map.
+const MYANMAR = 'ကခဂဃငစဆဇဈဉညဋဌဍဎဏတထဒဓနပဖဗဘမယရလဝသဟဠအဿ၀၁၂၃၄၅၆၇၈၉';
+/** Filter fragment: true when `text` is safe to draw as map text. */
+export const isLatinText = (text) => ['!', ['any', ...[...MYANMAR].map((ch) => ['in', ch, text])]];
 
 const isLine = ['match', ['geometry-type'], ['LineString', 'MultiLineString'], true, false];
 const notBrunnel = ['match', ['get', 'brunnel'], ['tunnel'], false, true];
@@ -228,13 +237,16 @@ export function buildMapStyle() {
       // ---- Labels (English; quiet, so our place bubbles stay the stars) ----
       {
         id: 'water-label', type: 'symbol', source: SOURCE, 'source-layer': 'water_name',
+        filter: ['all', isLatinText(NAME)],
         layout: { 'text-field': NAME, 'text-font': ['Noto Sans Italic'], 'text-size': 13, 'text-max-width': 8 },
         paint: { 'text-color': C.waterLabel, 'text-halo-color': C.labelHalo, 'text-halo-width': 1.4 },
       },
       {
         id: 'road-label', type: 'symbol', source: SOURCE, 'source-layer': 'transportation_name',
         minzoom: 14,
-        filter: ['match', ['get', 'class'], ['primary', 'secondary', 'tertiary', 'trunk'], true, false],
+        filter: ['all',
+          ['match', ['get', 'class'], ['primary', 'secondary', 'tertiary', 'trunk'], true, false],
+          isLatinText(NAME)],
         layout: {
           'symbol-placement': 'line', 'text-field': NAME, 'text-font': ['Noto Sans Regular'],
           'text-size': ['interpolate', ['linear'], ['zoom'], 14, 10.5, 18, 14], 'text-letter-spacing': 0.02,
@@ -244,7 +256,7 @@ export function buildMapStyle() {
       // Townships (suburbs) only — Yangon's numbered wards ("No (10) Ward") everywhere is noise.
       {
         id: 'area-label', type: 'symbol', source: SOURCE, 'source-layer': 'place',
-        filter: ['==', ['get', 'class'], 'suburb'],
+        filter: ['all', ['==', ['get', 'class'], 'suburb'], isLatinText(NAME)],
         minzoom: 12,
         maxzoom: 16,
         layout: {
@@ -256,7 +268,7 @@ export function buildMapStyle() {
       },
       {
         id: 'city-label', type: 'symbol', source: SOURCE, 'source-layer': 'place',
-        filter: ['match', ['get', 'class'], ['city', 'town'], true, false],
+        filter: ['all', ['match', ['get', 'class'], ['city', 'town'], true, false], isLatinText(NAME)],
         maxzoom: 13,
         layout: { 'text-field': NAME, 'text-font': ['Noto Sans Bold'], 'text-size': 16 },
         paint: { 'text-color': C.label, 'text-halo-color': C.labelHalo, 'text-halo-width': 2 },

@@ -333,6 +333,27 @@ out of phase, arms ±0.34 rad against their leg, console errors 0, both dev and 
 No downloaded assets — a third-party rigged model would need one draw call per skeleton clone, which
 the 610M can't afford at this count.
 
+### Cleaner labels, grounded buildings, clear pins (2026-11-25)
+
+No backend work in this pass. Map text is **Latin-only**: [src/map/style.js](src/map/style.js) exposes
+`isLatinText()` and every WebGL label (water, road, suburb, city, POI) filters out Myanmar / Zawgyi
+characters, because MapLibre's text renderer can't shape them and broken clusters used to appear over
+shops. [src/map/poi-labels.js](src/map/poi-labels.js) prefers `name:latin` over the sometimes-mistranslated
+`name_en`; Burmese names still show in our HTML pin popups, where the browser shapes them correctly.
+Features without a Latin name simply stay unlabelled.
+
+The 3D city now reads as pastel boxes instead of charcoal ones: softer hemisphere/sun light plus a cool
+fill in [src/map/landmarks-3d.js](src/map/landmarks-3d.js), and a shader in
+[src/map/city-tiles.js](src/map/city-tiles.js) darkens each building near street level (0.8 → 1.0 over
+0–12 m). No new textures or draw calls. Desktop `cardPadding()` in [src/pages/explore.js](src/pages/explore.js)
+now reserves 104 px at the bottom so a selected pin clears the app tab bar.
+
+Verified with `USE_MOCK = true`: dev at Sule zoom 17.2 showed 2 road labels, 11 POI + 27 minor POI
+labels and 5 bus-stop labels with 0 Myanmar glyphs in rendered text; area labels still render at zoom 13
+(11 suburbs), city labels at zoom 11 (Yangon, Dala, Thanlyin, Mayangon), console errors 0. With a place
+card open at 1179×715 the selected pin ended at y=324, well above the tab bar at y=649. `npm run build`
+succeeded and the built preview loaded with 27 pins, no stray Burmese map text and console errors 0.
+
 The admin portal (`admin/`) still fetches `/api/session.php` and `/api/admin/dashboard.php` directly
 from `admin-auth.js`; those return 502 under Vite alone (PHP backend not running). This is expected —
 run the PHP server from the repo root (`php -S localhost:8000`) to exercise the real admin dashboard.
