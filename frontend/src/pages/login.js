@@ -88,6 +88,7 @@ let resendTimer = 0;
 let resendSeconds = 0;
 let googleInitialized = false;
 let activeGoogleClientId = GOOGLE_CLIENT_ID;
+let sessionDbError = '';
 
 // ---- Tabs ----
 
@@ -120,7 +121,7 @@ function showTab(id) {
   }
   $('#register-otp-form').hidden = true;
   $('#auth-google-section').hidden = false;
-  $('#google-setup-notice').hidden = true;
+  if (!sessionDbError) $('#google-setup-notice').hidden = true;
   $('.auth__tabs').dataset.active = isRegister ? 'register' : 'login';
   setGreeting(isRegister ? 'Register' : 'Login');
 }
@@ -617,6 +618,11 @@ googleFallbackBtn.addEventListener('click', async () => {
 async function renderSession() {
   const session = await getSession();
   const user = session?.user;
+  sessionDbError = session?.dbError || '';
+  if (sessionDbError) {
+    googleNotice.hidden = false;
+    googleNotice.textContent = sessionDbError;
+  }
   $('.auth__signed').hidden = !user;
   $('.auth__forms').hidden = Boolean(user);
   if (user) {

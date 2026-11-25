@@ -17,6 +17,7 @@ if ($err = validate_email_format($email, true)) {
 }
 
 $pdo = db();
+ensure_auth_schema($pdo);
 
 // Remove stale expired rows opportunistically.
 $pdo->exec('DELETE FROM email_verifications WHERE expires_at < DATE_SUB(NOW(), INTERVAL 1 DAY)');

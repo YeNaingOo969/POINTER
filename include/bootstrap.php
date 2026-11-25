@@ -24,10 +24,24 @@ function fail(int $status, string $message): never
 ini_set('display_errors', '0');
 set_exception_handler(function (Throwable $e): void {
     error_log((string) $e);
+    if ($e instanceof PDOException && is_local_request()) {
+        $file = __DIR__ . '/../config/db.php';
+        $c = is_file($file) ? require $file : ['host' => '127.0.0.1', 'port' => 3307, 'name' => 'pointer_db'];
+        fail(503, "Database unavailable ({$c['host']}:{$c['port']} / {$c['name']}). Start MySQL / DBngin and check config/db.php.");
+    }
     fail(500, 'Server error');
 });
 
 // ---------- Database (PDO, prepared statements only) ----------
+
+function is_local_request(): bool
+{
+    $addr = $_SERVER['REMOTE_ADDR'] ?? '';
+    $host = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+    $hostName = explode(':', $host)[0];
+    return in_array($addr, ['127.0.0.1', '::1', ''], true)
+        || in_array($hostName, ['localhost', '127.0.0.1', '::1'], true);
+}
 
 function db(): PDO
 {
@@ -38,6 +52,9 @@ function db(): PDO
     $file = __DIR__ . '/../config/db.php';
     if (!is_file($file)) {
         error_log('config/db.php is missing (copy config/db.example.php)');
+        if (is_local_request()) {
+            fail(503, 'Database config missing: copy config/db.example.php to config/db.php');
+        }
         fail(500, 'Server error');
     }
     $c = require $file;
@@ -154,8 +171,15 @@ function current_user(): ?array
     if (empty($_SESSION['user_id'])) {
         return null;
     }
-    $st = db()->prepare('SELECT id, name, email, auth_provider, avatar_url, role, status FROM users WHERE id = ?');
-    $st->execute([(int) $_SESSION['user_id']]);
+    $pdo = db();
+    try {
+        $st = $pdo->prepare('SELECT id, name, email, auth_provider, avatar_url, role, status FROM users WHERE id = ?');
+        $st->execute([(int) $_SESSION['user_id']]);
+    } catch (PDOException $e) {
+        // Fallback if a teammate has not run sql/005_auth_otp_google.sql yet.
+        $st = $pdo->prepare('SELECT id, name, email, role, status FROM users WHERE id = ?');
+        $st->execute([(int) $_SESSION['user_id']]);
+    }
     $row = $st->fetch();
     if (!$row || is_blocked_status($row['status'])) {
         unset($_SESSION['user_id']);

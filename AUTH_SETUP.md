@@ -53,9 +53,9 @@ To send **real verification emails to users' Gmail inboxes**:
 
 Once `username` and `password` are set, `dev_otp_preview` disables automatically and real emails are sent via `smtp.gmail.com:587`.
 
-### Optional Fallback: If Your ISP/Network Blocks SMTP Ports `587` / `465`
+### Recommended for No-VPN / ISP Port Blocks: HTTPS Email Relay (Port `443`)
 
-If you see `SMTP connect failed (61): Connection refused` on your network, you can send real Gmail OTP emails over **HTTPS (port 443)** using a free **Google Apps Script Web App** under your own Gmail account:
+On many networks, ISPs block outbound raw SMTP ports `587` and `465` unless a VPN is on. To send real Gmail OTP emails **without a VPN**, use a free **Google Apps Script Web App** under your own Gmail account (runs over HTTPS port `443`):
 
 1. Open [script.google.com](https://script.google.com) while signed in to your sender Gmail (`your.sender@gmail.com`) and click **New project**.
 2. Paste this code:
@@ -92,12 +92,12 @@ function doPost(e) {
 ## 4. Enable Real "Sign in with Google" (`config/auth.php`)
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/) and select or create a project.
-2. Open **APIs & Services → OAuth consent screen** (choose **External**, add app name `POINTER`, and add your test Gmail accounts under **Test users** while in Testing status).
-3. Open **APIs & Services → Credentials → Create Credentials → OAuth client ID**.
-4. Choose **Application type: Web application**.
-5. Under **Authorized JavaScript origins**, add:
-   - `http://localhost:5173`
+2. Open **APIs & Services → OAuth consent screen → Audience**:
+   - Choose **External**, and click **Publish App** (change status from **Testing** to **In production**) so **any friend or user's Gmail account** can sign in with Google (otherwise Google blocks every email not listed in Test users).
+3. Open **APIs & Services → Clients** (or **Credentials → OAuth client ID → Web application**).
+4. Under **Authorized JavaScript origins**, add **all** of these and click **Save**:
    - `http://localhost`
+   - `http://localhost:5173`
    - `http://localhost:8000`
    - `http://127.0.0.1:5173`
 6. Copy the generated **Client ID** (ends with `.apps.googleusercontent.com`) into `config/auth.php`:

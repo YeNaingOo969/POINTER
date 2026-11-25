@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../include/bootstrap.php';
+require __DIR__ . '/../include/auth_helpers.php';
 
 require_method('POST');
 require_csrf();
@@ -8,7 +9,10 @@ $in       = body();
 $email    = strtolower(trim((string) ($in['email'] ?? '')));
 $password = (string) ($in['password'] ?? '');
 
-$st = db()->prepare('SELECT id, name, email, auth_provider, avatar_url, role, status, password_hash FROM users WHERE email = ?');
+$pdo = db();
+ensure_auth_schema($pdo);
+
+$st = $pdo->prepare('SELECT id, name, email, auth_provider, avatar_url, role, status, password_hash FROM users WHERE email = ?');
 $st->execute([$email]);
 $row = $st->fetch();
 

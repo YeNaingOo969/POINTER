@@ -3,8 +3,9 @@
 // config/auth.php is git-ignored — never commit Gmail App Passwords or OAuth secrets.
 return [
     // Google Identity Services OAuth 2.0 Client ID (Web application).
-    // Create in Google Cloud Console -> Credentials -> OAuth 2.0 Client IDs.
-    'google_client_id' => getenv('POINTER_GOOGLE_CLIENT_ID') ?: '',
+    // OAuth Client IDs are public identifiers (NOT secrets), so teammates pulling from GitHub
+    // can test Continue with Google out of the box on http://localhost:5173.
+    'google_client_id' => getenv('POINTER_GOOGLE_CLIENT_ID') ?: '794734944891-c1389udvka5n988khj1u9vsmqqt2est5.apps.googleusercontent.com',
 
     // SMTP settings for sending real 6-digit OTP verification emails (e.g. Gmail SMTP).
     // For Gmail: enable 2-Step Verification and generate a 16-character App Password.

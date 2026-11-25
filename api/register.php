@@ -17,6 +17,7 @@ if (!preg_match('/^\d{6}$/', $code)) {
 }
 
 $pdo = db();
+ensure_auth_schema($pdo);
 $st = $pdo->prepare(
     'SELECT id, email, name, password_hash, otp_hash, attempts,
             TIMESTAMPDIFF(SECOND, NOW(), expires_at) AS seconds_left

@@ -21,6 +21,7 @@ try {
 }
 
 $pdo = db();
+ensure_auth_schema($pdo);
 $st = $pdo->prepare(
     'SELECT id, name, email, password_hash, google_id, auth_provider, avatar_url, role, status
      FROM users

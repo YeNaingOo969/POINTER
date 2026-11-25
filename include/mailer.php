@@ -286,7 +286,7 @@ function apps_script_send_otp_email(string $webAppUrl, string $secret, string $t
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     $ch = curl_init($webAppUrl);
-    curl_setopt_array($ch, [
+    $curlOpts = [
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => $payload,
         CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
@@ -297,7 +297,14 @@ function apps_script_send_otp_email(string $webAppUrl, string $secret, string $t
         CURLOPT_CONNECTTIMEOUT => 6,
         CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2,
-    ]);
+    ];
+    if (function_exists('find_ca_bundle_path')) {
+        $ca = find_ca_bundle_path();
+        if ($ca !== null) {
+            $curlOpts[CURLOPT_CAINFO] = $ca;
+        }
+    }
+    curl_setopt_array($ch, $curlOpts);
     $raw = curl_exec($ch);
     $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr = curl_error($ch);
