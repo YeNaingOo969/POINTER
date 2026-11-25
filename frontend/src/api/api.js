@@ -2,7 +2,7 @@
 // Each function returns mock data while USE_MOCK is true; its comment names the PHP endpoint
 // the backend should provide (see HANDOFF.md for the full contract).
 import { USE_MOCK } from './config.js';
-import { mockResponse, mockError, request, setCsrfToken } from './client.js';
+import { mockResponse, mockError, request, setCsrfToken, hasCsrfToken } from './client.js';
 import { getRoute as routedRoute } from './routing.js';
 import { readDemo, writeDemo } from './demo-store.js';
 import { places as placeRows } from '../data/places.js';
@@ -107,7 +107,26 @@ export async function getSession() {
     setCsrfToken(session.csrfToken);
     return session;
   } catch (err) {
-    return mockResponse(readDemo('session', null) ?? { user: null });
+    return { user: null, apiUnavailable: true };
+  }
+}
+
+async function postAuth(path, body) {
+  if (!hasCsrfToken()) {
+    const session = await request('session.php').catch(() => null);
+    if (session?.csrfToken) setCsrfToken(session.csrfToken);
+  }
+  try {
+    return await request(path, { method: 'POST', body });
+  } catch (err) {
+    if (err.status === 403 && /csrf|security token/i.test(err.message || '')) {
+      const session = await request('session.php').catch(() => null);
+      if (session?.csrfToken) {
+        setCsrfToken(session.csrfToken);
+        return await request(path, { method: 'POST', body });
+      }
+    }
+    throw err;
   }
 }
 
@@ -118,10 +137,7 @@ export async function getSession() {
  */
 export async function sendRegisterOtp({ name = '', email, password = '', resend = false }) {
   if (!USE_MOCK) {
-    return await request('register-otp.php', {
-      method: 'POST',
-      body: { name, email, password, resend },
-    });
+    return await postAuth('register-otp.php', { name, email, password, resend });
   }
   const normalized = email.toLowerCase();
   const users = await mockUsers();
@@ -148,7 +164,7 @@ export async function sendRegisterOtp({ name = '', email, password = '', resend 
  */
 export async function verifyRegisterOtp({ email, code }) {
   if (!USE_MOCK) {
-    return await request('register.php', { method: 'POST', body: { email, code } });
+    return await postAuth('register.php', { email, code });
   }
   const normalized = email.toLowerCase();
   const pending = readDemo('pendingOtp', null);
@@ -178,7 +194,7 @@ export async function register({ name, email, password, code }) {
  */
 export async function googleLogin({ credential }) {
   if (!USE_MOCK) {
-    return await request('google-auth.php', { method: 'POST', body: { credential } });
+    return await postAuth('google-auth.php', { credential });
   }
   const user = { id: 999, name: 'Google Demo User', email: 'google.demo@gmail.com', role: 'user' };
   return mockResponse(writeDemo('session', { user: publicUser(user) }));
@@ -191,11 +207,7 @@ export async function googleLogin({ credential }) {
  */
 export async function login({ email, password }) {
   if (!USE_MOCK) {
-    try {
-      return await request('login.php', { method: 'POST', body: { email, password } });
-    } catch (err) {
-      if (err.status && err.status < 500) throw err;
-    }
+    return await postAuth('login.php', { email, password });
   }
   const user = (await mockUsers()).find((u) => u.email.toLowerCase() === email.toLowerCase());
   if (!user || user.passwordHash !== await mockHash(password)) return mockError('Wrong email or password', 401);

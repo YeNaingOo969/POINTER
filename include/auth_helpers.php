@@ -2,19 +2,44 @@
 // Shared validation regexes, auth config loader, and Google ID token verification.
 declare(strict_types=1);
 
-/** Load auth configuration from config/auth.php (falling back to config/auth.example.php). */
+/** Load auth configuration, merging optional config/auth.php non-empty overrides over config/auth.example.php defaults. */
 function auth_config(): array
 {
     static $cfg = null;
     if ($cfg !== null) {
         return $cfg;
     }
-    $file = __DIR__ . '/../config/auth.php';
-    if (!is_file($file)) {
-        $file = __DIR__ . '/../config/auth.example.php';
+    $exampleFile = __DIR__ . '/../config/auth.example.php';
+    $localFile = __DIR__ . '/../config/auth.php';
+    $defaults = is_file($exampleFile) ? require $exampleFile : [];
+    $override = is_file($localFile) ? require $localFile : [];
+    if (!is_array($defaults)) {
+        $defaults = [];
     }
-    $loaded = is_file($file) ? require $file : [];
-    $cfg = is_array($loaded) ? $loaded : [];
+    if (!is_array($override)) {
+        $override = [];
+    }
+
+    // Keep shared defaults if a teammate previously copied an older empty config/auth.php.
+    $merged = $defaults;
+    foreach ($override as $key => $val) {
+        if ($key === 'smtp' && is_array($val)) {
+            $baseSmtp = is_array($defaults['smtp'] ?? null) ? $defaults['smtp'] : [];
+            foreach ($val as $sKey => $sVal) {
+                if ((is_string($sVal) && trim($sVal) !== '') || (!is_string($sVal) && $sVal !== null && $sVal !== 0)) {
+                    $baseSmtp[$sKey] = $sVal;
+                }
+            }
+            $merged['smtp'] = $baseSmtp;
+        } elseif (is_string($val)) {
+            if (trim($val) !== '') {
+                $merged[$key] = $val;
+            }
+        } elseif ($val !== null) {
+            $merged[$key] = $val;
+        }
+    }
+    $cfg = $merged;
     return $cfg;
 }
 

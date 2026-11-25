@@ -27,6 +27,7 @@ export function mockError(message, status) {
 // CSRF token from GET /api/session.php; sent as X-CSRF-Token on every non-GET request.
 let csrfToken = null;
 export const setCsrfToken = (token) => { csrfToken = token ?? null; };
+export const hasCsrfToken = () => Boolean(csrfToken);
 
 /**
  * Call a PHP JSON endpoint, e.g. request('places.php', { query: { id: 1 } }).

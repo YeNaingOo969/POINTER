@@ -525,7 +525,7 @@ async function handleGoogleCredential(response) {
     if (res?.user) finishAuthRedirect(res);
   } catch (error) {
     googleNotice.hidden = false;
-    googleNotice.textContent = error.status === 403
+    googleNotice.textContent = error.status === 403 && /suspend/i.test(error.message || '')
       ? t('auth.errSuspended')
       : (error.message || t('auth.googleError'));
   }
@@ -618,10 +618,14 @@ googleFallbackBtn.addEventListener('click', async () => {
 async function renderSession() {
   const session = await getSession();
   const user = session?.user;
-  sessionDbError = session?.dbError || '';
+  sessionDbError = session?.dbError || (session?.apiUnavailable
+    ? 'Backend PHP API (localhost:8000) is not running. Start with `npm start` or run `php -S localhost:8000` in the project folder.'
+    : '');
   if (sessionDbError) {
     googleNotice.hidden = false;
     googleNotice.textContent = sessionDbError;
+  } else {
+    googleNotice.hidden = true;
   }
   $('.auth__signed').hidden = !user;
   $('.auth__forms').hidden = Boolean(user);

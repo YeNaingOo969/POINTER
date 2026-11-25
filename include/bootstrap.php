@@ -25,12 +25,26 @@ ini_set('display_errors', '0');
 set_exception_handler(function (Throwable $e): void {
     error_log((string) $e);
     if ($e instanceof PDOException && is_local_request()) {
-        $file = __DIR__ . '/../config/db.php';
-        $c = is_file($file) ? require $file : ['host' => '127.0.0.1', 'port' => 3307, 'name' => 'pointer_db'];
-        fail(503, "Database unavailable ({$c['host']}:{$c['port']} / {$c['name']}). Start MySQL / DBngin and check config/db.php.");
+        fail(503, local_db_error_message($e));
     }
     fail(500, 'Server error');
 });
+
+function local_db_error_message(PDOException $e): string
+{
+    $file = __DIR__ . '/../config/db.php';
+    $example = __DIR__ . '/../config/db.example.php';
+    $cfgFile = is_file($file) ? $file : (is_file($example) ? $example : null);
+    $c = $cfgFile ? require $cfgFile : ['host' => '127.0.0.1', 'port' => 3307, 'name' => 'pointer_db'];
+    $msg = $e->getMessage();
+    if (str_contains($msg, '[1049]') || str_contains($msg, 'Unknown database')) {
+        return "Database '{$c['name']}' does not exist yet on {$c['host']}. Create it and import database/pointer.sql.";
+    }
+    if (str_contains($msg, '42S02') || str_contains($msg, "doesn't exist")) {
+        return "Database tables missing in '{$c['name']}'. Import database/pointer.sql first.";
+    }
+    return "Database unavailable ({$c['host']}:{$c['port']} / {$c['name']}). Start MySQL / DBngin / XAMPP and check config/db.php.";
+}
 
 // ---------- Database (PDO, prepared statements only) ----------
 
@@ -49,24 +63,54 @@ function db(): PDO
     if ($pdo !== null) {
         return $pdo;
     }
+    $local = is_local_request();
     $file = __DIR__ . '/../config/db.php';
+    $example = __DIR__ . '/../config/db.example.php';
     if (!is_file($file)) {
-        error_log('config/db.php is missing (copy config/db.example.php)');
-        if (is_local_request()) {
-            fail(503, 'Database config missing: copy config/db.example.php to config/db.php');
+        if ($local && is_file($example)) {
+            $file = $example;
+        } else {
+            error_log('config/db.php is missing (copy config/db.example.php)');
+            if ($local) {
+                fail(503, 'Database config missing: copy config/db.example.php to config/db.php');
+            }
+            fail(500, 'Server error');
         }
-        fail(500, 'Server error');
     }
     $c = require $file;
-    $dsn = "mysql:host={$c['host']};port={$c['port']};dbname={$c['name']};charset={$c['charset']}";
-    $pdo = new PDO($dsn, $c['user'], $c['pass'], [
+    $opts = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
-    ]);
-    // Store and read DATETIME values in Yangon time.
-    $pdo->exec("SET time_zone = '+06:30'");
-    return $pdo;
+    ];
+    $primaryPort = (int) $c['port'];
+    $ports = [$primaryPort];
+    if ($local && in_array($c['host'], ['127.0.0.1', 'localhost'], true)) {
+        // Support teammates using either DBngin (3307) or XAMPP/MAMP/default MySQL (3306).
+        $alt = $primaryPort === 3307 ? 3306 : ($primaryPort === 3306 ? 3307 : null);
+        if ($alt !== null) {
+            $ports[] = $alt;
+        }
+    }
+
+    $lastEx = null;
+    foreach ($ports as $port) {
+        try {
+            $dsn = "mysql:host={$c['host']};port={$port};dbname={$c['name']};charset={$c['charset']}";
+            $pdo = new PDO($dsn, $c['user'], $c['pass'], $opts);
+            // Store and read DATETIME values in Yangon time.
+            $pdo->exec("SET time_zone = '+06:30'");
+            return $pdo;
+        } catch (PDOException $e) {
+            $lastEx = $e;
+            $errText = $e->getMessage();
+            $isRefused = str_contains($errText, '[2002]') || str_contains($errText, '[2003]') || str_contains($errText, 'Connection refused');
+            if (!$isRefused) {
+                throw $e;
+            }
+        }
+    }
+    throw $lastEx;
 }
 
 /** 'Y-m-d H:i:s' (Yangon time from MySQL) -> '2026-11-10T17:20:00+06:30'. */

@@ -8,11 +8,12 @@ start_session();
 $user = null;
 $dbError = null;
 try {
+    db();
     $user = current_user();
 } catch (PDOException $e) {
     error_log('Session DB check failed: ' . $e->getMessage());
     if (is_local_request()) {
-        $dbError = 'Database unavailable — start MySQL / DBngin and check config/db.php.';
+        $dbError = local_db_error_message($e);
     }
 }
 

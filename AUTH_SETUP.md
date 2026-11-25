@@ -2,17 +2,18 @@
 
 This project uses real MySQL + PHP endpoints (`USE_MOCK = false` in `frontend/src/api/config.js`).
 
-## 1. Database Migration
+## 1. Quick Start for Teammates (Zero Config)
 
-If you have not yet applied the auth migration on `pointer_db`, run:
+After `git pull`, you only need MySQL running (`pointer_db` imported from `database/pointer.sql` on port `3307` or `3306` — `include/auth_helpers.php` auto-migrates OTP/Google tables/columns on first auth request, and `config/auth.example.php` already holds the shared Google Client ID + school-project Gmail OTP credentials):
+
+- **Windows:** double-click `frontend/start-windows.bat` (auto-starts PHP `localhost:8000` + Vite `localhost:5173`).
+- **Mac / Linux (one command):**
 
 ```bash
-mysql -h 127.0.0.1 -P 3307 -u root pointer_db < sql/005_auth_otp_google.sql
+cd frontend && npm start
 ```
 
-## 2. Running Locally (PHP + Vite)
-
-Open two terminals in the project:
+Or run two terminals manually:
 
 ```bash
 # Terminal 1 (from repo root): PHP API server
@@ -23,6 +24,11 @@ cd frontend && npm run dev
 ```
 
 Open **http://localhost:5173/login.html**.
+
+> If you prefer manual migration on `pointer_db`:
+> ```bash
+> mysql -h 127.0.0.1 -P 3307 -u root pointer_db < sql/005_auth_otp_google.sql
+> ```
 
 ---
 
