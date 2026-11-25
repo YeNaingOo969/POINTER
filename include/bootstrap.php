@@ -130,11 +130,21 @@ function is_blocked_status(string $status): bool
 /** The frontend only knows 'user' and 'admin'; an 'owner' row in users.role counts as 'user'. */
 function public_user(array $row): array
 {
-    return [
+    $user = [
         'id'   => (int) $row['id'],
         'name' => $row['name'],
         'role' => $row['role'] === 'admin' ? 'admin' : 'user',
     ];
+    if (isset($row['email'])) {
+        $user['email'] = $row['email'];
+    }
+    if (isset($row['auth_provider'])) {
+        $user['authProvider'] = $row['auth_provider'];
+    }
+    if (!empty($row['avatar_url'])) {
+        $user['avatarUrl'] = $row['avatar_url'];
+    }
+    return $user;
 }
 
 /** The logged-in user as { id, name, role }, or null. A banned user is logged out here. */
@@ -144,7 +154,7 @@ function current_user(): ?array
     if (empty($_SESSION['user_id'])) {
         return null;
     }
-    $st = db()->prepare('SELECT id, name, role, status FROM users WHERE id = ?');
+    $st = db()->prepare('SELECT id, name, email, auth_provider, avatar_url, role, status FROM users WHERE id = ?');
     $st->execute([(int) $_SESSION['user_id']]);
     $row = $st->fetch();
     if (!$row || is_blocked_status($row['status'])) {

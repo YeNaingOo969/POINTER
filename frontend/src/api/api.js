@@ -112,22 +112,75 @@ export async function getSession() {
 }
 
 /**
- * Create an account and log in.
- * POST /api/register.php { name, email, password } → { user }
- * 409 { error: 'Email already registered' } · 422 { error } for invalid input
+ * Send a 6-digit OTP verification code to the user's email before creating the account.
+ * POST /api/register-otp.php { name, email, password, resend? } → { ok, delivery, devCode?, expiresIn, resendCooldown }
+ * 409 { error: 'Email already registered' } · 422 { error } · 429 rate limit
  */
-export async function register({ name, email, password }) {
+export async function sendRegisterOtp({ name = '', email, password = '', resend = false }) {
   if (!USE_MOCK) {
-    try {
-      return await request('register.php', { method: 'POST', body: { name, email, password } });
-    } catch (err) {
-      if (err.status && err.status < 500) throw err;
-    }
+    return await request('register-otp.php', {
+      method: 'POST',
+      body: { name, email, password, resend },
+    });
   }
+  const normalized = email.toLowerCase();
   const users = await mockUsers();
-  if (users.some((u) => u.email === email.toLowerCase())) return mockError('Email already registered', 409);
-  const user = { id: Date.now(), name, email: email.toLowerCase(), passwordHash: await mockHash(password), role: 'user' };
-  writeDemo('users', [...users, user]);
+  if (users.some((u) => u.email.toLowerCase() === normalized)) {
+    return mockError('Email already registered', 409);
+  }
+  const existing = readDemo('pendingOtp', null);
+  const code = String(Math.floor(100000 + Math.random() * 900000));
+  const pending = {
+    email: normalized,
+    name: name || existing?.name || 'POINTER User',
+    passwordHash: password ? await mockHash(password) : existing?.passwordHash,
+    code,
+    expiresAt: Date.now() + 10 * 60 * 1000,
+  };
+  writeDemo('pendingOtp', pending);
+  return mockResponse({ ok: true, delivery: 'dev_preview', devCode: code, expiresIn: 600, resendCooldown: 60 });
+}
+
+/**
+ * Verify the 6-digit email OTP, create the account, and log in.
+ * POST /api/register.php { email, code } → 201 { user }
+ * 409 { error: 'Email already registered' } · 422 { error } for invalid/expired code
+ */
+export async function verifyRegisterOtp({ email, code }) {
+  if (!USE_MOCK) {
+    return await request('register.php', { method: 'POST', body: { email, code } });
+  }
+  const normalized = email.toLowerCase();
+  const pending = readDemo('pendingOtp', null);
+  if (!pending || pending.email !== normalized) return mockError('No pending verification found.', 422);
+  if (pending.expiresAt < Date.now()) return mockError('Verification code has expired.', 422);
+  if (pending.code !== String(code).trim()) return mockError('Incorrect verification code', 422);
+  const users = await mockUsers();
+  if (users.some((u) => u.email.toLowerCase() === normalized)) return mockError('Email already registered', 409);
+  const user = { id: Date.now(), name: pending.name, email: normalized, passwordHash: pending.passwordHash, role: 'user' };
+  writeDemo('users', [...readDemo('users', []), user]);
+  writeDemo('pendingOtp', null);
+  return mockResponse(writeDemo('session', { user: publicUser(user) }));
+}
+
+/**
+ * Create an account and log in (compat wrapper / direct verified flow).
+ * POST /api/register.php { email, code } → { user }
+ */
+export async function register({ name, email, password, code }) {
+  if (code) return verifyRegisterOtp({ email, code });
+  return sendRegisterOtp({ name, email, password });
+}
+
+/**
+ * Sign in or register via Google Identity Services ID token.
+ * POST /api/google-auth.php { credential } → { user }
+ */
+export async function googleLogin({ credential }) {
+  if (!USE_MOCK) {
+    return await request('google-auth.php', { method: 'POST', body: { credential } });
+  }
+  const user = { id: 999, name: 'Google Demo User', email: 'google.demo@gmail.com', role: 'user' };
   return mockResponse(writeDemo('session', { user: publicUser(user) }));
 }
 

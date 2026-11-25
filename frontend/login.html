@@ -93,6 +93,7 @@
             <button class="auth-button auth-button--gold auth-form__submit" type="submit" data-i18n="auth.submitLogin">Log in</button>
           </form>
 
+          <!-- Step 1: Account details + live regex checklist -->
           <form class="auth-form" id="register-form" role="tabpanel" aria-labelledby="tab-register" novalidate hidden>
             <div class="field">
               <div class="field__control">
@@ -103,30 +104,137 @@
             </div>
             <div class="field">
               <div class="field__control">
-                <input id="register-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder=" " required />
+                <input id="register-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder=" " aria-describedby="register-email-hint" required />
                 <label for="register-email" data-i18n="auth.email">Email</label>
               </div>
+              <p class="field__hint" id="register-email-hint" data-i18n="auth.emailVerifyHint">We'll send a 6-digit code to verify your email</p>
               <p class="field__error" id="register-email-error"></p>
             </div>
             <div class="field">
               <div class="field__control">
-                <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder=" " aria-describedby="register-password-hint" required />
+                <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="72" placeholder=" " aria-describedby="register-password-rules" required />
                 <label for="register-password" data-i18n="auth.password">Password</label>
                 <button class="field__toggle" type="button" data-i18n="auth.show">Show</button>
               </div>
-              <p class="field__hint" id="register-password-hint" data-i18n="auth.passwordHint">At least 8 characters</p>
+
+              <!-- Modern password strength meter + live regex checklist -->
+              <div class="pw-checklist" id="register-password-rules">
+                <div class="pw-meter" data-level="0">
+                  <div class="pw-meter__head">
+                    <span class="pw-meter__label" data-i18n="auth.pwStrengthLabel">Password strength</span>
+                    <span class="pw-meter__status" id="pw-strength-text" data-i18n="auth.pwStrengthIdle">Enter password</span>
+                  </div>
+                  <div class="pw-meter__bars" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+                <ul class="pw-rules" aria-live="polite">
+                  <li class="pw-rule" data-rule="length" data-met="false">
+                    <span class="pw-rule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
+                    </span>
+                    <span data-i18n="auth.ruleLength">At least 8 characters (max 72)</span>
+                  </li>
+                  <li class="pw-rule" data-rule="upper" data-met="false">
+                    <span class="pw-rule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
+                    </span>
+                    <span data-i18n="auth.ruleUpper">One uppercase letter (A–Z)</span>
+                  </li>
+                  <li class="pw-rule" data-rule="lower" data-met="false">
+                    <span class="pw-rule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
+                    </span>
+                    <span data-i18n="auth.ruleLower">One lowercase letter (a–z)</span>
+                  </li>
+                  <li class="pw-rule" data-rule="number" data-met="false">
+                    <span class="pw-rule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
+                    </span>
+                    <span data-i18n="auth.ruleNumber">One number (0–9)</span>
+                  </li>
+                  <li class="pw-rule" data-rule="special" data-met="false">
+                    <span class="pw-rule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
+                    </span>
+                    <span data-i18n="auth.ruleSpecial">One special character (!@#$%^&*)</span>
+                  </li>
+                </ul>
+              </div>
               <p class="field__error" id="register-password-error"></p>
             </div>
             <div class="field">
               <div class="field__control">
                 <input id="register-confirm" name="confirm" type="password" autocomplete="new-password" placeholder=" " required />
                 <label for="register-confirm" data-i18n="auth.confirm">Confirm password</label>
+                <button class="field__toggle" type="button" data-i18n="auth.show">Show</button>
               </div>
+              <p class="pw-match" id="register-confirm-match" hidden></p>
               <p class="field__error" id="register-confirm-error"></p>
             </div>
             <p class="auth-form__error" role="alert"></p>
-            <button class="auth-button auth-button--gold auth-form__submit" type="submit" data-i18n="auth.submitRegister">Create account</button>
+            <button class="auth-button auth-button--gold auth-form__submit" type="submit" data-i18n="auth.submitSendCode">Send verification code</button>
           </form>
+
+          <!-- Step 2: 6-digit Email/Gmail OTP verification -->
+          <form class="auth-form auth-otp" id="register-otp-form" novalidate hidden>
+            <button class="auth-otp__back" type="button" id="otp-back-btn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+              <span data-i18n="auth.otpBack">Edit email or details</span>
+            </button>
+
+            <div class="auth-otp__head">
+              <h2 class="auth-otp__title" data-i18n="auth.otpTitle">Verify your email</h2>
+              <p class="auth-otp__lede">
+                <span data-i18n="auth.otpSentTo">Enter the 6-digit code sent to</span>
+                <strong class="auth-otp__email"></strong>
+              </p>
+            </div>
+
+            <div class="auth-otp__dev" id="otp-dev-banner" hidden>
+              <p class="auth-otp__dev-text">
+                <span data-i18n="auth.otpDevPrefix">Local preview (SMTP not set): code</span>
+                <code id="otp-dev-code"></code>
+              </p>
+              <button class="auth-otp__dev-fill" type="button" id="otp-dev-fill" data-i18n="auth.otpDevFill">Fill code</button>
+            </div>
+
+            <div class="otp-field">
+              <div class="otp-inputs" role="group" aria-label="6-digit verification code">
+                <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="one-time-code" aria-label="Digit 1" />
+                <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Digit 2" />
+                <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Digit 3" />
+                <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Digit 4" />
+                <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Digit 5" />
+                <input class="otp-box" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Digit 6" />
+              </div>
+              <p class="field__error" id="otp-code-error"></p>
+            </div>
+
+            <p class="auth-form__error" role="alert"></p>
+            <button class="auth-button auth-button--gold auth-form__submit" type="submit" data-i18n="auth.otpVerifyBtn">Verify &amp; Create account</button>
+
+            <div class="auth-otp__foot">
+              <span class="auth-otp__hint" data-i18n="auth.otpDidnReceive">Didn't receive the email?</span>
+              <button class="auth-otp__resend" type="button" id="otp-resend-btn" data-i18n="auth.otpResend">Resend code</button>
+            </div>
+          </form>
+
+          <!-- Google Sign-In -->
+          <div class="auth-google" id="auth-google-section">
+            <div class="auth-divider"><span data-i18n="auth.orContinue">or</span></div>
+            <div class="auth-google__official" id="google-btn-slot" hidden></div>
+            <button class="auth-button auth-google__btn" type="button" id="google-fallback-btn">
+              <svg class="auth-google__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.54 5.54 0 0 1-2.4 3.63v3.02h3.88c2.27-2.09 3.54-5.17 3.54-8.89Z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.02c-1.08.72-2.45 1.15-4.05 1.15-3.12 0-5.77-2.11-6.72-4.96H1.29v3.11A12 12 0 0 0 12 24Z"/>
+                <path fill="#FBBC05" d="M5.28 14.26A7.2 7.2 0 0 1 4.9 12c0-.78.14-1.54.38-2.26V6.63H1.29A12 12 0 0 0 0 12c0 1.94.46 3.77 1.29 5.37l3.99-3.11Z"/>
+                <path fill="#EA4335" d="M12 4.75c1.76 0 3.34.61 4.58 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.29 6.63l3.99 3.11c.95-2.85 3.6-4.99 6.72-4.99Z"/>
+              </svg>
+              <span data-i18n="auth.googleBtn">Continue with Google</span>
+            </button>
+            <p class="auth-google__notice" id="google-setup-notice" role="status" hidden></p>
+          </div>
 
           <p class="auth__demo" data-i18n="auth.demoHint" hidden>Demo account: demo@pointer.app / pointer-demo</p>
         </div>
