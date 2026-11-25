@@ -1,44 +1,87 @@
 <?php
 require __DIR__ . '/../include/bootstrap.php';
+require __DIR__ . '/../include/auth_helpers.php';
 
 require_method('POST');
 require_csrf();
 
-$in       = body();
-$name     = trim((string) ($in['name'] ?? ''));
-$email    = strtolower(trim((string) ($in['email'] ?? '')));
-$password = (string) ($in['password'] ?? '');
+$in    = body();
+$email = strtolower(trim((string) ($in['email'] ?? '')));
+$code  = trim((string) ($in['code'] ?? ''));
 
-// Validate again on the server — never trust the page.
-if (mb_strlen($name) < 2 || mb_strlen($name) > 100) {
-    fail(422, 'Name must be 2–100 characters');
+if ($err = validate_email_format($email, false)) {
+    fail(422, $err);
 }
-if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 150) {
-    fail(422, 'Enter a valid email address');
-}
-// bcrypt only uses the first 72 bytes, so cap by bytes.
-if (mb_strlen($password) < 8 || strlen($password) > 72) {
-    fail(422, 'Password must be 8–72 characters');
+if (!preg_match('/^\d{6}$/', $code)) {
+    fail(422, 'Enter the 6-digit verification code sent to your email');
 }
 
 $pdo = db();
-$st = $pdo->prepare('SELECT id FROM users WHERE email = ?');
+$st = $pdo->prepare(
+    'SELECT id, email, name, password_hash, otp_hash, attempts,
+            TIMESTAMPDIFF(SECOND, NOW(), expires_at) AS seconds_left
+     FROM email_verifications
+     WHERE email = ?'
+);
 $st->execute([$email]);
-if ($st->fetch()) {
-    fail(409, 'Email already registered');
+$pending = $st->fetch();
+
+if (!$pending) {
+    fail(422, 'No pending verification found. Please request a verification code.');
+}
+if ((int) $pending['seconds_left'] <= 0) {
+    fail(422, 'Verification code has expired. Please request a new code.');
+}
+if ((int) $pending['attempts'] >= 5) {
+    fail(429, 'Too many wrong attempts. Please request a new verification code.');
 }
 
+if (!password_verify($code, $pending['otp_hash'])) {
+    $pdo->prepare('UPDATE email_verifications SET attempts = attempts + 1 WHERE id = ?')
+        ->execute([(int) $pending['id']]);
+    $left = max(0, 4 - (int) $pending['attempts']);
+    $msg = $left > 0
+        ? "Incorrect verification code ({$left} attempts left)"
+        : 'Incorrect code. Too many attempts — please request a new code.';
+    fail(422, $msg);
+}
+
+$pdo->beginTransaction();
 try {
-    $st = $pdo->prepare('INSERT INTO users (name, email, password_hash, role, status) VALUES (?, ?, ?, \'user\', \'active\')');
-    $st->execute([$name, $email, password_hash($password, PASSWORD_DEFAULT)]);
+    $exists = $pdo->prepare('SELECT id FROM users WHERE email = ?');
+    $exists->execute([$email]);
+    if ($exists->fetch()) {
+        $pdo->rollBack();
+        fail(409, 'Email already registered');
+    }
+
+    $ins = $pdo->prepare(
+        "INSERT INTO users (name, email, password_hash, auth_provider, email_verified_at, role, status)
+         VALUES (?, ?, ?, 'local', NOW(), 'user', 'active')"
+    );
+    $ins->execute([$pending['name'], $email, $pending['password_hash']]);
+    $id = (int) $pdo->lastInsertId();
+
+    $pdo->prepare('DELETE FROM email_verifications WHERE id = ?')->execute([(int) $pending['id']]);
+    $pdo->commit();
 } catch (PDOException $e) {
-    if ($e->getCode() === '23000') { // two people registered the same email at once
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+    if ($e->getCode() === '23000') {
         fail(409, 'Email already registered');
     }
     throw $e;
 }
 
-$id = (int) $pdo->lastInsertId();
 login_user($id);
 
-json_out(['user' => ['id' => $id, 'name' => $name, 'role' => 'user']], 201);
+json_out([
+    'user' => [
+        'id'           => $id,
+        'name'         => $pending['name'],
+        'email'        => $email,
+        'authProvider' => 'local',
+        'role'         => 'user',
+    ],
+], 201);

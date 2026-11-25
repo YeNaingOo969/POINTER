@@ -8,13 +8,17 @@ $in       = body();
 $email    = strtolower(trim((string) ($in['email'] ?? '')));
 $password = (string) ($in['password'] ?? '');
 
-$st = db()->prepare('SELECT id, name, role, status, password_hash FROM users WHERE email = ?');
+$st = db()->prepare('SELECT id, name, email, auth_provider, avatar_url, role, status, password_hash FROM users WHERE email = ?');
 $st->execute([$email]);
 $row = $st->fetch();
 
-// Same work and same message for "no such email" and "wrong password".
-$hash = $row['password_hash'] ?? password_hash('dummy-password-for-timing', PASSWORD_DEFAULT);
-$ok   = password_verify($password, $hash) && $row;
+// Same work and same message for "no such email", "wrong password", and Google-only accounts.
+$dummy = password_hash('dummy-password-for-timing', PASSWORD_DEFAULT);
+$storedHash = ($row && is_string($row['password_hash']) && $row['password_hash'] !== '')
+    ? $row['password_hash']
+    : $dummy;
+
+$ok = $row && is_string($row['password_hash']) && $row['password_hash'] !== '' && password_verify($password, $storedHash);
 if (!$ok) {
     fail(401, 'Wrong email or password');
 }

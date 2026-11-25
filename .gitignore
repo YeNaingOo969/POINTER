@@ -1,5 +1,6 @@
-# Database Configuration Files
+# Database & Auth Configuration Files
 config/db.php
+config/auth.php
 db.php
 
 # Environment and Secret Files
