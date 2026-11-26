@@ -27,6 +27,22 @@
   object-fit: cover;
   object-position: 35% 50%;
   animation: auth-drift 28s ease-in-out infinite alternate;
+  transition: opacity 0.6s ease;
+}
+
+.auth-bg__art.is-live {
+  opacity: 0;
+  animation: none;
+  pointer-events: none;
+}
+
+.auth-bg__gl,
+.auth-bg__fg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 @keyframes auth-drift {
@@ -34,11 +50,11 @@
   to { transform: scale(1.14) translate3d(0.8%, -0.6%, 0); }
 }
 
-/* The painted sun breathes (it sits at about 33% / 50% of the art). */
+/* The painted sun breathes (centered right on the setting sun orb). */
 .auth-bg__sun {
   position: absolute;
-  left: 33%;
-  top: 50%;
+  left: 38.5%;
+  top: 45.2%;
   width: 38vmax;
   height: 38vmax;
   border-radius: 50%;
@@ -85,6 +101,7 @@
 /* ---- Greeting ---- */
 
 .auth__intro {
+  min-width: 0;
   align-self: end;
   padding-bottom: var(--space-8);
 }
@@ -142,6 +159,8 @@
 
 .auth__card {
   position: relative;
+  min-width: 0;
+  max-width: 100%;
   padding: var(--space-8);
   border: 1px solid var(--glass-line);
   border-radius: 28px;
@@ -781,6 +800,8 @@
 .auth-google__official {
   display: flex;
   justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
   min-height: 44px;
 }
 

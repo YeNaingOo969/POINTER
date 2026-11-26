@@ -10,10 +10,12 @@ import { getLang, initI18n, t } from '../i18n/i18n.js';
 import { getSession, googleLogin, login, logout, sendRegisterOtp, verifyRegisterOtp } from '../api/api.js';
 import { GOOGLE_CLIENT_ID, USE_MOCK } from '../api/config.js';
 import { embers } from '../landing/embers.js';
+import { mountLoginScene } from './login-scene.js';
 
 initI18n();
+const stopScene = mountLoginScene(document.querySelector('.auth-bg'));
 const stopEmbers = embers(document.querySelector('.auth-bg__embers'));
-addEventListener('pagehide', stopEmbers);
+addEventListener('pagehide', () => { stopScene(); stopEmbers(); });
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
