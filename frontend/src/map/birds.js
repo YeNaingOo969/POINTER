@@ -12,8 +12,8 @@ const FLOCKS = [ // [lng, lat, birds, circle radius m, height m]
   [96.14400, 16.79550, 7, 170, 60],    // People's Park
   [96.16040, 16.77320, 5, 80, 55],     // Maha Bandula Park
 ];
-const SPAN = 16;               // wingspan in metres at zoom 16 (far bigger than life, to be seen);
-                               // shrinks a little as you zoom in, so they stay birds next to the buildings
+const SPAN = 10.5;             // graceful wingspan in metres at zoom 16; shrinks gently as you zoom in
+                               // so flocks read like natural egrets/gulls over the lakes and parks
 const SHOW = [14.8, 15.3];     // zoom: fade in from, fully in
 
 /** A bird from above: body and two wings, wing tips at |x| = 0.5. */
@@ -56,7 +56,7 @@ export function birds({ map, toLocal }) {
 
   // Wing flap in the vertex shader: lift the wing tips by |x| × sin(time + phase).
   const uniforms = { uTime: { value: 0 } };
-  const material = new THREE.MeshLambertMaterial({ color: 0x3a3436, side: THREE.DoubleSide, transparent: true });
+  const material = new THREE.MeshLambertMaterial({ color: 0xf7f3ea, emissive: 0xdfd8ca, emissiveIntensity: 0.25, side: THREE.DoubleSide, transparent: true });
   material.onBeforeCompile = (shader) => {
     shader.uniforms.uTime = uniforms.uTime;
     shader.vertexShader = shader.vertexShader
