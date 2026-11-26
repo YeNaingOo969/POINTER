@@ -1,0 +1,42 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "clouds": {
+    "file": "/images/landing/login-scene/login-clouds.webp",
+    "backFile": "/images/landing/login-scene/login-clouds-back.webp",
+    "tileWidth": 2048,
+    "tileHeight": 512,
+    "bandHeightFrac": 0.4740740740740741
+  },
+  "sun": {
+    "x": 0.38125,
+    "y": 0.45185185185185184
+  },
+  "horizonY": 0.5861111111111111,
+  "boats": [
+    {
+      "file": "/images/landing/login-scene/login-boat-left.webp",
+      "x": 0.03854166666666667,
+      "y": 0.5851851851851851,
+      "w": 0.334375,
+      "h": 0.21666666666666667,
+      "pivotX": 0.45,
+      "pivotY": 0.88,
+      "waveAmpY": 0.0042,
+      "rockAmpRad": 0.017,
+      "phase": 0
+    },
+    {
+      "file": "/images/landing/login-scene/login-boat-right.webp",
+      "x": 0.5677083333333334,
+      "y": 0.5888888888888889,
+      "w": 0.39166666666666666,
+      "h": 0.23425925925925925,
+      "pivotX": 0.55,
+      "pivotY": 0.88,
+      "waveAmpY": 0.0036,
+      "rockAmpRad": 0.014,
+      "phase": 1.8
+    }
+  ]
+}
