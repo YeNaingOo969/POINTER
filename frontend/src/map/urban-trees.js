@@ -5,8 +5,8 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { OCC_BUILDING, OCC_CLEAR, OCC_FILLER } from './city-occupancy.js';
 
-const MAX_TREES = 2200;
-const NEAR_KM = 3.8;
+const MAX_TREES = 2600;
+const NEAR_KM = 4.2;
 const MIN_ZOOM = 13.4;
 
 const ROAD_HW = {
@@ -126,29 +126,60 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
   const up = new THREE.Vector3(0, 1, 0);
 
   let timer = 0;
+  let lastCx = Infinity, lastCz = Infinity, lastZoom = -1, lastTileGen = 0, tileGen = 0;
+
+  const packKey = (gx, gz) => (gx + 8192) * 16384 + (gz + 8192);
+  function makeHash(cell) {
+    const mapH = new Map();
+    return {
+      add(item, x0, z0, x1, z1) {
+        const i0 = Math.floor(x0 / cell), i1 = Math.floor(x1 / cell);
+        const j0 = Math.floor(z0 / cell), j1 = Math.floor(z1 / cell);
+        for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+          const k = packKey(i, j);
+          let arr = mapH.get(k);
+          if (!arr) mapH.set(k, (arr = []));
+          arr.push(item);
+        }
+      },
+      some(x, z, fn) {
+        const arr = mapH.get(packKey(Math.floor(x / cell), Math.floor(z / cell)));
+        if (!arr) return false;
+        for (let i = 0; i < arr.length; i++) if (fn(arr[i])) return true;
+        return false;
+      },
+    };
+  }
 
   function populate() {
+    if (map.isMoving?.() || map.isZooming?.()) { schedule(); return; }
+    if (map.isSourceLoaded && !map.isSourceLoaded('omt')) { schedule(); return; }
     const zoom = map.getZoom();
     if (zoom < MIN_ZOOM) {
       if (trunks.count || canopies.count) {
         trunks.count = canopies.count = 0;
         trunks.instanceMatrix.needsUpdate = true;
         canopies.instanceMatrix.needsUpdate = true;
+        lastCx = Infinity;
       }
       return;
     }
 
     const c = map.getCenter();
     const [cx, cz] = toLocal(c.lng, c.lat);
+    if (Math.hypot(cx - lastCx, cz - lastCz) < 280 && Math.abs(zoom - lastZoom) < 0.7 && lastTileGen === tileGen) {
+      return;
+    }
     const maxDist = NEAR_KM * 1000;
     const maxR2 = maxDist * maxDist;
 
     // Collect roads, waters, pitches/stadiums, parks/greens inside viewport radius
-    const roads = [];
-    const noTreeZones = [];
+    const roadHash = makeHash(60);
+    const noTreeHash = makeHash(120);
+    const bldgHash = makeHash(48);
     const parkPolys = [];
     const campusPolys = [];
-    const bldgs = [];
+    const farmPolys = [];
 
     const within = (x0, z0, x1, z1) => x1 >= cx - maxDist && x0 <= cx + maxDist && z1 >= cz - maxDist && z0 <= cz + maxDist;
 
@@ -172,30 +203,33 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
       return out;
     };
 
-    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'water' })) noTreeZones.push(...toPolyList(f.geometry));
-    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'aeroway' })) noTreeZones.push(...toPolyList(f.geometry));
+    const addPolys = (hash, geom, pad = 0) => {
+      for (const p of toPolyList(geom)) hash.add(p, p.x0 - pad, p.z0 - pad, p.x1 + pad, p.z1 + pad);
+    };
+
+    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'water' })) addPolys(noTreeHash, f.geometry);
+    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'aeroway' })) addPolys(noTreeHash, f.geometry);
     for (const f of map.querySourceFeatures('omt', { sourceLayer: 'landuse' })) {
       const cls = f.properties?.class;
       if (cls === 'pitch' || cls === 'stadium' || cls === 'playground' || cls === 'railway') {
-        noTreeZones.push(...toPolyList(f.geometry));
+        addPolys(noTreeHash, f.geometry);
       } else if (cls === 'zoo' || cls === 'park' || cls === 'recreation_ground' || cls === 'village_green' || cls === 'cemetery') {
         parkPolys.push(...toPolyList(f.geometry));
-      } else if (cls === 'school' || cls === 'university' || cls === 'college' || cls === 'hospital' || cls === 'military') {
+      } else if (cls === 'school' || cls === 'university' || cls === 'college' || cls === 'hospital' || cls === 'healthcare' || cls === 'military') {
         campusPolys.push(...toPolyList(f.geometry));
       }
     }
-    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'building' })) {
-      bldgs.push(...toPolyList(f.geometry));
-    }
-    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'park' })) {
-      parkPolys.push(...toPolyList(f.geometry));
-    }
+    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'building' })) addPolys(bldgHash, f.geometry, 2);
+    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'park' })) parkPolys.push(...toPolyList(f.geometry));
     for (const f of map.querySourceFeatures('omt', { sourceLayer: 'landcover' })) {
       const cls = f.properties?.class;
       if (cls === 'wood' || cls === 'grass') parkPolys.push(...toPolyList(f.geometry));
+      else if (cls === 'farmland') farmPolys.push(...toPolyList(f.geometry));
     }
 
     const aveSegs = [];
+    const minorSegs = [];
+    const creekSegs = [];
     for (const f of map.querySourceFeatures('omt', { sourceLayer: 'transportation' })) {
       const cls = f.properties?.class;
       const brunnel = f.properties?.brunnel;
@@ -206,32 +240,46 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
       if (!lines) continue;
       const hw = (ROAD_HW[cls] ?? 4.5) + (brunnel === 'bridge' ? 5 : 0);
       const isBoulevard = !brunnel && (cls === 'primary' || cls === 'secondary' || cls === 'tertiary');
+      const isVillageRoad = !brunnel && cls === 'minor';
       for (const line of lines) {
         for (let i = 1; i < line.length; i++) {
           const [ax, az] = toLocal(line[i - 1][0], line[i - 1][1]);
           const [bx, bz] = toLocal(line[i][0], line[i][1]);
           if (!within(Math.min(ax, bx) - 20, Math.min(az, bz) - 20, Math.max(ax, bx) + 20, Math.max(az, bz) + 20)) continue;
           const seg = { ax, az, bx, bz, hw };
-          roads.push(seg);
+          roadHash.add(seg, Math.min(ax, bx) - hw - 2, Math.min(az, bz) - hw - 2, Math.max(ax, bx) + hw + 2, Math.max(az, bz) + hw + 2);
           if (isBoulevard) aveSegs.push(seg);
+          else if (isVillageRoad) minorSegs.push(seg);
         }
       }
     }
+    for (const f of map.querySourceFeatures('omt', { sourceLayer: 'waterway' })) {
+      const cls = f.properties?.class;
+      const lines = f.geometry?.type === 'LineString'
+        ? [f.geometry.coordinates]
+        : f.geometry?.type === 'MultiLineString' ? f.geometry.coordinates : null;
+      if (!lines) continue;
+      const hw = cls === 'river' ? 24 : 7;
+      for (const line of lines) {
+        for (let i = 1; i < line.length; i++) {
+          const [ax, az] = toLocal(line[i - 1][0], line[i - 1][1]);
+          const [bx, bz] = toLocal(line[i][0], line[i][1]);
+          if (!within(Math.min(ax, bx) - 30, Math.min(az, bz) - 30, Math.max(ax, bx) + 30, Math.max(az, bz) + 30)) continue;
+          const seg = { ax, az, bx, bz, hw };
+          roadHash.add(seg, Math.min(ax, bx) - hw - 2, Math.min(az, bz) - hw - 2, Math.max(ax, bx) + hw + 2, Math.max(az, bz) + hw + 2);
+          creekSegs.push(seg);
+        }
+      }
+    }
+    if (!parkPolys.length && !aveSegs.length && !campusPolys.length && !minorSegs.length && !farmPolys.length && !creekSegs.length) return;
+    lastCx = cx; lastCz = cz; lastZoom = zoom; lastTileGen = tileGen;
 
     const canPlaceTree = (x, z) => {
       if ((x - cx) ** 2 + (z - cz) ** 2 > maxR2) return false;
       if (occupancy.isOccupied(x, z, OCC_BUILDING | OCC_CLEAR | OCC_FILLER)) return false;
-      for (const s of roads) {
-        if (Math.abs(x - (s.ax + s.bx) * 0.5) > Math.abs(s.bx - s.ax) * 0.5 + 16) continue;
-        if (Math.abs(z - (s.az + s.bz) * 0.5) > Math.abs(s.bz - s.az) * 0.5 + 16) continue;
-        if (segDist(x, z, s.ax, s.az, s.bx, s.bz) < s.hw + 1.2) return false;
-      }
-      for (const p of noTreeZones) {
-        if (x >= p.x0 && x <= p.x1 && z >= p.z0 && z <= p.z1 && insidePoly(x, z, p.pts)) return false;
-      }
-      for (const b of bldgs) {
-        if (x >= b.x0 - 2 && x <= b.x1 + 2 && z >= b.z0 - 2 && z <= b.z1 + 2 && insidePoly(x, z, b.pts)) return false;
-      }
+      if (roadHash.some(x, z, (s) => segDist(x, z, s.ax, s.az, s.bx, s.bz) < s.hw + 1.2)) return false;
+      if (noTreeHash.some(x, z, (p) => x >= p.x0 && x <= p.x1 && z >= p.z0 && z <= p.z1 && insidePoly(x, z, p.pts))) return false;
+      if (bldgHash.some(x, z, (b) => x >= b.x0 - 2 && x <= b.x1 + 2 && z >= b.z0 - 2 && z <= b.z1 + 2 && insidePoly(x, z, b.pts))) return false;
       return true;
     };
 
@@ -239,7 +287,7 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
     const seenGrid = new Set();
     const pushTree = (x, z, minSep = 8) => {
       if (placed.length >= MAX_TREES) return false;
-      const key = `${Math.round(x / minSep)},${Math.round(z / minSep)}`;
+      const key = packKey(Math.round(x / minSep), Math.round(z / minSep));
       if (seenGrid.has(key)) return false;
       if (!canPlaceTree(x, z)) return false;
       seenGrid.add(key);
@@ -247,14 +295,32 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
       return true;
     };
 
-    // 1. Park / lakefront / grove trees (dense natural glades)
+    const walkSegTrees = (segs, step, cb) => {
+      for (const s of segs) {
+        if (placed.length >= MAX_TREES) break;
+        const len = Math.hypot(s.bx - s.ax, s.bz - s.az);
+        if (len < 4) continue;
+        const ux = (s.bx - s.ax) / len, uz = (s.bz - s.az) / len;
+        const rx = -uz, rz = ux;
+        if (len < step) {
+          cb(s, (s.ax + s.bx) * 0.5, (s.az + s.bz) * 0.5, rx, rz);
+        } else {
+          for (let d = step * 0.45; d < len - 3 && placed.length < MAX_TREES; d += step) {
+            cb(s, s.ax + ux * d, s.az + uz * d, rx, rz);
+          }
+        }
+      }
+    };
+
+    // 1. Park / lakefront / grove trees (capped so rural streets & creeks still receive shade trees)
+    const parkCap = Math.floor(MAX_TREES * 0.55);
     for (const p of parkPolys) {
-      if (placed.length >= MAX_TREES) break;
+      if (placed.length >= parkCap) break;
       const areaApprox = (p.x1 - p.x0) * (p.z1 - p.z0);
       if (areaApprox < 300) continue;
       const step = areaApprox > 60000 ? 18 : 14;
-      for (let gz = Math.ceil(p.z0 / step) * step; gz <= p.z1 && placed.length < MAX_TREES; gz += step) {
-        for (let gx = Math.ceil(p.x0 / step) * step; gx <= p.x1 && placed.length < MAX_TREES; gx += step) {
+      for (let gz = Math.ceil(p.z0 / step) * step; gz <= p.z1 && placed.length < parkCap; gz += step) {
+        for (let gx = Math.ceil(p.x0 / step) * step; gx <= p.x1 && placed.length < parkCap; gx += step) {
           const jx = gx + (hash2(gx, gz) - 0.5) * step * 0.7;
           const jz = gz + (hash2(gx + 13, gz - 9) - 0.5) * step * 0.7;
           if (!insidePoly(jx, jz, p.pts)) continue;
@@ -264,23 +330,13 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
       }
     }
 
-    // 2. Boulevard sidewalk trees along main tree-lined avenues (only where kerb space is clear!)
-    for (const s of aveSegs) {
-      if (placed.length >= MAX_TREES) break;
-      const len = Math.hypot(s.bx - s.ax, s.bz - s.az);
-      if (len < 16) continue;
-      const ux = (s.bx - s.ax) / len, uz = (s.bz - s.az) / len;
-      const rx = -uz, rz = ux;
-      for (let d = 8; d < len - 8 && placed.length < MAX_TREES; d += 18) {
-        const px = s.ax + ux * d, pz = s.az + uz * d;
-        for (const side of [1, -1]) {
-          if (hash2(px + side * 5, pz) < 0.28) continue;
-          const tx = px + rx * side * (s.hw + 1.5);
-          const tz = pz + rz * side * (s.hw + 1.5);
-          pushTree(tx, tz, 10);
-        }
+    // 2. Boulevard sidewalk trees along main tree-lined avenues (including curved chords)
+    walkSegTrees(aveSegs, 18, (s, px, pz, rx, rz) => {
+      for (const side of [1, -1]) {
+        if (hash2(px + side * 5, pz) < 0.28) continue;
+        pushTree(px + rx * side * (s.hw + 1.5), pz + rz * side * (s.hw + 1.5), 10);
       }
-    }
+    });
 
     // 3. Institutional campus / military yard shade trees around open lawns
     for (const p of campusPolys) {
@@ -295,6 +351,35 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
           if (!insidePoly(jx, jz, p.pts)) continue;
           if (hash2(jx * 1.3, jz * 1.9) < 0.45) continue;
           pushTree(jx, jz, 12);
+        }
+      }
+    }
+
+    // 4. Neighborhood & village street trees + tropical creekside & farmland hedgerow shade trees
+    walkSegTrees(minorSegs, 28, (s, px, pz, rx, rz) => {
+      const side = hash2(px * 0.7, pz * 1.1) > 0.5 ? 1 : -1;
+      if (hash2(px + side * 9, pz) < 0.40) return;
+      pushTree(px + rx * side * (s.hw + 1.8), pz + rz * side * (s.hw + 1.8), 14);
+    });
+    walkSegTrees(creekSegs, 22, (s, px, pz, rx, rz) => {
+      for (const side of [1, -1]) {
+        if (hash2(px + side * 13, pz) < 0.40) continue;
+        const dist = s.hw + 3.5 + hash2(px * 1.5, pz * side) * 9.0;
+        pushTree(px + rx * side * dist, pz + rz * side * dist, 13);
+      }
+    });
+    for (const p of farmPolys) {
+      if (placed.length >= MAX_TREES) break;
+      const areaApprox = (p.x1 - p.x0) * (p.z1 - p.z0);
+      if (areaApprox < 2500) continue;
+      const step = 48;
+      for (let gz = Math.ceil(p.z0 / step) * step; gz <= p.z1 && placed.length < MAX_TREES; gz += step) {
+        for (let gx = Math.ceil(p.x0 / step) * step; gx <= p.x1 && placed.length < MAX_TREES; gx += step) {
+          const jx = gx + (hash2(gx + 3, gz - 11) - 0.5) * 20;
+          const jz = gz + (hash2(gx - 7, gz + 5) - 0.5) * 20;
+          if (!insidePoly(jx, jz, p.pts)) continue;
+          if (hash2(jx * 1.1, jz * 1.7) < 0.58) continue;
+          pushTree(jx, jz, 20);
         }
       }
     }
@@ -324,7 +409,10 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
 
   function schedule() {
     if (timer) clearTimeout(timer);
-    timer = setTimeout(populate, 140);
+    timer = setTimeout(() => {
+      timer = 0;
+      populate();
+    }, 240);
   }
 
   map.on('moveend', schedule);
@@ -332,6 +420,9 @@ export function createUrbanTrees({ map, toLocal, envMap = null, occupancy, markS
 
   return {
     group,
-    refresh: schedule,
+    refresh() {
+      tileGen++;
+      schedule();
+    },
   };
 }

@@ -4,6 +4,7 @@
 // - Stepped elevator bulkheads / rooftop penthouses on mid & high-rise blocks
 // - Metallic HVAC chillers, Yangon blue/steel water tanks, and angled navy solar arrays
 import * as THREE from 'three';
+import { unpackPosAccessor } from './city-occupancy.js';
 
 const MAX_ROOFS_PER_TILE = 850;
 
@@ -78,10 +79,8 @@ function clusterConnectedRoofs(scene, roofFlatMat) {
     const idx = o.geometry.index;
     const count = idx ? idx.count : pos.count;
     const iarr = idx ? idx.array : null;
-    const arr = pos.array;
+    const { arr, stride, offset, normDiv } = unpackPosAccessor(pos);
     const e = o.matrixWorld.elements;
-    const normDiv = !pos.normalized ? 1
-      : (arr instanceof Int16Array ? 32767 : arr instanceof Uint16Array ? 65535 : arr instanceof Int8Array ? 127 : 255);
     const sx = e[0] / normDiv, sy = e[5] / normDiv, sz = e[10] / normDiv;
     const tx = e[12], ty = e[13], tz = e[14];
 
@@ -91,9 +90,9 @@ function clusterConnectedRoofs(scene, roofFlatMat) {
       ((Math.round(x * 2) + 16384) * 32768 + (Math.round(y * 4) + 2048)) * 32768 + (Math.round(z * 2) + 16384);
 
     for (let i = 0; i + 2 < count; i += 3) {
-      const ia = (iarr ? iarr[i] : i) * 3;
-      const ib = (iarr ? iarr[i + 1] : i + 1) * 3;
-      const ic = (iarr ? iarr[i + 2] : i + 2) * 3;
+      const ia = (iarr ? iarr[i] : i) * stride + offset;
+      const ib = (iarr ? iarr[i + 1] : i + 1) * stride + offset;
+      const ic = (iarr ? iarr[i + 2] : i + 2) * stride + offset;
       const x0 = arr[ia] * sx + tx, y0 = arr[ia + 1] * sy + ty, z0 = arr[ia + 2] * sz + tz;
       const x1 = arr[ib] * sx + tx, y1 = arr[ib + 1] * sy + ty, z1 = arr[ib + 2] * sz + tz;
       const x2 = arr[ic] * sx + tx, y2 = arr[ic + 1] * sy + ty, z2 = arr[ic + 2] * sz + tz;

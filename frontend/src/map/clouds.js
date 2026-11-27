@@ -193,7 +193,7 @@ void main() {
   if (hit.x >= hit.y) discard;
 
   float span = hit.y - hit.x;
-  const int STEPS = 16;
+  const int STEPS = 14;
   float dt = span / float(STEPS);
 
   // Screen-space interleaved gradient noise dithering eliminates raymarch banding
@@ -217,12 +217,10 @@ void main() {
     vec3 p = vOriginObj + rd * t;
     float dens = cloudDensity(p, seedOff);
 
-    if (dens > 0.003) {
-      // 2-tap directional sun self-shadowing
-      float shadowDens =
-        cloudDensity(p + sunDir * 0.09, seedOff) +
-        cloudDensity(p + sunDir * 0.21, seedOff) * 0.7;
-      float lightEnergy = exp(-shadowDens * 1.55);
+    if (dens > 0.004) {
+      // 1-tap directional sun self-shadowing (cuts 3D noise texture fetches >2x)
+      float shadowDens = cloudDensity(p + sunDir * 0.13, seedOff);
+      float lightEnergy = exp(-shadowDens * 2.1);
       // Warm sunlit crest vs noticeable periwinkle-blue shaded underside (reads clearly over cream ground)
       float topMix = clamp((p.y + 0.34) * 1.4, 0.0, 1.0);
       vec3 shadowCol = mix(vec3(0.75, 0.83, 0.94), vec3(0.89, 0.93, 0.98), topMix);
