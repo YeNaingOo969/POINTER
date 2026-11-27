@@ -17,6 +17,8 @@ import { addPlaceMarkers } from '../map/place-markers.js';
 import { addLandmarkLayer } from '../map/landmarks-3d.js';
 import { busShelters } from '../map/bus-shelters.js';
 import { cityTiles } from '../map/city-tiles.js';
+import { yangonPagodas, addPagodaLabels, clickedPagoda } from '../map/yangon-pagodas.js';
+import { riverBoats } from '../map/river-boats.js';
 import { clouds } from '../map/clouds.js';
 import { birds } from '../map/birds.js';
 import { walkers } from '../map/walkers.js';
@@ -84,8 +86,12 @@ async function start() {
     let routeLayer = { show() {}, clear() {} };
     try {
       // 3D landmarks (Blender models); bubbles of places on them float above their tops.
-      addLandmarkLayer(map, { onLandmarks: (spots) => markers.liftAbove(spots), extras: [cityTiles, busShelters, clouds, birds, walkers] });
+      addLandmarkLayer(map, {
+        onLandmarks: (spots) => markers.liftAbove(spots),
+        extras: [yangonPagodas, cityTiles, riverBoats, busShelters, clouds, birds, walkers],
+      });
       addPoiLabels(map); // names of the city's shops, malls, hotels… (under the bus stops)
+      addPagodaLabels(map); // golden markers & popups for Yangon's 690+ pagodas & monasteries
       addBusStops(map); // after the 3D landmarks, so the stops stay visible
       routeLayer = addRouteLayer(map); // after the 3D landmarks, so the line draws on top
     } catch (error) {
@@ -102,7 +108,9 @@ async function start() {
       onRoute: (route) => routeLayer.show(route, cardPadding()),
       onClear: () => routeLayer.clear(),
     });
-    map.on('click', (e) => { if (card.place && !clickedBusStop(map, e.point) && !clickedPoi(map, e.point)) closePlace(); });
+    map.on('click', (e) => {
+      if (card.place && !clickedBusStop(map, e.point) && !clickedPoi(map, e.point) && !clickedPagoda(map, e.point)) closePlace();
+    });
 
     // explore.html?place=<id> (from the detail page's "View on the map") opens that place.
     const linked = places.find((p) => String(p.id) === new URLSearchParams(location.search).get('place'));
