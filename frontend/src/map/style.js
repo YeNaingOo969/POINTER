@@ -7,15 +7,17 @@ import { TILE_SOURCE_URL, GLYPHS_URL } from './config.js';
 // water, tinted land use, gold main roads, coral motorways, buildings in a mix of pastels.
 export const MAP_COLORS = {
   land: '#fbf4e4',
-  residential: '#f8ebd6',
+  residential: '#f7ead4',
   commercial: '#fde1dc', // shops and offices: soft pink
   industrial: '#ebe4f7', // soft lilac
-  park: '#a8e29b',
-  wood: '#8ed68a',
-  grass: '#c0eaa9',
-  pitch: '#9edc8e',
+  park: '#9ee091',
+  wood: '#85d080',
+  grass: '#b9e6a1',
+  pitch: '#93d683',
   institution: '#f2e2f5', // schools, hospitals, cemeteries: light lilac
-  water: '#7fcdf5',
+  water: '#63bde8',
+  waterShallow: '#92dbf7',
+  waterEdge: '#3e99cb',
   roadMajor: '#ffffff',
   roadMinor: '#fffdf8',
   roadCasing: '#ead2b2',
@@ -169,11 +171,21 @@ export function buildMapStyle() {
         paint: { 'fill-color': ['match', ['get', 'class'], 'zoo', C.grass, C.pitch] },
       },
 
-      // ---- Water ----
+      // ---- Water (deep tropical azure + sunlit shallow coastal glow + bank edge) ----
       {
         id: 'water', type: 'fill', source: SOURCE, 'source-layer': 'water',
         filter: ['!=', ['get', 'brunnel'], 'tunnel'],
-        paint: { 'fill-color': C.water },
+        paint: { 'fill-color': C.water, 'fill-outline-color': C.waterEdge },
+      },
+      {
+        id: 'water-shallow-glow', type: 'line', source: SOURCE, 'source-layer': 'water',
+        filter: ['!=', ['get', 'brunnel'], 'tunnel'],
+        paint: { 'line-color': C.waterShallow, 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 2, 15, 7], 'line-blur': 4, 'line-opacity': 0.52 },
+      },
+      {
+        id: 'water-edge', type: 'line', source: SOURCE, 'source-layer': 'water',
+        filter: ['!=', ['get', 'brunnel'], 'tunnel'],
+        paint: { 'line-color': C.waterEdge, 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 0.8, 15, 2.0], 'line-opacity': 0.70 },
       },
       {
         id: 'river', type: 'line', source: SOURCE, 'source-layer': 'waterway',
@@ -218,17 +230,28 @@ export function buildMapStyle() {
       ...road('road-motorway', ['motorway'], C.motorway, C.motorwayCasing,
         [[9, 1], [14, 7], [18, 30]], 2),
       {
+        id: 'boulevard-centerline', type: 'line', source: SOURCE, 'source-layer': 'transportation',
+        minzoom: 15.6,
+        filter: ['all', isLine, notBrunnel, ['match', ['get', 'class'], ['primary', 'trunk', 'secondary'], true, false]],
+        paint: {
+          'line-color': '#fffbf0',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 15.6, 0.9, 18, 1.8],
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 15.6, 0.25, 16.5, 0.65],
+          'line-dasharray': [2.4, 2.2],
+        },
+      },
+      {
         id: 'rail', type: 'line', source: SOURCE, 'source-layer': 'transportation',
         filter: ['all', isLine, notBrunnel, ['match', ['get', 'class'], ['rail', 'transit'], true, false]],
         paint: { 'line-color': C.rail, 'line-width': width([[12, 0.8], [16, 2.5]]), 'line-dasharray': [3, 2] },
       },
 
-      // ---- Buildings: flat pastel blocks when zoomed out. From zoom 13.5 the 3D city
+      // ---- Buildings: flat pastel blocks when zoomed out. From zoom 13.0 the 3D city
       // (city-tiles.js) takes over, so they fade out: left under the 3D blocks they showed as
       // pink patches around landmarks and the edges of buildings. ----
       {
         id: 'building-flat', type: 'fill', source: SOURCE, 'source-layer': 'building',
-        paint: { 'fill-color': buildingTint, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 13, 0.85, 14, 0] },
+        paint: { 'fill-color': buildingTint, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 12.6, 0.85, 13.4, 0] },
       },
 
       // ---- Bridges and flyovers: drawn again above the buildings as raised decks ----
