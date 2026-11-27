@@ -464,7 +464,8 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
 
   const loop = (now) => {
     raf = requestAnimationFrame(loop);
-    if (document.hidden || now - lastFrame < 33) return;
+    if (document.hidden || map.isMoving()) return;
+    if (now - lastFrame < 33) return;
     if (!group.visible || !animated.some((o) => o.visible && (o.userData.isActive?.() ?? true))) return;
     lastFrame = now;
     map.triggerRepaint();
@@ -477,7 +478,7 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
   function syncShadowCamera(force = false) {
     if (!sun || !shadowFloor) return;
     const now = performance.now();
-    if (!force && now - lastShadowBakeMs < 280) return;
+    if (!force && (now - lastShadowBakeMs < 280 || map.isMoving() || map.isZooming() || map.isRotating())) return;
     const c = map.getCenter();
     const zoom = map.getZoom();
     const [cx, cz] = toLocal(c.lng, c.lat);
@@ -606,7 +607,7 @@ export function createLandmarkLayer(map, { onLandmarks, extras = [] } = {}) {
       scene.add(new THREE.HemisphereLight(0xfff5e4, 0xd1bfa5, 0.84));
       sun = new THREE.DirectionalLight(0xffe7bd, 1.48);
       sun.castShadow = true;
-      sun.shadow.mapSize.set(1024, 1024);
+      sun.shadow.mapSize.set(2048, 2048);
       sun.shadow.bias = -0.00055;
       sun.shadow.normalBias = 0.32;
 

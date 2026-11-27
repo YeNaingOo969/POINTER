@@ -7,14 +7,16 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { createOccupancyGrid, OCC_BUILDING, OCC_CLEAR } from './city-occupancy.js';
+import { MAX_BOUNDS } from './config.js';
 import { createRoadsideFiller } from './roadside-filler.js';
 import { createUrbanTrees } from './urban-trees.js';
 import { createRooftopProps } from './rooftop-props.js';
 
-const LOAD_KM = 6.8;
-const DROP_KM = 9.5;
+const LOAD_KM = 6.4;
+const DROP_KM = 8.8;
 const MIN_ZOOM = 13.0;
-const MAX_CONCURRENT = 4;
+const MAX_CONCURRENT = 3;
+const TILE_STEP = 0.04;
 const TEXTURES = ['apartment', 'shop', 'house', 'factory', 'roof_flat', 'roof_zinc', 'glass', 'parking'];
 
 function enhanceCityMaterial(material, kind, envMap, camXZUniform) {
@@ -138,7 +140,14 @@ export function cityTiles({ map, toLocal, envMap = null, markShadowsDirty, occup
     camXZUniform,
   );
 
-  const filler = createRoadsideFiller({ map, toLocal, materials, occupancy, markShadowsDirty });
+  const filler = createRoadsideFiller({
+    map,
+    toLocal,
+    materials,
+    occupancy,
+    markShadowsDirty,
+    onFillSettled: () => trees.refresh(),
+  });
   const trees = createUrbanTrees({ map, toLocal, envMap, occupancy, markShadowsDirty });
   const rooftops = createRooftopProps({ roofFlatMat: materials.roof_flat, envMap });
   group.add(filler.group, trees.group, rooftops.group);
@@ -157,7 +166,10 @@ export function cityTiles({ map, toLocal, envMap = null, markShadowsDirty, occup
     loaded.delete(id);
     filler.onTileDropped(id);
     rooftops.removeForTile(id);
-    if (!obj || obj === 'loading' || obj === 'queued') return;
+    if (!obj || typeof obj === 'string') {
+      markShadowsDirty?.();
+      return;
+    }
     glbGroup.remove(obj);
     obj.traverse((o) => { if (o.isMesh) o.geometry.dispose(); });
     markShadowsDirty?.();
@@ -174,6 +186,7 @@ export function cityTiles({ map, toLocal, envMap = null, markShadowsDirty, occup
       gltf.scene.position.set(x, 0, z);
       gltf.scene.updateMatrixWorld(true);
 
+      const meshes = [];
       gltf.scene.traverse((o) => {
         if (!o.isMesh) return;
         const old = o.material;
@@ -182,11 +195,27 @@ export function cityTiles({ map, toLocal, envMap = null, markShadowsDirty, occup
         if (o.material !== old) old?.dispose();
         o.castShadow = name !== 'parking' && name !== 'car' && name !== 'roof_flat' && name !== 'roof_zinc';
         o.receiveShadow = true;
-
+        o.userData._matName = name;
+        meshes.push(o);
+      });
+      const entry = { scene: gltf.scene, meshes, tile };
+      (occupancy._cityTiles ??= new Set()).add(entry);
+      occupancy._onCityFiltered ??= (filteredEntry) => {
+        if (filteredEntry?.tile?.id && filteredEntry.scene) {
+          rooftops.removeForTile(filteredEntry.tile.id);
+          rooftops.addForTile(filteredEntry.tile.id, filteredEntry.scene);
+        }
+        markShadowsDirty?.();
+        map.triggerRepaint();
+      };
+      meshes[0]?.geometry?.addEventListener('dispose', () => occupancy._cityTiles?.delete(entry), { once: true });
+      occupancy._filterCityEntry?.(entry);
+      for (const o of meshes) {
+        const name = o.userData._matName;
         if (name && name !== 'car') {
           occupancy.stampMeshXZ(o, name === 'parking' ? OCC_CLEAR : OCC_BUILDING);
         }
-      });
+      }
 
       glbGroup.add(gltf.scene);
       loaded.set(tile.id, gltf.scene);
@@ -237,21 +266,56 @@ export function cityTiles({ map, toLocal, envMap = null, markShadowsDirty, occup
     const here = [c.lng, c.lat];
     const bounds = map.getBounds();
     const zoomedIn = map.getZoom() >= MIN_ZOOM;
+    let virtualAdded = false;
     for (const tile of tiles) {
       const d = km(here, [tile.lng, tile.lat]);
       if (zoomedIn && inViewRange(tile, here, bounds) && !loaded.has(tile.id)) {
-        loaded.set(tile.id, 'queued');
+        if (tile.virtual) {
+          loaded.set(tile.id, 'virtual');
+          filler.onTileLoaded(tile);
+          virtualAdded = true;
+        } else {
+          loaded.set(tile.id, 'queued');
+        }
       } else if ((!zoomedIn || d > DROP_KM) && loaded.has(tile.id)) {
         drop(tile.id);
       }
     }
+    if (virtualAdded) trees.refresh();
     pumpQueue();
+  }
+
+  function buildFullCoverageTiles(glbList) {
+    const byId = new Map(glbList.map((t) => [t.id, t]));
+    const full = [];
+    const [[wMin, sMin], [eMax, nMax]] = MAX_BOUNDS;
+    const latStart = Math.floor((sMin - 16.70) / TILE_STEP + 1e-9) * TILE_STEP + 16.70;
+    const lngStart = Math.floor((wMin - 96.05) / TILE_STEP + 1e-9) * TILE_STEP + 96.05;
+    for (let lat = latStart; lat < nMax - 1e-6; lat += TILE_STEP) {
+      for (let lng = lngStart; lng < eMax - 1e-6; lng += TILE_STEP) {
+        const id = `${lat.toFixed(2)}_${lng.toFixed(2)}`;
+        const existing = byId.get(id);
+        if (existing) {
+          full.push(existing);
+          byId.delete(id);
+        } else {
+          full.push({
+            id,
+            lng: +(lng + TILE_STEP / 2).toFixed(4),
+            lat: +(lat + TILE_STEP / 2).toFixed(4),
+            virtual: true,
+          });
+        }
+      }
+    }
+    for (const leftover of byId.values()) full.push(leftover);
+    return full;
   }
 
   fetch('/models/city/tiles.json')
     .then((r) => r.json())
     .then((list) => {
-      tiles = list;
+      tiles = buildFullCoverageTiles(list);
       update();
       map.on('moveend', update);
     })

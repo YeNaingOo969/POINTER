@@ -7,6 +7,20 @@ import { LANDMARKS } from './config.js';
 export const CELL_M = 4;
 const CHUNK_CELLS = 128; // 512m x 512m per chunk -> 16 KB Uint8Array allocated on demand
 
+/** Extract backing typed array, element stride, offset, and integer normalization divisor for a position BufferAttribute or InterleavedBufferAttribute. */
+export function unpackPosAccessor(pos) {
+  const isInt = !!pos.isInterleavedBufferAttribute;
+  const arr = isInt ? pos.data.array : pos.array;
+  const normDiv = !pos.normalized ? 1
+    : (arr instanceof Int16Array ? 32767 : arr instanceof Uint16Array ? 65535 : arr instanceof Int8Array ? 127 : 255);
+  return {
+    arr,
+    stride: isInt ? pos.data.stride : pos.itemSize,
+    offset: isInt ? pos.offset : 0,
+    normDiv,
+  };
+}
+
 export const OCC_BUILDING = 1;
 export const OCC_CLEAR    = 2; // landmarks, parks, water, roads
 export const OCC_TREE     = 4;
@@ -110,9 +124,7 @@ export function createOccupancyGrid(toLocal) {
     const iarr = idx ? idx.array : null;
     const mw = mesh.matrixWorld;
     const e = mw.elements;
-    const arr = pos.array;
-    const normDiv = !pos.normalized ? 1
-      : (arr instanceof Int16Array ? 32767 : arr instanceof Uint16Array ? 65535 : arr instanceof Int8Array ? 127 : 255);
+    const { arr, stride, offset, normDiv } = unpackPosAccessor(pos);
     const fastAxis = pos.itemSize === 3 && Math.abs(e[1]) < 1e-6 && Math.abs(e[2]) < 1e-6 && Math.abs(e[8]) < 1e-6;
     const sx = e[0] / normDiv, sz = e[10] / normDiv, tx = e[12], tz = e[14];
 
@@ -123,7 +135,7 @@ export function createOccupancyGrid(toLocal) {
 
       let x0, z0, x1, z1, x2, z2;
       if (fastAxis) {
-        const a3 = ia * 3, b3 = ib * 3, c3 = ic * 3;
+        const a3 = ia * stride + offset, b3 = ib * stride + offset, c3 = ic * stride + offset;
         x0 = arr[a3] * sx + tx; z0 = arr[a3 + 2] * sz + tz;
         x1 = arr[b3] * sx + tx; z1 = arr[b3 + 2] * sz + tz;
         x2 = arr[c3] * sx + tx; z2 = arr[c3 + 2] * sz + tz;
