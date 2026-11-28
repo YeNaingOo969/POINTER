@@ -183,9 +183,9 @@ body {
 </div>
 </div>
 <div class="mt-3 flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight" id="statTotalAppsVal">8</span>
-<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5 font-semibold">
-<span class="material-symbols-outlined text-[14px]">trending_up</span> 8 Enrolled
+<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight" id="statTotalAppsVal">0</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5 font-semibold" id="statTotalAppsBadge">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 0 Enrolled
 </span>
 </div>
 <div class="mt-2 pt-2 border-t border-surface-variant/30 flex items-center justify-between text-body-sm text-on-surface-variant">
@@ -202,12 +202,12 @@ body {
 </div>
 </div>
 <div class="mt-3 flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight">3</span>
-<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high/80 border border-primary/20 px-2 py-0.5 rounded-md font-semibold">1 Pending</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight" id="statNewAppsVal">0</span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high/80 border border-primary/20 px-2 py-0.5 rounded-md font-semibold" id="statNewAppsPending">0 Pending</span>
 </div>
 <div class="mt-2 pt-2 border-t border-surface-variant/30 flex items-center justify-between text-body-sm text-on-surface-variant">
 <span>New Onboarding</span>
-<span class="font-mono text-[11px] text-primary font-semibold">37.5%</span>
+<span class="font-mono text-[11px] text-primary font-semibold" id="statNewAppsPct">0%</span>
 </div>
 </div>
 <!-- Stat 3: Renewal Applications -->
@@ -219,12 +219,12 @@ body {
 </div>
 </div>
 <div class="mt-3 flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight">5</span>
-<span class="font-label-sm text-label-sm text-tertiary-fixed-dim bg-tertiary-container/20 border border-tertiary/30 px-2 py-0.5 rounded-md font-semibold">All Active</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight" id="statRenewalAppsVal">0</span>
+<span class="font-label-sm text-label-sm text-tertiary-fixed-dim bg-tertiary-container/20 border border-tertiary/30 px-2 py-0.5 rounded-md font-semibold" id="statRenewalAppsBadge">0 Active</span>
 </div>
 <div class="mt-2 pt-2 border-t border-surface-variant/30 flex items-center justify-between text-body-sm text-on-surface-variant">
 <span>License Extensions</span>
-<span class="font-mono text-[11px] text-tertiary font-semibold">62.5%</span>
+<span class="font-mono text-[11px] text-tertiary font-semibold" id="statRenewalAppsPct">0%</span>
 </div>
 </div>
 <!-- Stat 4: Pending Applications (Gold Pulsing Aura) -->
@@ -238,8 +238,8 @@ body {
 </div>
 </div>
 <div class="mt-3 flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md text-primary font-bold font-mono tracking-tight">1</span>
-<span class="font-label-sm text-label-sm text-on-primary-container bg-primary px-2 py-0.5 rounded-md font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(242,202,80,0.4)]">Action Req.</span>
+<span class="font-headline-md text-headline-md text-primary font-bold font-mono tracking-tight" id="statPendingAppsVal">0</span>
+<span class="font-label-sm text-label-sm text-on-primary-container bg-primary px-2 py-0.5 rounded-md font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(242,202,80,0.4)]" id="statPendingAppsBadge">Action Req.</span>
 </div>
 <div class="mt-2 pt-2 border-t border-primary/20 flex items-center justify-between text-body-sm text-secondary font-medium">
 <span>Awaiting Audit Clearance</span>
@@ -255,8 +255,8 @@ body {
 </div>
 </div>
 <div class="mt-3 flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight">7</span>
-<span class="font-label-sm text-label-sm text-secondary font-semibold">87.5%</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold font-mono tracking-tight" id="statApprovedAppsVal">0</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold" id="statApprovedAppsPct">0%</span>
 </div>
 <div class="mt-2 pt-2 border-t border-surface-variant/30 flex items-center justify-between text-body-sm text-on-surface-variant">
 <span>Live &amp; Active</span>
@@ -272,8 +272,8 @@ body {
 </div>
 </div>
 <div class="mt-3 flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md text-error font-bold font-mono tracking-tight">0</span>
-<span class="font-label-sm text-label-sm text-error/80 font-semibold">0%</span>
+<span class="font-headline-md text-headline-md text-error font-bold font-mono tracking-tight" id="statRejectedAppsVal">0</span>
+<span class="font-label-sm text-label-sm text-error/80 font-semibold" id="statRejectedAppsPct">0%</span>
 </div>
 <div class="mt-2 pt-2 border-t border-surface-variant/30 flex items-center justify-between text-body-sm text-on-surface-variant">
 <span>Declined or Refunded</span>
@@ -290,15 +290,15 @@ body {
 <div class="inline-flex p-1.5 rounded-xl bg-surface-container-lowest/80 backdrop-blur-xl border border-primary/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]">
 <button class="filter-tab-btn active px-space-md py-2 rounded-lg font-label-lg text-label-lg transition-all duration-200 bg-gradient-to-r from-primary-container to-primary text-on-primary-container font-semibold shadow-[0_0_14px_rgba(212,175,55,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)]" data-type="all" id="tabAll">
 <span>All Applications</span>
-<span class="ml-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 text-primary text-label-sm font-label-sm font-mono font-bold">8</span>
+<span class="ml-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 text-primary text-label-sm font-label-sm font-mono font-bold" id="tabAllCount">0</span>
 </button>
 <button class="filter-tab-btn px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-all duration-200" data-type="new" id="tabNew">
 <span>New Shop Registration</span>
-<span class="ml-2 px-2 py-0.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-label-sm font-label-sm font-bold">1 Pending</span>
+<span class="ml-2 px-2 py-0.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-label-sm font-label-sm font-bold" id="tabNewPendingBadge">0 Pending</span>
 </button>
 <button class="filter-tab-btn px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-all duration-200" data-type="renewal" id="tabRenewal">
 <span>Shop Renewal</span>
-<span class="ml-2 px-2 py-0.5 rounded-full bg-secondary-container/50 border border-secondary/30 text-secondary text-label-sm font-label-sm font-bold">5 Approved</span>
+<span class="ml-2 px-2 py-0.5 rounded-full bg-secondary-container/50 border border-secondary/30 text-secondary text-label-sm font-label-sm font-bold" id="tabRenewalBadge">0 Approved</span>
 </button>
 </div>
 <div class="flex items-center gap-space-sm">
@@ -838,8 +838,8 @@ body {
 </div>
 </div>
 <div class="w-full pt-2 flex items-center justify-between text-label-sm font-label-sm text-outline">
-<span>KBZPay QuickQR Pay</span>
-<span class="text-secondary font-mono">TXN-PTR-99482103</span>
+<span id="drawerSlipMethod">KBZPay QuickQR Pay</span>
+<span class="text-secondary font-mono" id="drawerSlipTxnRef">TXN-PTR-99482103</span>
 </div>
 </div>
 <!-- Ledger Details breakdown -->
@@ -1042,212 +1042,11 @@ body {
 <!-- Vanilla Interactive Orchestrator -->
 <script>
 (function() {
-  // Master Application Data Store - STRICTLY ENGLISH
-  let applications = [
-    {
-      id: "PTR-APP-0007",
-      number: "01",
-      shopName: "Pending Noodle Shop",
-      category: "Food & Drink",
-      owner: "Ko Zaw",
-      verified: true,
-      type: "new",
-      typeLabel: "New Shop",
-      submittedDate: "Nov 17, 2026 - 11:31",
-      duration: "3 Months (Gold Tier)",
-      paymentRaw: 30000,
-      paymentFormatted: "30,000 MMK",
-      status: "Pending",
-      phone: "09 770 123 456",
-      email: "pending@pointer.app",
-      address: "No. 5, Anawrahta Road, Latha, Yangon",
-      description: "Shan noodles and sticky rice, opening soon near the market.",
-      coordinates: "16.7726° N, 96.1512° E",
-      mapUrl: "https://maps.google.com/?q=16.7726,96.1512",
-      txnId: "SEED-PENDING-001",
-      paymentDate: "2026-11-17 11:31:12 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0006",
-      number: "02",
-      shopName: "Mya Tea House",
-      category: "Food & Drink",
-      owner: "Mya Aung",
-      verified: true,
-      type: "new",
-      typeLabel: "New Shop",
-      submittedDate: "Nov 07, 2026 - 11:31",
-      duration: "12 Months (Platinum Tier)",
-      paymentRaw: 100000,
-      paymentFormatted: "100,000 MMK",
-      status: "Approved",
-      phone: "09 450 123 456",
-      email: "owner@pointer.app",
-      address: "No. 12, 31st Street, Kyauktada, Yangon",
-      description: "Family tea shop: mohinga, samosas and milk tea, a short walk from Sule Pagoda.",
-      coordinates: "16.7794° N, 96.1598° E",
-      mapUrl: "https://maps.google.com/?q=16.7794,96.1598",
-      txnId: "SEED-OWNER-001",
-      paymentDate: "2026-11-07 11:31:12 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0008",
-      number: "03",
-      shopName: "Yangon Heritage Books & Crafts",
-      category: "Other / Crafts",
-      owner: "Zaw Min Tun",
-      verified: true,
-      type: "new",
-      typeLabel: "New Shop",
-      submittedDate: "Nov 10, 2026 - 10:00",
-      duration: "1 Month (Silver Tier)",
-      paymentRaw: 12000,
-      paymentFormatted: "12,000 MMK",
-      status: "Approved",
-      phone: "09 780 112 233",
-      email: "zawmin@pointer.app",
-      address: "No. 114, Pansodan Street (Middle Block), Kyauktada, Yangon",
-      description: "Vintage books, Yangon historic maps, antique postcards, and local artisanal handicraft souvenirs.",
-      coordinates: "16.7735° N, 96.1610° E",
-      mapUrl: "https://maps.google.com/?q=16.7735,96.1610",
-      txnId: "KPAY-2026008",
-      paymentDate: "2026-11-10 10:00:00 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0001",
-      number: "04",
-      shopName: "Golden Bean Café",
-      category: "Food & Drink",
-      owner: "Ye Naing Oo",
-      verified: true,
-      type: "renewal",
-      typeLabel: "Renewal",
-      submittedDate: "Nov 15, 2026 - 09:00",
-      duration: "3 Months (Gold Tier)",
-      paymentRaw: 30000,
-      paymentFormatted: "30,000 MMK",
-      status: "Approved",
-      phone: "09 5123 4567",
-      email: "yno@gmail.com",
-      address: "No. 45, Kandawgyi Ring Road, Bahan, Yangon",
-      description: "Demo shop: a cosy café near Kandawgyi with iced coffee and snacks.",
-      coordinates: "16.8001° N, 96.1561° E",
-      mapUrl: "https://maps.google.com/?q=16.8001,96.1561",
-      txnId: "KPAY-2026001",
-      paymentDate: "2026-11-15 09:00:00 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0002",
-      number: "05",
-      shopName: "Lotus Nail Spa",
-      category: "Beauty & Wellness",
-      owner: "Lotus Spa Owner",
-      verified: true,
-      type: "renewal",
-      typeLabel: "Renewal",
-      submittedDate: "Nov 15, 2026 - 09:00",
-      duration: "3 Months (Gold Tier)",
-      paymentRaw: 30000,
-      paymentFormatted: "30,000 MMK",
-      status: "Approved",
-      phone: "09 7788 1234",
-      email: "owner2@pointer.mm",
-      address: "No. 12, Inya Road, Kamayut, Yangon",
-      description: "Demo shop: nails, massage and thanaka treatments.",
-      coordinates: "16.7855° N, 96.1467° E",
-      mapUrl: "https://maps.google.com/?q=16.7855,96.1467",
-      txnId: "WAVE-2026002",
-      paymentDate: "2026-11-15 09:00:00 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0003",
-      number: "06",
-      shopName: "Shwe Mohinga Corner",
-      category: "Food & Drink",
-      owner: "Mohinga Corner Owner",
-      verified: true,
-      type: "renewal",
-      typeLabel: "Renewal",
-      submittedDate: "Nov 15, 2026 - 09:00",
-      duration: "3 Months (Gold Tier)",
-      paymentRaw: 30000,
-      paymentFormatted: "30,000 MMK",
-      status: "Approved",
-      phone: "09 7981 1234",
-      email: "owner3@pointer.mm",
-      address: "Corner of 19th & Mahabandoola Road, Latha, Yangon",
-      description: "Traditional Yangon breakfast spot: crispy fritters, duck egg mohinga, and fresh shan noodles.",
-      coordinates: "16.7750° N, 96.1520° E",
-      mapUrl: "https://maps.google.com/?q=16.7750,96.1520",
-      txnId: "KPAY-2026003",
-      paymentDate: "2026-11-15 09:00:00 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0004",
-      number: "07",
-      shopName: "Kandaw Lake Guesthouse",
-      category: "Stay",
-      owner: "Guesthouse Owner",
-      verified: true,
-      type: "renewal",
-      typeLabel: "Renewal",
-      submittedDate: "Nov 15, 2026 - 09:00",
-      duration: "3 Months (Gold Tier)",
-      paymentRaw: 30000,
-      paymentFormatted: "30,000 MMK",
-      status: "Approved",
-      phone: "09 4500 7712",
-      email: "owner4@pointer.mm",
-      address: "No. 8, Natmauk Road, Bahan, Yangon",
-      description: "Boutique guesthouse overlooking Kandawgyi Lake with rooftop views of Shwedagon.",
-      coordinates: "16.7990° N, 96.1600° E",
-      mapUrl: "https://maps.google.com/?q=16.7990,96.1600",
-      txnId: "KPAY-2026004",
-      paymentDate: "2026-11-15 09:00:00 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    },
-    {
-      id: "PTR-APP-0005",
-      number: "08",
-      shopName: "Pyay Road Pharmacy",
-      category: "Health",
-      owner: "Pharmacy Owner",
-      verified: true,
-      type: "renewal",
-      typeLabel: "Renewal",
-      submittedDate: "Nov 15, 2026 - 09:00",
-      duration: "3 Months (Gold Tier)",
-      paymentRaw: 30000,
-      paymentFormatted: "30,000 MMK",
-      status: "Approved",
-      phone: "09 2500 4455",
-      email: "owner5@pointer.mm",
-      address: "No. 104, Pyay Road, Kamayut, Yangon",
-      description: "24-hour community pharmacy offering licensed prescription drugs, emergency medicine, and personal care supplies.",
-      coordinates: "16.8200° N, 96.1300° E",
-      mapUrl: "https://maps.google.com/?q=16.8200,96.1300",
-      txnId: "CBPAY-2026005",
-      paymentDate: "2026-11-15 09:00:00 MMT",
-      refundEligible: false,
-      rejectionReason: ""
-    }
-  ];
+  let applications = [];
+  let isLoadingApps = true;
 
   let activeTab = 'all';
-  let selectedApp = applications[0];
+  let selectedApp = null;
 
   // DOM Elements
   const tableBody = document.getElementById('applicationTableBody');
@@ -1315,8 +1114,53 @@ body {
   const toastMessage = document.getElementById('toastMessage');
   const closeToastBtn = document.getElementById('closeToastBtn');
 
+  const drawerSlipMethod = document.getElementById('drawerSlipMethod');
+  const drawerSlipTxnRef = document.getElementById('drawerSlipTxnRef');
+  const drawerSlipImg = document.getElementById('drawerSlipImg');
+  const shopImg1 = document.getElementById('shopImg1');
+  const shopImg2 = document.getElementById('shopImg2');
+  const shopImg3 = document.getElementById('shopImg3');
+  const fallbackGallerySrcs = [shopImg1.src, shopImg2.src, shopImg3.src];
+  const fallbackSlipSrc = drawerSlipImg.src;
+
+  function updateApplicationMetrics() {
+    const total = applications.length;
+    const newApps = applications.filter(a => a.type === 'new');
+    const renewalApps = applications.filter(a => a.type === 'renewal');
+    const pendingApps = applications.filter(a => a.status === 'Pending');
+    const approvedApps = applications.filter(a => a.status === 'Approved');
+    const rejectedApps = applications.filter(a => a.status === 'Rejected');
+    const newPending = newApps.filter(a => a.status === 'Pending').length;
+    const renewalApproved = renewalApps.filter(a => a.status === 'Approved').length;
+    const pct = (n) => total > 0 ? ((n / total) * 100).toFixed(1) + '%' : '0%';
+
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
+    set('statTotalAppsVal', total);
+    const totalBadge = document.getElementById('statTotalAppsBadge');
+    if (totalBadge) totalBadge.innerHTML = `<span class="material-symbols-outlined text-[14px]">trending_up</span> ${total} Enrolled`;
+    set('statNewAppsVal', newApps.length);
+    set('statNewAppsPending', `${newPending} Pending`);
+    set('statNewAppsPct', pct(newApps.length));
+    set('statRenewalAppsVal', renewalApps.length);
+    set('statRenewalAppsBadge', `${renewalApproved} Approved`);
+    set('statRenewalAppsPct', pct(renewalApps.length));
+    set('statPendingAppsVal', pendingApps.length);
+    set('statPendingAppsBadge', pendingApps.length > 0 ? 'Action Req.' : 'All Clear');
+    set('statApprovedAppsVal', approvedApps.length);
+    set('statApprovedAppsPct', pct(approvedApps.length));
+    set('statRejectedAppsVal', rejectedApps.length);
+    set('statRejectedAppsPct', pct(rejectedApps.length));
+    set('tabAllCount', total);
+    set('tabNewPendingBadge', `${newPending} Pending`);
+    set('tabRenewalBadge', `${renewalApps.length} Total`);
+  }
+
   // Render Table
   function renderTable() {
+    updateApplicationMetrics();
     const searchTerm = searchInput.value.toLowerCase().trim();
     const typeVal = typeFilter.value;
     const statusVal = statusFilter.value;
@@ -1338,6 +1182,18 @@ body {
     });
 
     activeRowCount.textContent = `Showing ${filtered.length} of ${applications.length} items`;
+
+    if (isLoadingApps) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="9" class="py-12 text-center text-outline">
+            <span class="material-symbols-outlined text-[32px] text-primary block mb-2 animate-spin">progress_activity</span>
+            <span class="font-label-lg text-label-lg font-semibold block text-on-surface">Loading applications from vault...</span>
+          </td>
+        </tr>
+      `;
+      return;
+    }
 
     if (filtered.length === 0) {
       tableBody.innerHTML = `
@@ -1462,6 +1318,16 @@ body {
     drawerPaymentAmount.textContent = item.paymentFormatted;
     drawerTxnId.textContent = item.txnId;
     drawerPaymentDate.textContent = item.paymentDate;
+    if (drawerSlipMethod) drawerSlipMethod.textContent = item.paymentMethod || 'Payment Transfer';
+    if (drawerSlipTxnRef) drawerSlipTxnRef.textContent = item.txnId || 'N/A';
+
+    // Show actual uploaded shop storefront photo and payment slip when available
+    shopImg1.src = item.storefrontPhoto || fallbackGallerySrcs[0];
+    shopImg2.src = item.storefrontPhoto || fallbackGallerySrcs[1];
+    shopImg3.src = item.storefrontPhoto || fallbackGallerySrcs[2];
+    if (shopImg2.parentElement) shopImg2.parentElement.classList.toggle('hidden', Boolean(item.storefrontPhoto));
+    if (shopImg3.parentElement) shopImg3.parentElement.classList.toggle('hidden', Boolean(item.storefrontPhoto));
+    drawerSlipImg.src = item.paymentProof || fallbackSlipSrc;
 
     drawerStatusBadge.className = 'px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-bold border ';
     if (item.status === 'Pending') {
@@ -1565,19 +1431,38 @@ body {
   });
 
   executeApproveBtn.addEventListener('click', async () => {
-    selectedApp.status = 'Approved';
-    selectedApp.refundEligible = false;
+    if (!selectedApp) return;
+    const prevText = executeApproveBtn.textContent;
+    executeApproveBtn.disabled = true;
+    executeApproveBtn.textContent = 'Approving...';
 
-    if (window.AdminAPI) {
+    try {
       const numericId = selectedApp.backendId || selectedApp.id;
-      window.AdminAPI.approveApplication(numericId);
+      const approvedName = selectedApp.shopName;
+      const approvedAppId = selectedApp.id;
+
+      if (window.AdminAPI) {
+        const res = await window.AdminAPI.approveApplication(numericId);
+        if (!res || res.error) {
+          showToast("Approval Failed", (res && res.error) || "Could not approve application.", true);
+          return;
+        }
+        await loadBackendApplications();
+        const refreshed = applications.find(a => a.id === approvedAppId) || applications.find(a => a.backendId === numericId);
+        if (refreshed) selectedApp = refreshed;
+      } else {
+        selectedApp.status = 'Approved';
+        selectedApp.refundEligible = false;
+        renderTable();
+      }
+
+      approveModal.classList.add('opacity-0', 'pointer-events-none');
+      if (selectedApp) window.pointerSelectApp(selectedApp.id);
+      showToast("Shop Successfully Approved!", `${approvedName} has been authorized and published Live to the consumer network.`);
+    } finally {
+      executeApproveBtn.disabled = false;
+      executeApproveBtn.textContent = prevText;
     }
-
-    approveModal.classList.add('opacity-0', 'pointer-events-none');
-    renderTable();
-    window.pointerSelectApp(selectedApp.id);
-
-    showToast("Shop Successfully Approved!", `${selectedApp.shopName} has been authorized and published Live to the consumer network.`);
   });
 
   // Rejection Workflow
@@ -1593,24 +1478,43 @@ body {
   cancelRejectIconBtn.addEventListener('click', closeRejectModal);
 
   executeRejectBtn.addEventListener('click', async () => {
+    if (!selectedApp) return;
     const reason = rejectPresetSelect.value;
-    selectedApp.status = 'Rejected';
-    selectedApp.rejectionReason = reason;
+    const prevText = executeRejectBtn.textContent;
+    executeRejectBtn.disabled = true;
+    executeRejectBtn.textContent = 'Rejecting...';
 
-    if (selectedApp.type === 'new') {
-      selectedApp.refundEligible = true;
-    }
-
-    if (window.AdminAPI) {
+    try {
       const numericId = selectedApp.backendId || selectedApp.id;
-      window.AdminAPI.rejectApplication(numericId, reason);
+      const targetAppId = selectedApp.id;
+
+      if (window.AdminAPI) {
+        const res = await window.AdminAPI.rejectApplication(numericId, reason);
+        if (!res || res.error) {
+          showToast("Rejection Failed", (res && res.error) || "Could not reject application.", true);
+          return;
+        }
+        await loadBackendApplications();
+        const refreshed = applications.find(a => a.id === targetAppId) || applications.find(a => a.backendId === numericId);
+        if (refreshed) {
+          refreshed.rejectionReason = reason;
+          refreshed.refundEligible = (refreshed.type === 'new');
+          selectedApp = refreshed;
+        }
+      } else {
+        selectedApp.status = 'Rejected';
+        selectedApp.rejectionReason = reason;
+        if (selectedApp.type === 'new') selectedApp.refundEligible = true;
+        renderTable();
+      }
+
+      closeRejectModal();
+      if (selectedApp) window.pointerSelectApp(selectedApp.id);
+      showToast("Application Declined & Logged", `Rejection reason recorded: ${reason}. Merchant notified.`, true);
+    } finally {
+      executeRejectBtn.disabled = false;
+      executeRejectBtn.textContent = prevText;
     }
-
-    closeRejectModal();
-    renderTable();
-    window.pointerSelectApp(selectedApp.id);
-
-    showToast("Application Declined & Logged", `Rejection reason recorded: ${reason}. Merchant notified.`, true);
   });
 
   // Refund Workflow
@@ -1691,48 +1595,69 @@ body {
     showToast("Export Initiated", "Secured CSV ledger snapshot generated with SHA-256 seal.");
   });
 
-  document.getElementById('systemAuditBtn').addEventListener('click', () => {
-    showToast("Pulse Synchronized", "All merchant nodes reporting latency at 24ms. Vault integrity 100%.");
+  document.getElementById('systemAuditBtn').addEventListener('click', async () => {
+    await loadBackendApplications();
+    showToast("Pulse Synchronized", "Applications synced with live database.");
   });
 
   // Initial Boot
   renderTable();
 
   async function loadBackendApplications() {
-    if (!window.AdminAPI) return;
-    const backendData = await window.AdminAPI.getApplications();
-    if (backendData && Array.isArray(backendData) && backendData.length > 0) {
-      applications = backendData.map((b, idx) => ({
-        id: b.appId || ('PTR-APP-' + String(b.id).padStart(4, '0')),
-        backendId: b.id,
-        number: String(idx + 1).padStart(2, '0'),
-        shopName: b.shopName || 'Shop',
-        category: b.category || 'General',
-        owner: b.owner || 'Owner',
-        verified: true,
-        type: b.kind || b.type || 'new',
-        typeLabel: b.typeLabel || (b.kind === 'new' ? 'New Shop' : 'Renewal'),
-        submittedDate: b.submittedDate ? b.submittedDate.slice(0, 16).replace('T', ' ') : 'Nov 18, 2026',
-        duration: b.duration || `${b.months || 3} Months`,
-        paymentRaw: b.paymentRaw || 30000,
-        paymentFormatted: b.paymentFormatted || '30,000 MMK',
-        status: b.status || 'Pending',
-        phone: b.phone || '',
-        email: b.email || '',
-        address: b.address || '',
-        description: b.description || '',
-        coordinates: b.coordinates || `${b.lat || 16.78}° N, ${b.lng || 96.15}° E`,
-        mapUrl: b.mapUrl || `https://maps.google.com/?q=${b.lat || 16.78},${b.lng || 96.15}`,
-        txnId: b.paymentRef || b.txnId || 'N/A',
-        paymentDate: b.paymentDate || '2026-11-18 MMT',
-        refundEligible: false,
-        rejectionReason: ""
-      }));
+    if (!window.AdminAPI) {
+      isLoadingApps = false;
+      renderTable();
+      return;
+    }
+    try {
+      const backendData = await window.AdminAPI.getApplications();
+      if (Array.isArray(backendData)) {
+        applications = backendData.map((b, idx) => ({
+          id: b.appId || ('PTR-APP-' + String(b.id).padStart(4, '0')),
+          backendId: b.id,
+          number: String(idx + 1).padStart(2, '0'),
+          shopName: b.shopName || 'Shop',
+          category: b.category || 'General',
+          owner: b.owner || 'Owner',
+          verified: true,
+          type: b.kind || b.type || 'new',
+          typeLabel: b.typeLabel || (b.kind === 'new' ? 'New Shop' : 'Renewal'),
+          submittedDate: b.submittedDate ? b.submittedDate.slice(0, 16).replace('T', ' ') : 'Nov 18, 2026',
+          duration: b.duration || `${b.months || 3} Months`,
+          paymentRaw: b.paymentRaw || 30000,
+          paymentFormatted: b.paymentFormatted || '30,000 MMK',
+          paymentMethod: b.paymentMethod || 'KBZPay',
+          status: b.status || 'Pending',
+          phone: b.phone || '',
+          email: b.email || '',
+          address: b.address || '',
+          description: b.description || '',
+          coordinates: b.coordinates || `${b.lat || 16.78}° N, ${b.lng || 96.15}° E`,
+          mapUrl: b.mapUrl || `https://maps.google.com/?q=${b.lat || 16.78},${b.lng || 96.15}`,
+          storefrontPhoto: b.storefrontPhoto || '',
+          paymentProof: b.paymentProof || '',
+          txnId: b.paymentRef || b.txnId || 'N/A',
+          paymentDate: b.paymentDate || '2026-11-18 MMT',
+          refundEligible: (b.kind === 'new' && b.status === 'Rejected'),
+          rejectionReason: ""
+        }));
+      } else if (backendData && backendData.error) {
+        console.warn('Applications API returned error:', backendData.error);
+      }
+    } catch (err) {
+      console.warn('Failed to load backend applications:', err);
+    } finally {
+      isLoadingApps = false;
       renderTable();
     }
   }
 
-  loadBackendApplications();
+  // Wait for deferred type="module" admin-auth.js so window.AdminAPI is initialized.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBackendApplications);
+  } else {
+    loadBackendApplications();
+  }
 
   window.addEventListener('adminLanguageChanged', () => {
     renderTable();

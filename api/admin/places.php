@@ -14,11 +14,19 @@ if ($method === 'GET') {
     $sql = "SELECT p.*,
                    c.name_en as category_name, c.name_my as category_name_my, c.group_name as category_group,
                    u.name as owner_name, u.email as owner_email,
+                   MAX(up.months) as plan_months, MAX(up.expires_at) as plan_expires_at,
                    COALESCE(AVG(r.rating), 0) as avg_rating,
                    COUNT(r.id) as review_count
             FROM places p
             LEFT JOIN categories c ON c.id = p.category_id
             LEFT JOIN users u ON u.id = p.owner_id
+            LEFT JOIN owner_upgrades up ON up.id = (
+                SELECT o2.id
+                FROM owner_upgrades o2
+                WHERE o2.user_id = p.owner_id AND o2.status = 'approved'
+                ORDER BY o2.expires_at DESC, o2.id DESC
+                LIMIT 1
+            )
             LEFT JOIN reviews r ON r.place_id = p.id
             WHERE 1=1";
 
@@ -35,6 +43,9 @@ if ($method === 'GET') {
     if ($status !== '') {
         $sql .= " AND p.status = ?";
         $params[] = strtolower($status);
+    } elseif ($owned !== null && $owned !== '') {
+        // Pending and rejected shop requests stay in Applications until approved.
+        $sql .= " AND p.status IN ('active', 'hidden')";
     }
 
     if ($categoryId > 0) {
@@ -68,6 +79,9 @@ if ($method === 'GET') {
 
         $avg = round((float) $r['avg_rating'], 1);
         $count = (int) $r['review_count'];
+        $planMonths = $r['plan_months'] ? (int) $r['plan_months'] : null;
+        $planExpiresAt = $r['plan_expires_at'] ?: null;
+        $isExpired = ($planExpiresAt !== null && strtotime($planExpiresAt) <= time());
 
         return [
             'id'              => (int) $r['id'],
@@ -88,6 +102,9 @@ if ($method === 'GET') {
             'storefrontPhoto' => $r['storefront_photo'],
             'status'          => $r['status'],
             'isHidden'        => ($r['status'] === 'hidden'),
+            'planMonths'      => $planMonths,
+            'planExpiresAt'   => $planExpiresAt ? iso($planExpiresAt) : null,
+            'isExpired'       => $isExpired,
             'openHours'       => $hours,
             'rating'          => [
                 'average' => $count > 0 ? $avg : 5.0,

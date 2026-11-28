@@ -11,19 +11,29 @@ if ($method === 'GET') {
     $q      = trim((string) ($_GET['q'] ?? ''));
 
     $sql = "SELECT u.id as upgrade_id, u.user_id, u.plan_id,
-                   COALESCE(pl.months, 3) as months,
-                   COALESCE(pl.amount, 30000) as amount,
+                   COALESCE(NULLIF(u.months, 0), pl.months, 3) as months,
+                   COALESCE(NULLIF(u.amount, 0), pl.amount, 30000) as amount,
                    u.payment_method, u.payment_ref,
                    u.payment_proof, u.status as upgrade_status, u.starts_at, u.expires_at, u.admin_id,
                    u.reviewed_at, u.created_at,
                    usr.name as owner_name, usr.email as owner_email,
                    p.id as place_id, p.name as shop_name, p.phone as shop_phone, p.address as shop_address,
                    p.description as shop_description, p.lat, p.lng, p.storefront_photo, p.status as place_status,
-                   c.name_en as category_name, c.name_my as category_name_my
+                   c.name_en as category_name, c.name_my as category_name_my,
+                   EXISTS (
+                       SELECT 1 FROM owner_upgrades prev
+                       WHERE prev.user_id = u.user_id AND prev.status = 'approved' AND prev.id < u.id
+                   ) as has_prior_approved
             FROM owner_upgrades u
             LEFT JOIN plans pl ON pl.id = u.plan_id
             LEFT JOIN users usr ON usr.id = u.user_id
-            LEFT JOIN places p ON p.owner_id = u.user_id
+            LEFT JOIN places p ON p.id = (
+                SELECT p2.id
+                FROM places p2
+                WHERE p2.owner_id = u.user_id
+                ORDER BY FIELD(p2.status, 'pending', 'active', 'hidden', 'rejected'), p2.id ASC
+                LIMIT 1
+            )
             LEFT JOIN categories c ON c.id = p.category_id
             WHERE 1=1";
 
@@ -43,27 +53,38 @@ if ($method === 'GET') {
         $params[] = $wildcard;
     }
 
-    $sql .= " ORDER BY (u.status = 'pending') DESC, u.created_at DESC";
+    $sql .= " ORDER BY (u.status = 'pending') DESC, u.created_at DESC, u.id DESC";
 
     $st = $pdo->prepare($sql);
     $st->execute($params);
     $rows = $st->fetchAll();
 
     $results = [];
-    foreach ($rows as $index => $r) {
-        $appNumber = str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT);
+    foreach ($rows as $r) {
         $appId = 'PTR-APP-' . str_pad((string) $r['upgrade_id'], 4, '0', STR_PAD_LEFT);
-        
-        // Determine whether this is a 'new' shop or a 'renewal'
-        $isNew = ($r['place_status'] === 'pending' || $r['starts_at'] === null);
+
+        // Determine whether this is a 'new' shop request or an existing owner's 'renewal'
+        $isNew = (
+            $r['place_status'] === 'pending'
+            || $r['place_status'] === 'rejected'
+            || $r['place_id'] === null
+            || (
+                strtolower((string) $r['upgrade_status']) !== 'pending'
+                && (int) $r['has_prior_approved'] === 0
+                && (int) $r['upgrade_id'] >= 6
+            )
+        );
         $appKind = $isNew ? 'new' : 'renewal';
 
         if ($kind !== '' && $kind !== $appKind) {
             continue;
         }
 
+        $appNumber = str_pad((string) (count($results) + 1), 2, '0', STR_PAD_LEFT);
+
         $durationLabel = match ((int) $r['months']) {
             12      => '12 Months (Platinum Tier)',
+            6       => '6 Months (Gold Tier)',
             3       => '3 Months (Gold Tier)',
             default => '1 Month (Silver Tier)',
         };
@@ -72,6 +93,8 @@ if ($method === 'GET') {
             'id'               => (int) $r['upgrade_id'],
             'appId'            => $appId,
             'number'           => $appNumber,
+            'placeId'          => $r['place_id'] ? (int) $r['place_id'] : null,
+            'placeStatus'      => $r['place_status'],
             'shopName'         => $r['shop_name'] ?: 'Pending Registration Store',
             'category'         => $r['category_name'] ?: 'General Store',
             'categoryMy'       => $r['category_name_my'] ?: '',
@@ -153,12 +176,12 @@ if ($action === 'approve') {
                                WHERE id = ?");
         $stUp->execute([$startsAt, $expiresAt, $admin['id'], $upgradeId]);
 
-        // 2. Promote user to 'owner'
-        $stUser = $pdo->prepare("UPDATE users SET role = 'owner' WHERE id = ?");
+        // 2. Promote user to 'owner' (keep admin accounts untouched)
+        $stUser = $pdo->prepare("UPDATE users SET role = 'owner' WHERE id = ? AND role <> 'admin'");
         $stUser->execute([$userId]);
 
-        // 3. Activate shop
-        $stPlace = $pdo->prepare("UPDATE places SET status = 'active' WHERE owner_id = ? AND status = 'pending'");
+        // 3. Activate shop (pending or previously rejected new application)
+        $stPlace = $pdo->prepare("UPDATE places SET status = 'active' WHERE owner_id = ? AND status IN ('pending', 'rejected')");
         $stPlace->execute([$userId]);
 
         // 4. Audit Log
@@ -188,8 +211,8 @@ if ($action === 'approve') {
                                WHERE id = ?");
         $stUp->execute([$admin['id'], $upgradeId]);
 
-        // If place was pending, hide it
-        $stPlace = $pdo->prepare("UPDATE places SET status = 'hidden' WHERE owner_id = ? AND status = 'pending'");
+        // Mark pending place as rejected (so it does not appear in Shops / Map and user can re-apply)
+        $stPlace = $pdo->prepare("UPDATE places SET status = 'rejected' WHERE owner_id = ? AND status = 'pending'");
         $stPlace->execute([$userId]);
 
         log_audit($admin['id'], 'reject_upgrade', 'owner_upgrades', $upgradeId);

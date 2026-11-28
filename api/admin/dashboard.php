@@ -11,7 +11,7 @@ $pendingPayments = (int) $pdo->query("SELECT COUNT(*) FROM owner_upgrades WHERE 
 $openReports = (int) $pdo->query("SELECT COUNT(*) FROM reports WHERE status = 'open'")->fetchColumn();
 $openAppeals = (int) $pdo->query("SELECT COUNT(*) FROM reports WHERE target_type = 'place' AND status = 'open'")->fetchColumn();
 $shopsLive = (int) $pdo->query("SELECT COUNT(*) FROM places WHERE owner_id IS NOT NULL AND status = 'active'")->fetchColumn();
-$totalShops = (int) $pdo->query("SELECT COUNT(*) FROM places WHERE owner_id IS NOT NULL")->fetchColumn();
+$totalShops = (int) $pdo->query("SELECT COUNT(*) FROM places WHERE owner_id IS NOT NULL AND status IN ('active', 'hidden')")->fetchColumn();
 $totalPlaces = (int) $pdo->query("SELECT COUNT(*) FROM places WHERE owner_id IS NULL")->fetchColumn();
 $totalUsers = (int) $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 $bannedUsers = (int) $pdo->query("SELECT COUNT(*) FROM users WHERE status = 'suspended'")->fetchColumn();
