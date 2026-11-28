@@ -137,9 +137,9 @@ body {
 </div>
 </div>
 <div class="flex items-baseline justify-between mt-space-xs">
-<span class="font-display text-display text-on-surface font-semibold tracking-tight" id="metricTotalShops">9</span>
-<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-<span class="material-symbols-outlined text-xs">store</span> 9 Registered
+<span class="font-display text-display text-on-surface font-semibold tracking-tight" id="metricTotalShops">0</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full" id="metricTotalBadge">
+<span class="material-symbols-outlined text-xs">store</span> 0 Registered
         </span>
 </div>
 <div class="mt-space-sm pt-space-xs flex items-center gap-2">
@@ -157,9 +157,9 @@ body {
 </div>
 </div>
 <div class="flex items-baseline justify-between mt-space-xs">
-<span class="font-display text-display text-primary font-semibold tracking-tight" id="metricActiveShops">8</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">
-          88.9% Uptime
+<span class="font-display text-display text-primary font-semibold tracking-tight" id="metricActiveShops">0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full" id="metricActiveBadge">
+          Approved &amp; Live
         </span>
 </div>
 <div class="mt-space-sm pt-space-xs flex items-center gap-2">
@@ -187,24 +187,24 @@ body {
 <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="hiddenDesc">Preserved data; unlisted from search</span>
 </div>
 </div>
-<!-- Card 4: Pending Verification -->
+<!-- Card 4: Expired Boutiques -->
 <div class="relative overflow-hidden p-space-lg rounded-xl bg-surface-container-low/70 backdrop-blur-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group" style="background: radial-gradient(at left top, rgba(253, 198, 89, 0.22) 0%, rgba(28, 23, 15, 0.92) 50%, rgba(12, 12, 14, 0.98) 100%); border: 1px solid rgba(253, 198, 89, 0.35); box-shadow: rgba(0, 0, 0, 0.6) 0px 10px 30px, rgba(243, 229, 171, 0.15) 0px 1px 1px inset;">
 <div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-tertiary/10 blur-2xl pointer-events-none"></div>
 <div class="flex items-center justify-between mb-space-sm">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" data-i18n="pendingShopsLabel">Pending Audits</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant" data-i18n="expiredShopsLabel">Expired Plans</span>
 <div class="w-10 h-10 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-xl">hourglass_top</span>
+<span class="material-symbols-outlined text-xl">event_busy</span>
 </div>
 </div>
 <div class="flex items-baseline justify-between mt-space-xs">
-<span class="font-display text-display text-tertiary font-semibold tracking-tight" id="metricPendingShops">1</span>
-<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-tertiary-container/20 px-2 py-0.5 rounded-full">
-          1 Action Required
+<span class="font-display text-display text-tertiary font-semibold tracking-tight" id="metricExpiredShops">0</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-tertiary-container/20 px-2 py-0.5 rounded-full" id="metricExpiredBadge">
+          0 Renewal Due
         </span>
 </div>
 <div class="mt-space-sm pt-space-xs flex items-center gap-2">
 <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="pendingDesc">Awaiting compliance &amp; vault credentials</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="expiredDesc">Approved shops needing plan renewal</span>
 </div>
 </div>
 </div>
@@ -243,16 +243,13 @@ body {
 <!-- Status Filter Tabs -->
 <div class="flex flex-wrap items-center gap-space-xs" id="statusFilterTabs">
 <button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-primary text-on-primary" data-status="all" onclick="setStatusFilter('all')">
-<span data-i18n="tabAll">All</span> <span class="opacity-80 text-xs" id="countAll">9</span>
+<span data-i18n="tabAll">All</span> <span class="opacity-80 text-xs" id="countAll">0</span>
 </button>
 <button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Active" onclick="setStatusFilter('Active')">
-<span data-i18n="tabActive">Active</span> <span class="opacity-80 text-xs" id="countActive">8</span>
+<span data-i18n="tabActive">Active</span> <span class="opacity-80 text-xs" id="countActive">0</span>
 </button>
 <button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Hidden" onclick="setStatusFilter('Hidden')">
 <span data-i18n="tabHidden">Hidden</span> <span class="opacity-80 text-xs" id="countHidden">0</span>
-</button>
-<button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Pending" onclick="setStatusFilter('Pending')">
-<span data-i18n="tabPending">Pending</span> <span class="opacity-80 text-xs" id="countPending">1</span>
 </button>
 <button class="status-tab px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all duration-200 bg-surface-container-high text-on-surface-variant hover:text-on-surface" data-status="Expired" onclick="setStatusFilter('Expired')">
 <span data-i18n="tabExpired">Expired</span> <span class="opacity-80 text-xs" id="countExpired">0</span>
@@ -700,8 +697,8 @@ body {
     }
   ];
 
-  // Global State
-  let shopsData = [...initialShops];
+  // Global State (populated from backend approved shops)
+  let shopsData = [];
   let currentLanguage = 'en';
   let activeStatusFilter = 'all';
   let pendingActionShopId = null;
@@ -721,8 +718,8 @@ body {
       activeDesc: "Publicly discoverable on luxury map",
       hiddenShopsLabel: "Private / Hidden",
       hiddenDesc: "Preserved data; unlisted from search",
-      pendingShopsLabel: "Pending Audits",
-      pendingDesc: "Awaiting compliance & vault credentials",
+      expiredShopsLabel: "Expired Plans",
+      expiredDesc: "Approved shops needing plan renewal",
       catAll: "All Categories",
       catJewelry: "Luxury Jewelry & Watches",
       catFashion: "Haute Couture & Fashion",
@@ -780,8 +777,8 @@ body {
       activeDesc: "ဧည့်သည်များ တိုက်ရိုက် ရှာဖွေနိုင်သည်",
       hiddenShopsLabel: "ခေတ္တ ဝှက်ထားသော ဆိုင်များ",
       hiddenDesc: "အချက်အလက် မပျက်စီးဘဲ စာရင်းမှ ဖျောက်ထားသည်",
-      pendingShopsLabel: "စိစစ်ဆဲ ဆိုင်များ",
-      pendingDesc: "အတည်ပြုချက် စောင့်ဆိုင်းနေသော ဆိုင်များ",
+      expiredShopsLabel: "သက်တမ်းကုန် ဆိုင်များ",
+      expiredDesc: "သက်တမ်းတိုးရန် လိုအပ်သော အတည်ပြုပြီး ဆိုင်များ",
       catAll: "ကဏ္ဍအားလုံး",
       catJewelry: "ကျောက်မျက်နှင့် နာရီများ",
       catFashion: "ဖက်ရှင်နှင့် လက်ချုပ်ဝတ်စုံ",
@@ -1038,7 +1035,7 @@ body {
     }).sort((a, b) => {
       if (sortVal === 'rating') return b.rating - a.rating;
       if (sortVal === 'name') return a.name.localeCompare(b.name);
-      return b.id.localeCompare(a.id); // Default latest
+      return (b.numericId || 0) - (a.numericId || 0); // Default latest
     });
   }
 
@@ -1084,20 +1081,25 @@ body {
     const total = shopsData.length;
     const active = shopsData.filter(s => s.status === 'Active').length;
     const hidden = shopsData.filter(s => s.status === 'Hidden').length;
-    const pending = shopsData.filter(s => s.status === 'Pending').length;
     const expired = shopsData.filter(s => s.status === 'Expired').length;
 
-    document.getElementById('countAll').textContent = total;
-    document.getElementById('countActive').textContent = active;
-    document.getElementById('countHidden').textContent = hidden;
-    document.getElementById('countPending').textContent = pending;
-    document.getElementById('countExpired').textContent = expired;
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
+    set('countAll', total);
+    set('countActive', active);
+    set('countHidden', hidden);
+    set('countExpired', expired);
 
-    if (document.getElementById('metricTotalShops')) document.getElementById('metricTotalShops').textContent = total;
-    if (document.getElementById('metricActiveShops')) document.getElementById('metricActiveShops').textContent = active;
-    if (document.getElementById('metricHiddenShops')) document.getElementById('metricHiddenShops').textContent = hidden;
-    if (document.getElementById('metricPendingShops')) document.getElementById('metricPendingShops').textContent = pending;
-    if (document.getElementById('totalShopCount')) document.getElementById('totalShopCount').textContent = total;
+    set('metricTotalShops', total);
+    const elTotalBadge = document.getElementById('metricTotalBadge');
+    if (elTotalBadge) elTotalBadge.innerHTML = `<span class="material-symbols-outlined text-xs">store</span> ${total} Registered`;
+    set('metricActiveShops', active);
+    set('metricHiddenShops', hidden);
+    set('metricExpiredShops', expired);
+    set('metricExpiredBadge', `${expired} Renewal Due`);
+    set('totalShopCount', total);
   }
 
   // ==========================================
@@ -1301,51 +1303,46 @@ body {
     }
   }
 
-  // Real Backend Synchronization for Shops
+  function formatTierLabel(months, status) {
+    const tierName = months === 12 ? 'Platinum Tier' : (months === 1 ? 'Silver Tier' : 'Gold Tier');
+    return `${tierName} (${status})`;
+  }
+
+  // Real Backend Synchronization for Approved Shops
   async function loadBackendShops() {
     if (!window.AdminAPI) return;
     try {
       const data = await window.AdminAPI.getPlaces({ owned: 1 });
-      if (Array.isArray(data) && data.length > 0) {
-        shopsData = data.map(p => ({
-          id: String(p.id),
-          numericId: p.id,
-          name: p.name,
-          nameMm: p.name,
-          categoryId: p.categoryId,
-          category: p.categoryName || 'Other',
-          categoryMm: p.categoryNameMy || 'အခြား',
-          owner: p.ownerName || 'Verified Merchant',
-          ownerMm: p.ownerName || 'ကုန်သည်',
-          email: p.ownerEmail || 'shop@pointer.mm',
-          phone: p.phone || '+95 9 1234 5678',
-          address: p.address || 'Yangon, Myanmar',
-          addressMm: p.address || 'ရန်ကုန်မြို့',
-          membershipTier: 'Gold Tier (Active)',
-          rating: (p.rating && p.rating.average) ? p.rating.average : 4.8,
-          reviewsCount: (p.rating && p.rating.count) ? p.rating.count : 0,
-          regDate: p.createdAt ? p.createdAt.substring(0, 10) : '15 Nov 2026',
-          status: p.status === 'hidden' ? 'Hidden' : (p.status === 'pending' ? 'Pending' : 'Active'),
-          description: p.description || '',
-          coverAlt: p.name,
-          coverPhoto: p.coverPhoto,
-          icon: 'storefront'
-        }));
-
-        // Update Top Metrics
-        const total = shopsData.length;
-        const active = shopsData.filter(s => s.status === 'Active').length;
-        const hidden = shopsData.filter(s => s.status === 'Hidden').length;
-        const pending = shopsData.filter(s => s.status === 'Pending').length;
-
-        const elTotal = document.getElementById('metricTotalShops');
-        const elActive = document.getElementById('metricActiveShops');
-        const elHidden = document.getElementById('metricHiddenShops');
-        const elPending = document.getElementById('metricPendingShops');
-        if (elTotal) elTotal.textContent = total;
-        if (elActive) elActive.textContent = active;
-        if (elHidden) elHidden.textContent = hidden;
-        if (elPending) elPending.textContent = pending;
+      if (Array.isArray(data)) {
+        // Pending and rejected requests must stay in Applications until approved.
+        const approvedOnly = data.filter(p => p.status === 'active' || p.status === 'hidden');
+        shopsData = approvedOnly.map(p => {
+          const shopStatus = p.status === 'hidden' ? 'Hidden' : (p.isExpired ? 'Expired' : 'Active');
+          return {
+            id: String(p.id),
+            numericId: p.id,
+            name: p.name,
+            nameMm: p.name,
+            categoryId: p.categoryId,
+            category: p.categoryName || 'Other',
+            categoryMm: p.categoryNameMy || 'အခြား',
+            owner: p.ownerName || 'Verified Merchant',
+            ownerMm: p.ownerName || 'ကုန်သည်',
+            email: p.ownerEmail || 'shop@pointer.mm',
+            phone: p.phone || '+95 9 1234 5678',
+            address: p.address || 'Yangon, Myanmar',
+            addressMm: p.address || 'ရန်ကုန်မြို့',
+            membershipTier: formatTierLabel(p.planMonths, shopStatus),
+            rating: (p.rating && p.rating.average) ? p.rating.average : 5.0,
+            reviewsCount: (p.rating && p.rating.count) ? p.rating.count : 0,
+            regDate: p.createdAt ? p.createdAt.substring(0, 10) : '15 Nov 2026',
+            status: shopStatus,
+            description: p.description || '',
+            coverAlt: p.name,
+            coverPhoto: p.coverPhoto || p.storefrontPhoto,
+            icon: 'storefront'
+          };
+        });
 
         renderShops();
       }
